@@ -12,11 +12,11 @@ class CreateAdminSeeder extends Seeder
      */
     public function run()
     {
-       
+
          $admin = new Admin;
         $admin->name = 'Admin';
         $admin->email = 'admin@gmail.com';
-        $admin->password = bcrypt('password');        
+        $admin->password = bcrypt('12345678');
         $admin->save();
     }
 }

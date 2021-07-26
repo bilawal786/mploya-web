@@ -1,9 +1,6 @@
  <footer class="main-footer">
-    <strong>Developed By <a href=""></a> 2021
+    <strong>Developed By <a href="https://www.webfabricant.com/">WebFabricant</a> 2021
         </strong>
-    <div class="float-right d-none d-sm-inline-block">
-        Legal Notice | Terms and Condition
-    </div>
   </footer>
 
   <!-- Control Sidebar -->
@@ -145,7 +142,7 @@
          });
      });
  </script>
- 
+
  <script>
      $(function () {
          //Initialize Select2 Elements

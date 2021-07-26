@@ -40,14 +40,12 @@
                                         <th>Father Name</th>
                                         <th>Email</th>
                                         <th>Address</th>
-                                        <th>CNIC</th>
+                                        <th>NIC</th>
                                         <th>Phone No</th>
-                                        <th>Education</th>
-                                        <th>Continue Or Not</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                      
+
                                           @if(empty($employers))
                                              <tr>
                                                 <td></td>
@@ -55,7 +53,7 @@
                                                 <td></td>
                                                 <td></td>
                                             </tr>
-                                      
+
                                           @else
                                            @foreach ($employers as $row)
                                             <tr>
@@ -63,39 +61,27 @@
                                                 <td>{{$row->name}}</td>
                                                  @if($row->father_name == '0')
                                                 <td></td>
-                                                @else 
+                                                @else
                                                 <td>{{$row->father_name}}</td>
                                                 @endif
                                                 <td>{{$row->email}}</td>
                                                 <td>{{$row->address}}</td>
                                                 @if($row->CNIC == '0')
                                                 <td></td>
-                                                @else 
+                                                @else
                                                 <td>{{$row->CNIC}}</td>
                                                 @endif
-                                            
+
                                                  @if($row->phone == '0')
                                                 <td></td>
-                                                @else 
+                                                @else
                                                 <td>{{$row->phone}}</td>
                                                 @endif
 
-                                                 @if($row->education == '0')
-                                                <td></td>
-                                                @else 
-                                                <td>{{$row->education}}</td>
-                                                @endif
-
-                                                 @if($row->is_continue == '0')
-                                                <td></td>
-                                                @else 
-                                                <td>{{$row->is_continue}}</td>
-                                                @endif
-
                                             </tr>
-                                          @endforeach 
+                                          @endforeach
                                           @endif
-                                       
+
                                     </tbody>
                                 </table>
                             </div>

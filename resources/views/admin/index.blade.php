@@ -8,7 +8,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-8">
-                        
+
                     </div><!-- /.col -->
                     <div class="col-sm-4">
                         <ol class="breadcrumb float-sm-right">
@@ -32,134 +32,82 @@
                             <div class="inner">
                                 <h3>25</h3>
 
-                                <p>New</p>
+                                <p>Employers</p>
                             </div>
                             <div class="icon">
-                                <i class="fa fa-folder-plus"></i>
+                                <i class="fas fa-chalkboard-teacher"></i>
                             </div>
                         </div>
                     </div>
-                {{--       <!-- ./col -->
-                       <div class="col-lg-3 col-6">
-                           <!-- small box -->
-                           <div class="small-box bg-success">
-                               <div class="inner">
-                                   <h3>{{$c_back}}</h3>
+                    <div class="col-lg-3 col-6">
+                        <!-- small box -->
+                        <div class="small-box bg-danger">
+                            <div class="inner">
+                                <h3>30</h3>
 
-                                   <p>Call Back</p>
-                               </div>
-                               <div class="icon">
-                                   <i class="fa fa-phone-alt"></i>
-                               </div>
-                           </div>
-                       </div>
-                       <!-- ./col -->
-                       <div class="col-lg-3 col-6">
-                           <!-- small box -->
-                           <div class="small-box bg-dark">
-                               <div class="inner">
-                                   <h3>{{$new_answer}}</h3>
+                                <p>Job Seekers</p>
+                            </div>
+                            <div class="icon">
+                                <i class="fa fa-users"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-6">
+                        <!-- small box -->
+                        <div class="small-box bg-success">
+                            <div class="inner">
+                                <h3>9</h3>
 
-                                   <p>No Answer</p>
-                               </div>
-                               <div class="icon">
-                                   <i class="fa fa-microphone-alt-slash"></i>
-                               </div>
-                           </div>
-                       </div>
-                       <!-- ./col -->
-                       <div class="col-lg-3 col-6">
-                           <!-- small box -->
-                           <div class="small-box bg-danger">
-                               <div class="inner">
-                                   <h3>{{$new_answer}}</h3>
+                                <p>Categories</p>
+                            </div>
+                            <div class="icon">
+                                <i class="fa  fa-list-alt"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-6">
+                        <!-- small box -->
+                        <div class="small-box bg-info">
+                            <div class="inner">
+                                <h3>25</h3>
 
-                                   <p>New no Answer</p>
-                               </div>
-                               <div class="icon">
-                                   <i class="fa fa-exclamation"></i>
-                               </div>
-                           </div>
-                       </div>
-                       <!-- ./col -->
+                                <p>Subscriptions</p>
+                            </div>
+                            <div class="icon">
+                                <i class="fa fa-dollar-sign"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-6">
+                        <!-- small box -->
+                        <div class="small-box bg-dark">
+                            <div class="inner">
+                                <h3>300</h3>
 
-                       <div class="col-lg-3 col-6">
-                           <!-- small box -->
-                           <div class="small-box bg-warning">
-                               <div class="inner">
-                                   <h3>{{$done}}</h3>
+                                <p>Active Subscriptions</p>
+                            </div>
+                            <div class="icon">
+                                <i class="fa fa-comment-dollar"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-6">
+                        <!-- small box -->
+                        <div class="small-box bg-warning">
+                            <div class="inner">
+                                <h3>25</h3>
 
-                                   <p>Done</p>
-                               </div>
-                               <div class="icon">
-                                   <i class="fa fa-check"></i>
-                               </div>
-                           </div>
-                       </div>
-                       <!-- ./col -->
+                                <p>Active Jobs</p>
+                            </div>
+                            <div class="icon">
+                                <i class="fas fa-briefcase"></i>
+                            </div>
+                        </div>
+                    </div>
 
-                       <div class="col-lg-3 col-6">
-                           <!-- small box -->
-                           <div class="small-box" style="background-color: pink; ">
-                               <div class="inner">
-                                   <h3>{{$done_money}}</h3>
-
-                                   <p>Done in the Money</p>
-                               </div>
-                               <div class="icon">
-                                   <i class="fa fa-hand-holding-usd"></i>
-                               </div>
-                           </div>
-                       </div>
-                       <!-- ./col -->
-
-                       <div class="col-lg-3 col-6">
-                           <!-- small box -->
-                           <div class="small-box bg-muted" style="background-color: #00FFFF;">
-                               <div class="inner">
-                                   <h3>{{$n_intrested}}</h3>
-
-                                   <p>Not Intrested</p>
-                               </div>
-                               <div class="icon">
-                                   <i class="fa fa-handshake-alt-slash"></i>
-                               </div>
-                           </div>
-                       </div>
-                       <!-- ./col -->
-
-                       <div class="col-lg-3 col-6">
-                           <!-- small box -->
-                           <div class="small-box" style="background-color: #d5d525;">
-                               <div class="inner">
-                                   <h3>{{$w_answer}}</h3>
-
-                                   <p>What's no Answer</p>
-                               </div>
-                               <div class="icon">
-                                   <i class="fa fa-question"></i>
-                               </div>
-                           </div>
-                       </div>
-                       <!-- ./col -->
-
-
-
-                       <div class="col-lg-3 col-6">
-                           <!-- small box -->
-                           <div class="small-box bg-secondary">
-                               <div class="inner">
-                                   <h3>{{$try}}</h3>
-
-                                   <p>Try Again</p>
-                               </div>
-                               <div class="icon">
-                                   <i class="fa fa-redo-alt"></i>
-                               </div>
-                           </div>
-                       </div>--}}
                 <!-- ./col -->
                 </div>
+
                 <!-- /.row -->
                 <!-- Main row -->
 

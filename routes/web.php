@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('auth.admin-login');
+    return view('welcome');
 });
 
 Auth::routes(['register' => false]);

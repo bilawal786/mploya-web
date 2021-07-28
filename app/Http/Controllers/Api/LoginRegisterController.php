@@ -20,10 +20,14 @@ class LoginRegisterController extends Controller
     {
         if (Auth::attempt(['email' => request('email'), 'password' => request('password'), 'varify_email' => 1])) {
             $user = Auth::user();
-            $success['token'] =  $user->createToken('MyApp')->accessToken;
-            $success['name'] =  $user->name;
-            $success['success'] = true;
-            return response()->json(['response' => $success], $this->successStatus);
+            if ($user->user_type == request('user_type')){
+                $success['token'] =  $user->createToken('MyApp')->accessToken;
+                $success['name'] =  $user->name;
+                $success['success'] = true;
+                return response()->json($success);
+            }else{
+                return response()->json(['error' => 'You are Login as Different Account', 'success' => false], 401);
+            }
         } elseif (Auth::attempt(['email' => request('email'), 'password' => request('password'), 'varify_email' => 0])) {
             return response()->json(['error' => 'Email Not Varified', 'success' => false], 401);
         } else {

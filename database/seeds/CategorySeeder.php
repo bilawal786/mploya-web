@@ -14,19 +14,16 @@ class CategorySeeder extends Seeder
     {
         DB::table('categories')->insert([
             [
-                'title' => 'title 1',
+                'title' => 'Education',
+                'image' => 'category_images/1627537181category.png',
             ],
             [
-                'title' => 'title 2',
+                'title' => 'Programing',
+                'image' => 'category_images/1627537232category.png',
             ],
             [
-                'title' => 'title 3',
-            ],
-            [
-                'title' => 'title 4',
-            ],
-            [
-                'title' => 'title 5',
+                'title' => 'legal',
+                'image' => 'category_images/1627537279category.png',
             ],
         ]);
     }

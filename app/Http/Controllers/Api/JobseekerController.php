@@ -88,7 +88,7 @@ class JobseekerController extends Controller
             $user->update();
             $success['message'] = 'Profile Updated Successfully!';
             $success['success'] = true;
-            return response()->json(['response' => $success], $this->successStatus);
+            return response()->json($success, $this->successStatus);
         }
     }
 
@@ -150,7 +150,7 @@ class JobseekerController extends Controller
                 $jobseeker->notify(new JobApplyNotification($message));
                 $success['message'] = 'Applied Successfully!';
                 $success['success'] = true;
-                return response()->json(['response' => $success], $this->successStatus);
+                return response()->json($success, $this->successStatus);
             } else {
                 return response()->json(['message' => 'You already  Apply On This Job', 'success' => false], 401);
             }
@@ -196,7 +196,7 @@ class JobseekerController extends Controller
                 $bookmark->save();
                 $success['message'] = 'Job Bookmark Successfully!';
                 $success['success'] = true;
-                return response()->json(['response' => $success], $this->successStatus);
+                return response()->json($success, $this->successStatus);
             } else {
                 return response()->json(['message' => 'Job Are Closed', 'success' => false], 401);
             }

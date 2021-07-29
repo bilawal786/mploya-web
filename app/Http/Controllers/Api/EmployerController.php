@@ -78,7 +78,7 @@ class EmployerController extends Controller
             $profile->update();
             $success['message'] = 'Profile Updated Successfully!';
             $success['success'] = true;
-            return response()->json(['response' => $success], $this->successStatus);
+            return response()->json($success, $this->successStatus);
         } else {
             return response()->json(['message' => 'User Not Found', 'success' => false], 401);
         }
@@ -132,7 +132,8 @@ class EmployerController extends Controller
                             $purchased_subscription->valid_job -= 1;
                             $purchased_subscription->update();
                             $success['message'] = 'Job Add Successfully!';
-                            return response()->json(['response' => $success, 'success' => true], $this->successStatus);
+                            $success['success'] = true;
+                            return response()->json($success, $this->successStatus);
                         } else {
                             return response()->json(['error' => 'Something Wrong, Try Again', 'success' => false], 401);
                         }
@@ -224,7 +225,7 @@ class EmployerController extends Controller
 
                 $success['message'] = 'Job Update Successfully!';
                 $success['success'] = true;
-                return response()->json(['response' => $success], $this->successStatus);
+                return response()->json($success, $this->successStatus);
             } else {
                 return response()->json(['message' => 'Job Not Found', 'success' => false], 404);
             }
@@ -243,7 +244,7 @@ class EmployerController extends Controller
             $job->delete();
             $success['message'] = 'Job Delete Successfully!';
             $success['success'] = true;
-            return response()->json(['response' => $success], $this->successStatus);
+            return response()->json($success, $this->successStatus);
         } else {
             return response()->json(['message' => 'Job Not Found', 'success' => false], 404);
         }
@@ -268,7 +269,7 @@ class EmployerController extends Controller
                 $job->update();
                 $success['message'] = 'Job Status Change Successfully, and Now Current Status is Open';
                 $success['success'] = true;
-                return response()->json(['response' => $success], $this->successStatus);
+                return response()->json($success, $this->successStatus);
             }
         } else {
             return response()->json(['message' => 'Job Not Found', 'success' => false], 404);
@@ -286,13 +287,13 @@ class EmployerController extends Controller
                 $user->update();
                 $success['message'] = 'Profile Status Change Successfully and Now Current Status is Not Visible';
                 $success['success'] = true;
-                return response()->json(['response' => $success], $this->successStatus);
+                return response()->json($success, $this->successStatus);
             } else {
                 $user->profile_status = 'visible';
                 $user->update();
                 $success['message'] = 'Profile Status Change Successfully and Now Current Status is Visible';
                 $success['success'] = true;
-                return response()->json(['response' => $success], $this->successStatus);
+                return response()->json($success, $this->successStatus);
             }
         } else {
             return response()->json(['message' => 'User Not Found', 'success' => false], 404);
@@ -316,7 +317,7 @@ class EmployerController extends Controller
             $user->update();
             $success['message'] = 'Password Update Successfully!';
             $success['success'] = true;
-            return response()->json(['response' => $success], $this->successStatus);
+            return response()->json($success, $this->successStatus);
         } else {
             return response()->json(['message' => 'User Not Found', 'success' => false], 404);
         }
@@ -368,7 +369,7 @@ class EmployerController extends Controller
                 $bookmark->save();
                 $success['message'] = 'Jobseeker Bookmark Successfully!';
                 $success['success'] = true;
-                return response()->json(['response' => $success], $this->successStatus);
+                return response()->json($success, $this->successStatus);
             } else {
                 return response()->json(['message' => 'Profile Not Visible', 'success' => false], 401);
             }
@@ -433,7 +434,7 @@ class EmployerController extends Controller
             $jobseeker->notify(new InterviewNotfication($message));
             $success['message'] = 'Interview Schedule Successfully and check your Email';
             $success['success'] = true;
-            return response()->json(['response' => $success], $this->successStatus);
+            return response()->json($success, $this->successStatus);
         } else {
             return response()->json(['message' => 'You Are Not Able To Schedule', 'success' => false], 401);
         }

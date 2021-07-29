@@ -36,7 +36,7 @@ class AuthController extends Controller
                 $user->notify(new ForgotPasswordNotification($otp));
                 $success['message'] = 'Otp Send Successfully On Your Email';
                 $success['success'] = true;
-                return response()->json(['response' => $success], $this->successStatus);
+                return response()->json($success, $this->successStatus);
             } else {
                 return response()->json(['error' => 'Invalid  Email', 'success' => false], 401);
             }
@@ -52,7 +52,7 @@ class AuthController extends Controller
                 $user->update();
                 $success['message'] = 'Your Otp Varify Successfull';
                 $success['success'] = true;
-                return response()->json(['response' => $success], $this->successStatus);
+                return response()->json($success, $this->successStatus);
             } else {
 
                 return response()->json(['error' => 'Not Varified, Please Try Again', 'success' => false], 401);
@@ -76,7 +76,8 @@ class AuthController extends Controller
         } else {
             User::where('id', $userid)->update(['password' => Hash::make($input['new_password'])]);
             $success['message'] = 'Password updated successfully';
-            return response()->json(['response' => $success, 'success' => true], 200);
+            $success['success'] = true;
+            return response()->json($success, 200);
         }
     }
 }

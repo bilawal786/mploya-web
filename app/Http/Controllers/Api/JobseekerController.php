@@ -34,6 +34,7 @@ class JobseekerController extends Controller
             'address' => ['required', 'string'],
             'CNIC' => ['bail', 'required', 'regex:/^[0-9]{5}-[0-9]{7}-[0-9]$/'],
             'phone' => ['required'],
+            'image' => ['mimes:jpeg,jpg,png,gif|max:10000'],
             'city' => ['required', 'string'],
             'country' => ['required', 'string'],
             'father_name' => ['required', 'string', 'max:255'],
@@ -84,7 +85,17 @@ class JobseekerController extends Controller
             $user->certification_name = implode(',', $request->certification_name);
             $user->certification_year = implode(',', $request->certification_year);
             $user->certification_description = implode(',', $request->certification_description);
-
+            if ($request->hasfile('image')) {
+                if (!empty($user->image)) {
+                    $image_path = $user->image;
+                    unlink($image_path);
+                }
+                $image = $request->file('image');
+                $name = time() . 'profile' . '.' . $image->getClientOriginalExtension();
+                $destinationPath = 'profile_images/';
+                $image->move($destinationPath, $name);
+                $user->image = 'profile_images/' . $name;
+            }
             $user->update();
             $success['message'] = 'Profile Updated Successfully!';
             $success['success'] = true;

@@ -27,10 +27,24 @@ class AdminController extends Controller
         return view('admin.employer.all', compact('employers'));
     }
 
+    public function EmployerView($id)
+    {
+        $employer = User::find($id);
+        // dd($employer);
+        return view('admin.employer.view', compact('employer'));
+    }
+
     public function JobSeekers()
     {
         $jobseekers = User::where('user_type', '=', 'jobseeker')->get();
         return view('admin.jobseeker.all', compact('jobseekers'));
+    }
+
+    public function JobSeekerView($id)
+    {
+        $jobseeker = User::find($id);
+        // dd($jobseeker);
+        return view('admin.jobseeker.view', compact('jobseeker'));
     }
 
     public function CreateCategory()

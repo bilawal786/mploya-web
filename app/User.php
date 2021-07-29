@@ -124,6 +124,14 @@ class User extends Authenticatable
         return explode(',', $value);
     }
 
+    public function getsocialLinksAttribute($value)
+    {
+        if ($value == null) {
+            return '';
+        }
+        return explode(',', $value);
+    }
+
 
     /**
      * The attributes that should be hidden for arrays.

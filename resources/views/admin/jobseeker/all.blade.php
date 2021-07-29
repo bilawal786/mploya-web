@@ -42,6 +42,8 @@
                                         <th>Address</th>
                                         <th>NIC</th>
                                         <th>Phone No</th>
+                                        <th>Image</th>
+                                        <th>Action</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -53,32 +55,37 @@
                                                 <td></td>
                                                 <td></td>
                                                 <td></td>
+                                                <td></td>
+                                                <td></td>
                                             </tr>
                                           @else 
                                            @foreach ($jobseekers as $row)
                                            
                                              <tr>
-                                                <td>{{$loop->iteration}}</td>
-                                                <td>{{$row->name}}</td>
+                                                <td class="align-middle">{{$loop->iteration}}</td>
+                                                <td class="align-middle">{{$row->name}}</td>
                                                  @if($row->father_name == '0')
                                                 <td></td>
                                                 @else
-                                                <td>{{$row->father_name}}</td>
+                                                <td class="align-middle">{{$row->father_name}}</td>
                                                 @endif
-                                                <td>{{$row->email}}</td>
-                                                <td>{{$row->address}}</td>
+                                                <td class="align-middle">{{$row->email}}</td>
+                                                <td class="align-middle">{{$row->address}}</td>
                                                 @if($row->CNIC == '0')
                                                 <td></td>
                                                 @else
-                                                <td>{{$row->CNIC}}</td>
+                                                <td class="align-middle">{{$row->CNIC}}</td>
                                                 @endif
 
                                                  @if($row->phone == '0')
                                                 <td></td>
                                                 @else
-                                                <td>{{$row->phone}}</td>
+                                                <td class="align-middle">{{$row->phone}}</td>
                                                 @endif
-
+                                                <td><img src="{{asset($row->image)}}" alt="image" width="74" height="74"></td>
+                                                <td class="align-middle">
+                                                     <a type="button" href="{{route('admin.jobseeker',['id' => $row->id])}}" title="View"  class="btn btn-success"><i class="far fa-eye"></i></a>
+                                                 </td>
                                             </tr>
                                           @endforeach
                                           @endif

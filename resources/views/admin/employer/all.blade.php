@@ -41,6 +41,7 @@
                                         <th>Address</th>
                                         <th>Company Name</th>
                                         <th>image</th>
+                                        <th>Action</th>
                                         
                                     </tr>
                                     </thead>
@@ -72,6 +73,9 @@
                                                  <td class="align-middle">{{$row->company_name}}</td>
                                                 @endif
                                                  <td><img src="{{asset($row->image)}}" alt="image" width="74" height="74"></td>
+                                                 <td class="align-middle">
+                                                     <a type="button" href="{{route('admin.employer',['id' => $row->id])}}" title="View"  class="btn btn-success"><i class="far fa-eye"></i></a>
+                                                 </td>
                                             </tr>
                                           @endforeach
                                           @endif

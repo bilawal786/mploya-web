@@ -81,7 +81,7 @@ class LoginRegisterController extends Controller
         $success['success'] = true;
         $success['message'] = 'Otp Send Successfully On Your Email';
         $user->notify(new EmailVerifyNotification($otp));
-        return response()->json(['response' => $success], $this->successStatus);
+        return response()->json($success);
     }
 
 
@@ -95,7 +95,7 @@ class LoginRegisterController extends Controller
                 $success['message'] = 'Your Otp Varify Successfull';
                 $success['token'] =  $user->createToken('MyApp')->accessToken;
                 $success['success'] = true;
-                return response()->json(['response' => $success], $this->successStatus);
+                return response()->json($success);
             } else {
 
                 return response()->json(['error' => 'Not Varified, Please Try Again', 'success' => false], 401);

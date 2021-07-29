@@ -35,13 +35,13 @@
                                 <table id="example1" class="table table-bordered table-striped">
                                     <thead>
                                     <tr>
-                                        <th>#</th>
+                                         <th>#</th>
                                         <th>Name</th>
-                                        <th>Father Name</th>
                                         <th>Email</th>
                                         <th>Address</th>
-                                        <th>NIC</th>
-                                        <th>Phone No</th>
+                                        <th>Company Name</th>
+                                        <th>image</th>
+                                        
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -52,32 +52,26 @@
                                                 <td></td>
                                                 <td></td>
                                                 <td></td>
+                                                <td></td>
                                             </tr>
 
                                           @else
                                            @foreach ($employers as $row)
-                                            <tr>
-                                                <td>{{$loop->iteration}}</td>
-                                                <td>{{$row->name}}</td>
-                                                 @if($row->father_name == '0')
-                                                <td></td>
-                                                @else
-                                                <td>{{$row->father_name}}</td>
+                                             <tr>
+                                                <td class="align-middle">{{$loop->iteration}}</td>
+                                                <td class="align-middle">{{$row->name}}</td>
+                                                <td class="align-middle">{{$row->email}}</td>
+                                                @if($row->address == '0')
+                                                <td class="align-middle"></td>
+                                                @else 
+                                                 <td class="align-middle">{{$row->address}}</td>
                                                 @endif
-                                                <td>{{$row->email}}</td>
-                                                <td>{{$row->address}}</td>
-                                                @if($row->CNIC == '0')
-                                                <td></td>
-                                                @else
-                                                <td>{{$row->CNIC}}</td>
+                                                @if($row->company_name == '0')
+                                                <td class="align-middle"></td>
+                                                @else 
+                                                 <td class="align-middle">{{$row->company_name}}</td>
                                                 @endif
-
-                                                 @if($row->phone == '0')
-                                                <td></td>
-                                                @else
-                                                <td>{{$row->phone}}</td>
-                                                @endif
-
+                                                 <td><img src="{{asset($row->image)}}" alt="image" width="74" height="74"></td>
                                             </tr>
                                           @endforeach
                                           @endif

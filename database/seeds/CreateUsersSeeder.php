@@ -18,7 +18,7 @@ class CreateUsersSeeder extends Seeder
                 'name' => 'employer',
                 'email' => 'employer@gmail.com',
                 'user_type' => 'employer',
-                'company_name' => '0',
+                'company_name' => 'y4ktech',
                 'profile_status' => 'visible',
                 'address' => 'lahore,pakistan',
                 'password' => Hash::make('password'),
@@ -29,7 +29,7 @@ class CreateUsersSeeder extends Seeder
                 'user_type' => 'jobseeker',
                 'profile_status' => 'visible',
                 'address' => 'lahore,pakistan',
-                'company_name' => 'y4ktech',
+                'company_name' => '0',
                 'password' => Hash::make('password'),
             ],
         ]);

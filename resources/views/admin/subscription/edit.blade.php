@@ -54,6 +54,7 @@ input[type=number] {
               <form id="subscriptionform">
                   @csrf
                   <input type="hidden" name="subscription_id" value="{{$subscription->id}}">
+                  <input type="hidden" name="status" value="{{$subscription->status}}" class="form-control">
                 <div class="card-body">
 
                     <div class="form-group">
@@ -69,8 +70,9 @@ input[type=number] {
                     <input type="number" min="1" name="valid_job" class="form-control" value="{{$subscription->valid_job}}" required>
                   </div>
                   <div class="form-group">
-                    <label for="exampleInputEmail1">Status</label>
-                    <input type="text" name="status" class="form-control" value="{{$subscription->description}}" required>
+  
+                    <label for="exampleInputEmail1">Color</label>
+                    <input type="color" name="color" class="form-control" value="{{$subscription->color}}" required>
                   </div>
                    <div class="row">
                     <div class="col-sm-12">

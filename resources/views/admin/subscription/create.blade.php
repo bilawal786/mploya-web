@@ -53,6 +53,7 @@ input[type=number] {
               <!-- form start -->
               <form id="subscriptionform">
                   @csrf
+                  <input type="hidden" name="status" value="1" class="form-control">
                 <div class="card-body">
                     <div class="form-group">
                     <label for="exampleInputEmail1">Title</label>
@@ -67,8 +68,8 @@ input[type=number] {
                     <input type="number" min="1" name="valid_job" class="form-control" placeholder="Enter a price.." required>
                   </div>
                   <div class="form-group">
-                    <label for="exampleInputEmail1">Status</label>
-                    <input type="text" name="status" class="form-control" placeholder="Enter a status.." required>
+                    <label for="exampleInputEmail1">Color</label>
+                    <input type="color" name="color" class="form-control" required>
                   </div>
                    <div class="row">
                     <div class="col-sm-12">

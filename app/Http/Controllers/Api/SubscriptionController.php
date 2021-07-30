@@ -59,6 +59,7 @@ class SubscriptionController extends Controller
                 $subscription->price = $request->price;
                 $subscription->valid_job = $request->valid_job;
                 $subscription->status = $request->status;
+                $subscription->color = $request->color;
                 $subscription->description = $request->description;
                 $subscription->save();
                 $success['message'] = 'Subscription Purchase Successfully!';

@@ -82,7 +82,11 @@
                                                 @else
                                                 <td class="align-middle">{{$row->phone}}</td>
                                                 @endif
+                                                 @if($row->image == 0)
+                                                <td><img src="{{asset('assets/dist/img/profilepic.png')}}" alt="image" width="74" height="74"></td>
+                                                @else 
                                                 <td><img src="{{asset($row->image)}}" alt="image" width="74" height="74"></td>
+                                                @endif
                                                 <td class="align-middle">
                                                      <a type="button" href="{{route('admin.jobseeker',['id' => $row->id])}}" title="View"  class="btn btn-success"><i class="far fa-eye"></i></a>
                                                  </td>

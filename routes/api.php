@@ -51,157 +51,193 @@ Route::post('/opt/verify/email', 'Api\LoginRegisterController@OptVerify');
 
 Route::post('/social/register', 'Api\LoginRegisterController@SocialRegister');
 
+Route::group(
+    ['middleware' => ['auth:api', 'UserBlock']],
+    function () {
+        //************************ employer Route *****************************/
 
-//************************ employer Route *****************************/
+        // employer Profile Update Route
 
-// Job Seeker Profile Update Route
+        Route::post('employer/profile/update', 'Api\EmployerController@ProfileUpdate');
 
-Route::post('employer/profile/update', 'Api\EmployerController@ProfileUpdate');
+        // Job Post Route
 
-// Job Post Route
+        Route::post('/job/post', 'Api\EmployerController@JobPost');
 
-Route::post('/job/post', 'Api\EmployerController@JobPost');
+        // Get All Job 
 
-// Get All Job 
+        Route::get('/employer/jobs', 'Api\EmployerController@AllJobs');
 
-Route::get('/employer/jobs', 'Api\EmployerController@AllJobs');
+        // Get Single Job
 
-// Get Single Job
+        Route::get('/single/job/{id}', 'Api\EmployerController@SingleJob');
 
-Route::get('/single/job/{id}', 'Api\EmployerController@SingleJob');
 
 
+        // Get Single employer
 
-// Get Single employer
+        Route::get('/single/employer/{id}', 'Api\EmployerController@SingleEmployer');
 
-Route::get('/single/employer/{id}', 'Api\EmployerController@SingleEmployer');
 
+        // Get Single jobseeker
 
-// Get Single jobseeker
+        Route::get('/single/jobseeker/{id}', 'Api\EmployerController@SingleJobseeker');
 
-Route::get('/single/jobseeker/{id}', 'Api\EmployerController@SingleJobseeker');
+        // Delete Job Route
 
-// Delete Job Route
+        Route::delete('/delete/job/{id}', 'Api\EmployerController@DeleteJob');
 
-Route::delete('/delete/job/{id}', 'Api\EmployerController@DeleteJob');
+        // Edit Job Route
 
-// Edit Job Route
+        Route::post('job/edit', 'Api\EmployerController@UpdateJob');
 
-Route::post('job/edit', 'Api\EmployerController@UpdateJob');
+        // Change Job Status Route
 
-// Change Job Status Route
+        Route::get('/job/{id}', 'Api\EmployerController@ChangeJobStatus');
 
-Route::get('/job/{id}', 'Api\EmployerController@ChangeJobStatus');
+        // Change Password Route
 
-// Change Password Route
+        Route::post('/password/change', 'Api\EmployerController@PasswordChange');
 
-Route::post('/password/change', 'Api\EmployerController@PasswordChange');
 
+        // Change Profile Status Route
 
-// Change Profile Status Route
+        Route::get('/profile/{id}', 'Api\EmployerController@ChangeProfileStatus');
 
-Route::get('/profile/{id}', 'Api\EmployerController@ChangeProfileStatus');
+        /////////////////////////////////
 
-/////////////////////////////////
+        // Get All Employer 
 
-// Get All Employer 
+        Route::get('/all/employers', 'Api\JobseekerController@AllJobseeker');
 
-Route::get('/all/employers', 'Api\JobseekerController@AllJobseeker');
+        /////////////////////////////////// NEW API /////////////////////////////////
 
-///////////////////////////////////
+        // Get All Popular Employer 
 
+        Route::get('/popular/employers', 'Api\EmployerController@AllPapularEmployer');
 
-// Get All jobseeker 
+        Route::post('/employer/add/review', 'Api\EmployerController@EmployerAddReview');
 
-Route::get('/all/jobseeker', 'Api\EmployerController@AllEmployer');
 
+        // get all reviw of employer
 
-// Get All  jbseeker  Applied For Job
+        Route::get('/employer/review', 'Api\EmployerController@EmployerReview');
 
-Route::get('/applied/jobseeker', 'Api\EmployerController@AppliedEmployer');
 
-//  Jobseeker  Bookmark  Route
+        /////////////////////////////////// END NEW API /////////////////////////////////
 
-Route::post('/jobseeker/bookmark', 'Api\EmployerController@EmployerBookmark');
 
+        // Get All jobseeker 
 
-// Get All Bookmarked Jobseeker Route
+        Route::get('/all/jobseeker', 'Api\EmployerController@AllEmployer');
 
-Route::get('/all/bookmark/jobseeker', 'Api\EmployerController@AllBookmarkEmployer');
 
-// Get Single Bookmarked jobseeker
+        // Get All  jbseeker  Applied For Job
 
-Route::get('/single/bookmarked/jobseeker/{id}', 'Api\EmployerController@SingleBookmarkEmployer');
+        Route::get('/applied/jobseeker', 'Api\EmployerController@AppliedEmployer');
 
+        //  Jobseeker  Bookmark  Route
 
-// Interview Route
+        Route::post('/jobseeker/bookmark', 'Api\EmployerController@EmployerBookmark');
 
-Route::post('/interview', 'Api\EmployerController@Interview');
 
+        // Get All Bookmarked Jobseeker Route
 
-//************************ End Employer Route *****************************/
+        Route::get('/all/bookmark/jobseeker', 'Api\EmployerController@AllBookmarkEmployer');
 
+        // Get Single Bookmarked jobseeker
 
-//************************ jobseeker Route *****************************/
+        Route::get('/single/bookmarked/jobseeker/{id}', 'Api\EmployerController@SingleBookmarkEmployer');
 
 
-// jobseeker Profile Update Route
+        // Interview Route
 
-Route::post('/jobseeker/profile/update', 'Api\JobseekerController@ProfileUpdate');
+        Route::post('/interview', 'Api\EmployerController@Interview');
 
 
-// Get All Jobs Route
+        //************************ End Employer Route *****************************/
 
-Route::get('/all/jobs', 'Api\JobseekerController@AllJobs');
+        //************************ jobseeker Route *****************************/
 
-// Apply For Job Route 
 
-Route::post('/apply/job', 'Api\JobseekerController@ApplyJob');
+        // jobseeker Profile Update Route
 
-// Get All Applied Jobs Route
+        Route::post('/jobseeker/profile/update', 'Api\JobseekerController@ProfileUpdate');
 
-Route::get('/jobseeker/applied/jobs', 'Api\JobseekerController@EmployerAppliedJob');
 
-//  Jobs  Bookmark  Route
+        // Get All Jobs Route
 
-Route::post('/job/bookmark', 'Api\JobseekerController@JobBookmark');
+        Route::get(
+            '/all/jobs',
+            'Api\JobseekerController@AllJobs'
+        );
 
+        // Apply For Job Route 
 
-// Get All Bookmarked Jobs Route
+        Route::post('/apply/job', 'Api\JobseekerController@ApplyJob');
 
-Route::get('/all/bookmark/jobs', 'Api\JobseekerController@AllBookmarkJobs');
+        // Get All Applied Jobs Route
 
-// Get Single BookmarkedJob
+        Route::get(
+            '/jobseeker/applied/jobs',
+            'Api\JobseekerController@EmployerAppliedJob'
+        );
 
-Route::get('/single/bookmarked/job/{id}', 'Api\JobseekerController@SingleBookmarkedJob');
+        //  Jobs  Bookmark  Route
 
-//************************ Jobseeker Route End *****************************/
+        Route::post('/job/bookmark', 'Api\JobseekerController@JobBookmark');
 
-//************************ Category Route *****************************/
 
-Route::get('/all/category', 'Api\CategoryController@AllCategory');
+        // Get All Bookmarked Jobs Route
 
-// Get all Jobs related to that catefgory
+        Route::get('/all/bookmark/jobs', 'Api\JobseekerController@AllBookmarkJobs');
 
-Route::get('/category/related/jobs/{id}', 'Api\CategoryController@CategoryRelatedJobs');
+        // Get Single BookmarkedJob
 
+        Route::get('/single/bookmarked/job/{id}', 'Api\JobseekerController@SingleBookmarkedJob');
 
-//************************ Subscription  Route *****************************/
+        //************************ Jobseeker Route End *****************************/
 
+        //************************ Category Route *****************************/
 
-// Get All  Subscription Route
+        Route::get('/all/category', 'Api\CategoryController@AllCategory');
 
-Route::get('/all/subscription', 'Api\SubscriptionController@AllSubscription');
+        // Get all Jobs related to that catefgory
 
-// Purchase Subscription  Route
+        Route::get('/category/related/jobs/{id}', 'Api\CategoryController@CategoryRelatedJobs');
 
-Route::post('/purchase/subscription', 'Api\SubscriptionController@PurchaseSubscription');
 
-// Get current Purchased Subscription  Route
+        //************************ Subscription  Route *****************************/
 
-Route::get('/current/purchased/subscription', 'Api\SubscriptionController@CurrentPruchasedSubscription');
 
+        // Get All  Subscription Route
 
-// Get Single Subscription
+        Route::get('/all/subscription', 'Api\SubscriptionController@AllSubscription');
 
-Route::get('/single/subscription/{id}', 'Api\SubscriptionController@SingleSubscription');
+        // Purchase Subscription  Route
+
+        Route::post('/purchase/subscription', 'Api\SubscriptionController@PurchaseSubscription');
+
+        // Get current Purchased Subscription  Route
+
+        Route::get('/current/purchased/subscription', 'Api\SubscriptionController@CurrentPruchasedSubscription');
+
+
+        // Get Single Subscription
+
+        Route::get('/single/subscription/{id}', 'Api\SubscriptionController@SingleSubscription');
+
+
+        /////     new api //
+
+        Route::post(
+            '/jobseeker/add/review',
+            'Api\JobseekerController@JobseekerAddReview'
+        );
+
+
+        // get all reviw of jobseeker
+
+        Route::get('/jobseeker/review', 'Api\JobseekerController@JobseekerReview');
+    }
+);

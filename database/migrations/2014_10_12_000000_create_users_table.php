@@ -15,6 +15,8 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('is_block')->default('1');
+            $table->string('is_popular')->default('0');
             $table->string('name');
             $table->string('father_name')->default('0');
             $table->string('email');
@@ -23,7 +25,7 @@ class CreateUsersTable extends Migration
             $table->string('phone')->default('0');
             $table->string('city')->default('0');
             $table->string('country')->default('0');
-            $table->string('description')->default('0');
+            $table->text('description')->default('0');
             $table->string('education_name')->default('0');
             $table->string('education_description')->default('0');
             $table->string('education_is_continue')->default('0');

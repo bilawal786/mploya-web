@@ -15,7 +15,7 @@ class EmployerCollection extends JsonResource
      */
     public function toArray($request)
     {
-        // dd($this->projects);
+
         return [
             'id' => $this->id,
             'name' => $this->name,

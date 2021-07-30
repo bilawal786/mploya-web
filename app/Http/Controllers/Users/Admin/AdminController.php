@@ -2,13 +2,16 @@
 
 namespace App\Http\Controllers\Users\Admin;
 
+use App\Job;
 use App\User;
+use App\Applied;
 use App\Category;
+use App\Subcategory;
 use App\Subscription;
 use Illuminate\Http\Request;
 use PhpParser\Node\Expr\FuncCall;
 use App\Http\Controllers\Controller;
-use App\Subcategory;
+use App\Notifications\ContactNotification;
 
 class AdminController extends Controller
 {
@@ -31,8 +34,9 @@ class AdminController extends Controller
     public function EmployerView($id)
     {
         $employer = User::find($id);
-        // dd($employer);
-        return view('admin.employer.view', compact('employer'));
+        $jobs = Job::where('employer_id', '=', $id)->get();
+        $totaljobs = count($jobs);
+        return view('admin.employer.view', compact('employer', 'jobs', 'totaljobs'));
     }
 
     public function JobSeekers()
@@ -44,8 +48,10 @@ class AdminController extends Controller
     public function JobSeekerView($id)
     {
         $jobseeker = User::find($id);
-        // dd($jobseeker);
-        return view('admin.jobseeker.view', compact('jobseeker'));
+        $jobsid = Applied::where('user_id', '=', $id)->pluck('job_id');
+        $appliedjobs = Job::whereIn('id', $jobsid)->get();
+        $totalappliedjobs = count($appliedjobs);
+        return view('admin.jobseeker.view', compact('jobseeker', 'appliedjobs', 'totalappliedjobs'));
     }
 
     public function CreateCategory()
@@ -136,6 +142,7 @@ class AdminController extends Controller
             $subscription->title = $request->title;
             $subscription->price = $request->price;
             $subscription->valid_job = $request->valid_job;
+            $subscription->color = $request->color;
             $subscription->status = $request->status;
             $subscription->description = $request->description;
             $subscription->save();
@@ -175,6 +182,7 @@ class AdminController extends Controller
             $subscription->title = $request->title;
             $subscription->price = $request->price;
             $subscription->valid_job = $request->valid_job;
+            $subscription->color = $request->color;
             $subscription->status = $request->status;
             $subscription->description = $request->description;
             $subscription->update();
@@ -259,6 +267,123 @@ class AdminController extends Controller
             $subcategory->update();
             return response()->json([
                 'success' => 'Sub Category Update Successfully!',
+            ]);
+        }
+    }
+
+
+    //  make empoyer popular 
+
+    public function EmployerMakePopular($id)
+    {
+
+        $popularemployer =  User::find($id);
+        $popularemployer->is_popular = 1;
+        $popularemployer->update();
+        return response()->json([
+            'success' => 'Employer Populared Successfully!',
+        ]);
+    }
+
+    // un popular 
+
+    public function EmployerMakeUnPopular($id)
+    {
+        $unpopularemployer =  User::find($id);
+        $unpopularemployer->is_popular = 0;
+        $unpopularemployer->update();
+        return response()->json([
+            'success' => 'Employer UnPopulared Successfully!',
+        ]);
+    }
+
+    // block employer
+
+    public function EmployerBlock($id)
+    {
+
+        $employerblock =  User::find($id);
+        $employerblock->is_block = 0;
+        $employerblock->update();
+
+        return response()->json([
+            'error' => 'Employer Blocked Successfully!',
+        ]);
+    }
+
+    public function EmployerUnBlock($id)
+    {
+        $unemployerblock =  User::find($id);
+        $unemployerblock->is_block = 1;
+        $unemployerblock->update();
+
+        return response()->json([
+            'success' => 'Employer UnBlocked Successfully!',
+        ]);
+    }
+
+
+
+    //  make jobseeker popular 
+
+    public function JobseekerMakePopular($id)
+    {
+
+        $popularjobseeker =  User::find($id);
+        $popularjobseeker->is_popular = 1;
+        $popularjobseeker->update();
+        return response()->json([
+            'success' => 'Jobseeker Populared Successfully!',
+        ]);
+    }
+
+    // un popular 
+
+    public function JobseekerMakeUnPopular($id)
+    {
+        $unpopularjobseeker =  User::find($id);
+        $unpopularjobseeker->is_popular = 0;
+        $unpopularjobseeker->update();
+        return response()->json([
+            'success' => 'Jobseeker UnPopulared Successfully!',
+        ]);
+    }
+
+    // block jobseeker
+
+    public function JobseekerBlock($id)
+    {
+
+        $jobseekerblock =  User::find($id);
+        $jobseekerblock->is_block = 0;
+        $jobseekerblock->update();
+
+        return response()->json([
+            'error' => 'Jobseeker Blocked Successfully!',
+        ]);
+    }
+
+    public function JobseekerUnBlock($id)
+    {
+        $unjobseekerblock =  User::find($id);
+        $unjobseekerblock->is_block = 1;
+        $unjobseekerblock->update();
+
+        return response()->json([
+            'success' => 'Jobseeker UnBlocked Successfully!',
+        ]);
+    }
+
+
+    public function Contact(Request $request)
+    {
+        if ($request->ajax()) {
+            dd($request->user_id);
+            $user = User::find($request->user_id);
+            $user->notify(new ContactNotification($request->message));
+
+            return response()->json([
+                'success' => 'Message Send Successfully!',
             ]);
         }
     }

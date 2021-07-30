@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Job;
 use App\User;
+use App\Review;
 use App\Applied;
 use App\Bookmark;
 use Illuminate\Http\Request;
@@ -11,6 +12,7 @@ use App\Http\Resources\JobResource;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Resources\AllJobCollection;
+use App\Http\Resources\ReviewCollection;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Resources\BookmarkCollection;
 use App\Http\Resources\EmployerCollection;
@@ -20,6 +22,8 @@ use App\Notifications\JobApplyNotification;
 
 class JobseekerController extends Controller
 {
+
+
 
     ////////////////////////////////////////////////////////  jobseeker ////////////////////////
     public $successStatus = 200;
@@ -243,6 +247,53 @@ class JobseekerController extends Controller
             return $data->toJson();
         } else {
             return response()->json(['message' => 'Bookmarked Jobs Not Found', 'success' => false], 404);
+        }
+    }
+
+    // new 
+
+    public function JobseekerAddReview(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'employer_id' => ['required'],
+            'star' => 'required|integer|between:0,5',
+
+        ]);
+        if ($validator->fails()) {
+            return response()->json(['error' => $validator->errors(), 'success' => false], 401);
+        }
+        $user_type = Auth::guard('api')->user()->user_type;
+        $jobseeker_id = Auth::guard('api')->user()->id;
+        if ($user_type == 'jobseeker') {
+            $review = new Review();
+            $review->user_id = $jobseeker_id;
+            $review->receiver = $request->employer_id;
+            $review->star = $request->star;
+            $review->save();
+            $success['message'] = 'Review Add Successfully';
+            $success['success'] = true;
+            return response()->json($success, $this->successStatus);
+        }
+        return response()->json(['error' => 'You Are Not Able To Add Review', 'success' => false], 404);
+    }
+
+
+    // get review 
+
+    public function JobseekerReview()
+    {
+        $jobseeker_id = Auth::guard('api')->user()->id;
+        $user_type = Auth::guard('api')->user()->user_type;
+        if ($user_type == 'jobseeker') {
+            $reviews = Review::where('receiver', '=', $jobseeker_id)->get();
+            if ($reviews->isEmpty()) {
+                return response()->json(['error' => 'Reviews not Found', 'success' => false], 404);
+            } else {
+                $data = ReviewCollection::collection($reviews);
+                return response()->json(ReviewCollection::collection($data));
+            }
+        } else {
+            return response()->json(['message' => 'You Are Not Able To Get Reviews', 'success' => false], 401);
         }
     }
 }

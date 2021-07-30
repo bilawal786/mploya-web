@@ -3,6 +3,7 @@
 namespace App;
 
 
+use App\Review;
 use App\Applied;
 use Laravel\Passport\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
@@ -27,6 +28,12 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Applied::class);
     }
+
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
+    }
+
     public function geteducationNameAttribute($value)
     {
         if ($value == null) {

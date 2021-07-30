@@ -5,7 +5,7 @@ namespace App\Http\Resources;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 
-class SubscrioptionCollection extends JsonResource
+class ReviewCollection extends JsonResource
 {
     /**
      * Transform the resource collection into an array.
@@ -17,12 +17,8 @@ class SubscrioptionCollection extends JsonResource
     {
         return [
             'id' => $this->id,
-            'title' => $this->title,
-            'price' => $this->price,
-            'valid_job' => $this->valid_job,
-            'status' => $this->status,
-            'color' => $this->color,
-            'description' => $this->description,
+            'sender_id' => $this->user_id,
+            'star' => $this->star,
         ];
     }
 }

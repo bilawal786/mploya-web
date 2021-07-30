@@ -20,6 +20,7 @@ class CreatePruchasedSubscriptionsTable extends Migration
             $table->string('price');
             $table->string('valid_job');
             $table->string('status');
+            $table->string('color');
             $table->string('description');
             $table->timestamps();
         });

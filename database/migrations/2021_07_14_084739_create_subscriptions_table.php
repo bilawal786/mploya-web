@@ -15,10 +15,11 @@ class CreateSubscriptionsTable extends Migration
     {
         Schema::create('subscriptions', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('status')->default('0');
             $table->string('title')->default('0');
             $table->string('price')->default('0');
             $table->string('valid_job')->default('0');
-            $table->string('status')->default('0');
+            $table->string('color')->default('0');
             $table->longText('description')->nullable();
             $table->timestamps();
         });

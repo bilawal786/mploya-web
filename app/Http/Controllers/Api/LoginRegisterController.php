@@ -14,6 +14,8 @@ use App\Notifications\EmailVerifyNotification;
 class LoginRegisterController extends Controller
 {
 
+
+
     public $successStatus = 200;
     public function Login()
     {

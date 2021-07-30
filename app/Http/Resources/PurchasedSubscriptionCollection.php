@@ -21,6 +21,7 @@ class PurchasedSubscriptionCollection extends JsonResource
             'price' => $this->price,
             'valid_job' => $this->valid_job,
             'status' => $this->status,
+            'color' => $this->color,
             'description' => $this->description,
         ];
     }

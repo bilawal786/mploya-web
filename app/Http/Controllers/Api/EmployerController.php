@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Job;
 use App\User;
+use App\Review;
 use App\Applied;
 use App\Interview;
 use App\Employerbookmark;
@@ -15,16 +16,19 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Resources\AllJobCollection;
 use App\Http\Resources\EmployerResource;
+use App\Http\Resources\ReviewCollection;
 use App\Http\Resources\JobseekerResource;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Resources\JobseekerCollection;
 use App\Notifications\InterviewNotfication;
 use App\Http\Resources\AppliedEmployerCollection;
+use App\Http\Resources\PopularEmployerCollection;
 use App\Http\Resources\BookmarkEmployerCollection;
 
 
 class EmployerController extends Controller
 {
+
     ////////////////////////////////////////////////////////  Employer  //////////////////// 
 
     public $successStatus = 200;
@@ -437,6 +441,69 @@ class EmployerController extends Controller
             return response()->json($success, $this->successStatus);
         } else {
             return response()->json(['message' => 'You Are Not Able To Schedule', 'success' => false], 401);
+        }
+    }
+
+    // ne api function 
+
+    // Get  All Papular Employer
+
+    public function AllPapularEmployer()
+    {
+        $user_type = Auth::guard('api')->user()->user_type;
+        if ($user_type == 'jobseeker') {
+            $popularemployers = User::where('is_popular', '=', '1')->get();
+            if ($popularemployers->isEmpty()) {
+                return response()->json(['error' => 'Popular Employers not Found', 'success' => false], 404);
+            } else {
+                $data = PopularEmployerCollection::collection($popularemployers);
+                return response()->json(PopularEmployerCollection::collection($data));
+            }
+        }
+        return response()->json(['error' => 'You Are Not Able To Get Popular Employers', 'success' => false], 404);
+    }
+
+    public function EmployerAddReview(Request $request)
+    {
+
+        $validator = Validator::make($request->all(), [
+            'jobseeker_id' => ['required'],
+            'star' => 'required|integer|between:0,5',
+
+        ]);
+        if ($validator->fails()) {
+            return response()->json(['error' => $validator->errors(), 'success' => false], 401);
+        }
+        $user_type = Auth::guard('api')->user()->user_type;
+        $employer_id = Auth::guard('api')->user()->id;
+        if ($user_type == 'employer') {
+            $review = new Review();
+            $review->user_id = $employer_id;
+            $review->receiver = $request->jobseeker_id;
+            $review->star = $request->star;
+            $review->save();
+            $success['message'] = 'Review Add Successfully';
+            $success['success'] = true;
+            return response()->json($success, $this->successStatus);
+        }
+        return response()->json(['error' => 'You Are Not Able To Add Review', 'success' => false], 404);
+    }
+
+
+    public function EmployerReview()
+    {
+        $employer_id = Auth::guard('api')->user()->id;
+        $user_type = Auth::guard('api')->user()->user_type;
+        if ($user_type == 'employer') {
+            $reviews = Review::where('receiver', '=', $employer_id)->get();
+            if ($reviews->isEmpty()) {
+                return response()->json(['error' => 'Reviews not Found', 'success' => false], 404);
+            } else {
+                $data = ReviewCollection::collection($reviews);
+                return response()->json(ReviewCollection::collection($data));
+            }
+        } else {
+            return response()->json(['message' => 'You Are Not Able To Get Reviews', 'success' => false], 401);
         }
     }
 }

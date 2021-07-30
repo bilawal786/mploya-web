@@ -5,7 +5,7 @@ namespace App\Http\Resources;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 
-class SubscrioptionCollection extends JsonResource
+class PopularEmployerCollection extends JsonResource
 {
     /**
      * Transform the resource collection into an array.
@@ -17,12 +17,12 @@ class SubscrioptionCollection extends JsonResource
     {
         return [
             'id' => $this->id,
-            'title' => $this->title,
-            'price' => $this->price,
-            'valid_job' => $this->valid_job,
-            'status' => $this->status,
-            'color' => $this->color,
-            'description' => $this->description,
+            'name' => $this->name,
+            'address' => $this->address,
+            'company_name' => $this->company_name,
+            'image' => $this->image,
+            'video' => $this->video,
+            'social_links' => $this->social_links,
         ];
     }
 }

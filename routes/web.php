@@ -54,6 +54,30 @@ Route::prefix('admin')->group(function () {
 
     Route::get('/all/category', 'Users\Admin\AdminController@AllCategory')->name('admin.category.all');
 
+    // sub category create 
+
+    Route::get('/create/subcategory', 'Users\Admin\AdminController@CreateSubCategory')->name('admin.create.subcategory');
+
+    // all subcategory 
+
+    Route::get('/all/subcategory', 'Users\Admin\AdminController@AllSubCategory')->name('admin.subcategory.all');
+
+    // sub category stor
+
+    Route::post('/store/subcategory', 'Users\Admin\AdminController@SubCategoryStore')->name('admin.subcategory.store');
+
+    //  delete update edit sub category
+
+    Route::get('/delete/subcategory/{id}', 'Users\Admin\AdminController@DeleteSubCategory')->name('admin.subcategory.delete');
+
+    Route::get('/edit/subcategory/{id}', 'Users\Admin\AdminController@UpdateSubCategory')->name('admin.subcategory.edit');
+
+    // sub category update 
+
+    Route::post('/update/subcategory', 'Users\Admin\AdminController@SubCategoryUpdate')->name('admin.subcategory.update');
+
+    //
+
     Route::get('/delete/category/{id}', 'Users\Admin\AdminController@DeleteCategory')->name('admin.category.delete');
 
     Route::get('/edit/category/{id}', 'Users\Admin\AdminController@UpdateCategory')->name('admin.category.edit');

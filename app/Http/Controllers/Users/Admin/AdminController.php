@@ -8,6 +8,7 @@ use App\Subscription;
 use Illuminate\Http\Request;
 use PhpParser\Node\Expr\FuncCall;
 use App\Http\Controllers\Controller;
+use App\Subcategory;
 
 class AdminController extends Controller
 {
@@ -179,6 +180,85 @@ class AdminController extends Controller
             $subscription->update();
             return response()->json([
                 'success' => 'Subscription Update Successfully!',
+            ]);
+        }
+    }
+
+    public function CreateSubCategory()
+    {
+        return view('admin.subcategory.create');
+    }
+
+    public function SubCategoryStore(Request $request)
+    {
+
+        if ($request->ajax()) {
+            $subcategory = new Subcategory();
+            $subcategory->title = $request->title;
+            $subcategory->category_id = $request->category_id;
+            if ($request->hasfile('image')) {
+                if (!empty($subcategory->image)) {
+                    $image_path = $subcategory->image;
+                    unlink($image_path);
+                }
+                $image = $request->file('image');
+                $name = time() . 'subcategory' . '.' . $image->getClientOriginalExtension();
+                $destinationPath = 'subcategory_images/';
+                $image->move($destinationPath, $name);
+                $subcategory->image = 'subcategory_images/' . $name;
+            }
+
+            $subcategory->save();
+            return response()->json([
+                'success' => 'Sub Category Add Successfully!',
+            ]);
+        }
+    }
+
+    public function AllSubCategory()
+    {
+        $subcategories = Subcategory::all();
+        return view('admin.subcategory.all', compact('subcategories'));
+    }
+
+    public function UpdateSubCategory($id)
+    {
+        $subcategory = Subcategory::find($id);
+        return view('admin.subcategory.edit', compact('subcategory'));
+    }
+
+    public function DeleteSubCategory($id)
+    {
+        $subcategory = Subcategory::find($id);
+        $subcategory->delete();
+        $notification = array(
+            'messege' => 'Sub Category Delete Successfully!',
+            'alert-type' => 'error'
+        );
+        return Redirect()->back()->with($notification);
+    }
+
+
+    public function SubCategoryUpdate(Request $request)
+    {
+        if ($request->ajax()) {
+            $subcategory = Subcategory::find($request->subcategory_id);
+            $subcategory->title = $request->title;
+            $subcategory->category_id = $request->category_id;
+            if ($request->hasfile('image')) {
+                if (!empty($subcategory->image)) {
+                    $image_path = $subcategory->image;
+                    unlink($image_path);
+                }
+                $image = $request->file('image');
+                $name = time() . 'category' . '.' . $image->getClientOriginalExtension();
+                $destinationPath = 'category_images/';
+                $image->move($destinationPath, $name);
+                $subcategory->image = 'category_images/' . $name;
+            }
+            $subcategory->update();
+            return response()->json([
+                'success' => 'Sub Category Update Successfully!',
             ]);
         }
     }

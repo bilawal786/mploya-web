@@ -72,29 +72,21 @@
                 </li>
 
                 <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="{{route('admin.category.all')}}" class="nav-link">
                 <i class="nav-icon fa  fa-list-alt"></i>
               <p>
                 Categories
-                <i class="right fas fa-angle-left"></i>
               </p>
             </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="{{route('admin.category.all')}}" class="nav-link">
-                  <i class="nav-icon far fa-circle nav-icon"></i>
-                  <p>All Category</p>
-                </a>
-              </li>
-            </ul>
-             <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="{{route('admin.create.category')}}" class="nav-link">
-                  <i class="nav-icon far fa-circle nav-icon"></i>
-                  <p>Add Category</p>
-                </a>
-              </li>
-            </ul>
+          </li>
+
+                    <li class="nav-item">
+            <a href="{{route('admin.subcategory.all')}}" class="nav-link">
+                <i class="nav-icon fa  fa-list-alt"></i>
+              <p>
+                Sub Categories
+              </p>
+            </a>
           </li>
 
                       <li class="nav-item">

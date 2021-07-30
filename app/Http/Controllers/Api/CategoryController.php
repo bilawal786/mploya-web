@@ -3,12 +3,11 @@
 namespace App\Http\Controllers\Api;
 
 use App\Category;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Resources\CategoryCollection;
 use App\Http\Resources\CategoryRelatedJobsResource;
-use App\Http\Resources\CategoryRelatedJobsCollection;
+
 
 class CategoryController extends Controller
 {

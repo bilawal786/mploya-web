@@ -12,7 +12,7 @@
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">Home</a></li>
-                            <li class="breadcrumb-item active">Categories</li>
+                            <li class="breadcrumb-item active">Sub Categories</li>
                         </ol>
                     </div>
                 </div>
@@ -28,8 +28,8 @@
                         {{-- {{dd($employers)}} --}}
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">Categories List</h3>
-                                <a href="{{route('admin.create.category')}}" type="button" style="float: right" class="btn btn-success">Add Category</a>
+                                <h3 class="card-title">Sub Categories List</h3>
+                                <a href="{{route('admin.create.subcategory')}}" type="button" style="float: right" class="btn btn-success">Add Sub Category</a>
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body">
@@ -45,7 +45,7 @@
                                     </thead>
                                     <tbody>
                                       
-                                          @if(empty($categories))
+                                          @if(empty($subcategories))
                                              <tr>
                                                 <td></td>
                                                 <td></td>
@@ -54,22 +54,21 @@
                                             </tr>
                                       
                                           @else
-                                           @foreach ($categories as $row)
-                                           {{-- {{dd($row->image)}} --}}
+                                           @foreach ($subcategories as $row)
                                             <tr>
-                                                <td>{{$loop->iteration}}</td>
-                                                <td>{{$row->title}}</td>
+                                                <td class="align-middle">{{$loop->iteration}}</td>
+                                                <td class="align-middle">{{$row->title}}</td>
                                                  @if($row->image)
-                                                <td>
+                                                <td class="align-middle">
                                                       <img src="{{asset($row->image)}}" alt="" width="80px" height="50px">
                                                 </td>
                                                 @else 
                                                 <td></td>
                                                 @endif
                                          
-                                                <td>
-                                                      <a type="button" href="{{route('admin.category.edit',['id' => $row->id])}}"  class="btn btn-success"><i class="far fa-edit"></i></a>
-                                                      <a type="button" href="{{route('admin.category.delete',['id' => $row->id])}}"  class="btn btn-danger"><i class="fa fa-trash"></i></a>
+                                                <td class="align-middle">
+                                                      <a type="button" href="{{route('admin.subcategory.edit',['id' => $row->id])}}"  class="btn btn-success"><i class="far fa-edit"></i></a>
+                                                      <a type="button" href="{{route('admin.subcategory.delete',['id' => $row->id])}}"  class="btn btn-danger"><i class="fa fa-trash"></i></a>
                                                 </td>
                                             </tr>
                                           @endforeach 

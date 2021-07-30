@@ -71,17 +71,12 @@ class JobseekerController extends Controller
             $user->education_description = implode(',', $request->education_description);
             $user->education_complete_date = implode(',', $request->education_complete_date);
             $user->education_is_continue = implode(',', $request->education_is_continue);
-
             $user->project_title = implode(',', $request->project_title);
             $user->project_occupation = implode(',', $request->project_occupation);
             $user->project_year = implode(',', $request->project_year);
             $user->project_links = implode(',', $request->project_links);
             $user->project_description = implode(',', $request->project_description);
-
-
             $user->skill_name = implode(',', $request->skill_name);
-
-
             $user->certification_name = implode(',', $request->certification_name);
             $user->certification_year = implode(',', $request->certification_year);
             $user->certification_description = implode(',', $request->certification_description);
@@ -147,7 +142,6 @@ class JobseekerController extends Controller
             }
             $job = Job::where('id', '=', $request->job_id)->first();
             $jobseeker = User::where('id', '=', $request->jobseeker_id)->where('user_type', '=', 'jobseeker')->first();
-            // $jobseeker = User::find($job->jobseeker_id);
 
             $alreadyapply = Applied::where('user_id', '=', $request->jobseeker_id)->get();
             if ($alreadyapply->isEmpty()) {

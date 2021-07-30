@@ -7,10 +7,9 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Support\Facades\Validator;
 use App\Notifications\EmailVerifyNotification;
-use PhpParser\Node\Expr\FuncCall;
+
 
 class LoginRegisterController extends Controller
 {
@@ -20,12 +19,12 @@ class LoginRegisterController extends Controller
     {
         if (Auth::attempt(['email' => request('email'), 'password' => request('password'), 'varify_email' => 1])) {
             $user = Auth::user();
-            if ($user->user_type == request('user_type')){
+            if ($user->user_type == request('user_type')) {
                 $success['token'] =  $user->createToken('MyApp')->accessToken;
                 $success['name'] =  $user->name;
                 $success['success'] = true;
                 return response()->json($success);
-            }else{
+            } else {
                 return response()->json(['error' => 'You are Login as Different Account', 'success' => false], 401);
             }
         } elseif (Auth::attempt(['email' => request('email'), 'password' => request('password'), 'varify_email' => 0])) {
@@ -35,25 +34,6 @@ class LoginRegisterController extends Controller
         }
     }
 
-
-    // public function register(Request $request)
-    // {
-    //     $validator = Validator::make($request->all(), [
-    //         'name' => ['required', 'string', 'max:255'],
-    //         'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-    //         'password' => ['required', 'string', 'min:8', 'confirmed'],
-    //     ]);
-    //     if ($validator->fails()) {
-    //         return response()->json(['error' => $validator->errors(), 'success' => false], 401);
-    //     }
-    //     $input = $request->all();
-    //     $input['password'] = bcrypt($input['password']);
-    //     $user = User::create($input);
-    //     $success['token'] =  $user->createToken('MyApp')->accessToken;
-    //     $success['name'] =  $user->name;
-    //     $success['success'] = true;
-    //     return response()->json(['response' => $success], $this->successStatus);
-    // }
 
     // Sign Up With email Verify
 
@@ -112,7 +92,6 @@ class LoginRegisterController extends Controller
     {
 
         $user = User::where('email', '=', $request->email)->where('provider_id', '=', $request->provider_id)->first();
-        // dd($user);
         if ($request->provider_id) {
             if ($request->provider_name == 'google') {
                 if (!$user) {

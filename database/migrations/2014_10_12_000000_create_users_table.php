@@ -26,7 +26,7 @@ class CreateUsersTable extends Migration
             $table->string('phone')->default('0');
             $table->string('city')->default('0');
             $table->string('country')->default('0');
-            $table->text('description')->default('0');
+            $table->text('description')->nullable();
             $table->string('education_name')->default('0');
             $table->string('education_description')->default('0');
             $table->string('education_is_continue')->default('0');

@@ -39,6 +39,8 @@ class JobseekerController extends Controller
             'CNIC' => ['bail', 'required', 'regex:/^[0-9]{5}-[0-9]{7}-[0-9]$/'],
             'phone' => ['required'],
             'image' => ['mimes:jpeg,jpg,png,gif|max:10000'],
+            'video' => ['mimes:mp4,ogx,oga,ogv,ogg,webm'],
+            'leanguage' => ['required'],
             'city' => ['required', 'string'],
             'country' => ['required', 'string'],
             'father_name' => ['required', 'string', 'max:255'],
@@ -71,6 +73,7 @@ class JobseekerController extends Controller
             $user->country = $request->country;
             $user->father_name = $request->father_name;
             $user->description = $request->description;
+            $user->leanguage = implode(',', $request->leanguage);
             $user->education_name = implode(',', $request->education_name);
             $user->education_description = implode(',', $request->education_description);
             $user->education_complete_date = implode(',', $request->education_complete_date);
@@ -94,6 +97,18 @@ class JobseekerController extends Controller
                 $destinationPath = 'profile_images/';
                 $image->move($destinationPath, $name);
                 $user->image = 'profile_images/' . $name;
+            }
+
+            if ($request->hasfile('video')) {
+                if (!empty($user->video)) {
+                    $video_path = $user->video;
+                    unlink($video_path);
+                }
+                $video = $request->file('video');
+                $name = time() . 'profile_video' . '.' . $video->getClientOriginalExtension();
+                $destinationPath = 'profile_videos/';
+                $video->move($destinationPath, $name);
+                $user->video = 'profile_videos/' . $name;
             }
             $user->update();
             $success['message'] = 'Profile Updated Successfully!';
@@ -147,7 +162,7 @@ class JobseekerController extends Controller
             $job = Job::where('id', '=', $request->job_id)->first();
             $jobseeker = User::where('id', '=', $request->jobseeker_id)->where('user_type', '=', 'jobseeker')->first();
 
-            $alreadyapply = Applied::where('user_id', '=', $request->jobseeker_id)->get();
+            $alreadyapply = Applied::where('user_id', '=', $request->jobseeker_id)->where('job_id', '=', $request->job_id)->get();
             if ($alreadyapply->isEmpty()) {
                 $appliedjob = new Applied();
                 $appliedjob->user_id = $request->jobseeker_id;

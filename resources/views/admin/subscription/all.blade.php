@@ -38,6 +38,8 @@
                                         <th>#</th>
                                         <th>Name</th>
                                         <th>Price</th>
+                                        <th>Valid Job</th>
+                                        <th>Color</th>
                                         <th>Action</th>
                         
                                     </tr>
@@ -46,6 +48,8 @@
                                       
                                           @if(empty($subscriptions))
                                              <tr>
+                                                <td></td>
+                                                <td></td>
                                                 <td></td>
                                                 <td></td>
                                                 <td></td>
@@ -63,7 +67,13 @@
                                                       {{$row->price}}
                                                 </td>
                         
-                                         
+                                                 <td>
+                                                      {{$row->valid_job}}
+                                                </td>
+                                                 <td>
+                                                     <input type="color" name="color" class="form-control" value="{{$row->color}}" readonly>
+                                                      
+                                                </td>
                                                 <td>
                                                       <a type="button" href="{{route('admin.subscription.edit',['id' => $row->id])}}"  class="btn btn-success"><i class="far fa-edit"></i></a>
                                                       <a type="button" href="{{route('admin.subscription.delete',['id' => $row->id])}}"  class="btn btn-danger"><i class="fa fa-trash"></i></a>

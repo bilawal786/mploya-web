@@ -21,7 +21,8 @@ class EmployerResource extends JsonResource
             'company_name' => $this->company_name,
             'image' => $this->image,
             'video,' => $this->video,
-            'social_links' => $this->social_links
+            'social_links' => $this->social_links,
+            'leanguage' => $this->leanguage,
         ];
     }
 }

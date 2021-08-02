@@ -18,6 +18,7 @@ class CreateUsersTable extends Migration
             $table->string('is_block')->default('1');
             $table->string('is_popular')->default('0');
             $table->string('name');
+            $table->string('leanguage')->default('0');
             $table->string('father_name')->default('0');
             $table->string('email');
             $table->string('address')->default('0');

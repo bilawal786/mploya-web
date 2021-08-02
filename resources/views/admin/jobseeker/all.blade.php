@@ -43,7 +43,7 @@
                                         <th>NIC</th>
                                         <th>Phone No</th>
                                         <th>Image</th>
-                                        <th>Action</th>
+                                        <th>Details</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -65,20 +65,20 @@
                                                 <td class="align-middle">{{$loop->iteration}}</td>
                                                 <td class="align-middle">{{$row->name}}</td>
                                                  @if($row->father_name == '0')
-                                                <td></td>
+                                                <td class="align-middle">Not Found</td>
                                                 @else
                                                 <td class="align-middle">{{$row->father_name}}</td>
                                                 @endif
                                                 <td class="align-middle">{{$row->email}}</td>
                                                 <td class="align-middle">{{$row->address}}</td>
                                                 @if($row->CNIC == '0')
-                                                <td></td>
+                                                <td class="align-middle">Not Found</td>
                                                 @else
                                                 <td class="align-middle">{{$row->CNIC}}</td>
                                                 @endif
 
                                                  @if($row->phone == '0')
-                                                <td></td>
+                                                <td class="align-middle">Not Found</td>
                                                 @else
                                                 <td class="align-middle">{{$row->phone}}</td>
                                                 @endif

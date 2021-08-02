@@ -187,22 +187,35 @@
                     </a>
                 </li>
 
-                <li class="nav-item">
-            <a href="{{route('admin.category.all')}}" class="nav-link">
+           <li class="nav-item">
+            <a href="#" class="nav-link">
                 <i class="nav-icon fa  fa-list-alt"></i>
+              <p>
+                Categories
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                 <a href="{{route('admin.category.all')}}" class="nav-link {{ $link == route('admin.category.all') ? 'active':'' }}">
+                <i class="far fa-circle nav-icon"></i>
               <p>
                 Categories
               </p>
             </a>
-          </li>
-
-                    <li class="nav-item">
-            <a href="{{route('admin.subcategory.all')}}" class="nav-link">
-                <i class="nav-icon fa  fa-list-alt"></i>
+              </li>
+              
+            </ul>
+             <ul class="nav nav-treeview">
+              <li class="nav-item">
+                 <a href="{{route('admin.subcategory.all')}}" class="nav-link {{ $link == route('admin.subcategory.all') ? 'active':'' }}">
+                <i class="far fa-circle nav-icon"></i>
               <p>
                 Sub Categories
               </p>
             </a>
+              </li>
+            </ul>
           </li>
 
                       <li class="nav-item">
@@ -218,6 +231,14 @@
                 <a href="{{route('admin.subscription.all')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>All Subscriptions</p>
+                </a>
+              </li>
+            </ul>
+             <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{route('admin.purchased.subscription')}}" class="nav-link {{ $link == route('admin.purchased.subscription') ? 'active':'' }}">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Active Subscriptions</p>
                 </a>
               </li>
             </ul>
@@ -295,22 +316,44 @@
 
                 <ul class="list-group list-group-unbordered mb-3">
                     <li class="list-group-item">
-                    <b>Profile Percentage</b> <div class="progress">
+                    <b>Profile Percentage</b> <div class="progress mt-2">
                     
-                    <div class="progress-bar" role="progressbar" style="width:25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>
+                    <div class="progress-bar" role="progressbar" style="width:{{$percentage}}%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">{{$percentage}}%</div>
                   </div>
                   </li>
                   <li class="list-group-item">
-                    <b>Applied Jobs</b> <a class="float-right">{{$totalappliedjobs}}</a>
+                    
+                    <b>Applied Jobs</b> <a class="float-right">
+                      @if($totalappliedjobs == 0)
+                       Not Found
+                      @else
+                     {{$totalappliedjobs}}
+                      @endif
+                      
+                    </a>
                   </li>
                     <li class="list-group-item">
                       <b>Email</b> <a class="float-right">{{$jobseeker->email}}</a>
                     </li>
                     <li class="list-group-item">
-                      <b>Phone</b> <a class="float-right">{{$jobseeker->phone}}</a>
+                      <b>Phone</b> <a class="float-right">
+                        @if($jobseeker->phone == 0)
+                       Not Found
+                      @else
+                     {{$jobseeker->phone}}
+                      @endif
+                        
+                      </a>
                     </li>
                     <li class="list-group-item">
-                      <b>CNIC</b> <a class="float-right">{{$jobseeker->CNIC}}</a>
+                      
+                      <b>CNIC</b> <a class="float-right">
+                             @if($jobseeker->CNIC == 0)
+                       Not Found
+                      @else
+                     {{$jobseeker->CNIC}}
+                      @endif
+                      </a>
                     </li>
                 </ul>
                 <input type="hidden" value="{{$jobseeker->id}}" id="jobseeker_id">
@@ -318,12 +361,12 @@
                 @if($jobseeker->is_popular == 0)
                 <button id="pbtn" class="btn btn-success btn-block">Make Popular</button>
                 @else 
-                <button id="upbtn" class="btn btn-success btn-block">Make UnPopular</button>
+                <button id="pbtn" class="btn btn-success btn-block">Make UnPopular</button>
                 @endif
                 @if($jobseeker->is_block == 1)
                 <button id="bbtn" class="btn btn-danger btn-block">Block</button>
                 @else 
-                <button id="ubbtn" class="btn btn-danger btn-block">UnBlock</button>
+                <button id="bbtn" class="btn btn-danger btn-block">UnBlock</button>
                 @endif
                 
               </div>
@@ -384,7 +427,14 @@
                 </p>
 
 
-                   <hr>
+                 @if(in_array('0', $jobseeker->skill_name))
+                 <hr>
+                    <strong><i class="fas fa-brain mr-1"></i>Skills</strong>
+                  <p class="text-muted">
+                  Not Found
+                </p>
+                @else
+                    <hr>
                     <strong><i class="fas fa-brain mr-1"></i>Skills</strong>
 
                 <p class="text-muted"> 
@@ -392,6 +442,8 @@
                    <span class="tag tag-danger">{{$jobseeker->skill_name[$key]}}<br></span>
                   @endforeach
                 </p>
+                @endif
+               
                   <hr>
                     <strong><i class="fas fa-certificate mr-1"></i>Certifications</strong>
 
@@ -412,15 +464,38 @@
                 <strong><i class="fas fa-map-marker-alt mr-1"></i> Location</strong>
                 <p class="text-muted"><b>Country: </b>{{$jobseeker->country}}<br><b>City:</b> {{$jobseeker->city}}<br><b>Address: </b>{{$jobseeker->address}}</p>
                
-                <hr>
-                {{-- <strong><i class="far fa-file-alt mr-1"></i> Email</strong>
-                <p class="text-muted">{{$jobseeker->email}}</p> --}}
-                <hr>
+         
+                 @if($jobseeker->description == 0)
+                 <hr>
+                    <strong><i class="fas fa-brain mr-1"></i>Description</strong>
+                  <p class="text-muted">
+                  Not Found
+                </p>
+                @else
+                  <hr>
                 <strong><i class="fas fa-pencil-alt mr-1"></i>Description</strong>
                 <p class="text-muted">
                     
                  {{$jobseeker->description}}
                 </p>
+                @endif
+                 @if(in_array('0', $jobseeker->leanguage))
+                     <hr>
+                <strong><i class="fa fa-language mr-1" aria-hidden="true" ></i>Leanguage</strong>
+                  <p class="text-muted">
+                  Not Found
+                </p>
+                @else
+                   <hr>
+                <strong><i class="fa fa-language mr-1" aria-hidden="true" ></i>Leanguage</strong>
+                <p class="text-muted">
+                  @foreach($jobseeker->leanguage as $key => $data1)  
+              
+                    <span class="tag tag-danger">{{$jobseeker->leanguage[$key]}},</span>
+                  @endforeach
+                </p>
+                @endif
+              
               </div>
               <!-- /.card-body -->
             </div>
@@ -432,7 +507,7 @@
               <div class="card-header p-2">
                 <ul class="nav nav-pills">
                   <li class="nav-item"><a class="nav-link active" href="#jobs" data-toggle="tab">Applied Jobs</a></li>
-                  {{-- <li class="nav-item"><a class="nav-link" href="#timeline" data-toggle="tab">Timeline</a></li> --}}
+                  <li class="nav-item"><a class="nav-link" href="#timeline" data-toggle="tab">Video</a></li>
                   {{-- <li class="nav-item"><a class="nav-link" href="#settings" data-toggle="tab">Settings</a></li> --}}
                 </ul>
               </div><!-- /.card-header -->
@@ -481,102 +556,21 @@
                     <!-- /.post -->
 
                   </div>
-                  {{-- <!-- /.tab-pane -->
+             <!-- /.tab-pane -->
                   <div class="tab-pane" id="timeline">
                     <!-- The timeline -->
-                    <div class="timeline timeline-inverse">
-                      <!-- timeline time label -->
-                      <div class="time-label">
-                        <span class="bg-danger">
-                          10 Feb. 2014
-                        </span>
-                      </div>
-                      <!-- /.timeline-label -->
-                      <!-- timeline item -->
-                      <div>
-                        <i class="fas fa-envelope bg-primary"></i>
-
-                        <div class="timeline-item">
-                          <span class="time"><i class="far fa-clock"></i> 12:05</span>
-
-                          <h3 class="timeline-header"><a href="#">Support Team</a> sent you an email</h3>
-
-                          <div class="timeline-body">
-                            Etsy doostang zoodles disqus groupon greplin oooj voxy zoodles,
-                            weebly ning heekya handango imeem plugg dopplr jibjab, movity
-                            jajah plickers sifteo edmodo ifttt zimbra. Babblely odeo kaboodle
-                            quora plaxo ideeli hulu weebly balihoo...
-                          </div>
-                          <div class="timeline-footer">
-                            <a href="#" class="btn btn-primary btn-sm">Read more</a>
-                            <a href="#" class="btn btn-danger btn-sm">Delete</a>
-                          </div>
-                        </div>
-                      </div>
-                      <!-- END timeline item -->
-                      <!-- timeline item -->
-                      <div>
-                        <i class="fas fa-user bg-info"></i>
-
-                        <div class="timeline-item">
-                          <span class="time"><i class="far fa-clock"></i> 5 mins ago</span>
-
-                          <h3 class="timeline-header border-0"><a href="#">Sarah Young</a> accepted your friend request
-                          </h3>
-                        </div>
-                      </div>
-                      <!-- END timeline item -->
-                      <!-- timeline item -->
-                      <div>
-                        <i class="fas fa-comments bg-warning"></i>
-
-                        <div class="timeline-item">
-                          <span class="time"><i class="far fa-clock"></i> 27 mins ago</span>
-
-                          <h3 class="timeline-header"><a href="#">Jay White</a> commented on your post</h3>
-
-                          <div class="timeline-body">
-                            Take me to your leader!
-                            Switzerland is small and neutral!
-                            We are more like Germany, ambitious and misunderstood!
-                          </div>
-                          <div class="timeline-footer">
-                            <a href="#" class="btn btn-warning btn-flat btn-sm">View comment</a>
-                          </div>
-                        </div>
-                      </div>
-                      <!-- END timeline item -->
-                      <!-- timeline time label -->
-                      <div class="time-label">
-                        <span class="bg-success">
-                          3 Jan. 2014
-                        </span>
-                      </div>
-                      <!-- /.timeline-label -->
-                      <!-- timeline item -->
-                      <div>
-                        <i class="fas fa-camera bg-purple"></i>
-
-                        <div class="timeline-item">
-                          <span class="time"><i class="far fa-clock"></i> 2 days ago</span>
-
-                          <h3 class="timeline-header"><a href="#">Mina Lee</a> uploaded new photos</h3>
-
-                          <div class="timeline-body">
-                            <img src="https://placehold.it/150x100" alt="...">
-                            <img src="https://placehold.it/150x100" alt="...">
-                            <img src="https://placehold.it/150x100" alt="...">
-                            <img src="https://placehold.it/150x100" alt="...">
-                          </div>
-                        </div>
-                      </div>
-                      <!-- END timeline item -->
-                      <div>
-                        <i class="far fa-clock bg-gray"></i>
-                      </div>
-                    </div>
+                       <div class="tab-pane" id="settings">
+                    @if($jobseeker->video == 0)
+                <p> Video Not Found</p>
+                  @else 
+                    <video width="320" height="240" controls>
+                        <source src="{{asset($jobseeker->video)}}" type="video/mp4">
+                      Your browser does not support the video tag.
+                  </video>
+                  @endif
                   </div>
-                  <!-- /.tab-pane --> --}}
+                  </div>
+                  <!-- /.tab-pane --> 
 
                   {{-- <div class="tab-pane" id="settings">
                     <form class="form-horizontal">
@@ -654,7 +648,7 @@
         <input type="hidden" value="{{$jobseeker->id}}" name="user_id">
       <div class="modal-body">
         <label for="">Message</label>
-        <textarea class="form-control" rows="3" placeholder="enter your message..." name="message" required></textarea>
+        <textarea class="form-control" rows="3" placeholder="Enter your message..." name="message" required></textarea>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -828,7 +822,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 <script>
     $(document).ready(function () {
-      // make popular
+      // make popular or unpopular
       $('#pbtn').on('click',function(){
         var jobseeker_id = $('#jobseeker_id').val();
        
@@ -841,13 +835,11 @@
                     success: function (data) {
                      if (data.success) {
                         toastr.success(data.success);
-                        setTimeout(function(){
-                        location.reload();
-                          },20);
+                      $('#pbtn').html('Make UnPopular');
                         
                     } else {
                         toastr.error(data.error);
-
+                        $('#pbtn').html('Make Popular');
                     }
 
                 },
@@ -859,34 +851,11 @@
 
 
 
-            // make unpopular
-      $('#upbtn').on('click',function(){
-        var jobseeker_id = $('#jobseeker_id').val();
-       
-          $.ajax({
-                
-                url: '{{url("admin/jobseeker/unpopular")}}/' + jobseeker_id,
-                method: 'get',
-                dataType: 'json',
-                
-                    success: function (data) {
-                     if (data.success) {
-                        toastr.success(data.success);
-                        setTimeout(function(){
-                        location.reload();
-                          },20);
-                    } else {
-                        toastr.error(data.error);
-
-                    }
-
-                }
-            });
-      
-      });
+         
+ 
 
 
-      // block 
+      // block or unblock
 
          $('#bbtn').on('click',function(){
         var jobseeker_id = $('#jobseeker_id').val();
@@ -898,43 +867,16 @@
                 dataType: 'json',
                 
                     success: function (data) {
-                     if (data.success) {
+                      if (data.success) {
                         toastr.success(data.success);
+                    
+                          $('#bbtn').html('Block');
+                        
                     } else {
                         toastr.error(data.error);
-                        setTimeout(function(){
-                        location.reload();
-                          },20);
-
-                    }
-
-                }
-            });
-      
-      });
-
-
-      
-      // un block 
-
-         $('#ubbtn').on('click',function(){
-        var jobseeker_id = $('#jobseeker_id').val();
-       
-          $.ajax({
-                
-                url: '{{url("admin/jobseeker/unblock")}}/' + jobseeker_id,
-                method: 'get',
-                dataType: 'json',
-                
-                    success: function (data) {
-                     if (data.success) {
-                        toastr.success(data.success);
-                        setTimeout(function(){
-                        location.reload();
-                          },20);
-                    } else {
-                        toastr.error(data.error);
-
+                      
+                          $('#bbtn').html('UnBlock');
+                       
                     }
 
                 }

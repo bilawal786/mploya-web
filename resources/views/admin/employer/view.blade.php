@@ -175,7 +175,6 @@
                   </p>
                 </a>
               </li>
-{{--            {{ $link == route('subscription.user') ? 'active':'' }}--}}
 
 
               <li class="nav-item">
@@ -191,22 +190,35 @@
                     </a>
                 </li>
 
-                <li class="nav-item">
-            <a href="{{route('admin.category.all')}}" class="nav-link">
+          <li class="nav-item">
+            <a href="#" class="nav-link">
                 <i class="nav-icon fa  fa-list-alt"></i>
+              <p>
+                Categories
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                 <a href="{{route('admin.category.all')}}" class="nav-link {{ $link == route('admin.category.all') ? 'active':'' }}">
+                <i class="far fa-circle nav-icon"></i>
               <p>
                 Categories
               </p>
             </a>
-          </li>
-
-                    <li class="nav-item">
-            <a href="{{route('admin.subcategory.all')}}" class="nav-link">
-                <i class="nav-icon fa  fa-list-alt"></i>
+              </li>
+              
+            </ul>
+             <ul class="nav nav-treeview">
+              <li class="nav-item">
+                 <a href="{{route('admin.subcategory.all')}}" class="nav-link {{ $link == route('admin.subcategory.all') ? 'active':'' }}">
+                <i class="far fa-circle nav-icon"></i>
               <p>
                 Sub Categories
               </p>
             </a>
+              </li>
+            </ul>
           </li>
 
                       <li class="nav-item">
@@ -222,6 +234,14 @@
                 <a href="{{route('admin.subscription.all')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>All Subscriptions</p>
+                </a>
+              </li>
+            </ul>
+             <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{route('admin.purchased.subscription')}}" class="nav-link {{ $link == route('admin.purchased.subscription') ? 'active':'' }}">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Active Subscriptions</p>
                 </a>
               </li>
             </ul>
@@ -299,8 +319,8 @@
 
                 <ul class="list-group list-group-unbordered mb-3">
                    <li class="list-group-item">
-                    <b>Profile Percentage</b> <div class="progress">
-                    <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>
+                    <b>Profile Percentage</b> <div class="progress mt-2">
+                    <div class="progress-bar" role="progressbar" style="width: {{$percentage}}%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">{{$percentage}}%</div>
                   </div>
                   </li>
                   <li class="list-group-item">
@@ -317,13 +337,13 @@
                 <button  class="btn btn-primary btn-block" data-toggle="modal" data-target="#exampleModal">Contact</button>
                 @if($employer->is_popular == 0)
                 <button id="pbtn" class="btn btn-success btn-block">Make Popular</button>
-                @else 
-                <button id="upbtn" class="btn btn-success btn-block">Make UnPopular</button>
+                @else
+                <button id="pbtn" class="btn btn-success btn-block">Make UnPopular</button>
                 @endif
                 @if($employer->is_block == 1)
                 <button id="bbtn" class="btn btn-danger btn-block">Block</button>
                 @else 
-                <button id="ubbtn" class="btn btn-danger btn-block">UnBlock</button>
+                <button id="bbtn" class="btn btn-danger btn-block">UnBlock</button>
                 @endif
                 
               </div>
@@ -349,12 +369,37 @@
               
                 <hr>
                 <strong><i class="fas fa-link mr-1"></i> Social Links</strong>
-                <p class="text-muted">
+                @if(in_array('0', $employer->social_links))
+                  <p class="text-muted">
+                  Not Found
+                </p>
+                @else
+                  <p class="text-muted">
                   @foreach($employer->social_links as $key => $data1)  
               
                     <span class="tag tag-danger">{{$employer->social_links[$key]}}</span>
                   @endforeach
                 </p>
+                @endif
+              
+                 @if(in_array('0', $employer->leanguage))
+                     <hr>
+                <strong><i class="fa fa-language mr-1" aria-hidden="true" ></i>Leanguage</strong>
+                  <p class="text-muted">
+                  Not Found
+                </p>
+                @else
+                   <hr>
+                <strong><i class="fa fa-language mr-1" aria-hidden="true" ></i>Leanguage</strong>
+                <p class="text-muted">
+                  @foreach($employer->leanguage as $key => $data1)  
+              
+                    <span class="tag tag-danger">{{$employer->leanguage[$key]}},</span>
+                  @endforeach
+                </p>
+                @endif
+
+               
               </div>
               <!-- /.card-body -->
             </div>
@@ -366,8 +411,8 @@
               <div class="card-header p-2">
                 <ul class="nav nav-pills">
                   <li class="nav-item"><a class="nav-link active" href="#jobs" data-toggle="tab">Jobs</a></li>
-                  {{-- <li class="nav-item"><a class="nav-link" href="#timeline" data-toggle="tab">Timeline</a></li> --}}
-                  {{-- <li class="nav-item"><a class="nav-link" href="#settings" data-toggle="tab">Settings</a></li> --}}
+                  <li class="nav-item"><a class="nav-link" href="#timeline" data-toggle="tab">Purchased Subscription</a></li>
+                  <li class="nav-item"><a class="nav-link" href="#settings" data-toggle="tab">Video</a></li>
                 </ul>
               </div><!-- /.card-header -->
               <div class="card-body">
@@ -414,151 +459,57 @@
                     <!-- /.post -->
 
                   </div>
-                  {{-- <!-- /.tab-pane -->
+                  <!-- /.tab-pane -->
                   <div class="tab-pane" id="timeline">
                     <!-- The timeline -->
-                    <div class="timeline timeline-inverse">
-                      <!-- timeline time label -->
-                      <div class="time-label">
-                        <span class="bg-danger">
-                          10 Feb. 2014
-                        </span>
+                     @if($purchasedsub->isEmpty())
+                   
+                     <div class="post">
+                      <p>
+                        Record Not Found
+                      </p>
                       </div>
-                      <!-- /.timeline-label -->
-                      <!-- timeline item -->
-                      <div>
-                        <i class="fas fa-envelope bg-primary"></i>
-
-                        <div class="timeline-item">
-                          <span class="time"><i class="far fa-clock"></i> 12:05</span>
-
-                          <h3 class="timeline-header"><a href="#">Support Team</a> sent you an email</h3>
-
-                          <div class="timeline-body">
-                            Etsy doostang zoodles disqus groupon greplin oooj voxy zoodles,
-                            weebly ning heekya handango imeem plugg dopplr jibjab, movity
-                            jajah plickers sifteo edmodo ifttt zimbra. Babblely odeo kaboodle
-                            quora plaxo ideeli hulu weebly balihoo...
-                          </div>
-                          <div class="timeline-footer">
-                            <a href="#" class="btn btn-primary btn-sm">Read more</a>
-                            <a href="#" class="btn btn-danger btn-sm">Delete</a>
-                          </div>
-                        </div>
+                    @else 
+                     @foreach ($purchasedsub as $row)
+                        <div class="post">
+                      <div class="user-block">
+                        
+                          <a href="#">{{$row->title}}</a>
+                          
                       </div>
-                      <!-- END timeline item -->
-                      <!-- timeline item -->
-                      <div>
-                        <i class="fas fa-user bg-info"></i>
+                      <!-- /.user-block -->
+                      <p>
+                        {{$row->description}}
+                      </p>
 
-                        <div class="timeline-item">
-                          <span class="time"><i class="far fa-clock"></i> 5 mins ago</span>
+                      <p>
+                        <span href="#" class="text-sm mr-2"><b>Price:</b> {{$row->price}}</span>
+                        <span href="#" class="text-sm mr-2"><b>Valid Jobs:</b> {{$row->valid_job}}</span>
+                        <span href="#" class="text-sm"><b>Color:</b> {{$row->color}}</span>
+                        {{-- <span class="float-right">
+                          <span href="#" class="text-sm mr-2"><b>Salary:</b> {{$row->salary}}</span>
+                          <span href="#" class="text-sm"><b>Salary Type:</b> {{$row->salary_type}}</span>
+                        </span> --}}
+  
+                      </p>
 
-                          <h3 class="timeline-header border-0"><a href="#">Sarah Young</a> accepted your friend request
-                          </h3>
-                        </div>
-                      </div>
-                      <!-- END timeline item -->
-                      <!-- timeline item -->
-                      <div>
-                        <i class="fas fa-comments bg-warning"></i>
-
-                        <div class="timeline-item">
-                          <span class="time"><i class="far fa-clock"></i> 27 mins ago</span>
-
-                          <h3 class="timeline-header"><a href="#">Jay White</a> commented on your post</h3>
-
-                          <div class="timeline-body">
-                            Take me to your leader!
-                            Switzerland is small and neutral!
-                            We are more like Germany, ambitious and misunderstood!
-                          </div>
-                          <div class="timeline-footer">
-                            <a href="#" class="btn btn-warning btn-flat btn-sm">View comment</a>
-                          </div>
-                        </div>
-                      </div>
-                      <!-- END timeline item -->
-                      <!-- timeline time label -->
-                      <div class="time-label">
-                        <span class="bg-success">
-                          3 Jan. 2014
-                        </span>
-                      </div>
-                      <!-- /.timeline-label -->
-                      <!-- timeline item -->
-                      <div>
-                        <i class="fas fa-camera bg-purple"></i>
-
-                        <div class="timeline-item">
-                          <span class="time"><i class="far fa-clock"></i> 2 days ago</span>
-
-                          <h3 class="timeline-header"><a href="#">Mina Lee</a> uploaded new photos</h3>
-
-                          <div class="timeline-body">
-                            <img src="https://placehold.it/150x100" alt="...">
-                            <img src="https://placehold.it/150x100" alt="...">
-                            <img src="https://placehold.it/150x100" alt="...">
-                            <img src="https://placehold.it/150x100" alt="...">
-                          </div>
-                        </div>
-                      </div>
-                      <!-- END timeline item -->
-                      <div>
-                        <i class="far fa-clock bg-gray"></i>
-                      </div>
+                     
                     </div>
+                    @endforeach
+                    @endif
                   </div>
-                  <!-- /.tab-pane --> --}}
+                  <!-- /.tab-pane -->
 
-                  {{-- <div class="tab-pane" id="settings">
-                    <form class="form-horizontal">
-                      <div class="form-group row">
-                        <label for="inputName" class="col-sm-2 col-form-label">Name</label>
-                        <div class="col-sm-10">
-                          <input type="email" class="form-control" id="inputName" placeholder="Name">
-                        </div>
-                      </div>
-                      <div class="form-group row">
-                        <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
-                        <div class="col-sm-10">
-                          <input type="email" class="form-control" id="inputEmail" placeholder="Email">
-                        </div>
-                      </div>
-                      <div class="form-group row">
-                        <label for="inputName2" class="col-sm-2 col-form-label">Name</label>
-                        <div class="col-sm-10">
-                          <input type="text" class="form-control" id="inputName2" placeholder="Name">
-                        </div>
-                      </div>
-                      <div class="form-group row">
-                        <label for="inputExperience" class="col-sm-2 col-form-label">Experience</label>
-                        <div class="col-sm-10">
-                          <textarea class="form-control" id="inputExperience" placeholder="Experience"></textarea>
-                        </div>
-                      </div>
-                      <div class="form-group row">
-                        <label for="inputSkills" class="col-sm-2 col-form-label">Skills</label>
-                        <div class="col-sm-10">
-                          <input type="text" class="form-control" id="inputSkills" placeholder="Skills">
-                        </div>
-                      </div>
-                      <div class="form-group row">
-                        <div class="offset-sm-2 col-sm-10">
-                          <div class="checkbox">
-                            <label>
-                              <input type="checkbox"> I agree to the <a href="#">terms and conditions</a>
-                            </label>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="form-group row">
-                        <div class="offset-sm-2 col-sm-10">
-                          <button type="submit" class="btn btn-danger">Submit</button>
-                        </div>
-                      </div>
-                    </form>
-                  </div> --}}
+                  <div class="tab-pane" id="settings">
+                    @if($employer->video == 0)
+                <p> Video Not Found</p>
+                  @else 
+                    <video width="320" height="240" controls>
+                        <source src="{{asset($employer->video)}}" type="video/mp4">
+                      Your browser does not support the video tag.
+                  </video>
+                  @endif
+                  </div>
                   <!-- /.tab-pane -->
 
 
@@ -577,7 +528,7 @@
         <input type="hidden" value="{{$employer->id}}" name="user_id">
       <div class="modal-body">
         <label for="">Message</label>
-        <textarea class="form-control" rows="3" placeholder="enter your message..." name="message" required></textarea>
+        <textarea class="form-control" rows="3" placeholder="Enter your message..." name="message" required></textarea>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -770,12 +721,11 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 <script>
     $(document).ready(function () {
-      // make popular
+      // make popular or Unpopular
       $('#pbtn').on('click',function(){
         var employer_id = $('#employer_id').val();
        
           $.ajax({
-                
                 url: '{{url("admin/employer/popular")}}/' + employer_id,
                 method: 'get',
                 dataType: 'json',
@@ -783,55 +733,17 @@
                     success: function (data) {
                      if (data.success) {
                         toastr.success(data.success);
-                          setTimeout(function(){
-                          location.reload();
-                            },20);
-                        
+                          $('#pbtn').html('Make UnPopular');
                     } else {
                         toastr.error(data.error);
-
+                      $('#pbtn').html('Make Popular');
                     }
 
                 },
-                // setInterval('location.reload()', 50);
             });
-
-      
-      
       });
 
-
-
-
-            // make unpopular
-      $('#upbtn').on('click',function(){
-        var employer_id = $('#employer_id').val();
-       
-          $.ajax({
-                
-                url: '{{url("admin/employer/unpopular")}}/' + employer_id,
-                method: 'get',
-                dataType: 'json',
-                
-                    success: function (data) {
-                     if (data.success) {
-                        toastr.success(data.success);
-                        setTimeout(function(){
-                        location.reload();
-                          },20);
-                    } else {
-                        toastr.error(data.error);
-
-                    }
-
-                }
-            });
-     
-      
-      });
-
-
-      // block 
+      // block or unblock
 
          $('#bbtn').on('click',function(){
         var employer_id = $('#employer_id').val();
@@ -845,41 +757,14 @@
                     success: function (data) {
                      if (data.success) {
                         toastr.success(data.success);
-    
+                    
+                          $('#bbtn').html('Block');
+                        
                     } else {
                         toastr.error(data.error);
-                     setTimeout(function(){
-                    location.reload();
-                      },20);
-                    }
-
-                }
-            });
-      
-      });
-
-
-      
-      // un block 
-
-         $('#ubbtn').on('click',function(){
-        var employer_id = $('#employer_id').val();
-       
-          $.ajax({
-                
-                url: '{{url("admin/employer/unblock")}}/' + employer_id,
-                method: 'get',
-                dataType: 'json',
-                
-                    success: function (data) {
-                     if (data.success) {
-                        toastr.success(data.success);
-                        setTimeout(function(){
-                        location.reload();
-                          },20);
-                    } else {
-                        toastr.error(data.error);
-
+                      
+                          $('#bbtn').html('UnBlock');
+                       
                     }
 
                 }

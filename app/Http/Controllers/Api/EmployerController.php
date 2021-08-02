@@ -45,6 +45,7 @@ class EmployerController extends Controller
             'image' => ['mimes:jpeg,jpg,png,gif|max:10000'],
             'video' => ['mimes:mp4,ogx,oga,ogv,ogg,webm'],
             'social_links' => ['required'],
+            'leanguage' => ['required'],
         ]);
         if ($validator->fails()) {
             return response()->json(['error' => $validator->errors(), 'success' => false], 401);
@@ -56,6 +57,7 @@ class EmployerController extends Controller
             $profile->address = $request->address;
             $profile->company_name = $request->company_name;
             $profile->social_links = implode(',', $request->social_links);
+            $profile->leanguage = implode(',', $request->leanguage);
             if ($request->hasfile('image')) {
                 if (!empty($profile->image)) {
                     $image_path = $profile->image;

@@ -116,6 +116,8 @@ Route::group(
 
         Route::get('/popular/employers', 'Api\EmployerController@AllPapularEmployer');
 
+        // add review
+
         Route::post('/employer/add/review', 'Api\EmployerController@EmployerAddReview');
 
 

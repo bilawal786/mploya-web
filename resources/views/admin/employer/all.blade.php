@@ -41,7 +41,7 @@
                                         <th>Address</th>
                                         <th>Company Name</th>
                                         <th>image</th>
-                                        <th>Action</th>
+                                        <th>Details</th>
                                         
                                     </tr>
                                     </thead>

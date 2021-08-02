@@ -88,6 +88,8 @@ Route::prefix('admin')->group(function () {
 
     Route::get('/all/subscription', 'Users\Admin\AdminController@AllSubscription')->name('admin.subscription.all');
 
+    Route::get('/purchased/subscription', 'Users\Admin\AdminController@PurchasedSubscription')->name('admin.purchased.subscription');
+
     Route::get('/delete/subscription/{id}', 'Users\Admin\AdminController@DeleteSubscription')->name('admin.subscription.delete');
 
     Route::get('/edit/subscription/{id}', 'Users\Admin\AdminController@EditSubscription')->name('admin.subscription.edit');
@@ -101,36 +103,27 @@ Route::prefix('admin')->group(function () {
 
     Route::get('/employer/popular/{id}', 'Users\Admin\AdminController@EmployerMakePopular')->name('admin.employer.popular');
 
-    //  make un popular
 
-    Route::get('/employer/unpopular/{id}', 'Users\Admin\AdminController@EmployerMakeUnPopular')->name('admin.employer.unpopular');
 
     // block employer
 
     Route::get('/employer/block/{id}', 'Users\Admin\AdminController@EmployerBlock')->name('admin.employer.block');
 
-    // un block employer
 
-    Route::get('/employer/unblock/{id}', 'Users\Admin\AdminController@EmployerUnBlock')->name('admin.employer.unblock');
 
 
     //  jobseeker
 
-    //  make popular
+    //  make popular or unpopular
 
     Route::get('/jobseeker/popular/{id}', 'Users\Admin\AdminController@JobseekerMakePopular')->name('admin.jobseeker.popular');
 
-    //  make un popular
 
-    Route::get('/jobseeker/unpopular/{id}', 'Users\Admin\AdminController@JobseekerMakeUnPopular')->name('admin.jobseeker.unpopular');
 
-    // block jobseeker
+    // block jobseeker or unblock
 
     Route::get('/jobseeker/block/{id}', 'Users\Admin\AdminController@JobseekerBlock')->name('admin.jobseeker.block');
 
-    // un block jobseeker
-
-    Route::get('/jobseeker/unblock/{id}', 'Users\Admin\AdminController@JobseekerUnBlock')->name('admin.jobseeker.unblock');
 
     // contact 
 

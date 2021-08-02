@@ -21,6 +21,8 @@ class JobseekerCollection extends JsonResource
             'name' => $this->name,
             'email' => $this->email,
             'address' => $this->address,
+            'video' => $this->video,
+            'leanguage' => $this->leanguage,
             'CNIC' => $this->CNIC,
             'phone' => $this->phone,
             'city' => $this->city,

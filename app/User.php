@@ -34,6 +34,14 @@ class User extends Authenticatable
         return $this->hasMany(Review::class);
     }
 
+    public function getleanguageAttribute($value)
+    {
+        if ($value == null) {
+            return '';
+        }
+        return explode(',', $value);
+    }
+
     public function geteducationNameAttribute($value)
     {
         if ($value == null) {
@@ -93,7 +101,7 @@ class User extends Authenticatable
         }
         return explode(',', $value);
     }
-    public function getprojectLinkDescriptionAttribute($value)
+    public function getprojectDescriptionAttribute($value)
     {
         if ($value == null) {
             return '';

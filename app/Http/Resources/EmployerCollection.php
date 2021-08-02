@@ -24,6 +24,7 @@ class EmployerCollection extends JsonResource
             'image' => $this->image,
             'video' => $this->video,
             'social_links' => $this->social_links,
+            'leanguage' => $this->leanguage,
         ];
     }
 }

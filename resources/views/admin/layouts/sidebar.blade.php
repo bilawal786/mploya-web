@@ -55,41 +55,62 @@
                   </p>
                 </a>
               </li>
-{{--            {{ $link == route('subscription.user') ? 'active':'' }}--}}
+           {{-- {{ $link == route('subscription.user') ? 'active':'' }} --}}
 
 
               <li class="nav-item">
-                    <a href="{{route('admin.all.employers')}}" class="nav-link">
+                    <a href="{{route('admin.all.employers')}}" class="nav-link {{ $link == route('admin.all.employers') ? 'active':'' }}">
                         <i class="nav-icon fas fa-chalkboard-teacher"></i>
                         <p>Employers</p>
                     </a>
                 </li>
                  <li class="nav-item">
-                    <a href="{{route('admin.all.jobseeker')}}" class="nav-link">
+                    <a href="{{route('admin.all.jobseeker')}}" class="nav-link {{ $link == route('admin.all.jobseeker') ? 'active':'' }}">
                         <i class="nav-icon fa fa-users"></i>
                         <p>Job Seekers</p>
                     </a>
                 </li>
 
-                <li class="nav-item">
-            <a href="{{route('admin.category.all')}}" class="nav-link">
+        
+
+             <li class="nav-item">
+            <a href="#" class="nav-link">
                 <i class="nav-icon fa  fa-list-alt"></i>
+              <p>
+                Categories
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                 <a href="{{route('admin.category.all')}}" class="nav-link {{ $link == route('admin.category.all') ? 'active':'' }}">
+                <i class="far fa-circle nav-icon"></i>
               <p>
                 Categories
               </p>
             </a>
-          </li>
-
-                    <li class="nav-item">
-            <a href="{{route('admin.subcategory.all')}}" class="nav-link">
-                <i class="nav-icon fa  fa-list-alt"></i>
+              </li>
+              
+            </ul>
+             <ul class="nav nav-treeview">
+              <li class="nav-item">
+                 <a href="{{route('admin.subcategory.all')}}" class="nav-link {{ $link == route('admin.subcategory.all') ? 'active':'' }}">
+                <i class="far fa-circle nav-icon"></i>
               <p>
                 Sub Categories
               </p>
             </a>
+              </li>
+            </ul>
           </li>
 
-                      <li class="nav-item">
+
+
+
+
+
+
+          <li class="nav-item">
             <a href="#" class="nav-link">
                 <i class="nav-icon fa fa-comment-dollar"></i>
               <p>
@@ -99,15 +120,24 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{route('admin.subscription.all')}}" class="nav-link">
+                <a href="{{route('admin.subscription.all')}}" class="nav-link {{ $link == route('admin.subscription.all') ? 'active':'' }}">
                   <i class="far fa-circle nav-icon"></i>
                   <p>All Subscriptions</p>
+                </a>
+              </li>
+              
+            </ul>
+             <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{route('admin.purchased.subscription')}}" class="nav-link {{ $link == route('admin.purchased.subscription') ? 'active':'' }}">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Active Subscriptions</p>
                 </a>
               </li>
             </ul>
              <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{route('admin.create.subscription')}}" class="nav-link">
+                <a href="{{route('admin.create.subscription')}}" class="nav-link {{ $link == route('admin.create.subscription') ? 'active':'' }}">
                   <i class="nav-icon far fa-circle nav-icon"></i>
                   <p>Add Subscriptions</p>
                 </a>

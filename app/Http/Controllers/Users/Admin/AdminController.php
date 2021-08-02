@@ -50,7 +50,7 @@ class AdminController extends Controller
         $four = $employer->address == '0' ? 0 : 1;
         $five = in_array('0', $employer->leanguage) ? 0 : 1;
         $sum = $one + $two + $three + $four + $five + 2;
-        $percentage = (int)round(($sum / 6) * 100);
+        $percentage = (int)round(($sum / 7) * 100);
 
 
         $purchasedsub = PruchasedSubscription::where('employer_id', '=', $id)->get();
@@ -99,9 +99,11 @@ class AdminController extends Controller
         $twenty = in_array('0', $jobseeker->certification_year) ? 0 : 1;
         $twentyone = in_array('0', $jobseeker->certification_description) ? 0 : 1;
 
+        $twentytwo = in_array('0', $jobseeker->leanguage) ? 0 : 1;
+
         $sum = $one + $two + $three + $four + $five + $six + $seven + $eight + $nine + $ten + $eleven + $twelve + $thirteen
-            + $fourteen + $fifteen + $sixteen + $seventeen + $eighteen + $nineteen + $twenty + $twentyone + 2;
-        $percentage = (int)round(($sum / 23) * 100);
+            + $fourteen + $fifteen + $sixteen + $seventeen + $eighteen + $nineteen + $twenty + $twentyone + $twentytwo + 2;
+        $percentage = (int)round(($sum / 24) * 100);
 
 
 

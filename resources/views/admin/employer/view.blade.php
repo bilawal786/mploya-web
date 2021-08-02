@@ -282,7 +282,7 @@
           </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">Home</a></li>
+                            <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">Dashboard</a></li>
                             <li class="breadcrumb-item active">Employer Profile</li>
                         </ol>
                     </div>
@@ -359,13 +359,20 @@
               <div class="card-body">
                 <strong><i class="fa fa-building mr-1"></i> Company Name</strong>
 
-                <p class="text-muted">
-                  {{$employer->company_name}}
-                </p>
+                @if ($employer->company_name == '0')
+                    <p class="text-muted">Not Found</p>
+                @else
+                    <p class="text-muted">{{$employer->company_name}}</p>
+                @endif
 
                 <hr>
                 <strong><i class="fas fa-address-card mr-1"></i> Address</strong>
-                <p class="text-muted">{{$employer->address}}</p>
+                @if ($employer->address == '0')
+                    <p class="text-muted">Not Found</p>
+                @else
+                    <p class="text-muted">{{$employer->address}}</p>
+                @endif
+                
               
                 <hr>
                 <strong><i class="fas fa-link mr-1"></i> Social Links</strong>
@@ -501,7 +508,8 @@
                   <!-- /.tab-pane -->
 
                   <div class="tab-pane" id="settings">
-                    @if($employer->video == 0)
+               
+                    @if($employer->video == '0')
                 <p> Video Not Found</p>
                   @else 
                     <video width="320" height="240" controls>

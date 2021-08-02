@@ -279,7 +279,7 @@
           </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">Home</a></li>
+                            <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">Dashboard</a></li>
                             <li class="breadcrumb-item active">Job Seeker Profile</li>
                         </ol>
                     </div>
@@ -384,46 +384,78 @@
                 <strong><i class="fas fa-graduation-cap mr-1"></i> Education</strong>
 
                 <p class="text-muted"><b>Education Name:</b> 
-                  @foreach($jobseeker->education_name as $key => $data1)  
+                      @if(in_array('0',$jobseeker->education_name))
+                 <span class="tag tag-danger"> Not Found</span>
+                  @else 
+                    @foreach($jobseeker->education_name as $key => $data1)  
                    <span class="tag tag-danger">{{$jobseeker->education_name[$key]}},</span>
                   @endforeach
+                  @endif
                   <br><b>Education Description:</b> 
-                  @foreach($jobseeker->education_description as $key => $data1)  
+                      @if(in_array('0',$jobseeker->education_description))
+                 <span class="tag tag-danger"> Not Found</span>
+                  @else 
+                    @foreach($jobseeker->education_description as $key => $data1)  
                    <span class="tag tag-danger">{{$jobseeker->education_description[$key]}},</span>
                   @endforeach
+                  @endif
 
                    <br><b>Education Continue or Complete:</b> 
-                   @foreach($jobseeker->education_is_continue as $key => $data1)  
+                        @if(in_array('0',$jobseeker->education_is_continue))
+                 <span class="tag tag-danger"> Not Found</span>
+                  @else 
+                    @foreach($jobseeker->education_is_continue as $key => $data1)  
                    <span class="tag tag-danger">{{$jobseeker->education_is_continue[$key]}},</span>
                   @endforeach
+                  @endif
 
                   <br><b>Education Date:</b> 
-                   @foreach($jobseeker->education_complete_date as $key => $data1)  
+                         @if(in_array('0',$jobseeker->education_complete_date))
+                 <span class="tag tag-danger"> Not Found</span>
+                  @else 
+                    @foreach($jobseeker->education_complete_date as $key => $data1)  
                    <span class="tag tag-danger">{{$jobseeker->education_complete_date[$key]}},</span>
                   @endforeach
+                  @endif
                 </p>
 
                 <hr>
                     <strong><i class="fa fa-tasks mr-1"></i>Projects</strong>
 
                 <p class="text-muted"><b>Project Title:</b> 
-                  @foreach($jobseeker->project_title as $key => $data1)  
+                   @if(in_array('0',$jobseeker->project_title))
+                 <span class="tag tag-danger"> Not Found</span>
+                  @else 
+                    @foreach($jobseeker->project_title as $key => $data1)  
                    <span class="tag tag-danger">{{$jobseeker->project_title[$key]}},</span>
                   @endforeach
+                  @endif
                   <br><b>Project Occupation:</b> 
-                  @foreach($jobseeker->project_occupation as $key => $data1)  
+                   @if(in_array('0',$jobseeker->project_occupation))
+                 <span class="tag tag-danger"> Not Found</span>
+                  @else 
+                    @foreach($jobseeker->project_occupation as $key => $data1)  
                    <span class="tag tag-danger">{{$jobseeker->project_occupation[$key]}},</span>
                   @endforeach
+                  @endif
 
                    <br><b>Project Year:</b> 
-                   @foreach($jobseeker->project_year as $key => $data1)  
+                     @if(in_array('0',$jobseeker->project_year))
+                 <span class="tag tag-danger"> Not Found</span>
+                  @else 
+                    @foreach($jobseeker->project_year as $key => $data1)  
                    <span class="tag tag-danger">{{$jobseeker->project_year[$key]}},</span>
                   @endforeach
+                  @endif
 
                   <br><b>Project Links:</b> 
-                   @foreach($jobseeker->project_links as $key => $data1)  
+                     @if(in_array('0',$jobseeker->project_links))
+                 <span class="tag tag-danger"> Not Found</span>
+                  @else 
+                    @foreach($jobseeker->project_links as $key => $data1)  
                    <span class="tag tag-danger">{{$jobseeker->project_links[$key]}},</span>
                   @endforeach
+                  @endif
                 </p>
 
 
@@ -448,21 +480,55 @@
                     <strong><i class="fas fa-certificate mr-1"></i>Certifications</strong>
 
                 <p class="text-muted"><b>Certification Name:</b> 
-                  @foreach($jobseeker->certification_name as $key => $data1)  
+                  @if(in_array('0',$jobseeker->certification_name))
+                 <span class="tag tag-danger"> Not Found</span>
+                  @else 
+                    @foreach($jobseeker->certification_name as $key => $data1)  
                    <span class="tag tag-danger">{{$jobseeker->certification_name[$key]}},</span>
                   @endforeach
+                  @endif
+                
                     <br><b>Certification Year:</b> 
-                   @foreach($jobseeker->certification_year as $key => $data1)  
+                    @if(in_array('0',$jobseeker->certification_year))
+                 <span class="tag tag-danger"> Not Found</span>
+                  @else 
+                    @foreach($jobseeker->certification_year as $key => $data1)  
                    <span class="tag tag-danger">{{$jobseeker->certification_year[$key]}},</span>
                   @endforeach
+                  @endif
                   <br><b>Certification Description:</b> 
-                  @foreach($jobseeker->certification_description as $key => $data1)  
+                  @if(in_array('0',$jobseeker->certification_description))
+                 <span class="tag tag-danger"> Not Found</span>
+                  @else 
+                    @foreach($jobseeker->certification_description as $key => $data1)  
                    <span class="tag tag-danger">{{$jobseeker->certification_description[$key]}},</span>
                   @endforeach
+                  @endif
                 </p>
                 <hr>
                 <strong><i class="fas fa-map-marker-alt mr-1"></i> Location</strong>
-                <p class="text-muted"><b>Country: </b>{{$jobseeker->country}}<br><b>City:</b> {{$jobseeker->city}}<br><b>Address: </b>{{$jobseeker->address}}</p>
+                <p class="text-muted"><b>Country: </b>
+                  @if ($jobseeker->country == '0')
+                      Not Found
+                  @else
+                      {{$jobseeker->country}}
+                  @endif
+                  
+                  <br><b>City:</b> 
+                  @if ($jobseeker->city == '0')
+                      Not Found
+                  @else
+                      {{$jobseeker->city}}
+                  @endif
+                  
+                  <br><b>Address: </b>
+                  @if ($jobseeker->address == '0')
+                      Not Found
+                  @else
+                      {{$jobseeker->address}}
+                  @endif
+                  
+                </p>
                
          
                  @if($jobseeker->description == null)

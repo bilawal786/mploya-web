@@ -11,7 +11,7 @@
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">Home</a></li>
+                            <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">Dashboard</a></li>
                             <li class="breadcrumb-item active">Active Subscriptions</li>
                         </ol>
                     </div>
@@ -40,7 +40,7 @@
                                         <th>Price</th>
                                         <th>Valid Jobs</th>
                                         <th>Color</th>
-                                        <th>Description</th>
+                                    
                         
                                     </tr>
                                     </thead>
@@ -53,7 +53,7 @@
                                                 <td></td>
                                                 <td></td>
                                                 <td></td>
-                                                <td></td>
+                                             
                                             </tr>
                                       
                                           @else
@@ -75,9 +75,7 @@
                                                 </td>
                               
                                                 <td><input type="color" name="color" class="form-control" value="{{$row->color}}" readonly></td>
-                                                <td>
-                                                      {{$row->description}}
-                                                </td>
+                
                                             </tr>
                                           @endforeach 
                                           @endif

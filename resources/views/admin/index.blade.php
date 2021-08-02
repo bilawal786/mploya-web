@@ -117,8 +117,8 @@
 
         <section>
             <div class="row">
-                <div class="col-md-6"><canvas class="ml-2"  id="myChart" width="200" height="101" style="margin-bottom: 20px;"></canvas></div>
-                <div class="col-md-6"><canvas class="ml-2"  id="myCharttwo" width="200" height="101" style="margin-bottom: 20px"></canvas></div>
+                <div class="col-md-6"><canvas class="ml-2"  id="myChart" width="200" height="121" style="margin-bottom: 20px;"></canvas></div>
+                <div class="col-md-6"><canvas class="ml-2"  id="myCharttwo" width="200" height="121" style="margin-bottom: 20px"></canvas></div>
             </div>
            
         </section>

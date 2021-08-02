@@ -39,6 +39,7 @@
                                         <th>Name</th>
                                         <th>Email</th>
                                         <th>Address</th>
+                                         <th>Phone</th>
                                         <th>Company Name</th>
                                         <th>image</th>
                                         <th>Details</th>
@@ -49,6 +50,7 @@
 
                                           @if(empty($employers))
                                              <tr>
+                                                <td></td>
                                                 <td></td>
                                                 <td></td>
                                                 <td></td>
@@ -66,6 +68,11 @@
                                                 <td class="align-middle"></td>
                                                 @else 
                                                  <td class="align-middle">{{$row->address}}</td>
+                                                @endif
+                                                  @if($row->phone == '0')
+                                                <td class="align-middle"></td>
+                                                @else 
+                                                 <td class="align-middle">{{$row->phone}}</td>
                                                 @endif
                                                 @if($row->company_name == '0')
                                                 <td class="align-middle"></td>

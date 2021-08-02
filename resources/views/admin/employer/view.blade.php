@@ -323,15 +323,31 @@
                     <div class="progress-bar" role="progressbar" style="width: {{$percentage}}%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">{{$percentage}}%</div>
                   </div>
                   </li>
-                  <li class="list-group-item">
-                    <b>Jobs</b> <a class="float-right">{{$totaljobs}}</a>
+
+                   <li class="list-group-item">
+                    
+                    <b>Jobs</b> <a class="float-right">
+                      @if($totaljobs == 0)
+                       Not Found
+                      @else
+                     {{$totaljobs}}
+                      @endif
+                      
+                    </a>
                   </li>
                     <li class="list-group-item">
                       <b>Email</b> <a class="float-right">{{$employer->email}}</a>
                     </li>
-                    {{-- <li class="list-group-item">
-                      <b>Friends</b> <a class="float-right">13,287</a>
-                    </li> --}}
+                     <li class="list-group-item">
+                      <b>Phone</b> <a class="float-right">
+                        @if($employer->phone == 0)
+                       Not Found
+                      @else
+                     {{$employer->phone}}
+                      @endif
+                        
+                      </a>
+                    </li>
                 </ul>
                 <input type="hidden" value="{{$employer->id}}" id="employer_id">
                 <button  class="btn btn-primary btn-block" data-toggle="modal" data-target="#exampleModal">Contact</button>

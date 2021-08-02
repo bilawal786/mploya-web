@@ -298,7 +298,7 @@
               <div class="card-body box-profile">
                 <div class="text-center">
                 
-                  @if($jobseeker->image == 0)
+                  @if($jobseeker->image == '0')
                   <img class="profile-user-img img-fluid img-circle"
                        src="{{asset('assets/dist/img/profilepic.png')}}"
                        alt="User profile picture">

@@ -34,7 +34,7 @@ class User extends Authenticatable
         return $this->hasMany(Review::class);
     }
 
-    public function getleanguageAttribute($value)
+    public function getlanguageAttribute($value)
     {
         if ($value == null) {
             return '';

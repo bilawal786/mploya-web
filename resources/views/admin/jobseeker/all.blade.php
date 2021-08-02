@@ -82,7 +82,7 @@
                                                 @else
                                                 <td class="align-middle">{{$row->phone}}</td>
                                                 @endif
-                                                 @if($row->image == 0)
+                                                 @if($row->image == '0')
                                                 <td><img src="{{asset('assets/dist/img/profilepic.png')}}" alt="image" width="74" height="74"></td>
                                                 @else 
                                                 <td><img src="{{asset($row->image)}}" alt="image" width="74" height="74"></td>

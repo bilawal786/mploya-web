@@ -301,7 +301,7 @@
               <div class="card-body box-profile">
                 <div class="text-center">
                 
-                  @if($employer->image == 0)
+                  @if($employer->image == '0')
                   <img class="profile-user-img img-fluid img-circle"
                        src="{{asset('assets/dist/img/profilepic.png')}}"
                        alt="User profile picture">
@@ -388,20 +388,20 @@
                   @endforeach
                 </p>
                 @endif
-              
-                 @if(( $employer->leanguage == null))
+     
+                 @if(( $employer->language == null))
                      <hr>
-                <strong><i class="fa fa-language mr-1" aria-hidden="true" ></i>Leanguage</strong>
+                <strong><i class="fa fa-language mr-1" aria-hidden="true" ></i>Language</strong>
                   <p class="text-muted">
                   Not Found
                 </p>
                 @else
                    <hr>
-                <strong><i class="fa fa-language mr-1" aria-hidden="true" ></i>Leanguage</strong>
+                <strong><i class="fa fa-language mr-1" aria-hidden="true" ></i>Language</strong>
                 <p class="text-muted">
-                  @foreach($employer->leanguage as $key => $data1)  
+                  @foreach($employer->language as $key => $data1)  
               
-                    <span class="tag tag-danger">{{$employer->leanguage[$key]}},</span>
+                    <span class="tag tag-danger">{{$employer->language[$key]}},</span>
                   @endforeach
                 </p>
                 @endif

@@ -17,12 +17,16 @@ class EmployerResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
+            'email' => $this->email,
             'address' => $this->address,
+            'phone' => $this->phone,
+            'about' => $this->description,
             'company_name' => $this->company_name,
             'image' => $this->image,
             'video,' => $this->video,
             'social_links' => $this->social_links,
-            'leanguage' => $this->leanguage,
+            'language' => $this->language,
+            'updated_at' => $this->updated_at->format('d-m-Y')
         ];
     }
 }

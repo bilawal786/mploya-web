@@ -376,7 +376,7 @@
               
                 <hr>
                 <strong><i class="fas fa-link mr-1"></i> Social Links</strong>
-                @if(in_array('0', $employer->social_links))
+                @if(($employer->social_links == null))
                   <p class="text-muted">
                   Not Found
                 </p>
@@ -389,7 +389,7 @@
                 </p>
                 @endif
               
-                 @if(in_array('0', $employer->leanguage))
+                 @if(( $employer->leanguage == null))
                      <hr>
                 <strong><i class="fa fa-language mr-1" aria-hidden="true" ></i>Leanguage</strong>
                   <p class="text-muted">
@@ -405,7 +405,20 @@
                   @endforeach
                 </p>
                 @endif
-
+            @if($employer->description == null)
+                 <hr>
+                    <strong><i class="fas fa-brain mr-1"></i>Description</strong>
+                  <p class="text-muted">
+                  Not Found
+                </p>
+                @else
+                  <hr>
+                <strong><i class="fas fa-pencil-alt mr-1"></i>Description</strong>
+                <p class="text-muted">
+                    
+                 {{$employer->description}}
+                </p>
+                @endif
                
               </div>
               <!-- /.card-body -->

@@ -46,13 +46,13 @@ class AdminController extends Controller
         $employer = User::find($id);
         $one = $employer->image == '0' ? 0 : 1;
         $two = $employer->company_name == '0' ? 0 : 1;
-        $three = in_array('0', $employer->leanguage) ? 0 : 1;
+        $three = ($employer->language == null) ? 0 : 1;
         $four = $employer->address == '0' ? 0 : 1;
-        $five = in_array('0', $employer->leanguage) ? 0 : 1;
-        $sum = $one + $two + $three + $four + $five + 2;
-        $percentage = (int)round(($sum / 7) * 100);
-
-
+        $five = ($employer->social_links == null) ? 0 : 1;
+        $six = $employer->phone == '0' ? 0 : 1;
+        $seven = $employer->description == null ? 0 : 1;
+        $sum = $one + $two + $three + $four + $five + $six + $seven + 2;
+        $percentage = (int)round(($sum / 9) * 100);
         $purchasedsub = PruchasedSubscription::where('employer_id', '=', $id)->get();
         $jobs = Job::where('employer_id', '=', $id)->get();
         $totaljobs = count($jobs);
@@ -83,23 +83,24 @@ class AdminController extends Controller
         $eight = $jobseeker->description == null ? 0 : 1;
 
 
-        $nine = in_array('0', $jobseeker->education_name) ? 0 : 1;
-        $ten = in_array('0', $jobseeker->education_description) ? 0 : 1;
-        $eleven = in_array('0', $jobseeker->education_complete_date) ? 0 : 1;
-        $twelve = in_array('0', $jobseeker->education_is_continue) ? 0 : 1;
+        $nine = ($jobseeker->education_name == null) ? 0 : 1;
+        $ten = ($jobseeker->education_description == null) ? 0 : 1;
+        $eleven = ($jobseeker->education_complete_date == null) ? 0 : 1;
+        $twelve = ($jobseeker->education_is_continue == null) ? 0 : 1;
 
-        $thirteen = in_array('0', $jobseeker->project_title) ? 0 : 1;
-        $fourteen = in_array('0', $jobseeker->project_occupation) ? 0 : 1;
-        $fifteen = in_array('0', $jobseeker->project_year) ? 0 : 1;
-        $sixteen = in_array('0', $jobseeker->project_links) ? 0 : 1;
+        $thirteen = ($jobseeker->project_title == null) ? 0 : 1;
+        $fourteen = ($jobseeker->project_occupation == null) ? 0 : 1;
+        $fifteen = ($jobseeker->project_year == null) ? 0 : 1;
+        $sixteen = ($jobseeker->project_links == null) ? 0 : 1;
 
-        $seventeen = in_array('0', $jobseeker->project_description) ? 0 : 1;
-        $eighteen = in_array('0', $jobseeker->skill_name) ? 0 : 1;
-        $nineteen = in_array('0', $jobseeker->certification_name) ? 0 : 1;
-        $twenty = in_array('0', $jobseeker->certification_year) ? 0 : 1;
-        $twentyone = in_array('0', $jobseeker->certification_description) ? 0 : 1;
+        $seventeen = ($jobseeker->project_description == null) ? 0 : 1;
+        $eighteen = ($jobseeker->skill_name == null) ? 0 : 1;
+        $nineteen = ($jobseeker->certification_name == null) ? 0 : 1;
+        $twenty = ($jobseeker->certification_year == null) ? 0 : 1;
+        $twentyone = ($jobseeker->certification_description == null) ? 0 : 1;
 
-        $twentytwo = in_array('0', $jobseeker->leanguage) ? 0 : 1;
+        $twentytwo = ($jobseeker->language == null) ? 0 : 1;
+
 
         $sum = $one + $two + $three + $four + $five + $six + $seven + $eight + $nine + $ten + $eleven + $twelve + $thirteen
             + $fourteen + $fifteen + $sixteen + $seventeen + $eighteen + $nineteen + $twenty + $twentyone + $twentytwo + 2;

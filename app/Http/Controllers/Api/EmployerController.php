@@ -41,11 +41,13 @@ class EmployerController extends Controller
             'id' => ['required'],
             'name' => ['required', 'string', 'max:255'],
             'address' => ['required', 'string'],
+            'phone' => ['required'],
+            'description' => ['required'],
             'company_name' => ['required', 'string', 'max:255'],
             'image' => ['mimes:jpeg,jpg,png,gif|max:10000'],
             'video' => ['mimes:mp4,ogx,oga,ogv,ogg,webm'],
             'social_links' => ['required'],
-            'leanguage' => ['required'],
+            'language' => ['required'],
         ]);
         if ($validator->fails()) {
             return response()->json(['error' => $validator->errors(), 'success' => false], 401);
@@ -55,9 +57,11 @@ class EmployerController extends Controller
         if ($profile) {
             $profile->name = $request->name;
             $profile->address = $request->address;
+            $profile->phone = $request->phone;
+            $profile->description = $request->description;
             $profile->company_name = $request->company_name;
             $profile->social_links = implode(',', $request->social_links);
-            $profile->leanguage = implode(',', $request->leanguage);
+            $profile->language = implode(',', $request->language);
             if ($request->hasfile('image')) {
                 if (!empty($profile->image)) {
                     $image_path = $profile->image;

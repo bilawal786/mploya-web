@@ -384,7 +384,7 @@
                 <strong><i class="fas fa-graduation-cap mr-1"></i> Education</strong>
 
                 <p class="text-muted"><b>Education Name:</b> 
-                      @if(in_array('0',$jobseeker->education_name))
+                      @if($jobseeker->education_name ==null)
                  <span class="tag tag-danger"> Not Found</span>
                   @else 
                     @foreach($jobseeker->education_name as $key => $data1)  
@@ -392,7 +392,7 @@
                   @endforeach
                   @endif
                   <br><b>Education Description:</b> 
-                      @if(in_array('0',$jobseeker->education_description))
+                      @if($jobseeker->education_description ==null)
                  <span class="tag tag-danger"> Not Found</span>
                   @else 
                     @foreach($jobseeker->education_description as $key => $data1)  
@@ -401,7 +401,7 @@
                   @endif
 
                    <br><b>Education Continue or Complete:</b> 
-                        @if(in_array('0',$jobseeker->education_is_continue))
+                        @if($jobseeker->education_is_continue  ==null)
                  <span class="tag tag-danger"> Not Found</span>
                   @else 
                     @foreach($jobseeker->education_is_continue as $key => $data1)  
@@ -410,7 +410,7 @@
                   @endif
 
                   <br><b>Education Date:</b> 
-                         @if(in_array('0',$jobseeker->education_complete_date))
+                         @if($jobseeker->education_complete_date ==null)
                  <span class="tag tag-danger"> Not Found</span>
                   @else 
                     @foreach($jobseeker->education_complete_date as $key => $data1)  
@@ -423,7 +423,7 @@
                     <strong><i class="fa fa-tasks mr-1"></i>Projects</strong>
 
                 <p class="text-muted"><b>Project Title:</b> 
-                   @if(in_array('0',$jobseeker->project_title))
+                   @if($jobseeker->project_title ==null)
                  <span class="tag tag-danger"> Not Found</span>
                   @else 
                     @foreach($jobseeker->project_title as $key => $data1)  
@@ -431,7 +431,7 @@
                   @endforeach
                   @endif
                   <br><b>Project Occupation:</b> 
-                   @if(in_array('0',$jobseeker->project_occupation))
+                   @if($jobseeker->project_occupation ==null)
                  <span class="tag tag-danger"> Not Found</span>
                   @else 
                     @foreach($jobseeker->project_occupation as $key => $data1)  
@@ -440,7 +440,7 @@
                   @endif
 
                    <br><b>Project Year:</b> 
-                     @if(in_array('0',$jobseeker->project_year))
+                     @if($jobseeker->project_year ==null)
                  <span class="tag tag-danger"> Not Found</span>
                   @else 
                     @foreach($jobseeker->project_year as $key => $data1)  
@@ -449,7 +449,7 @@
                   @endif
 
                   <br><b>Project Links:</b> 
-                     @if(in_array('0',$jobseeker->project_links))
+                     @if($jobseeker->project_links ==null)
                  <span class="tag tag-danger"> Not Found</span>
                   @else 
                     @foreach($jobseeker->project_links as $key => $data1)  
@@ -459,7 +459,7 @@
                 </p>
 
 
-                 @if(in_array('0', $jobseeker->skill_name))
+                 @if($jobseeker->skill_name ==null)
                  <hr>
                     <strong><i class="fas fa-brain mr-1"></i>Skills</strong>
                   <p class="text-muted">
@@ -480,7 +480,7 @@
                     <strong><i class="fas fa-certificate mr-1"></i>Certifications</strong>
 
                 <p class="text-muted"><b>Certification Name:</b> 
-                  @if(in_array('0',$jobseeker->certification_name))
+                  @if($jobseeker->certification_name ==null)
                  <span class="tag tag-danger"> Not Found</span>
                   @else 
                     @foreach($jobseeker->certification_name as $key => $data1)  
@@ -489,7 +489,7 @@
                   @endif
                 
                     <br><b>Certification Year:</b> 
-                    @if(in_array('0',$jobseeker->certification_year))
+                    @if($jobseeker->certification_year ==null)
                  <span class="tag tag-danger"> Not Found</span>
                   @else 
                     @foreach($jobseeker->certification_year as $key => $data1)  
@@ -497,7 +497,7 @@
                   @endforeach
                   @endif
                   <br><b>Certification Description:</b> 
-                  @if(in_array('0',$jobseeker->certification_description))
+                  @if($jobseeker->certification_description ==null)
                  <span class="tag tag-danger"> Not Found</span>
                   @else 
                     @foreach($jobseeker->certification_description as $key => $data1)  
@@ -545,7 +545,7 @@
                  {{$jobseeker->description}}
                 </p>
                 @endif
-                 @if(in_array('0', $jobseeker->leanguage))
+                 @if($jobseeker->leanguage ==null)
                      <hr>
                 <strong><i class="fa fa-language mr-1" aria-hidden="true" ></i>Leanguage</strong>
                   <p class="text-muted">

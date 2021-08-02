@@ -40,7 +40,7 @@ class JobseekerController extends Controller
             'phone' => ['required'],
             'image' => ['mimes:jpeg,jpg,png,gif|max:10000'],
             'video' => ['mimes:mp4,ogx,oga,ogv,ogg,webm'],
-            'leanguage' => ['required'],
+            'language' => ['required'],
             'city' => ['required', 'string'],
             'country' => ['required', 'string'],
             'father_name' => ['required', 'string', 'max:255'],
@@ -73,7 +73,7 @@ class JobseekerController extends Controller
             $user->country = $request->country;
             $user->father_name = $request->father_name;
             $user->description = $request->description;
-            $user->leanguage = implode(',', $request->leanguage);
+            $user->language = implode(',', $request->language);
             $user->education_name = implode(',', $request->education_name);
             $user->education_description = implode(',', $request->education_description);
             $user->education_complete_date = implode(',', $request->education_complete_date);

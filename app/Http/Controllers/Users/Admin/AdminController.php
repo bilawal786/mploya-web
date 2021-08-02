@@ -19,13 +19,20 @@ class AdminController extends Controller
 {
     public function __construct()
     {
+
+
         $this->middleware('auth:admin');
     }
 
     public function index()
     {
-
-        return view('admin.index');
+        $totalemployers = count(User::where('user_type', '=', 'employer')->get());
+        $totaljobseeker = count(User::where('user_type', '=', 'jobseeker')->get());
+        $totalcat = count(Category::all());
+        $totalsub = count(Subscription::where('status', '=', 1)->get());
+        $totalactivesub = count(PruchasedSubscription::all());
+        $totaljobs = count(Job::where('status', '=', 'open')->get());
+        return view('admin.index', compact('totalemployers', 'totaljobseeker', 'totalcat', 'totalsub', 'totalactivesub', 'totaljobs'));
     }
 
     public function AllEmployer()
@@ -73,7 +80,8 @@ class AdminController extends Controller
         $five = $jobseeker->city == '0' ? 0 : 1;
         $six = $jobseeker->country == '0' ? 0 : 1;
         $seven = $jobseeker->father_name == '0' ? 0 : 1;
-        $eight = $jobseeker->description == '0' ? 0 : 1;
+        $eight = $jobseeker->description == null ? 0 : 1;
+
 
         $nine = in_array('0', $jobseeker->education_name) ? 0 : 1;
         $ten = in_array('0', $jobseeker->education_description) ? 0 : 1;

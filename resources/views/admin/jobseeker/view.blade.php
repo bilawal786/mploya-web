@@ -465,7 +465,7 @@
                 <p class="text-muted"><b>Country: </b>{{$jobseeker->country}}<br><b>City:</b> {{$jobseeker->city}}<br><b>Address: </b>{{$jobseeker->address}}</p>
                
          
-                 @if($jobseeker->description == 0)
+                 @if($jobseeker->description == null)
                  <hr>
                     <strong><i class="fas fa-brain mr-1"></i>Description</strong>
                   <p class="text-muted">

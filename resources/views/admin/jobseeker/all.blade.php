@@ -40,7 +40,7 @@
                                         <th>Father Name</th>
                                         <th>Email</th>
                                         <th>Address</th>
-                                        <th>NIC</th>
+                                        <th>CNIC</th>
                                         <th>Phone No</th>
                                         <th>Image</th>
                                         <th>Details</th>

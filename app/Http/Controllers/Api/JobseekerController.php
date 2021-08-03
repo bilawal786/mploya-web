@@ -18,6 +18,8 @@ use App\Http\Resources\BookmarkCollection;
 use App\Http\Resources\EmployerCollection;
 use App\Http\Resources\JobseekerCollection;
 use App\Notifications\JobApplyNotification;
+use App\Http\Resources\PopularEmployerResource;
+
 
 
 class JobseekerController extends Controller
@@ -111,6 +113,10 @@ class JobseekerController extends Controller
             return response()->json(EmployerCollection::collection($data));
         }
     }
+
+
+
+
 
     // Get All Jobs Function 
 
@@ -290,6 +296,19 @@ class JobseekerController extends Controller
             }
         } else {
             return response()->json(['message' => 'You Are Not Able To Get Reviews', 'success' => false], 401);
+        }
+    }
+
+    /// single popular employer
+
+    public function SinglePapularEmployer($id)
+    {
+        $popularemployer = User::find($id);
+        if ($popularemployer) {
+            $data = new PopularEmployerResource($popularemployer);
+            return $data->toJson();
+        } else {
+            return response()->json(['message' => 'Popular Employer  Not Found', 'success' => false], 404);
         }
     }
 }

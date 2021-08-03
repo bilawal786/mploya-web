@@ -37,7 +37,7 @@ class AdminController extends Controller
 
     public function AllEmployer()
     {
-        $employers = User::where('user_type', '=', 'employer')->get();
+        $employers = User::where('user_type', '=', 'employer')->where('profile_status', '=', 'visible')->get();
         return view('admin.employer.all', compact('employers'));
     }
 
@@ -64,7 +64,7 @@ class AdminController extends Controller
 
     public function JobSeekers()
     {
-        $jobseekers = User::where('user_type', '=', 'jobseeker')->get();
+        $jobseekers = User::where('user_type', '=', 'jobseeker')->where('profile_status', '=', 'visible')->get();
         return view('admin.jobseeker.all', compact('jobseekers'));
     }
 

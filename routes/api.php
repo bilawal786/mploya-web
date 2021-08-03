@@ -116,6 +116,15 @@ Route::group(
 
         Route::get('/popular/employers', 'Api\EmployerController@AllPapularEmployer');
 
+
+        // single popular employer
+
+        Route::get('/single/popular/employer/{id}', 'Api\JobseekerController@SinglePapularEmployer');
+
+        // single popular jobseeker
+
+        Route::get('/single/popular/jobseeker/{id}', 'Api\EmployerController@SinglePapularJobseeker');
+
         // add review
 
         Route::post('/employer/add/review', 'Api\EmployerController@EmployerAddReview');
@@ -133,6 +142,10 @@ Route::group(
 
         Route::get('/all/jobseeker', 'Api\EmployerController@AllEmployer');
 
+
+        // Get All Popular jobseeker 
+
+        Route::get('/popular/jobseekers', 'Api\EmployerController@AllPapularJobseeker');
 
         // Get All  jbseeker  Applied For Job
 

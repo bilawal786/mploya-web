@@ -627,7 +627,7 @@
                   <div class="tab-pane" id="timeline">
                     <!-- The timeline -->
                        <div class="tab-pane" id="settings">
-                    @if($jobseeker->video == 0)
+                    @if($jobseeker->video == '0')
                 <p> Video Not Found</p>
                   @else 
                     <video width="320" height="240" controls>

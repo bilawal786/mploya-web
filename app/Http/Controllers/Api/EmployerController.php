@@ -21,9 +21,11 @@ use App\Http\Resources\JobseekerResource;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Resources\JobseekerCollection;
 use App\Notifications\InterviewNotfication;
+use App\Http\Resources\PopularJobseekerResource;
 use App\Http\Resources\AppliedEmployerCollection;
 use App\Http\Resources\PopularEmployerCollection;
 use App\Http\Resources\BookmarkEmployerCollection;
+use App\Http\Resources\PopularJobseekerCollection;
 
 
 class EmployerController extends Controller
@@ -460,7 +462,7 @@ class EmployerController extends Controller
     {
         $user_type = Auth::guard('api')->user()->user_type;
         if ($user_type == 'jobseeker') {
-            $popularemployers = User::where('is_popular', '=', '1')->get();
+            $popularemployers = User::where('is_popular', '=', '1')->where('user_type', '=', 'employer')->get();
             if ($popularemployers->isEmpty()) {
                 return response()->json(['error' => 'Popular Employers not Found', 'success' => false], 404);
             } else {
@@ -469,6 +471,44 @@ class EmployerController extends Controller
             }
         }
         return response()->json(['error' => 'You Are Not Able To Get Popular Employers', 'success' => false], 404);
+    }
+
+    // Get  All Papular Jobseeker
+
+    public function AllPapularJobseeker()
+    {
+        $user_type = Auth::guard('api')->user()->user_type;
+        if ($user_type == 'employer') {
+            $popularjobseeker = User::where(
+                'is_popular',
+                '=',
+                '1'
+            )->where('user_type', '=', 'jobseeker')->get();
+            if ($popularjobseeker->isEmpty()) {
+                return response()->json(
+                    ['error' => 'Popular Jobseekers not Found', 'success' => false],
+                    404
+                );
+            } else {
+                $data = PopularJobseekerCollection::collection($popularjobseeker);
+                return response()->json(PopularJobseekerCollection::collection($data));
+            }
+        }
+        return response()->json(['error' => 'You Are Not Able To Get Popular Jobseeker', 'success' => false], 404);
+    }
+
+
+    /// single popular jobseeker
+
+    public function SinglePapularJobseeker($id)
+    {
+        $popularjobseeker = User::find($id);
+        if ($popularjobseeker) {
+            $data = new PopularJobseekerResource($popularjobseeker);
+            return $data->toJson();
+        } else {
+            return response()->json(['message' => 'Popular Jobseeker  Not Found', 'success' => false], 404);
+        }
     }
 
     public function EmployerAddReview(Request $request)

@@ -39,7 +39,7 @@
                                         <th>Name</th>
                                         <th>Email</th>
                                         <th>Address</th>
-                                         <th>Phone</th>
+                                         <th>Phone No</th>
                                         <th>Company Name</th>
                                         <th>image</th>
                                         <th>Details</th>
@@ -70,7 +70,7 @@
                                                  <td class="align-middle">{{$row->address}}</td>
                                                 @endif
                                                   @if($row->phone == '0')
-                                                <td class="align-middle"></td>
+                                                <td class="align-middle">Not Found</td>
                                                 @else 
                                                  <td class="align-middle">{{$row->phone}}</td>
                                                 @endif

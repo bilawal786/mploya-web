@@ -39,15 +39,11 @@ class EmployerController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'id' => ['required'],
-            'name' => ['required', 'string', 'max:255'],
-            'address' => ['required', 'string'],
-            'phone' => ['required'],
-            'description' => ['required'],
-            'company_name' => ['required', 'string', 'max:255'],
+            'name' => ['string', 'max:255'],
+            'address' => ['string'],
+            'company_name' => ['string', 'max:255'],
             'image' => ['mimes:jpeg,jpg,png,gif|max:10000'],
             'video' => ['mimes:mp4,ogx,oga,ogv,ogg,webm'],
-            'social_links' => ['required'],
-            'language' => ['required'],
         ]);
         if ($validator->fails()) {
             return response()->json(['error' => $validator->errors(), 'success' => false], 401);
@@ -55,13 +51,19 @@ class EmployerController extends Controller
         $id = $request->id;
         $profile = User::where('id', '=', $id)->where('user_type', '=', 'employer')->first();
         if ($profile) {
-            $profile->name = $request->name;
-            $profile->address = $request->address;
-            $profile->phone = $request->phone;
-            $profile->description = $request->description;
-            $profile->company_name = $request->company_name;
-            $profile->social_links = implode(',', $request->social_links);
-            $profile->language = implode(',', $request->language);
+            $request->name ? $profile->name = $request->name : '';
+            $request->address ? $profile->address = $request->address : '';
+            $request->profile_status ? $profile->profile_status = $request->profile_status : '';
+
+            $request->facebook_link ? $profile->facebook_link = $request->facebook_link : '';
+            $request->instagram_link ? $profile->instagram_link = $request->instagram_link : '';
+            $request->twitter_link ? $profile->twitter_link = $request->twitter_link : '';
+            $request->linkedin_link ? $profile->linkedin_link = $request->linkedin_link : '';
+
+            $request->phone ? $profile->phone = $request->phone : '';
+            $request->description ? $profile->description = $request->description : '';
+            $request->company_name ? $profile->company_name = $request->company_name : '';
+            $request->language ? $profile->language = implode(',', $request->language) : '';
             if ($request->hasfile('image')) {
                 if (!empty($profile->image)) {
                     $image_path = $profile->image;
@@ -293,7 +295,7 @@ class EmployerController extends Controller
         $user = User::find($id);
         if ($user) {
             if ($user->profile_status == 'visible') {
-                $user->profile_status = 'Not visible';
+                $user->profile_status = 'Not Visible';
                 $user->update();
                 $success['message'] = 'Profile Status Change Successfully and Now Current Status is Not Visible';
                 $success['success'] = true;

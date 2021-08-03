@@ -26,7 +26,10 @@ class EmployerCollection extends JsonResource
             'company_name' => $this->company_name,
             'image' => $this->image,
             'video,' => $this->video,
-            'social_links' => $this->social_links,
+            'facebook_link' => $this->facebook_link,
+            'instagram_link' => $this->instagram_link,
+            'twitter_link' => $this->twitter_link,
+            'linkedin_link' => $this->linkedin_link,
             'language' => $this->language,
             'updated_at' => $this->updated_at->format('d-m-Y')
         ];

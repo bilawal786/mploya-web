@@ -280,6 +280,7 @@
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">Dashboard</a></li>
+                            <li class="breadcrumb-item"><a href="{{route('admin.all.jobseeker')}}">Job Seekers</a></li>
                             <li class="breadcrumb-item active">Job Seeker Profile</li>
                         </ol>
                     </div>
@@ -530,22 +531,7 @@
                   
                 </p>
                
-         
-                 @if($jobseeker->description == null)
-                 <hr>
-                    <strong><i class="fas fa-brain mr-1"></i>Description</strong>
-                  <p class="text-muted">
-                  Not Found
-                </p>
-                @else
-                  <hr>
-                <strong><i class="fas fa-pencil-alt mr-1"></i>Description</strong>
-                <p class="text-muted">
-                    
-                 {{$jobseeker->description}}
-                </p>
-                @endif
-                 @if($jobseeker->leanguage ==null)
+          @if($jobseeker->leanguage ==null)
                      <hr>
                 <strong><i class="fa fa-language mr-1" aria-hidden="true" ></i>Leanguage</strong>
                   <p class="text-muted">
@@ -561,6 +547,21 @@
                   @endforeach
                 </p>
                 @endif
+                 @if($jobseeker->description == null)
+                 <hr>
+                    <strong><i class="fas fa-pencil-alt mr-1"></i>Description</strong>
+                  <p class="text-muted">
+                  Not Found
+                </p>
+                @else
+                  <hr>
+                <strong><i class="fas fa-pencil-alt mr-1"></i>Description</strong>
+                <p class="text-muted">
+                    
+                 {{$jobseeker->description}}
+                </p>
+                @endif
+                
               
               </div>
               <!-- /.card-body -->

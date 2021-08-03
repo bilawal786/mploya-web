@@ -283,6 +283,7 @@
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">Dashboard</a></li>
+                            <li class="breadcrumb-item"><a href="{{route('admin.all.employers')}}">Employers</a></li>
                             <li class="breadcrumb-item active">Employer Profile</li>
                         </ol>
                     </div>
@@ -392,19 +393,35 @@
               
                 <hr>
                 <strong><i class="fas fa-link mr-1"></i> Social Links</strong>
-                @if(($employer->social_links == null))
-                  <p class="text-muted">
-                  Not Found
+                 <p class="text-muted"><b>Facebook: </b>
+                  @if ($employer->facebook_link == null)
+                      Not Found
+                  @else
+                      {{$employer->facebook_link}}
+                  @endif
+                  
+                  <br><b>Instagram:</b> 
+                  @if ($employer->instagram_link == null)
+                      Not Found
+                  @else
+                      {{$employer->instagram_link}}
+                  @endif
+                  
+                  <br><b>Twitter: </b>
+                  @if ($employer->twitter_link == null)
+                      Not Found
+                  @else
+                      {{$employer->twitter_link}}
+                  @endif
+
+                   <br><b>Linkedin: </b>
+                  @if ($employer->linkedin_link == null)
+                      Not Found
+                  @else
+                      {{$employer->linkedin_link}}
+                  @endif
+                  
                 </p>
-                @else
-                  <p class="text-muted">
-                  @foreach($employer->social_links as $key => $data1)  
-              
-                    <span class="tag tag-danger">{{$employer->social_links[$key]}}</span>
-                  @endforeach
-                </p>
-                @endif
-     
                  @if(( $employer->language == null))
                      <hr>
                 <strong><i class="fa fa-language mr-1" aria-hidden="true" ></i>Language</strong>
@@ -423,7 +440,7 @@
                 @endif
             @if($employer->description == null)
                  <hr>
-                    <strong><i class="fas fa-brain mr-1"></i>Description</strong>
+                    <strong><i class="fas fa-pencil-alt mr-1"></i>Description</strong>
                   <p class="text-muted">
                   Not Found
                 </p>

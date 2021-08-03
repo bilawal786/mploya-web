@@ -55,9 +55,6 @@
                   </p>
                 </a>
               </li>
-           {{-- {{ $link == route('subscription.user') ? 'active':'' }} --}}
-
-
               <li class="nav-item">
                     <a href="{{route('admin.all.employers')}}" class="nav-link {{ $link == route('admin.all.employers') ? 'active':'' }}">
                         <i class="nav-icon fas fa-chalkboard-teacher"></i>
@@ -70,11 +67,8 @@
                         <p>Job Seekers</p>
                     </a>
                 </li>
-
-        
-
-             <li class="nav-item">
-            <a href="#" class="nav-link">
+             <li class="nav-item {{ $link == route('admin.category.all') || $link == route('admin.subcategory.all')  ? 'menu-open':''}}">
+            <a href="#" class="nav-link  {{ $link == route('admin.category.all') || $link == route('admin.subcategory.all')  ? 'active':'' }}">
                 <i class="nav-icon fa  fa-list-alt"></i>
               <p>
                 Categories
@@ -104,14 +98,8 @@
             </ul>
           </li>
 
-
-
-
-
-
-
-          <li class="nav-item">
-            <a href="#" class="nav-link">
+          <li class="nav-item {{ $link == route('admin.subscription.all') || $link == route('admin.purchased.subscription') || $link == route('admin.create.subscription')  ? 'menu-open':'' }}">
+            <a href="#" class="nav-link {{ $link == route('admin.subscription.all') || $link == route('admin.purchased.subscription') || $link == route('admin.create.subscription')  ? 'active':'' }}">
                 <i class="nav-icon fa fa-comment-dollar"></i>
               <p>
                 Subscriptions

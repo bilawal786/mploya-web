@@ -22,9 +22,6 @@ use App\Notifications\JobApplyNotification;
 
 class JobseekerController extends Controller
 {
-
-
-
     ////////////////////////////////////////////////////////  jobseeker ////////////////////////
     public $successStatus = 200;
 
@@ -34,30 +31,14 @@ class JobseekerController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'id' => ['required'],
-            'name' => ['required', 'string', 'max:255'],
-            'address' => ['required', 'string'],
-            'CNIC' => ['bail', 'required', 'regex:/^[0-9]{5}-[0-9]{7}-[0-9]$/'],
-            'phone' => ['required'],
+            'name' => ['string', 'max:255'],
+            'address' => ['string'],
+            'CNIC' => ['bail', 'regex:/^[0-9]{5}-[0-9]{7}-[0-9]$/'],
             'image' => ['mimes:jpeg,jpg,png,gif|max:10000'],
             'video' => ['mimes:mp4,ogx,oga,ogv,ogg,webm'],
-            'language' => ['required'],
-            'city' => ['required', 'string'],
-            'country' => ['required', 'string'],
-            'father_name' => ['required', 'string', 'max:255'],
-            'description' => ['required'],
-            'education_name' => ['required'],
-            'education_description' => ['required'],
-            'education_complete_date' => ['required'],
-            'education_is_continue' => ['required'],
-            'project_title' => ['required'],
-            'project_occupation' => ['required'],
-            'project_year' => ['required'],
-            'project_links' => ['required'],
-            'project_description' => ['required'],
-            'skill_name' => ['required'],
-            'certification_name' => ['required'],
-            'certification_year' => ['required'],
-            'certification_description' => ['required'],
+            'city' => ['string'],
+            'country' => ['string'],
+            'father_name' => ['string', 'max:255'],
         ]);
         if ($validator->fails()) {
             return response()->json(['error' => $validator->errors(), 'success' => false], 401);
@@ -65,28 +46,28 @@ class JobseekerController extends Controller
         $id = $request->id;
         $user = User::where('id', '=', $id)->where('user_type', '=', 'jobseeker')->first();
         if ($user) {
-            $user->name = $request->name;
-            $user->address = $request->address;
-            $user->CNIC = $request->CNIC;
-            $user->phone = $request->phone;
-            $user->city = $request->city;
-            $user->country = $request->country;
-            $user->father_name = $request->father_name;
-            $user->description = $request->description;
-            $user->language = implode(',', $request->language);
-            $user->education_name = implode(',', $request->education_name);
-            $user->education_description = implode(',', $request->education_description);
-            $user->education_complete_date = implode(',', $request->education_complete_date);
-            $user->education_is_continue = implode(',', $request->education_is_continue);
-            $user->project_title = implode(',', $request->project_title);
-            $user->project_occupation = implode(',', $request->project_occupation);
-            $user->project_year = implode(',', $request->project_year);
-            $user->project_links = implode(',', $request->project_links);
-            $user->project_description = implode(',', $request->project_description);
-            $user->skill_name = implode(',', $request->skill_name);
-            $user->certification_name = implode(',', $request->certification_name);
-            $user->certification_year = implode(',', $request->certification_year);
-            $user->certification_description = implode(',', $request->certification_description);
+            $request->name ? $user->name = $request->name : '';
+            $request->address ? $user->address = $request->address : '';
+            $request->CNIC ? $user->CNIC = $request->CNIC : '';
+            $request->phone ? $user->phone = $request->phone : '';
+            $request->city ? $user->city = $request->city : '';
+            $request->country ? $user->country = $request->country : '';
+            $request->father_name ? $user->father_name = $request->father_name : '';
+            $request->description ? $user->description = $request->description : '';
+            $request->language ? $user->language = implode(',', $request->language) : '';
+            $request->education_name ? $user->education_name = implode(',', $request->education_name) : '';
+            $request->education_description ? $user->education_description = implode(',', $request->education_description) : '';
+            $request->education_complete_date ? $user->education_complete_date = implode(',', $request->education_complete_date) : '';
+            $request->education_is_continue ? $user->education_is_continue = implode(',', $request->education_is_continue) : '';
+            $request->project_title ? $user->project_title = implode(',', $request->project_title) : '';
+            $request->project_occupation ? $user->project_occupation = implode(',', $request->project_occupation) : '';
+            $request->project_year ? $user->project_year = implode(',', $request->project_year) : '';
+            $request->project_links ? $user->project_links = implode(',', $request->project_links) : '';
+            $request->project_description ? $user->project_description = implode(',', $request->project_description) : '';
+            $request->skill_name ? $user->skill_name = implode(',', $request->skill_name) : '';
+            $request->certification_name ? $user->certification_name = implode(',', $request->certification_name) : '';
+            $request->certification_year ? $user->certification_year = implode(',', $request->certification_year) : '';
+            $request->certification_description ? $user->certification_description = implode(',', $request->certification_description) : '';
             if ($request->hasfile('image')) {
                 if (!empty($user->image)) {
                     $image_path = $user->image;

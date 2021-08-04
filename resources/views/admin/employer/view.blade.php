@@ -205,6 +205,13 @@
                             </a>
                         </li>
 
+                          <li class="nav-item">
+                    <a href="{{route('admin.all.jobs')}}" class="nav-link {{ $link == route('admin.all.jobs') ? 'active':'' }}">
+                        <i class="nav-icon  fas fa-briefcase"></i>
+                        <p>Active Jobs</p>
+                    </a>
+                </li>
+
                         <li class="nav-item">
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fa  fa-list-alt"></i>
@@ -338,7 +345,7 @@
 
                                     <ul class="list-group list-group-unbordered mb-3">
                                         <li class="list-group-item">
-                                            <b>Profile Percentage</b>
+                                            <b>Profile Complete</b>
                                             <div class="progress mt-2">
                                                 <div class="progress-bar" role="progressbar"
                                                     style="width: {{$percentage}}%;" aria-valuenow="25"

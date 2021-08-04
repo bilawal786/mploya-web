@@ -186,6 +186,12 @@
                         <p>Job Seekers</p>
                     </a>
                 </li>
+                  <li class="nav-item">
+                    <a href="{{route('admin.all.jobs')}}" class="nav-link {{ $link == route('admin.all.jobs') ? 'active':'' }}">
+                        <i class="nav-icon  fas fa-briefcase"></i>
+                        <p>Active Jobs</p>
+                    </a>
+                </li>
 
            <li class="nav-item">
             <a href="#" class="nav-link">
@@ -275,7 +281,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-            <h1>Jobseeker Profile</h1>
+            <h1>Job Seeker Profile</h1>
           </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
@@ -317,7 +323,7 @@
 
                 <ul class="list-group list-group-unbordered mb-3">
                     <li class="list-group-item">
-                    <b>Profile Percentage</b> <div class="progress mt-2">
+                    <b>Profile Complete</b> <div class="progress mt-2">
                     
                     <div class="progress-bar" role="progressbar" style="width:{{$percentage}}%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">{{$percentage}}%</div>
                   </div>

@@ -67,6 +67,12 @@
                         <p>Job Seekers</p>
                     </a>
                 </li>
+                 <li class="nav-item">
+                    <a href="{{route('admin.all.jobs')}}" class="nav-link {{ $link == route('admin.all.jobs') ? 'active':'' }}">
+                        <i class="nav-icon  fas fa-briefcase"></i>
+                        <p>Active Jobs</p>
+                    </a>
+                </li>
              <li class="nav-item {{ $link == route('admin.category.all') || $link == route('admin.subcategory.all')  ? 'menu-open':''}}">
             <a href="#" class="nav-link  {{ $link == route('admin.category.all') || $link == route('admin.subcategory.all')  ? 'active':'' }}">
                 <i class="nav-icon fa  fa-list-alt"></i>

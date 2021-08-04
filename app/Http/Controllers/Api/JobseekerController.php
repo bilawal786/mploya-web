@@ -228,7 +228,7 @@ class JobseekerController extends Controller
             $jobs_id = Bookmark::where('jobseeker_id', '=', $jobseeker_id)->pluck('job_id');
             $jobs = Job::whereIn('id', $jobs_id)->get();
             if ($jobs->isEmpty()) {
-                return response()->json(['error' => 'Jobs not Found', 'success' => false], 404);
+                return response()->json(['error' => 'Bookmarked Jobs not Found', 'success' => false], 404);
             } else {
                 $data = BookmarkCollection::collection($jobs);
                 return response()->json(BookmarkCollection::collection($data));
@@ -248,7 +248,7 @@ class JobseekerController extends Controller
             $data = new JobResource($bookmarked_job);
             return $data->toJson();
         } else {
-            return response()->json(['message' => 'Bookmarked Jobs Not Found', 'success' => false], 404);
+            return response()->json(['message' => 'Bookmarked Job Not Found', 'success' => false], 404);
         }
     }
 

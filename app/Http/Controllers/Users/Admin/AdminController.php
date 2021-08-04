@@ -451,4 +451,18 @@ class AdminController extends Controller
 
         return view('admin.subscription.purchased', compact('purchasedsubscriptions'));
     }
+
+    // Get All Jobs
+
+    public function AllJob()
+    {
+        $jobs = Job::where('status', '=', 'open')->get();
+        return view('admin.job.all', compact('jobs'));
+    }
+
+    public  function SingleJob($id)
+    {
+        $job = Job::find($id);
+        return view('admin.job.single', compact('job'));
+    }
 }

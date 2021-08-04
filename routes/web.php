@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('welcome');
 
 Auth::routes(['register' => false]);
 
@@ -120,4 +120,9 @@ Route::prefix('admin')->group(function () {
 
     // End Subscription  Route 
 
+    // Jobb Route 
+
+    Route::get('/all/jobs', 'Users\Admin\AdminController@AllJob')->name('admin.all.jobs');
+
+    Route::get('/job/{id}', 'Users\Admin\AdminController@SingleJob')->name('admin.job');
 });

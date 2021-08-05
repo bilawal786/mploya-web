@@ -17,7 +17,7 @@ class UserProfileResource extends JsonResource
     {
         if ($this->user_type == 'employer') {
             $employer = User::find($this->id);
-            $one = $employer->image == '0' ? 0 : 1;
+            $one = $employer->image == 'assets/dist/img/profilepic.png' ? 0 : 1;
             $two = $employer->company_name == '0' ? 0 : 1;
             $three = ($employer->language == null) ? 0 : 1;
             $four = $employer->address == '0' ? 0 : 1;
@@ -34,7 +34,7 @@ class UserProfileResource extends JsonResource
             $one = $jobseeker->address == '0' ? 0 : 1;
             $two = $jobseeker->CNIC == '0' ? 0 : 1;
             $three = $jobseeker->phone == '0' ? 0 : 1;
-            $four = $jobseeker->image == '0' ? 0 : 1;
+            $four = $jobseeker->image == 'assets/dist/img/profilepic.png' ? 0 : 1;
 
             $five = $jobseeker->city == '0' ? 0 : 1;
             $six = $jobseeker->country == '0' ? 0 : 1;

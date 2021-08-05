@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Laravel 7 - Integrate Stripe Payment Gateway Example</title>
+	<title>Mploya</title>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" />
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <style type="text/css">
         .container {
             margin-top: 40px;
         }
-        .panel-heading {
+        /* .panel-heading {
         display: inline;
         font-weight: bold;
-        }
+        } */
         .flex-table {
             display: table;
         }
@@ -36,6 +36,7 @@
                         <h3 class="panel-heading">Payment Details</h3>
                     </div>                    
                 </div>
+                
                 <div class="panel-body">
   
                     @if (Session::has('success'))
@@ -50,7 +51,7 @@
                                                     data-stripe-publishable-key="{{ env('STRIPE_KEY') }}"
                                                     id="payment-form">
                         @csrf
-  
+                        <input type="hidden" value="{{$id}}" name="subscription_id">
                         <div class='form-row row'>
                             <div class='col-xs-12 form-group required'>
                                 <label class='control-label'>Name on Card</label> <input
@@ -92,7 +93,7 @@
   
                         <div class="row">
                             <div class="col-xs-12">
-                                <button class="btn btn-success btn-lg btn-block" type="submit">Pay Now (₹100)</button>
+                                <button class="btn btn-success btn-lg btn-block" type="submit">Pay Now</button>
                             </div>
                         </div>
                           

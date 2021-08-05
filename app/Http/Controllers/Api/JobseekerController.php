@@ -230,8 +230,8 @@ class JobseekerController extends Controller
             if ($jobs->isEmpty()) {
                 return response()->json(['error' => 'Bookmarked Jobs not Found', 'success' => false], 404);
             } else {
-                $data = BookmarkCollection::collection($jobs);
-                return response()->json(BookmarkCollection::collection($data));
+                $data = AllJobCollection::collection($jobs);
+                return response()->json(AllJobCollection::collection($data));
             }
         } else {
             return response()->json(['message' => 'You Are Not Able To Get Bookmark Jobs', 'success' => false], 401);

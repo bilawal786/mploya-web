@@ -128,5 +128,8 @@ Route::prefix('admin')->group(function () {
 });
 
 
-Route::get('/payment/card', 'PaymentController@Payment')->name('payment');
+Route::get('/payment/card/{id}', 'PaymentController@Payment')->name('payment');
 Route::post('/stripe/payment', 'PaymentController@StripePayment')->name('stripe.payment');
+// payment success route 
+
+Route::get('/payment/success/', 'PaymentController@PaymentSuccess')->name('payment.success');

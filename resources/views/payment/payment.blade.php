@@ -45,7 +45,7 @@
                         </div>
                     @endif
   
-                    <form role="form" action="" method="post" class="validation"
+                    <form role="form" action="{{route('stripe.payment')}}" method="post" class="validation"
                                                      data-cc-on-file="false"
                                                     data-stripe-publishable-key="{{ env('STRIPE_KEY') }}"
                                                     id="payment-form">

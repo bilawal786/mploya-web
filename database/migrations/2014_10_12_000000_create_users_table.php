@@ -45,7 +45,7 @@ class CreateUsersTable extends Migration
             $table->string('profile_status')->nullable('visible');
             $table->string('provider_id')->nullable();
             $table->string('provider_name')->nullable();
-            $table->string('image')->default('0');
+            $table->string('image')->default('assets/dist/img/profilepic.png');
             $table->string('video')->default('0');
             $table->string('facebook_link')->nullable();
             $table->string('instagram_link')->nullable();

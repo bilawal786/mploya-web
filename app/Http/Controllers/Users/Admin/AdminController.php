@@ -71,10 +71,6 @@ class AdminController extends Controller
     public function JobSeekerView($id)
     {
         $jobseeker = User::find($id);
-
-
-        // if($jobseeker->)
-
         $one = $jobseeker->address == '0' ? 0 : 1;
         $two = $jobseeker->CNIC == '0' ? 0 : 1;
         $three = $jobseeker->phone == '0' ? 0 : 1;

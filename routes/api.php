@@ -172,6 +172,12 @@ Route::group(
 
         //************************ End Employer Route *****************************/
 
+
+        // common route 
+
+        Route::get('/user/profile', 'Api\EmployerController@UserProfile');
+
+
         //************************ jobseeker Route *****************************/
 
 

@@ -62,16 +62,18 @@ class SubscriptionController extends Controller
                 $subscription->color = $request->color;
                 $subscription->description = $request->description;
                 $subscription->save();
-                $success['message'] = 'Subscription Purchase Successfully!';
-                $success['success'] = true;
-                return response()->json($success, $this->successStatus);
+                return redirect()->route('payment');
+                // $success['message'] = 'Subscription Purchase Successfully!';
+                // $success['success'] = true;
+                // return response()->json($success, $this->successStatus);
             } else {
                 $purchasedsubscription = PruchasedSubscription::where('employer_id', '=', $employer_id)->first();
                 $purchasedsubscription->valid_job += $request->valid_job;
                 $purchasedsubscription->update();
-                $success['message'] = 'Subscription Purchase Successfully!';
-                $success['success'] = true;
-                return response()->json($success, $this->successStatus);
+                return redirect()->route('payment');
+                // $success['message'] = 'Subscription Purchase Successfully!';
+                // $success['success'] = true;
+                // return response()->json($success, $this->successStatus);
             }
         } else {
             return response()->json(['message' => 'You Are Not Able To Purchase the Subscriptions', 'success' => false], 401);

@@ -126,3 +126,6 @@ Route::prefix('admin')->group(function () {
 
     Route::get('/job/{id}', 'Users\Admin\AdminController@SingleJob')->name('admin.job');
 });
+
+
+Route::get('/stripe/payment', 'PaymentController@Payment')->name('payment');

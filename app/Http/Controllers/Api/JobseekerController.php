@@ -123,7 +123,7 @@ class JobseekerController extends Controller
     public function AllJobs()
     {
 
-        $jobs = Job::all();
+        $jobs = Job::where('status', '=', 'open')->get();
         if ($jobs->isEmpty()) {
             return response()->json(['error' => 'Jobs not Found', 'success' => false], 404);
         } else {

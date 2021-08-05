@@ -20,6 +20,7 @@ use App\Http\Resources\ReviewCollection;
 use App\Http\Resources\JobseekerResource;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Resources\JobseekerCollection;
+use App\Http\Resources\UserProfileResource;
 use App\Notifications\InterviewNotfication;
 use App\Http\Resources\PopularJobseekerResource;
 use App\Http\Resources\AppliedEmployerCollection;
@@ -552,6 +553,22 @@ class EmployerController extends Controller
             }
         } else {
             return response()->json(['message' => 'You Are Not Able To Get Reviews', 'success' => false], 401);
+        }
+    }
+
+
+
+    // common function UserProfile
+
+    public function UserProfile()
+    {
+        $user_id = Auth::guard('api')->user()->id;
+        $user = User::find($user_id);
+        if ($user) {
+            $data = new UserProfileResource($user);
+            return $data->toJson();
+        } else {
+            return response()->json(['error' => 'user not Found', 'success' => false], 404);
         }
     }
 }

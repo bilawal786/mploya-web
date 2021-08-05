@@ -15,6 +15,12 @@ class BookmarkEmployerCollection extends JsonResource
      */
     public function toArray($request)
     {
+        if ($this->skill_name == "") {
+            $skills = "";
+            dd('null');
+        } else {
+            $skills = array_slice($this->skill_name, 0, 3);
+        }
         return [
             'id' => $this->id,
             'name' => $this->name,
@@ -37,7 +43,7 @@ class BookmarkEmployerCollection extends JsonResource
             'project_year' => $this->project_year,
             'project_links' => $this->project_links,
             'project_description' => $this->project_description,
-            'skill_name' => $this->skill_name,
+            'skill_name' => $skills,
             'certification_name' => $this->certification_name,
             'certification_year' => $this->certification_year,
             'certification_description' => $this->certification_description,

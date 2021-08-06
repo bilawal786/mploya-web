@@ -9,7 +9,7 @@
 </head>
    <style>
         .container {
-            margin-top: 150px;
+            margin-top: 40px;
         }
         .panel-heading {
         font-weight: bold;
@@ -55,7 +55,7 @@
                         <div class='form-row row'>
                             <div class='col-xs-12 form-group required'>
                                 <label class='control-label'>Name on Card</label> <input
-                                    class='form-control' size='4' type='text'>
+                                    class='form-control' size='4' type='text' placeholder="Card Name">
                             </div>
                         </div>
   
@@ -63,7 +63,7 @@
                             <div class='col-xs-12 form-group card required'>
                                 <label class='control-label'>Card Number</label> <input
                                     autocomplete='off' class='form-control card-num' size='20'
-                                    type='text'>
+                                    type='text' placeholder="Valid Card Number">
                             </div>
                         </div>
   

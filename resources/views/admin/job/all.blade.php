@@ -37,6 +37,7 @@
                                     <tr>
                                          <th>#</th>
                                         <th>Title</th>
+                                        <th>Vacancies</th>
                                         <th>salary</th>
                                         <th>salary Type</th>
                                          <th>Education</th>
@@ -56,6 +57,7 @@
                                                 <td></td>
                                                 <td></td>
                                                 <td></td>
+                                                <td></td>
                                             </tr>
 
                                           @else
@@ -63,10 +65,11 @@
                                              <tr>
                                                 <td class="align-middle">{{$loop->iteration}}</td>
                                                 <td class="align-middle">{{$row->job_title}}</td>
+                                                <td class="align-middle">{{$row->vacancies}}</td>
                                                  @if($row->salary == '0')
                                                 <td class="align-middle">Not Found</td>
                                                 @else
-                                                <td class="align-middle">{{$row->salary}}</td>
+                                                <td class="align-middle">${{$row->salary}}</td>
                                                 @endif
                                                 @if($row->salary_type == '0')
                                                 <td class="align-middle">Not Found</td>

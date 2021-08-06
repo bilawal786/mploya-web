@@ -59,12 +59,12 @@
                                             <tr>
                                                 <td class="align-middle">{{$loop->iteration}}</td>
                                                 <td class="align-middle">{{$row->title}}</td>
-                                                 @if($row->image)
+                                                 @if($row->image = '0')
                                                 <td class="align-middle">
                                                       <img src="{{asset($row->image)}}" alt="" width="80px" height="50px">
                                                 </td>
                                                 @else 
-                                                <td></td>
+                                                <td>Not Found</td>
                                                 @endif
                                          
                                                 <td class="align-middle">

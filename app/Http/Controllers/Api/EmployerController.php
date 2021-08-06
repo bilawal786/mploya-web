@@ -244,6 +244,12 @@ class EmployerController extends Controller
                 $job->occupation = $request->occupation;
                 $job->education =  $request->education;
                 $job->experience =  $request->experience;
+                $job->subcategory_id = $request->subcategory_id;
+                $job->requirements = $request->requirements;
+                $job->link = $request->link;
+                $job->vacancies = $request->vacancies;
+                $job->job_type = $request->job_type;
+                $job->skills = implode(',', $request->skills);
                 $job->update();
 
                 $success['message'] = 'Job Update Successfully!';

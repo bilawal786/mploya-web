@@ -523,7 +523,11 @@
                                                 <p>
                                                     {{$row->description}}
                                                 </p>
-
+                                                <p><b>Requirements:</b></p>
+                                                <!-- /.user-block -->
+                                                <p style="margin-top: -15px">
+                                                    {{$row->requirements}}
+                                                </p>
                                                 <p>
                                                     <span href="#" class="text-sm mr-2"><b>Education:</b>
                                                         {{$row->education}}</span>
@@ -531,12 +535,20 @@
                                                         {{$row->experience}}</span>
                                                     <span href="#" class="text-sm"><b>Occupation:</b>
                                                         {{$row->occupation}}</span>
-                                                    <span class="float-right">
+                                                         <span href="#" class="text-sm mr-2"><b>Vacancies:</b>
+                                                        {{$row->vacancies}}</span>
+                                                    
+                                                    <span href="#" class="text-sm mr-2"><b>Job Type:</b>
+                                                        {{$row->job_type}}</span> 
+
+                                                    <span href="#" class="text-sm mr-2"><b>Link:</b>
+                                                        {{$row->link}}</span><br>
+                                                    {{-- <span class="float-right"> --}}
                                                         <span href="#" class="text-sm mr-2"><b>Salary:</b>
                                                             {{$row->salary}}</span>
                                                         <span href="#" class="text-sm"><b>Salary Type:</b>
                                                             {{$row->salary_type}}</span>
-                                                    </span>
+                                                    {{-- </span> --}}
 
                                                 </p>
 
@@ -577,7 +589,7 @@
                                                         {{$row->price}}</span>
                                                     <span href="#" class="text-sm mr-2"><b>Valid Jobs:</b>
                                                         {{$row->valid_job}}</span>
-                                                    <span href="#" class="text-sm"><b>Color:</b> {{$row->color}}</span>
+                                                    <span href="#" class="text-sm"><b>Color:</b> <input class="" size="4" type="color" value="{{$row->color}}" readonly> </span>
 
                                                 </p>
 

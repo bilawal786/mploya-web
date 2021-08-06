@@ -37,6 +37,7 @@ class AllJobCollection extends JsonResource
             // end new
             'job_title' => $this->job_title,
             'company_name' => $employer->company_name,
+            'employer_phone' => $employer->phone,
             'employer_image' => $employer->image,
             'employer_address' => $employer->address,
             'salary' => $this->salary,

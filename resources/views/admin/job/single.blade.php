@@ -52,14 +52,30 @@
                                                     {{$job->description}}
                                                 </p>
 
+                                                    <p><b>Requirements:</b></p>
+                                                <!-- /.user-block -->
+                                                <p style="margin-top: -15px">
+                                                    {{$job->requirements}}
+                                                </p>
+
                                                 <p>
                                                     <span href="#" class="text-sm mr-2"><b>Education:</b>
                                                         {{$job->education}}</span>
                                                     <span href="#" class="text-sm mr-2"><b>Experience:</b>
                                                         {{$job->experience}}</span>
-                                                    <span href="#" class="text-sm"><b>Occupation:</b>
+
+                                                    <span href="#" class="text-sm mr-2"><b>Occupation:</b>
                                                         {{$job->occupation}}</span>
-                                                    <span class="float-right">
+                                                    <span href="#" class="text-sm mr-2"><b>Vacancies:</b>
+                                                        {{$job->vacancies}}</span>
+                                                    
+                                                    <span href="#" class="text-sm mr-2"><b>Job Type:</b>
+                                                        {{$job->job_type}}</span>
+
+                                                    <span href="#" class="text-sm mr-2"><b>Link:</b>
+                                                        {{$job->link}}</span>
+
+                                                    {{-- <span class="float-right"> --}}
                                                           @if($job->salary == '0')
                                                           <span href="#" class="text-sm mr-2"><b>Salary:</b>
                                                             Not Found</span>
@@ -70,7 +86,7 @@
                                                         
                                                         <span href="#" class="text-sm"><b>Salary Type:</b>
                                                             {{$job->salary_type}}</span>
-                                                    </span>
+                                                    {{-- </span> --}}
 
                                                 </p>
 

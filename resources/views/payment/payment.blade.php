@@ -4,14 +4,18 @@
 	<title>Mploya</title>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" />
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <style type="text/css">
+</head>
+   <style>
+     @media only screen and (max-width: 600px) {
+  
+
+    }
         .container {
-            margin-top: 40px;
+            margin-top: 180px;
         }
-        /* .panel-heading {
-        display: inline;
+        .panel-heading {
         font-weight: bold;
-        } */
+        }
         .flex-table {
             display: table;
         }
@@ -24,10 +28,8 @@
             width: 55%;
         }
     </style>
-</head>
 <body>
-  
-<div class="container">  
+<div class="container" id="c">  
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
             <div class="panel panel-default">

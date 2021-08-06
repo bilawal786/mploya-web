@@ -18,6 +18,14 @@ class CreateJobsTable extends Migration
             $table->integer('category_id')->unsigned();
             // $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
             $table->string('employer_id');
+            // new
+            $table->integer('subcategory_id')->default('0');
+            $table->longText('requirements')->nullable();
+            $table->longText('skills')->nullable();
+            $table->string('link')->nullable();
+            $table->bigInteger('vacancies')->default('0');
+            $table->string('job_type')->nullable();
+            // end new
             $table->string('status')->default('open');
             $table->string('job_title')->default('0');
             $table->text('description')->nullable();

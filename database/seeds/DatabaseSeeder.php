@@ -18,5 +18,6 @@ class DatabaseSeeder extends Seeder
         $this->call(CategorySeeder::class);
         $this->call(SubscriptionSeeder::class);
         $this->call(ActiveSunscriptionSeeder::class);
+        $this->call(SubcategorySeeder::class);
     }
 }

@@ -27,13 +27,18 @@
         }
     </style>
 <body>
+    <?php
+        $subscription  = App\Subscription::find($id);
+    ?>
+    
 <div class="container" id="c">  
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <div class="row text-center">
-                        <h3 class="panel-heading">Payment Details</h3>
+                        <h3 class="panel-heading" style="margin-top: 0px">{{$subscription->title}}</h3>
+                        <p style="margin-top: -12px">${{$subscription->price}}</p>
                     </div>                    
                 </div>
                 

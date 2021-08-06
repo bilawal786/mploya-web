@@ -142,6 +142,14 @@ class EmployerController extends Controller
                         $job->education = $request->education;
                         $job->category_id = $request->category_id;
                         $job->experience = $request->experience;
+                        // new feild
+                        $job->subcategory_id = $request->subcategory_id;
+                        $job->requirements = $request->requirements;
+                        $job->link = $request->link;
+                        $job->vacancies = $request->vacancies;
+                        $job->job_type = $request->job_type;
+                        $job->skills = implode(',', $request->skills);
+
                         if ($job->save()) {
                             $job->users()->attach($user_id);
                             $purchased_subscription->valid_job -= 1;

@@ -28,4 +28,12 @@ class Job extends Model
         }
         return explode(',', $value);
     }
+
+    public function getskillsAttribute($value)
+    {
+        if ($value == null) {
+            return '';
+        }
+        return explode(',', $value);
+    }
 }

@@ -17,12 +17,19 @@ class JobSeeder extends Seeder
                 'employer_id' => '1',
                 'status' => 'open',
                 'category_id' => '1',
+                'subcategory_id' => '1',
                 'job_title' => 'Demo Title',
                 'description' => 'Lorem ipsum represents a long-held tradition for designers,
                         typographers and the like. Some people hate it and argue for
                         its demise, but others ignore the hate as they create awesome
                         tools to help create filler text for everyone from bacon lovers
                         to Charlie Sheen fans.',
+                'requirements' => 'Lorem ipsum represents a long-held tradition for designers,
+                        typographers and the.',
+                'skills' => 'Skills 1,Skills 2',
+                'link' => 'https://www.test.com',
+                'vacancies' => '10',
+                'job_type' => 'Part time',
                 'salary_type' => 'per month',
                 'occupation' => 'laravel developer',
                 'education' => 'BSAC',
@@ -32,12 +39,19 @@ class JobSeeder extends Seeder
                 'employer_id' => '1',
                 'status' => 'open',
                 'category_id' => '2',
+                'subcategory_id' => '2',
                 'job_title' => 'Demo Title 2',
                 'description' => 'Lorem ipsum represents a long-held tradition for designers,
                         typographers and the like. Some people hate it and argue for
                         its demise, but others ignore the hate as they create awesome
                         tools to help create filler text for everyone from bacon lovers
                         to Charlie Sheen fans.',
+                'requirements' => 'Lorem ipsum represents a long-held tradition for designers,
+                        typographers and the.',
+                'skills' => 'Skills 1,Skills 2',
+                'link' => 'https://www.test2.com',
+                'vacancies' => '20',
+                'job_type' => 'Full time',
                 'salary_type' => 'per month',
                 'occupation' => 'php developer',
                 'education' => 'SE',

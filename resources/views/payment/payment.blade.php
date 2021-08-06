@@ -8,14 +8,8 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 </head>
    <style>
-     @media only screen and (max-width: 600px) {
-  
- .container {
-            margin-top: 280px;
-        }
-    }
         .container {
-            margin-top: 180px;
+            margin-top: 150px;
         }
         .panel-heading {
         font-weight: bold;

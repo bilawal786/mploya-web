@@ -68,7 +68,7 @@
                                                 @endif
                                          
                                                 <td class="align-middle">
-                                                      <a type="button" href="{{route('admin.subcategory.edit',['id' => $row->id])}}"  class="btn btn-success"><i class="far fa-edit"></i></a>
+                                                      <a type="button" href="{{route('admin.subcategory.edit',['id' => $row->id])}}"  class="btn btn-primary"><i class="far fa-edit"></i></a>
                                                       <a type="button" href="{{route('admin.subcategory.delete',['id' => $row->id])}}"  class="btn btn-danger"><i class="fa fa-trash"></i></a>
                                                 </td>
                                             </tr>

@@ -122,9 +122,21 @@ Route::prefix('admin')->group(function () {
 
     // Jobb Route 
 
+    Route::get('/create/job', 'Users\Admin\AdminController@CreateJob')->name('admin.create.job');
+
+    Route::post('/store/job', 'Users\Admin\AdminController@JobStore')->name('admin.job.store');
+
     Route::get('/all/jobs', 'Users\Admin\AdminController@AllJob')->name('admin.all.jobs');
 
     Route::get('/job/{id}', 'Users\Admin\AdminController@SingleJob')->name('admin.job');
+
+    Route::get('/delete/job/{id}', 'Users\Admin\AdminController@DeleteJob')->name('admin.job.delete');
+
+    Route::get('/edit/job/{id}', 'Users\Admin\AdminController@EditJob')->name('admin.job.edit');
+
+    Route::post('/update/job', 'Users\Admin\AdminController@JobUpdate')->name('admin.job.update');
+
+    Route::get('/job/status/{id}', 'Users\Admin\AdminController@ChangeJobStatus')->name('admin.job.status');
 });
 
 

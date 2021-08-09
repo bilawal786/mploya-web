@@ -12,6 +12,8 @@ use Illuminate\Http\Request;
 use App\PruchasedSubscription;
 use PhpParser\Node\Expr\FuncCall;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 use App\Notifications\ContactNotification;
 use App\Http\Resources\PurchasedSubscriptionCollection;
 
@@ -448,6 +450,56 @@ class AdminController extends Controller
         return view('admin.subscription.purchased', compact('purchasedsubscriptions'));
     }
 
+    //  Create JOb
+
+    public function CreateJob()
+    {
+        return view('admin.job.create');
+    }
+
+    // store job
+
+    public function JobStore(Request $request)
+    {
+        if ($request->ajax()) {
+            $validator = Validator::make($request->all(), [
+                'job_title' => ['required'],
+                'description' => ['required'],
+                'category_id' => ['required'],
+                'salary' => ['required'],
+                'salary_type' => ['required'],
+                'education' => ['required'],
+                'occupation' => ['required'],
+                'experience' => ['required'],
+            ]);
+            if ($validator->fails()) {
+                return response()->json(['error' => $validator->errors()]);
+            }
+            $job = new Job();
+            $job->job_title = $request->job_title;
+            $job->employer_id = Auth::user()->id;
+            $job->role = 'admin';
+            $job->description = $request->description;
+            $job->salary_type = $request->salary_type;
+            $job->salary = $request->salary;
+            $job->occupation = $request->occupation;
+            $job->education = $request->education;
+            $job->category_id = $request->category_id;
+            $job->experience = $request->experience;
+            // new feild
+            $job->subcategory_id = $request->subcategory_id;
+            $job->requirements = $request->requirements;
+            $job->link = $request->link;
+            $job->vacancies = $request->vacancies;
+            $job->job_type = $request->job_type;
+            $job->skills = implode(',', $request->skills);
+            $job->save();
+            return response()->json([
+                'success' => 'Job Add Successfully!',
+            ]);
+        }
+    }
+
     // Get All Jobs
 
     public function AllJob()
@@ -460,5 +512,88 @@ class AdminController extends Controller
     {
         $job = Job::find($id);
         return view('admin.job.single', compact('job'));
+    }
+
+    // edit Job
+
+    public function EditJob($id)
+    {
+        $job = Job::find($id);
+        return view('admin.job.edit', compact('job'));
+    }
+
+
+    public function JobUpdate(Request $request)
+    {
+        if (Job::where('id', $request->job_id)->exists()) {
+            $job = Job::find($request->job_id);
+            $job->job_title = $request->job_title;
+            $job->description = $request->description;
+            $job->salary_type = $request->salary_type;
+            $job->salary = $request->salary;
+            $job->occupation = $request->occupation;
+            $job->education =  $request->education;
+            $job->experience =  $request->experience;
+            $job->subcategory_id = $request->subcategory_id;
+            $job->requirements = $request->requirements;
+            $job->link = $request->link;
+            $job->vacancies = $request->vacancies;
+            $job->job_type = $request->job_type;
+            $job->skills = implode(',', $request->skills);
+            $job->update();
+            return response()->json([
+                'success' => 'Job Update Successfully!',
+            ]);
+        } else {
+            return response()->json([
+                'error' => 'Job Not Found Successfully!',
+            ]);
+        }
+    }
+
+    // delete job
+
+    public function DeleteJob($id)
+    {
+
+        $job = Job::find($id);
+        $job->delete();
+        $notification = array(
+            'messege' => 'Job Delete Successfully!',
+            'alert-type' => 'error'
+        );
+        return Redirect()->back()->with($notification);
+    }
+
+
+    public function ChangeJobStatus($id)
+    {
+        $job = Job::find($id);
+        if ($job) {
+
+            if ($job->status == 'open') {
+                $job->status = 'close';
+                $job->update();
+                $notification = array(
+                    'messege' => 'Job Status Change Successfully!',
+                    'alert-type' => 'success'
+                );
+                return Redirect()->back()->with($notification);
+            } else {
+                $job->status = 'open';
+                $job->update();
+                $notification = array(
+                    'messege' => 'Job Status Change Successfully!',
+                    'alert-type' => 'success'
+                );
+                return Redirect()->back()->with($notification);
+            }
+        } else {
+            $notification = array(
+                'messege' => 'Job Not Found!',
+                'alert-type' => 'error'
+            );
+            return Redirect()->back()->with($notification);
+        }
     }
 }

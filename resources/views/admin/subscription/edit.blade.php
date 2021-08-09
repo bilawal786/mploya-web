@@ -57,49 +57,49 @@ input[type=number] {
                   <input type="hidden" name="subscription_id" value="{{$subscription->id}}">
                   <input type="hidden" name="status" value="{{$subscription->status}}" class="form-control">
                 <div class="card-body">
-
-                    <div class="form-group">
+                  <div class="row">
+                    <div class="col-sm-6">
+                         <div class="form-group">
                     <label for="exampleInputEmail1">Title</label>
                     <input type="text" name="title" class="form-control" value="{{$subscription->title}}" required>
                   </div>
-                   <div class="form-group">
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
                     <label for="exampleInputEmail1">Price</label>
                     <input type="number" min="1" name="price" class="form-control" value="{{$subscription->price}}" required>
                   </div>
-                  <div class="form-group">
+                    </div>
+                  </div>
+                   <div class="row">
+                    <div class="col-sm-6">
+                      <div class="form-group">
                     <label for="exampleInputEmail1">Valid Jobs</label>
                     <input type="number" min="1" name="valid_job" class="form-control" value="{{$subscription->valid_job}}" required>
                   </div>
-                  <div class="form-group">
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
   
                     <label for="exampleInputEmail1">Color</label>
                     <input type="color" name="color" class="form-control" value="{{$subscription->color}}" required>
                   </div>
+                    </div>
+                  </div>
+                 
+                 
+                  
+                
                    <div class="row">
                     <div class="col-sm-12">
                       <!-- textarea -->
                       <div class="form-group">
                         <label>Description</label>
-                        <textarea class="form-control" name="description" rows="3" cols="30">{{$subscription->description}}</textarea>
+                        <textarea id="description" class="form-control" name="description" rows="3" cols="30">{{$subscription->description}}</textarea>
                       </div>
                     </div>
                   </div>
                 </div>
-                       {{-- <div class="form-group row">
-                                <div class="col-8" style="margin-left: 15%">
-                                    <div class="custom-file">
-
-                                        <input type="file" class="custom-file-input" name="image"
-                                            onchange="readURL(this);" accept="image/*">
-                                        <label class="custom-file-label" for="thumbnail">Choose file</label>
-                                    </div>
-                                    <div class="img-thumbnail  text-center" id="imagepreview">
-                                        <img src="{{asset(Auth::user()->image)}}" style="height: 150px; width: 400px;"
-                                            class="img-fluid" id="one">
-                                    </div>
-                                </div>
-                            </div> --}}
-                <!-- /.card-body -->
                 <div class="card-footer">
                   <button type="submit"  id="add" class="btn btn-primary">Update</button>
                 </div>
@@ -113,21 +113,6 @@ input[type=number] {
     </section>
       </div>
 @endsection
-{{-- <script type="text/javascript">
-    function readURL(input) {
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
-            reader.onload = function (e) {
-                $('#one')
-                    .attr('src', e.target.result)
-                    .width(400)
-                    .height(150);
-            };
-            reader.readAsDataURL(input.files[0]);
-        }
-    }
-
-</script>  --}}
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 <script>

@@ -16,14 +16,9 @@ class CategoryController extends Controller
     public function AllCategory()
     {
 
-        $user_type = Auth::guard('api')->user()->user_type;
-        if ($user_type == 'employer') {
-            $categories = Category::all();
-            $data = CategoryCollection::collection($categories);
-            return response()->json(CategoryCollection::collection($data));
-        } else {
-            return response()->json(['message' => 'You Are Not Able To Get Job Category', 'success' => false], 401);
-        }
+        $categories = Category::all();
+        $data = CategoryCollection::collection($categories);
+        return response()->json(CategoryCollection::collection($data));
     }
 
     // Get All Jobs Related to that Category

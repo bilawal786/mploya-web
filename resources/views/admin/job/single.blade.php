@@ -45,6 +45,7 @@
                                                 <div class="user-block">
 
                                                     <a href="#">{{$job->job_title}}</a>
+                                                    <a href="{{route('admin.job.status',['id' => $job->id])}}" type="button" style="float: right" class="btn btn-success">Change Status</a>
 
                                                 </div>
                                                 <!-- /.user-block -->

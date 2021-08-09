@@ -29,6 +29,7 @@
                         <div class="card">
                             <div class="card-header">
                                 <h3 class="card-title">Jobs List</h3>
+                                <a href="{{route('admin.create.job')}}" type="button" style="float: right" class="btn btn-success">Add Job</a>
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body">
@@ -89,6 +90,8 @@
                                                  
                                                  <td class="align-middle">
                                                      <a type="button" href="{{route('admin.job',['id' => $row->id])}}" title="View"  class="btn btn-success"><i class="far fa-eye"></i></a>
+                                                     <a type="button" href="{{route('admin.job.edit',['id' => $row->id])}}" title="Edit"  class="btn btn-primary"><i class="fas fa-edit"></i></a>
+                                                    <a type="button" href="{{route('admin.job.delete',['id' => $row->id])}}" title="Delete"  class="btn btn-danger"><i class="fa fa-trash"></i></a>
                                                  </td>
                                             </tr>
                                           @endforeach

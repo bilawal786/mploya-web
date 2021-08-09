@@ -16,6 +16,7 @@ class CreateJobsTable extends Migration
         Schema::create('jobs', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('category_id')->unsigned();
+            $table->string('role')->nullable();
             // $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
             $table->string('employer_id');
             // new

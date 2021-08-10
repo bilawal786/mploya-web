@@ -223,6 +223,10 @@ Route::group(
 
         Route::get('/all/category', 'Api\CategoryController@AllCategory');
 
+        // sub categories 
+
+        Route::get('/all/subcategory', 'Api\CategoryController@AllSubCategory');
+
         // Get all Jobs related to that catefgory
 
         Route::get('/category/related/jobs/{id}', 'Api\CategoryController@CategoryRelatedJobs');

@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Api;
 
 use App\Category;
+use App\Subcategory;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Resources\CategoryCollection;
+use App\Http\Resources\SubcategoryCollection;
 use App\Http\Resources\CategoryRelatedJobsResource;
 
 
@@ -20,6 +22,16 @@ class CategoryController extends Controller
         $data = CategoryCollection::collection($categories);
         return response()->json(CategoryCollection::collection($data));
     }
+
+    // get all sub categories 
+
+    public function AllSubCategory()
+    {
+        $subcategories = Subcategory::all();
+        $data = SubcategoryCollection::collection($subcategories);
+        return response()->json(SubcategoryCollection::collection($data));
+    }
+
 
     // Get All Jobs Related to that Category
 

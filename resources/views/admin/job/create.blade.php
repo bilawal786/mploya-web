@@ -355,7 +355,7 @@
                                 <!-- /.card-header -->
                                 <?php
                                     $categories = App\Category::all();
-                                    $subcategories = App\SubCategory::all(); 
+                    
                                 ?>
                                 <!-- form start -->
                                 <form id="jobform">
@@ -432,7 +432,7 @@
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label for="">Select Category</label>
-                                                    <select class="form-control" name="category_id">
+                                                    <select class="form-control" name="category_id" id="category">
                                                         @foreach ($categories as $row)
                                                         <option value="{{$row->id}}">{{$row->title}}</option>
                                                         @endforeach
@@ -443,10 +443,8 @@
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label for="">Select SubCategory</label>
-                                                    <select class="form-control" name="subcategory_id">
-                                                        @foreach ($subcategories as $row)
-                                                        <option value="{{$row->id}}">{{$row->title}}</option>
-                                                        @endforeach
+                                                    <select class="form-control" name="subcategory_id" id="subcategory">
+                                                         <option value=""></option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -759,6 +757,61 @@
                 $(this).closest("tr").remove();
             });
 
+        });
+
+    </script>
+
+     <script>
+        $(document).ready(function () {
+            var cat_id = $('#category').val();
+
+            // ajx 
+            $.ajax({
+                url: '{{url("admin/ajax/subcategory")}}/' + cat_id,
+                method: 'get',
+                data: {
+                    id: cat_id
+                },
+                success: function (data) {
+                
+                    $('#subcategory').empty();
+                      if(data.length === 0){
+                            $('#subcategory').append('<option>Not Found</option>');
+                        }else{
+                            $.each(data, function (index, subcatObj) {
+                            $('#subcategory').append('<option value="' + subcatObj
+                                .id + '">' + subcatObj.title + '</option>');
+                        });
+                        }
+
+                }
+            });
+
+            // on change
+
+            $('#category').on('change', function () {
+                var cat_id = $('#category').val();
+                // ajx 
+                $.ajax({
+                    url: '{{url("admin/ajax/subcategory")}}/' + cat_id,
+                    method: 'get',
+                    data: {
+                        id: cat_id
+                    },
+                    success: function (data) {
+
+                        $('#subcategory').empty();
+                        if(data.length === 0){
+                            $('#subcategory').append('<option>Not Found</option>');
+                        }else{
+                            $.each(data, function (index, subcatObj) {
+                            $('#subcategory').append('<option value="' + subcatObj
+                                .id + '">' + subcatObj.title + '</option>');
+                        });
+                        }
+                    }
+                });
+            });
         });
 
     </script>

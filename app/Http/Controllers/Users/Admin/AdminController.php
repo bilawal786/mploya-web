@@ -596,4 +596,10 @@ class AdminController extends Controller
             return Redirect()->back()->with($notification);
         }
     }
+
+    public function AllSubCategoryAjax($id)
+    {
+        $subcategories = Subcategory::where('category_id', '=', $id)->get();
+        return response()->json($subcategories);
+    }
 }

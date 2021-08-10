@@ -87,6 +87,11 @@ Route::prefix('admin')->group(function () {
 
     Route::get('/all/subcategory', 'Users\Admin\AdminController@AllSubCategory')->name('admin.subcategory.all');
 
+
+    // ajax sunb category
+
+    Route::get('/ajax/subcategory/{id}', 'Users\Admin\AdminController@AllSubCategoryAjax')->name('admin.subcategory.ajax');
+
     // sub category stor
 
     Route::post('/store/subcategory', 'Users\Admin\AdminController@SubCategoryStore')->name('admin.subcategory.store');

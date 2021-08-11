@@ -15,9 +15,40 @@ class SubcategorySeeder extends Seeder
         DB::table('subcategories')->insert([
             [
                 'category_id' => '1',
-                'title' => 'Test Title',
+                'title' => 'Teacher',
             ],
-
+            [
+                'category_id' => '1',
+                'title' => 'Hod',
+            ],
+            [
+                'category_id' => '1',
+                'title' => 'Coardinator',
+            ],
+            [
+                'category_id' => '2',
+                'title' => 'Laravel Developer',
+            ],
+            [
+                'category_id' => '2',
+                'title' => 'Android Developer',
+            ],
+            [
+                'category_id' => '2',
+                'title' => 'React Native Developer',
+            ],
+            [
+                'category_id' => '3',
+                'title' => 'Lawyer',
+            ],
+            [
+                'category_id' => '3',
+                'title' => 'Domicile Maker',
+            ],
+            [
+                'category_id' => '3',
+                'title' => 'Stamp Stellar',
+            ],
         ]);
     }
 }

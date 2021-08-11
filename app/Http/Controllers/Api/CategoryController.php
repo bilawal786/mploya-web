@@ -23,11 +23,11 @@ class CategoryController extends Controller
         return response()->json(CategoryCollection::collection($data));
     }
 
-    // get all sub categories 
+    // get all sub categories
 
-    public function AllSubCategory()
+    public function AllSubCategory($id)
     {
-        $subcategories = Subcategory::all();
+        $subcategories = Subcategory::where('category_id', $id)->get();
         $data = SubcategoryCollection::collection($subcategories);
         return response()->json(SubcategoryCollection::collection($data));
     }

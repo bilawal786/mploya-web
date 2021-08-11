@@ -58,6 +58,7 @@ class LoginRegisterController extends Controller
                 $success['user_type'] =  $user->user_type;
                 $success['name'] =  $user->name;
                 $success['id'] =  $user->id;
+                $success['image'] =  $user->image;
                 $success['success'] = true;
                 return response()->json($success);
             } else {

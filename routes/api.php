@@ -23,7 +23,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::post('/user/login', 'Api\LoginRegisterController@Login');
 
-// User Register Route 
+// User Register Route
 
 // Route::post('/user/register', 'Api\LoginRegisterController@Register');
 
@@ -64,7 +64,7 @@ Route::group(
 
         Route::post('/job/post', 'Api\EmployerController@JobPost');
 
-        // Get All Job 
+        // Get All Job
 
         Route::get('/employer/jobs', 'Api\EmployerController@AllJobs');
 
@@ -106,13 +106,13 @@ Route::group(
 
         /////////////////////////////////
 
-        // Get All Employer 
+        // Get All Employer
 
         Route::get('/all/employers', 'Api\JobseekerController@AllJobseeker');
 
         /////////////////////////////////// NEW API /////////////////////////////////
 
-        // Get All Popular Employer 
+        // Get All Popular Employer
 
         Route::get('/popular/employers', 'Api\EmployerController@AllPapularEmployer');
 
@@ -138,12 +138,12 @@ Route::group(
         /////////////////////////////////// END NEW API /////////////////////////////////
 
 
-        // Get All jobseeker 
+        // Get All jobseeker
 
         Route::get('/all/jobseeker', 'Api\EmployerController@AllEmployer');
 
 
-        // Get All Popular jobseeker 
+        // Get All Popular jobseeker
 
         Route::get('/popular/jobseekers', 'Api\EmployerController@AllPapularJobseeker');
 
@@ -173,7 +173,7 @@ Route::group(
         //************************ End Employer Route *****************************/
 
 
-        // common route 
+        // common route
 
         Route::get('/user/profile', 'Api\EmployerController@UserProfile');
 
@@ -193,7 +193,7 @@ Route::group(
             'Api\JobseekerController@AllJobs'
         );
 
-        // Apply For Job Route 
+        // Apply For Job Route
 
         Route::post('/apply/job', 'Api\JobseekerController@ApplyJob');
 
@@ -223,9 +223,9 @@ Route::group(
 
         Route::get('/all/category', 'Api\CategoryController@AllCategory');
 
-        // sub categories 
+        // sub categories
 
-        Route::get('/all/subcategory', 'Api\CategoryController@AllSubCategory');
+        Route::get('/all/subcategories/{id]', 'Api\CategoryController@AllSubCategory');
 
         // Get all Jobs related to that catefgory
 

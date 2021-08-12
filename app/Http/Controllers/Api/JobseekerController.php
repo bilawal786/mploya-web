@@ -19,7 +19,6 @@ use App\Http\Resources\EmployerCollection;
 use App\Http\Resources\JobseekerCollection;
 use App\Notifications\JobApplyNotification;
 use App\Http\Resources\PopularEmployerResource;
-use App\Http\Resources\AllJobJobseekerCollection;
 
 
 
@@ -130,8 +129,8 @@ class JobseekerController extends Controller
         if ($jobs->isEmpty()) {
             return response()->json(['error' => 'Jobs not Found', 'success' => false], 404);
         } else {
-            $data = AllJobJobseekerCollection::collection($jobs);
-            return response()->json(AllJobJobseekerCollection::collection($data));
+            $data = AllJobCollection::collection($jobs);
+            return response()->json(AllJobCollection::collection($data));
         }
     }
 

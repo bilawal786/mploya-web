@@ -79,6 +79,19 @@ class EmployerController extends Controller
                 $profile->image = 'profile_images/' . $name;
             }
 
+
+            if ($request->hasfile('company_logo')) {
+                if (!empty($profile->company_logo)) {
+                    $logo_path = $profile->company_logo;
+                    unlink($logo_path);
+                }
+                $company_logo = $request->file('company_logo');
+                $name = time() . 'company_logo' . '.' . $company_logo->getClientOriginalExtension();
+                $destinationPath = 'company_logo/';
+                $company_logo->move($destinationPath, $name);
+                $profile->company_logo = 'company_logo/' . $name;
+            }
+
             if ($request->hasfile('video')) {
                 if (!empty($profile->video)) {
                     $video_path = $profile->video;

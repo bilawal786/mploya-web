@@ -21,12 +21,14 @@ class CreateUsersTable extends Migration
             $table->string('language')->nullable();;
             $table->string('father_name')->default('0');
             $table->string('email');
+            $table->string('experience')->nullable();
             $table->string('address')->default('0');
             $table->string('CNIC')->default('0');
             $table->string('phone')->default('0');
             $table->string('city')->default('0');
             $table->string('country')->default('0');
             $table->text('description')->nullable();
+            $table->string('occupation')->nullable();
             $table->string('education_name')->nullable();
             $table->string('education_description')->nullable();
             $table->string('education_is_continue')->nullable();
@@ -41,6 +43,7 @@ class CreateUsersTable extends Migration
             $table->string('certification_year')->nullable();
             $table->string('certification_description')->nullable();
             $table->string('company_name')->default('0');
+            $table->string('company_logo')->default('0');
             $table->string('user_type')->nullable();
             $table->string('profile_status')->nullable('visible');
             $table->string('provider_id')->nullable();

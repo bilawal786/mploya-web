@@ -19,6 +19,7 @@ use App\Http\Resources\EmployerCollection;
 use App\Http\Resources\JobseekerCollection;
 use App\Notifications\JobApplyNotification;
 use App\Http\Resources\PopularEmployerResource;
+use App\Http\Resources\AllJobJobseekerCollection;
 
 
 
@@ -53,9 +54,11 @@ class JobseekerController extends Controller
             $request->CNIC ? $user->CNIC = $request->CNIC : '';
             $request->phone ? $user->phone = $request->phone : '';
             $request->city ? $user->city = $request->city : '';
+            $request->experience ? $user->experience = $request->experience : '';
             $request->country ? $user->country = $request->country : '';
             $request->father_name ? $user->father_name = $request->father_name : '';
             $request->description ? $user->description = $request->description : '';
+            $request->occupation ? $user->occupation = $request->occupation : '';
             $request->language ? $user->language = implode(',', $request->language) : '';
             $request->education_name ? $user->education_name = implode(',', $request->education_name) : '';
             $request->education_description ? $user->education_description = implode(',', $request->education_description) : '';
@@ -127,8 +130,8 @@ class JobseekerController extends Controller
         if ($jobs->isEmpty()) {
             return response()->json(['error' => 'Jobs not Found', 'success' => false], 404);
         } else {
-            $data = AllJobCollection::collection($jobs);
-            return response()->json(AllJobCollection::collection($data));
+            $data = AllJobJobseekerCollection::collection($jobs);
+            return response()->json(AllJobJobseekerCollection::collection($data));
         }
     }
 
@@ -201,13 +204,22 @@ class JobseekerController extends Controller
             $jobseeker_id = Auth::guard('api')->user()->id;
             $job = Job::find($request->job_id);
             if ($job->status == 'open') {
-                $bookmark  = new Bookmark();
-                $bookmark->job_id = $request->job_id;
-                $bookmark->jobseeker_id = $jobseeker_id;
-                $bookmark->save();
-                $success['message'] = 'Job Bookmark Successfully!';
-                $success['success'] = true;
-                return response()->json($success, $this->successStatus);
+                $bookmarkjob = Bookmark::where('job_id', '=', $request->job_id)->where('jobseeker_id', '=', $jobseeker_id)->first();
+                if ($bookmarkjob == null) {
+                    $bookmark  = new Bookmark();
+                    $bookmark->job_id = $request->job_id;
+                    $bookmark->jobseeker_id = $jobseeker_id;
+                    $bookmark->save();
+                    $success['message'] = 'Job Bookmark Successfully!';
+                    $success['success'] = true;
+                    return response()->json($success, $this->successStatus);
+                } else {
+                    $unbookmark = Bookmark::where('job_id', '=', $request->job_id)->where('jobseeker_id', '=', $jobseeker_id)->first();
+                    $unbookmark->delete();
+                    $success['message'] = 'Job UnBookmark Successfully!';
+                    $success['success'] = true;
+                    return response()->json($success, $this->successStatus);
+                }
             } else {
                 return response()->json(['message' => 'Job Are Closed', 'success' => false], 401);
             }

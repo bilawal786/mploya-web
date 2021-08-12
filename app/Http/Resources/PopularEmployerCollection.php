@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Job;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 
@@ -15,22 +16,14 @@ class PopularEmployerCollection extends JsonResource
      */
     public function toArray($request)
     {
+        $jobs = Job::where('employer_id', '=', $this->id)->where('role', '=', 'employer')->where('status', '=', 'open')->get();
+        $total_jobs = count($jobs);
         return [
             'id' => $this->id,
-            'name' => $this->name,
-            'email' => $this->email,
             'address' => $this->address,
-            'phone' => $this->phone,
-            'about' => $this->description,
             'company_name' => $this->company_name,
-            'image' => $this->image,
-            'video,' => $this->video,
-            'facebook_link' => $this->facebook_link,
-            'instagram_link' => $this->instagram_link,
-            'twitter_link' => $this->twitter_link,
-            'linkedin_link' => $this->linkedin_link,
-            'language' => $this->language,
-            'updated_at' => $this->updated_at->format('d-m-Y')
+            'company_logo' => $this->company_logo,
+            'total_jobs' => $total_jobs,
         ];
     }
 }

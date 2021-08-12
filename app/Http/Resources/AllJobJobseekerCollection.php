@@ -2,14 +2,13 @@
 
 namespace App\Http\Resources;
 
-use App\User;
 use App\Bookmark;
-use App\Category;
-use App\Subcategory;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 
-class AllJobCollection extends JsonResource
+
+class AllJobJobseekerCollection extends JsonResource
 {
     /**
      * Transform the resource collection into an array.
@@ -19,9 +18,9 @@ class AllJobCollection extends JsonResource
      */
     public function toArray($request)
     {
-
-        $employer = User::find($this->employer_id);
-
+        $jobseeker_id = Auth::user()->id;
+        $bookmarkjob = Bookmark::where('job_id', '=', $this->id)->where('jobseeker_id', '=', $jobseeker_id)->first();
+        dd($bookmarkjob);
         return [
             'id' => $this->id,
             'employer_id' => $this->employer_id,
@@ -31,10 +30,6 @@ class AllJobCollection extends JsonResource
             'vacancies' => $this->vacancies,
             'job_type' => $this->job_type,
             'job_title' => $this->job_title,
-            'company_name' => $employer->company_name,
-            'employer_phone' => $employer->phone,
-            'employer_image' => $employer->image,
-            'employer_address' => $employer->address,
             'salary' => $this->salary,
             'description' => $this->description,
             'occupation' => $this->occupation,

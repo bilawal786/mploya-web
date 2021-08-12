@@ -24,6 +24,7 @@ class EmployerCollection extends JsonResource
             'phone' => $this->phone,
             'about' => $this->description,
             'company_name' => $this->company_name,
+            'company_logo' => $this->company_logo,
             'image' => $this->image,
             'video,' => $this->video,
             'facebook_link' => $this->facebook_link,

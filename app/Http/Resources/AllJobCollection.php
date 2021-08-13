@@ -3,9 +3,6 @@
 namespace App\Http\Resources;
 
 use App\User;
-use App\Bookmark;
-use App\Category;
-use App\Subcategory;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 

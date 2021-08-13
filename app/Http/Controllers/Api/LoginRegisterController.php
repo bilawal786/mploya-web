@@ -95,6 +95,7 @@ class LoginRegisterController extends Controller
         ]);
         $success['id'] =  $user->id;
         $success['name'] =  $user->name;
+        $success['image'] =  $user->image;
         $success['success'] = true;
         $success['message'] = 'Otp Send Successfully On Your Email';
         $user->notify(new EmailVerifyNotification($otp));

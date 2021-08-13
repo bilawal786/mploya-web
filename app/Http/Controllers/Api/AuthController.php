@@ -26,9 +26,9 @@ class AuthController extends Controller
 
             $otp = mt_rand(1000000, 9999999);
             $user = User::where('email', '=', $request->email)->first();
-            $user->otp = $otp;
-            $user->update();
-            if ($user) {
+            if ($user != null) {
+                $user->otp = $otp;
+                $user->update();
                 $user->notify(new ForgotPasswordNotification($otp));
                 $success['message'] = 'Otp Send Successfully On Your Email';
                 $success['success'] = true;

@@ -54,6 +54,10 @@ class JobseekerController extends Controller
             $request->phone ? $user->phone = $request->phone : '';
             $request->city ? $user->city = $request->city : '';
             $request->experience ? $user->experience = $request->experience : '';
+            $request->facebook_link ? $user->facebook_link = $request->facebook_link : '';
+            $request->instagram_link ? $user->instagram_link = $request->instagram_link : '';
+            $request->twitter_link ? $user->twitter_link = $request->twitter_link : '';
+            $request->linkedin_link ? $user->linkedin_link = $request->linkedin_link : '';
             $request->country ? $user->country = $request->country : '';
             $request->father_name ? $user->father_name = $request->father_name : '';
             $request->description ? $user->description = $request->description : '';

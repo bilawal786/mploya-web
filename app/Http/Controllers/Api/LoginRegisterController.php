@@ -81,7 +81,6 @@ class LoginRegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'user_type' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
         if ($validator->fails()) {
             return response()->json(['error' => $validator->errors(), 'success' => false], 401);

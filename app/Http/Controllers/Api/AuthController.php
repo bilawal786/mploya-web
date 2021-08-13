@@ -63,17 +63,9 @@ class AuthController extends Controller
     {
         $input = $request->all();
         $userid = Auth::guard('api')->user()->id;
-        $validator = Validator::make($request->all(), [
-            'new_password' => 'required|min:6',
-            'confirm_password' => 'required|same:new_password',
-        ]);
-        if ($validator->fails()) {
-            return response()->json(['error' => $validator->errors(), 'success' => false], 401);
-        } else {
-            User::where('id', $userid)->update(['password' => Hash::make($input['new_password'])]);
-            $success['message'] = 'Password updated successfully';
-            $success['success'] = true;
-            return response()->json($success, 200);
-        }
+        User::where('id', $userid)->update(['password' => Hash::make($input['new_password'])]);
+        $success['message'] = 'Password updated successfully';
+        $success['success'] = true;
+        return response()->json($success, 200);
     }
 }

@@ -7,8 +7,6 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Http;
-use Illuminate\Support\Facades\Validator;
 use App\Notifications\EmailVerifyNotification;
 
 
@@ -77,13 +75,18 @@ class LoginRegisterController extends Controller
     public function Signup(Request $request)
     {
 
-        $validator = Validator::make($request->all(), [
-            'name' => ['required', 'string', 'max:255'],
-            'user_type' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-        ]);
-        if ($validator->fails()) {
-            return response()->json(['error' => $validator->errors(), 'success' => false], 401);
+        if (!$request->name) {
+            $success['error'] = "Name is Required ";
+            $success['success'] = false;
+            return response()->json($success, 401);
+        } elseif (!$request->user_type) {
+            $success['error'] = "User Type is Required ";
+            $success['success'] = false;
+            return response()->json($success, 401);
+        } elseif (!$request->email) {
+            $success['error'] = "Email is Required ";
+            $success['success'] = false;
+            return response()->json($success, 401);
         }
         $otp = mt_rand(100000, 999999);
         $user =  User::create([

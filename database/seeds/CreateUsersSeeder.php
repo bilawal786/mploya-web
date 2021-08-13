@@ -19,7 +19,7 @@ class CreateUsersSeeder extends Seeder
                 'email' => 'employer@gmail.com',
                 'user_type' => 'employer',
                 'company_name' => 'y4ktech',
-                'company_logo' => 'company_logo/1628838093company_logo.png',
+                'company_logo' => 'company_logo/1628854561company_logo.png',
                 'varify_email' => '1',
                 'profile_status' => 'visible',
                 'address' => 'lahore,pakistan',

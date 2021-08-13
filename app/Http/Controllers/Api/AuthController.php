@@ -15,13 +15,10 @@ class AuthController extends Controller
     public $successStatus = 200;
     public function forgot_password(Request $request)
     {
-        $input = $request->all();
-        $rules = array(
-            'email' => "required|email",
-        );
-        $validator = Validator::make($input, $rules);
-        if ($validator->fails()) {
-            return response()->json(['error' => 'Invalid  Email', 'success' => false], 401);
+        if (!$request->email) {
+            $success['error'] = "Email is Required ";
+            $success['success'] = false;
+            return response()->json($success, 401);
         } else {
 
             $otp = mt_rand(1000000, 9999999);

@@ -22,5 +22,6 @@ class DatabaseSeeder extends Seeder
         $this->call(BookmarkJobSeeder::class);
         $this->call(AppliedJobSeeder::class);
         $this->call(AppliedUserJobSeeder::class);
+        $this->call(BookmarkJobseekerSeeder::class);
     }
 }

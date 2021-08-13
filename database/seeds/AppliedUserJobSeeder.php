@@ -14,11 +14,11 @@ class AppliedUserJobSeeder extends Seeder
     {
         DB::table('applied_user')->insert([
             [
-                'user_id' => '2',
+                'user_id' => '5',
                 'applied_id' => '1'
             ],
             [
-                'user_id' => '2',
+                'user_id' => '5',
                 'applied_id' => '2'
             ],
 

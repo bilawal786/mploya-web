@@ -3,7 +3,7 @@
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class BookmarkJobSeeder extends Seeder
+class BookmarkJobseekerSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -12,13 +12,13 @@ class BookmarkJobSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('bookmarks')->insert([
+        DB::table('employerbookmarks')->insert([
             [
-                'job_id' => 1,
+                'employer_id' => 1,
                 'jobseeker_id' => 5,
             ],
             [
-                'job_id' => 2,
+                'employer_id' => 2,
                 'jobseeker_id' => 5,
             ],
 

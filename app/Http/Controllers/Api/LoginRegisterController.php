@@ -119,7 +119,7 @@ class LoginRegisterController extends Controller
                 return response()->json($success);
             } else {
 
-                return response()->json(['error' => 'Not Varified, Please Try Again', 'success' => false], 401);
+                return response()->json(['error' => 'Otp Not Match, Please Try Again', 'success' => false], 401);
             }
         } else {
             return response()->json(['error' => 'Email Not Found, Please Try Again', 'success' => false], 401);

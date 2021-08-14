@@ -31,7 +31,7 @@ class AuthController extends Controller
                 $success['success'] = true;
                 return response()->json($success, $this->successStatus);
             } else {
-                return response()->json(['error' => 'Invalid  Email', 'success' => false], 401);
+                return response()->json(['error' => 'Email Not Found', 'success' => false], 401);
             }
         }
     }
@@ -48,7 +48,7 @@ class AuthController extends Controller
                 return response()->json($success, $this->successStatus);
             } else {
 
-                return response()->json(['error' => 'Not Varified, Please Try Again', 'success' => false], 401);
+                return response()->json(['error' => 'Otp Not Match, Please Try Again', 'success' => false], 401);
             }
         } else {
             return response()->json(['error' => 'User Not Found', 'success' => false], 404);

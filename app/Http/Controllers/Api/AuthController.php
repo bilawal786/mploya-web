@@ -21,7 +21,7 @@ class AuthController extends Controller
             return response()->json($success, 401);
         } else {
 
-            $otp = mt_rand(1000000, 9999999);
+            $otp = mt_rand(100000, 999999);
             $user = User::where('email', '=', $request->email)->first();
             if ($user != null) {
                 $user->otp = $otp;

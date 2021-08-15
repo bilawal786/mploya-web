@@ -32,39 +32,40 @@ class JobseekerController extends Controller
             $success['error'] = "Id is Required ";
             $success['success'] = false;
             return response()->json($success, 401);
-        } elseif (!$request->name) {
-            $success['error'] = "Name id is Required ";
-            $success['success'] = false;
-            return response()->json($success, 401);
-        } elseif (!$request->address) {
-            $success['error'] = "Address is Required ";
-            $success['success'] = false;
-            return response()->json($success, 401);
-        } elseif (!$request->CNIC) {
-            $success['error'] = "CNIC is Required ";
-            $success['success'] = false;
-            return response()->json($success, 401);
-        } elseif (!$request->image) {
-            $success['error'] = "Image is Required ";
-            $success['success'] = false;
-            return response()->json($success, 401);
-        } elseif (!$request->video) {
-            $success['error'] = "Video Type is Required ";
-            $success['success'] = false;
-            return response()->json($success, 401);
-        } elseif (!$request->city) {
-            $success['error'] = "City is Required ";
-            $success['success'] = false;
-            return response()->json($success, 401);
-        } elseif (!$request->country) {
-            $success['error'] = "Country is Required ";
-            $success['success'] = false;
-            return response()->json($success, 401);
-        } elseif (!$request->father_name) {
-            $success['error'] = "Father Name is Required ";
-            $success['success'] = false;
-            return response()->json($success, 401);
         }
+        // } elseif (!$request->name) {
+        //     $success['error'] = "Name id is Required ";
+        //     $success['success'] = false;
+        //     return response()->json($success, 401);
+        // } elseif (!$request->address) {
+        //     $success['error'] = "Address is Required ";
+        //     $success['success'] = false;
+        //     return response()->json($success, 401);
+        // } elseif (!$request->CNIC) {
+        //     $success['error'] = "CNIC is Required ";
+        //     $success['success'] = false;
+        //     return response()->json($success, 401);
+        // } elseif (!$request->image) {
+        //     $success['error'] = "Image is Required ";
+        //     $success['success'] = false;
+        //     return response()->json($success, 401);
+        // } elseif (!$request->video) {
+        //     $success['error'] = "Video Type is Required ";
+        //     $success['success'] = false;
+        //     return response()->json($success, 401);
+        // } elseif (!$request->city) {
+        //     $success['error'] = "City is Required ";
+        //     $success['success'] = false;
+        //     return response()->json($success, 401);
+        // } elseif (!$request->country) {
+        //     $success['error'] = "Country is Required ";
+        //     $success['success'] = false;
+        //     return response()->json($success, 401);
+        // } elseif (!$request->father_name) {
+        //     $success['error'] = "Father Name is Required ";
+        //     $success['success'] = false;
+        //     return response()->json($success, 401);
+        // }
         $id = $request->id;
         $user = User::where('id', '=', $id)->where('user_type', '=', 'jobseeker')->first();
         if ($user) {

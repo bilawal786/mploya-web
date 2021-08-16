@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 use App\Notifications\EmailVerifyNotification;
 
 
@@ -74,6 +75,14 @@ class LoginRegisterController extends Controller
 
     public function Signup(Request $request)
     {
+
+        $rules = array('email' => 'required|email|unique:users');
+        $error = Validator::make($request->all(), $rules);
+        if ($error->fails()) {
+            $message['error'] = $error->errors()->all();
+            return response()->json($message);
+        }
+
 
         if (!$request->name) {
             $success['error'] = "Name is Required ";

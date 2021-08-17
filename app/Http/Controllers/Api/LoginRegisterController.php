@@ -79,8 +79,9 @@ class LoginRegisterController extends Controller
         $rules = array('email' => 'required|email|unique:users');
         $error = Validator::make($request->all(), $rules);
         if ($error->fails()) {
-            $message['error'] = $error->errors()->all();
-            return response()->json($message);
+            $invalid = $error->errors()->all()[0];
+            $message['error'] = $invalid;
+            return response()->json($message, 401);
         }
 
 
@@ -90,10 +91,6 @@ class LoginRegisterController extends Controller
             return response()->json($success, 401);
         } elseif (!$request->user_type) {
             $success['error'] = "User Type is Required ";
-            $success['success'] = false;
-            return response()->json($success, 401);
-        } elseif (!$request->email) {
-            $success['error'] = "Email is Required ";
             $success['success'] = false;
             return response()->json($success, 401);
         }

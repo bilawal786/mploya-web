@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Bookmark;
 use App\User;
 use App\Category;
 use App\Subcategory;
@@ -18,7 +19,7 @@ class AllJobCollection extends JsonResource
      */
     public function toArray($request)
     {
-
+        $islike = Bookmark::where('job_id', '=', $this->id)->where('jobseeker_id', '=', auth('api')->user()->id)->exists();
         $employer = User::find($this->employer_id);
         return [
             'id' => $this->id,
@@ -38,6 +39,7 @@ class AllJobCollection extends JsonResource
             'occupation' => $this->occupation,
             'education' => $this->education,
             'experience' => $this->experience,
+            'islike' => empty($islike) ? 0 : 1,
         ];
     }
 }

@@ -39,7 +39,7 @@ class AllJobCollection extends JsonResource
             'occupation' => $this->occupation,
             'education' => $this->education,
             'experience' => $this->experience,
-            'islike' => empty($islike) ? 0 : 1,
+            'isLike' => empty($islike) ? 0 : 1,
         ];
     }
 }

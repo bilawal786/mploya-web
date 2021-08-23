@@ -4,8 +4,6 @@ namespace App\Http\Resources;
 
 use App\Bookmark;
 use App\User;
-use App\Category;
-use App\Subcategory;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 
@@ -21,11 +19,13 @@ class AllJobCollection extends JsonResource
     {
         $islike = Bookmark::where('job_id', '=', $this->id)->where('jobseeker_id', '=', auth('api')->user()->id)->exists();
         $employer = User::find($this->employer_id);
+
         return [
             'id' => $this->id,
             'employer_id' => $this->employer_id,
             'requirements' => $this->requirements,
             'skills' => $this->skills,
+            'address' => $employer->address,
             'link' => $this->link,
             'vacancies' => $this->vacancies,
             'job_type' => $this->job_type,

@@ -29,7 +29,7 @@ class CreateJobsTable extends Migration
             // end new
             $table->string('status')->default('open');
             $table->string('job_title')->default('0');
-            $table->text('description')->nullable();
+            $table->longText('description')->nullable();
             $table->string('salary')->default('0');
             $table->string('salary_type')->default('0');
             $table->string('occupation')->default('0');

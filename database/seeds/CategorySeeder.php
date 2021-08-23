@@ -25,6 +25,16 @@ class CategorySeeder extends Seeder
                 'title' => 'legal',
                 'image' => 'category_images/1627537279category.png',
             ],
+
+            [
+                'title' => 'Demo Title',
+                'image' => 'category_images/1627537279category.png',
+            ],
+
+            [
+                'title' => 'Demo Title',
+                'image' => 'category_images/1627537279category.png',
+            ],
         ]);
     }
 }

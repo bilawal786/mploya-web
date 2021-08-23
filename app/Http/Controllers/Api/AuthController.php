@@ -15,26 +15,23 @@ class AuthController extends Controller
     public $successStatus = 200;
     public function forgot_password(Request $request)
     {
-        $input = $request->all();
-        $rules = array(
-            'email' => "required|email",
-        );
-        $validator = Validator::make($input, $rules);
-        if ($validator->fails()) {
-            return response()->json(['error' => 'Invalid  Email', 'success' => false], 401);
+        if (!$request->email) {
+            $success['error'] = "Email is Required ";
+            $success['success'] = false;
+            return response()->json($success, 401);
         } else {
 
-            $otp = mt_rand(1000000, 9999999);
+            $otp = mt_rand(100000, 999999);
             $user = User::where('email', '=', $request->email)->first();
-            $user->otp = $otp;
-            $user->update();
-            if ($user) {
+            if ($user != null) {
+                $user->otp = $otp;
+                $user->update();
                 $user->notify(new ForgotPasswordNotification($otp));
                 $success['message'] = 'Otp Send Successfully On Your Email';
                 $success['success'] = true;
                 return response()->json($success, $this->successStatus);
             } else {
-                return response()->json(['error' => 'Invalid  Email', 'success' => false], 401);
+                return response()->json(['error' => 'Email Not Found', 'success' => false], 401);
             }
         }
     }
@@ -51,7 +48,7 @@ class AuthController extends Controller
                 return response()->json($success, $this->successStatus);
             } else {
 
-                return response()->json(['error' => 'Not Varified, Please Try Again', 'success' => false], 401);
+                return response()->json(['error' => 'Otp Not Match, Please Try Again', 'success' => false], 401);
             }
         } else {
             return response()->json(['error' => 'User Not Found', 'success' => false], 404);
@@ -63,17 +60,9 @@ class AuthController extends Controller
     {
         $input = $request->all();
         $userid = Auth::guard('api')->user()->id;
-        $validator = Validator::make($request->all(), [
-            'new_password' => 'required|min:6',
-            'confirm_password' => 'required|same:new_password',
-        ]);
-        if ($validator->fails()) {
-            return response()->json(['error' => $validator->errors(), 'success' => false], 401);
-        } else {
-            User::where('id', $userid)->update(['password' => Hash::make($input['new_password'])]);
-            $success['message'] = 'Password updated successfully';
-            $success['success'] = true;
-            return response()->json($success, 200);
-        }
+        User::where('id', $userid)->update(['password' => Hash::make($input['new_password'])]);
+        $success['message'] = 'Password updated successfully';
+        $success['success'] = true;
+        return response()->json($success, 200);
     }
 }

@@ -19,5 +19,9 @@ class DatabaseSeeder extends Seeder
         $this->call(SubscriptionSeeder::class);
         $this->call(ActiveSunscriptionSeeder::class);
         $this->call(SubcategorySeeder::class);
+        $this->call(BookmarkJobSeeder::class);
+        $this->call(AppliedJobSeeder::class);
+        $this->call(AppliedUserJobSeeder::class);
+        $this->call(BookmarkJobseekerSeeder::class);
     }
 }

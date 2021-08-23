@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Api;
 use App\Category;
 use App\Subcategory;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
 use App\Http\Resources\CategoryCollection;
 use App\Http\Resources\SubcategoryCollection;
 use App\Http\Resources\CategoryRelatedJobsResource;

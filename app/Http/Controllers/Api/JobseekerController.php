@@ -13,10 +13,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Resources\AllJobCollection;
 use App\Http\Resources\ReviewCollection;
-use Illuminate\Support\Facades\Validator;
-use App\Http\Resources\BookmarkCollection;
 use App\Http\Resources\EmployerCollection;
-use App\Http\Resources\JobseekerCollection;
 use App\Notifications\JobApplyNotification;
 use App\Http\Resources\PopularEmployerResource;
 
@@ -31,20 +28,44 @@ class JobseekerController extends Controller
 
     public function ProfileUpdate(Request $request)
     {
-        $validator = Validator::make($request->all(), [
-            'id' => ['required'],
-            'name' => ['string', 'max:255'],
-            'address' => ['string'],
-            'CNIC' => ['bail', 'regex:/^[0-9]{5}-[0-9]{7}-[0-9]$/'],
-            'image' => ['mimes:jpeg,jpg,png,gif|max:10000'],
-            'video' => ['mimes:mp4,ogx,oga,ogv,ogg,webm'],
-            'city' => ['string'],
-            'country' => ['string'],
-            'father_name' => ['string', 'max:255'],
-        ]);
-        if ($validator->fails()) {
-            return response()->json(['error' => $validator->errors(), 'success' => false], 401);
+        if (!$request->id) {
+            $success['error'] = "Id is Required ";
+            $success['success'] = false;
+            return response()->json($success, 401);
         }
+        // } elseif (!$request->name) {
+        //     $success['error'] = "Name id is Required ";
+        //     $success['success'] = false;
+        //     return response()->json($success, 401);
+        // } elseif (!$request->address) {
+        //     $success['error'] = "Address is Required ";
+        //     $success['success'] = false;
+        //     return response()->json($success, 401);
+        // } elseif (!$request->CNIC) {
+        //     $success['error'] = "CNIC is Required ";
+        //     $success['success'] = false;
+        //     return response()->json($success, 401);
+        // } elseif (!$request->image) {
+        //     $success['error'] = "Image is Required ";
+        //     $success['success'] = false;
+        //     return response()->json($success, 401);
+        // } elseif (!$request->video) {
+        //     $success['error'] = "Video Type is Required ";
+        //     $success['success'] = false;
+        //     return response()->json($success, 401);
+        // } elseif (!$request->city) {
+        //     $success['error'] = "City is Required ";
+        //     $success['success'] = false;
+        //     return response()->json($success, 401);
+        // } elseif (!$request->country) {
+        //     $success['error'] = "Country is Required ";
+        //     $success['success'] = false;
+        //     return response()->json($success, 401);
+        // } elseif (!$request->father_name) {
+        //     $success['error'] = "Father Name is Required ";
+        //     $success['success'] = false;
+        //     return response()->json($success, 401);
+        // }
         $id = $request->id;
         $user = User::where('id', '=', $id)->where('user_type', '=', 'jobseeker')->first();
         if ($user) {
@@ -53,9 +74,15 @@ class JobseekerController extends Controller
             $request->CNIC ? $user->CNIC = $request->CNIC : '';
             $request->phone ? $user->phone = $request->phone : '';
             $request->city ? $user->city = $request->city : '';
+            $request->experience ? $user->experience = $request->experience : '';
+            $request->facebook_link ? $user->facebook_link = $request->facebook_link : '';
+            $request->instagram_link ? $user->instagram_link = $request->instagram_link : '';
+            $request->twitter_link ? $user->twitter_link = $request->twitter_link : '';
+            $request->linkedin_link ? $user->linkedin_link = $request->linkedin_link : '';
             $request->country ? $user->country = $request->country : '';
             $request->father_name ? $user->father_name = $request->father_name : '';
             $request->description ? $user->description = $request->description : '';
+            $request->occupation ? $user->occupation = $request->occupation : '';
             $request->language ? $user->language = implode(',', $request->language) : '';
             $request->education_name ? $user->education_name = implode(',', $request->education_name) : '';
             $request->education_description ? $user->education_description = implode(',', $request->education_description) : '';
@@ -138,13 +165,18 @@ class JobseekerController extends Controller
     {
 
         if ($request->user_type == 'jobseeker') {
-            $validator = Validator::make($request->all(), [
-                'job_id' => ['required'],
-                'jobseeker_id' => ['required'],
-                'user_type' => ['required', 'string', 'max:255'],
-            ]);
-            if ($validator->fails()) {
-                return response()->json(['error' => $validator->errors(), 'success' => false], 401);
+            if (!$request->job_id) {
+                $success['error'] = "Job id is Required ";
+                $success['success'] = false;
+                return response()->json($success, 401);
+            } elseif (!$request->jobseeker_id) {
+                $success['error'] = "Jobseeker id is Required ";
+                $success['success'] = false;
+                return response()->json($success, 401);
+            } elseif (!$request->user_type) {
+                $success['error'] = "User Type is Required ";
+                $success['success'] = false;
+                return response()->json($success, 401);
             }
             $job = Job::where('id', '=', $request->job_id)->first();
             $jobseeker = User::where('id', '=', $request->jobseeker_id)->where('user_type', '=', 'jobseeker')->first();
@@ -180,7 +212,6 @@ class JobseekerController extends Controller
             $jobseeker_id = Auth::guard('api')->user()->id;
             $jobsid = Applied::where('user_id', '=', $jobseeker_id)->pluck('job_id');
             $appliedjobs = Job::whereIn('id', $jobsid)->get();
-
             if ($appliedjobs->isEmpty()) {
                 return response()->json(['error' => 'Applied Jobs not Found', 'success' => false], 404);
             } else {
@@ -201,13 +232,22 @@ class JobseekerController extends Controller
             $jobseeker_id = Auth::guard('api')->user()->id;
             $job = Job::find($request->job_id);
             if ($job->status == 'open') {
-                $bookmark  = new Bookmark();
-                $bookmark->job_id = $request->job_id;
-                $bookmark->jobseeker_id = $jobseeker_id;
-                $bookmark->save();
-                $success['message'] = 'Job Bookmark Successfully!';
-                $success['success'] = true;
-                return response()->json($success, $this->successStatus);
+                $bookmarkjob = Bookmark::where('job_id', '=', $request->job_id)->where('jobseeker_id', '=', $jobseeker_id)->first();
+                if ($bookmarkjob == null) {
+                    $bookmark  = new Bookmark();
+                    $bookmark->job_id = $request->job_id;
+                    $bookmark->jobseeker_id = $jobseeker_id;
+                    $bookmark->save();
+                    $success['message'] = 'Job Bookmark Successfully!';
+                    $success['success'] = true;
+                    return response()->json($success, $this->successStatus);
+                } else {
+                    $unbookmark = Bookmark::where('job_id', '=', $request->job_id)->where('jobseeker_id', '=', $jobseeker_id)->first();
+                    $unbookmark->delete();
+                    $success['message'] = 'Job UnBookmark Successfully!';
+                    $success['success'] = true;
+                    return response()->json($success, $this->successStatus);
+                }
             } else {
                 return response()->json(['message' => 'Job Are Closed', 'success' => false], 401);
             }
@@ -256,14 +296,6 @@ class JobseekerController extends Controller
 
     public function JobseekerAddReview(Request $request)
     {
-        $validator = Validator::make($request->all(), [
-            'employer_id' => ['required'],
-            'star' => 'required|integer|between:0,5',
-
-        ]);
-        if ($validator->fails()) {
-            return response()->json(['error' => $validator->errors(), 'success' => false], 401);
-        }
         $user_type = Auth::guard('api')->user()->user_type;
         $jobseeker_id = Auth::guard('api')->user()->id;
         if ($user_type == 'jobseeker') {

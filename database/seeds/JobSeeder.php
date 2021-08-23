@@ -20,13 +20,7 @@ class JobSeeder extends Seeder
                 'category_id' => '1',
                 'subcategory_id' => '1',
                 'job_title' => 'Laravel Teacher',
-                'description' => 'Lorem ipsum represents a long-held tradition for designers,
-                        typographers and the like. Some people hate it and argue for
-                        its demise, but others ignore the hate as they create awesome
-                        tools to help create filler text for everyone from bacon lovers
-                        to Charlie Sheen fans.',
-                'requirements' => 'Lorem ipsum represents a long-held tradition for designers,
-                        typographers and the.',
+                'description' => 'Lorem ipsum represents a long-held tradition for designers,typographers and the like. Some people hate it and argue for its demise, but others ignore the hate as they create awesome tools to help create filler text for everyone from bacon lovers to Charlie Sheen fans.', 'requirements' => 'Lorem ipsum represents a long-held tradition for designers,typographers and the.',
                 'skills' => 'Laravel, Apis',
                 'link' => 'https://www.test.com',
                 'vacancies' => '10',
@@ -44,13 +38,8 @@ class JobSeeder extends Seeder
                 'category_id' => '2',
                 'subcategory_id' => '5',
                 'job_title' => 'Laravel Develoepr',
-                'description' => 'Lorem ipsum represents a long-held tradition for designers,
-                        typographers and the like. Some people hate it and argue for
-                        its demise, but others ignore the hate as they create awesome
-                        tools to help create filler text for everyone from bacon lovers
-                        to Charlie Sheen fans.',
-                'requirements' => 'Lorem ipsum represents a long-held tradition for designers,
-                        typographers and the.',
+                'description' => 'Lorem ipsum represents a long-held tradition for designers,typographers and the like. Some people hate it and argue for its demise, but others ignore the hate as they create awesome tools to help create filler text for everyone from bacon lovers to Charlie Sheen fans.', 'requirements' => 'Lorem ipsum represents a long-held tradition for designers,typographers and the.',
+                'requirements' => 'Lorem ipsum represents a long-held tradition for designers,typographers and the.',
                 'skills' => 'Html,Css, Laravel, Php',
                 'link' => 'https://www.test2.com',
                 'vacancies' => '20',

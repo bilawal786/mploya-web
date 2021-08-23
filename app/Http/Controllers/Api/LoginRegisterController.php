@@ -7,7 +7,6 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Validator;
 use App\Notifications\EmailVerifyNotification;
 
@@ -77,14 +76,23 @@ class LoginRegisterController extends Controller
     public function Signup(Request $request)
     {
 
-        $validator = Validator::make($request->all(), [
-            'name' => ['required', 'string', 'max:255'],
-            'user_type' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
-        ]);
-        if ($validator->fails()) {
-            return response()->json(['error' => $validator->errors(), 'success' => false], 401);
+        $rules = array('email' => 'required|email|unique:users');
+        $error = Validator::make($request->all(), $rules);
+        if ($error->fails()) {
+            $invalid = $error->errors()->all()[0];
+            $message['error'] = $invalid;
+            return response()->json($message, 401);
+        }
+
+
+        if (!$request->name) {
+            $success['error'] = "Name is Required ";
+            $success['success'] = false;
+            return response()->json($success, 401);
+        } elseif (!$request->user_type) {
+            $success['error'] = "User Type is Required ";
+            $success['success'] = false;
+            return response()->json($success, 401);
         }
         $otp = mt_rand(100000, 999999);
         $user =  User::create([
@@ -96,6 +104,7 @@ class LoginRegisterController extends Controller
         ]);
         $success['id'] =  $user->id;
         $success['name'] =  $user->name;
+        $success['image'] =  $user->image;
         $success['success'] = true;
         $success['message'] = 'Otp Send Successfully On Your Email';
         $user->notify(new EmailVerifyNotification($otp));
@@ -116,7 +125,7 @@ class LoginRegisterController extends Controller
                 return response()->json($success);
             } else {
 
-                return response()->json(['error' => 'Not Varified, Please Try Again', 'success' => false], 401);
+                return response()->json(['error' => 'Otp Not Match, Please Try Again', 'success' => false], 401);
             }
         } else {
             return response()->json(['error' => 'Email Not Found, Please Try Again', 'success' => false], 401);

@@ -18,7 +18,6 @@ use App\Http\Resources\AllJobCollection;
 use App\Http\Resources\EmployerResource;
 use App\Http\Resources\ReviewCollection;
 use App\Http\Resources\JobseekerResource;
-use Illuminate\Support\Facades\Validator;
 use App\Http\Resources\JobseekerCollection;
 use App\Http\Resources\UserProfileResource;
 use App\Notifications\InterviewNotfication;
@@ -40,16 +39,10 @@ class EmployerController extends Controller
 
     public function ProfileUpdate(Request $request)
     {
-        $validator = Validator::make($request->all(), [
-            'id' => ['required'],
-            'name' => ['string', 'max:255'],
-            'address' => ['string'],
-            'company_name' => ['string', 'max:255'],
-            'image' => ['mimes:jpeg,jpg,png,gif|max:10000'],
-            'video' => ['mimes:mp4,ogx,oga,ogv,ogg,webm'],
-        ]);
-        if ($validator->fails()) {
-            return response()->json(['error' => $validator->errors(), 'success' => false], 401);
+        if (!$request->id) {
+            $success['error'] = "Id is Required ";
+            $success['success'] = false;
+            return response()->json($success, 401);
         }
         $id = $request->id;
         $profile = User::where('id', '=', $id)->where('user_type', '=', 'employer')->first();
@@ -77,6 +70,19 @@ class EmployerController extends Controller
                 $destinationPath = 'profile_images/';
                 $image->move($destinationPath, $name);
                 $profile->image = 'profile_images/' . $name;
+            }
+
+
+            if ($request->hasfile('company_logo')) {
+                if (!empty($profile->company_logo)) {
+                    $logo_path = $profile->company_logo;
+                    unlink($logo_path);
+                }
+                $company_logo = $request->file('company_logo');
+                $name = time() . 'company_logo' . '.' . $company_logo->getClientOriginalExtension();
+                $destinationPath = 'company_logo/';
+                $company_logo->move($destinationPath, $name);
+                $profile->company_logo = 'company_logo/' . $name;
             }
 
             if ($request->hasfile('video')) {
@@ -108,22 +114,43 @@ class EmployerController extends Controller
             $user_type = Auth::guard('api')->user()->user_type;
             $user_id = Auth::guard('api')->user()->id;
             $purchased_subscription = PruchasedSubscription::where('employer_id', '=', $user_id)->first();
-
-
             if ($user_type == 'employer') {
-                $validator = Validator::make($request->all(), [
-                    'job_title' => ['required'],
-                    'employer_id' => ['required'],
-                    'description' => ['required'],
-                    'category_id' => ['required'],
-                    'salary' => ['required'],
-                    'salary_type' => ['required'],
-                    'education' => ['required'],
-                    'occupation' => ['required'],
-                    'experience' => ['required'],
-                ]);
-                if ($validator->fails()) {
-                    return response()->json(['error' => $validator->errors(), 'success' => false], 401);
+                if (!$request->job_title) {
+                    $success['error'] = "Job Title is Required ";
+                    $success['success'] = false;
+                    return response()->json($success, 401);
+                } elseif (!$request->employer_id) {
+                    $success['error'] = "Employer id is Required ";
+                    $success['success'] = false;
+                    return response()->json($success, 401);
+                } elseif (!$request->description) {
+                    $success['error'] = "Description is Required ";
+                    $success['success'] = false;
+                    return response()->json($success, 401);
+                } elseif (!$request->category_id) {
+                    $success['error'] = "Category id is Required ";
+                    $success['success'] = false;
+                    return response()->json($success, 401);
+                } elseif (!$request->salary) {
+                    $success['error'] = "Salary is Required ";
+                    $success['success'] = false;
+                    return response()->json($success, 401);
+                } elseif (!$request->salary_type) {
+                    $success['error'] = "Salary Type is Required ";
+                    $success['success'] = false;
+                    return response()->json($success, 401);
+                } elseif (!$request->education) {
+                    $success['error'] = "Education is Required ";
+                    $success['success'] = false;
+                    return response()->json($success, 401);
+                } elseif (!$request->occupation) {
+                    $success['error'] = "Occupation is Required ";
+                    $success['success'] = false;
+                    return response()->json($success, 401);
+                } elseif (!$request->experience) {
+                    $success['error'] = "Experience is Required ";
+                    $success['success'] = false;
+                    return response()->json($success, 401);
                 }
                 if (empty($purchased_subscription)) {
 
@@ -220,8 +247,6 @@ class EmployerController extends Controller
 
     public function SingleJobseeker($id)
     {
-
-
         $jobseeker = User::find($id);
         if ($jobseeker) {
             $data = new JobseekerResource($jobseeker);
@@ -269,7 +294,6 @@ class EmployerController extends Controller
     public function DeleteJob($id)
     {
         $job = Job::find($id);
-
         if ($job) {
             $job->delete();
             $success['message'] = 'Job Delete Successfully!';
@@ -287,7 +311,6 @@ class EmployerController extends Controller
     {
         $job = Job::find($id);
         if ($job) {
-
             if ($job->status == 'open') {
                 $job->status = 'close';
                 $job->update();
@@ -334,13 +357,6 @@ class EmployerController extends Controller
 
     public function PasswordChange(Request $request)
     {
-
-        $validator = Validator::make($request->all(), [
-            'password' => 'confirmed|min:6',
-        ]);
-        if ($validator->fails()) {
-            return response()->json(['error' => $validator->errors(), 'success' => false], 401);
-        }
         if (User::where('id', $request->id)->exists()) {
             $user = User::find($request->id);
             $user->password = Hash::make($request->password);
@@ -529,15 +545,6 @@ class EmployerController extends Controller
 
     public function EmployerAddReview(Request $request)
     {
-
-        $validator = Validator::make($request->all(), [
-            'jobseeker_id' => ['required'],
-            'star' => 'required|integer|between:0,5',
-
-        ]);
-        if ($validator->fails()) {
-            return response()->json(['error' => $validator->errors(), 'success' => false], 401);
-        }
         $user_type = Auth::guard('api')->user()->user_type;
         $employer_id = Auth::guard('api')->user()->id;
         if ($user_type == 'employer') {

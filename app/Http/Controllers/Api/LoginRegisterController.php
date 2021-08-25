@@ -7,49 +7,16 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Validator;
 use App\Notifications\EmailVerifyNotification;
 
 
 class LoginRegisterController extends Controller
 {
-
-
-
     public $successStatus = 200;
     public function Login()
     {
-        // $response = Http::get('http://ipinfo.io/119.155.58.47/json');
-        // $data = $response->object();
-        // $loc = explode(',', $data->loc);
-        // $latitude = $loc[0];
-        // $longitude = $loc[1];
-        // $lat = floatval($latitude);
-        // $lng = floatval($longitude);
-
-        // function getAddress($latitude, $longitude)
-        // {
-        //     if (!empty($latitude) && !empty($longitude)) {
-        //         //Send request and receive json data by address
-        //         $geocodeFromLatLong = file_get_contents('http://maps.googleapis.com/maps/AIzaSyA5yB_G3OoH48LfmNJpERp6Vsb3SwYffRk/geocode/json?latlng=' . trim($latitude) . ',' . trim($longitude) . '&sensor=false');
-        //         dd($geocodeFromLatLong);
-        //         $output = json_decode($geocodeFromLatLong);
-        //         $status = $output->status;
-        //         //Get address from json data
-        //         $address = ($status == "OK") ? $output->results[1]->formatted_address : '';
-        //         //Return address of the given latitude and longitude
-        //         if (!empty($address)) {
-        //             return $address;
-        //         } else {
-        //             return false;
-        //         }
-        //     } else {
-        //         return false;
-        //     }
-        // }
-        // $address = getAddress($lat, $lng);
-
-
         if (Auth::attempt(['email' => request('email'), 'password' => request('password'), 'varify_email' => 1])) {
             $user = Auth::user();
             if ($user->user_type == request('user_type')) {
@@ -75,6 +42,13 @@ class LoginRegisterController extends Controller
 
     public function Signup(Request $request)
     {
+        $response = Http::get('http://ipinfo.io/119.155.58.47/json');
+        $data = $response->object();
+        $loc = explode(',', $data->loc);
+        $latitude = $loc[0];
+        $longitude = $loc[1];
+        $lat = floatval($latitude);
+        $lng = floatval($longitude);
 
         $rules = array('email' => 'required|email|unique:users');
         $error = Validator::make($request->all(), $rules);
@@ -96,6 +70,8 @@ class LoginRegisterController extends Controller
         }
         $otp = mt_rand(100000, 999999);
         $user =  User::create([
+            'latitude' => $lat,
+            'longitude' => $lng,
             'otp' => $otp,
             'name' => $request->name,
             'email' => $request->email,

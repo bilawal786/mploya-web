@@ -115,51 +115,6 @@ class EmployerController extends Controller
             $user_id = Auth::guard('api')->user()->id;
             $purchased_subscription = PruchasedSubscription::where('employer_id', '=', $user_id)->first();
             if ($user_type == 'employer') {
-                if (!$request->job_title) {
-                    $success['error'] = "Job Title is Required ";
-                    $success['success'] = false;
-                    return response()->json($success, 401);
-                } elseif (!$request->employer_id) {
-                    $success['error'] = "Employer id is Required ";
-                    $success['success'] = false;
-                    return response()->json($success, 401);
-                } elseif (!$request->description) {
-                    $success['error'] = "Description is Required ";
-                    $success['success'] = false;
-                    return response()->json($success, 401);
-                } elseif (!$request->category_id) {
-                    $success['error'] = "Category id is Required ";
-                    $success['success'] = false;
-                    return response()->json($success, 401);
-                } elseif (!$request->min_salary) {
-                    $success['error'] = "Min Salary is Required ";
-                    $success['success'] = false;
-                    return response()->json($success, 401);
-                } elseif (!$request->max_salary) {
-                    $success['error'] = "Max Salary is Required ";
-                    $success['success'] = false;
-                    return response()->json($success, 401);
-                } elseif (!$request->salary_type) {
-                    $success['error'] = "Salary Type is Required ";
-                    $success['success'] = false;
-                    return response()->json($success, 401);
-                } elseif (!$request->education) {
-                    $success['error'] = "Education is Required ";
-                    $success['success'] = false;
-                    return response()->json($success, 401);
-                } elseif (!$request->occupation) {
-                    $success['error'] = "Occupation is Required ";
-                    $success['success'] = false;
-                    return response()->json($success, 401);
-                } elseif (!$request->min_experience) {
-                    $success['error'] = "Min Experience is Required ";
-                    $success['success'] = false;
-                    return response()->json($success, 401);
-                } elseif (!$request->max_experience) {
-                    $success['error'] = "Max Experience is Required ";
-                    $success['success'] = false;
-                    return response()->json($success, 401);
-                }
                 if (empty($purchased_subscription)) {
 
                     return response()->json(['error' => 'You Are Not Able To Post Job, Please Pruchased Subscription', 'success' => false], 401);
@@ -169,7 +124,7 @@ class EmployerController extends Controller
                     } else {
                         $job = new Job();
                         $job->job_title = $request->job_title;
-                        $job->employer_id = $request->employer_id;
+                        $job->employer_id = $user_id;
                         $job->description = $request->description;
                         $job->salary_type = $request->salary_type;
                         $job->min_salary = $request->min_salary;

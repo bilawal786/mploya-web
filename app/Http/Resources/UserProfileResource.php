@@ -72,6 +72,8 @@ class UserProfileResource extends JsonResource
             'address' => $this->address,
             'image' => $this->image,
             'profile_percentage' => $percentage,
+            'latitude' => $this->latitude,
+            'longitude' => $this->longitude,
         ];
     }
 }

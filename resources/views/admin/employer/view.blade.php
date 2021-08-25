@@ -532,7 +532,7 @@
                                                     <span href="#" class="text-sm mr-2"><b>Education:</b>
                                                         {{$row->education}}</span>
                                                     <span href="#" class="text-sm mr-2"><b>Experience:</b>
-                                                        {{$row->experience}}</span>
+                                                        {{$row->min_experience}} To {{$row->max_experience}} Year</span>
                                                     <span href="#" class="text-sm"><b>Occupation:</b>
                                                         {{$row->occupation}}</span>
                                                          <span href="#" class="text-sm mr-2"><b>Vacancies:</b>
@@ -545,7 +545,7 @@
                                                         {{$row->link}}</span><br>
                                                     {{-- <span class="float-right"> --}}
                                                         <span href="#" class="text-sm mr-2"><b>Salary:</b>
-                                                            {{$row->salary}}</span>
+                                                            ${{$row->min_salary}} To ${{$row->max_salary}}</span>
                                                         <span href="#" class="text-sm"><b>Salary Type:</b>
                                                             {{$row->salary_type}}</span>
                                                     {{-- </span> --}}

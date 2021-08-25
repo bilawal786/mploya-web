@@ -67,10 +67,10 @@
                                                 <td class="align-middle">{{$loop->iteration}}</td>
                                                 <td class="align-middle">{{$row->job_title}}</td>
                                                 <td class="align-middle">{{$row->vacancies}}</td>
-                                                 @if($row->salary == '0')
+                                                 @if($row->min_salary == '0' && $row->max_salary == '0')
                                                 <td class="align-middle">Not Found</td>
                                                 @else
-                                                <td class="align-middle">${{$row->salary}}</td>
+                                                <td class="align-middle">${{$row->min_salary}} To ${{$row->max_salary}}</td>
                                                 @endif
                                                 @if($row->salary_type == '0')
                                                 <td class="align-middle">Not Found</td>
@@ -82,10 +82,10 @@
                                                 @else 
                                                  <td class="align-middle">{{$row->education}}</td>
                                                 @endif
-                                                @if($row->experience == '0')
+                                                @if($row->min_experience == '0' && $row->max_experience == '0')
                                                 <td class="align-middle">Not Found</td>
                                                 @else 
-                                                 <td class="align-middle">{{$row->experience}}</td>
+                                                 <td class="align-middle">{{$row->min_experience}} To {{$row->max_experience}} Year</td>
                                                 @endif
                                                  
                                                  <td class="align-middle">

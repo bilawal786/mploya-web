@@ -382,20 +382,29 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label for="exampleInputEmail1">Salary</label>
-                                                    <input type="text" min="1" name="salary" class="form-control"
-                                                        value="{{$job->salary}}" required>
+                                                    <label for="exampleInputEmail1">Minimum Salary</label>
+                                                    <input type="text" min="1" name="min_salary" class="form-control"
+                                                        value="{{$job->min_salary}}" required>
                                                 </div>
                                             </div>
-                                            <div class="col-md-6">
+                                              <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="exampleInputEmail1">Maximum Salary</label>
+                                                    <input type="text" min="1" name="max_salary" class="form-control"
+                                                        value="{{$job->max_salary}}" required>
+                                                </div>
+                                            </div>
+                                        
+                                        </div>
+                                        <div class="row">
+                                            
+                                                <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label for="exampleInputEmail1">Salary Type</label>
                                                     <input type="text" name="salary_type" class="form-control"
                                                         value="{{$job->salary_type}}" required>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label for="exampleInputEmail1">Vacancies</label>
@@ -403,15 +412,16 @@
                                                         value="{{$job->vacancies}}" required>
                                                 </div>
                                             </div>
-                                            <div class="col-md-6">
+                                          
+                                        </div>
+                                        <div class="row">
+                                              <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label for="exampleInputEmail1">Occupation</label>
                                                     <input type="text" name="occupation" class="form-control"
                                                         value="{{$job->occupation}}" required>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label for="exampleInputEmail1">Education</label>
@@ -419,17 +429,29 @@
                                                         value="{{$job->education}}" required>
                                                 </div>
                                             </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="exampleInputEmail1">Experience</label>
-                                                    <input type="text" name="experience" class="form-control"
-                                                        value="{{$job->experience}}" required>
-                                                </div>
-                                            </div>
+                                           
                                         </div>
 
                                         <div class="row">
-                                            <div class="col-md-6">
+                                             <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="exampleInputEmail1">Minimum Experience</label>
+                                                    <input type="text" name="min_experience" class="form-control"
+                                                        value="{{$job->min_experience}}" required>
+                                                </div>
+                                            </div>
+                                           <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="exampleInputEmail1">Maximum Experience</label>
+                                                    <input type="text" name="max_experience" class="form-control"
+                                                        value="{{$job->max_experience}}" required>
+                                                </div>
+                                            </div>
+                                          
+                                        </div>
+                                        <div class="row">
+                                            
+                                               <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label for="">Select Category</label>
                                                     <select class="form-control" name="category_id" id="category">
@@ -442,7 +464,7 @@
                                                     </select>
                                                 </div>
                                             </div>
-                                            <div class="col-md-6">
+                                                 <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label for="">Select SubCategory</label>
 
@@ -453,14 +475,15 @@
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <div class="col-md-12">
+                                            
+                                                <div class="col-md-12">
                                                 <div class="form-group">
                                                     <label for="exampleInputEmail1">Link</label>
                                                     <input type="text" name="link" class="form-control"
                                                         value="{{$job->link}}" required>
                                                 </div>
+                                            
                                             </div>
-
                                         </div>
                                              <div class="row">
                                             <div class="col-sm-12">

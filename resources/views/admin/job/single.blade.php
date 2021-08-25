@@ -63,7 +63,7 @@
                                                     <span href="#" class="text-sm mr-2"><b>Education:</b>
                                                         {{$job->education}}</span>
                                                     <span href="#" class="text-sm mr-2"><b>Experience:</b>
-                                                        {{$job->experience}}</span>
+                                                        {{$job->min_experience}} To {{$job->max_experience}} Year</span>
 
                                                     <span href="#" class="text-sm mr-2"><b>Occupation:</b>
                                                         {{$job->occupation}}</span>
@@ -77,12 +77,12 @@
                                                         {{$job->link}}</span>
 
                                                     {{-- <span class="float-right"> --}}
-                                                          @if($job->salary == '0')
+                                                          @if($job->min_salary == '0' && $job->max_salary == '0')
                                                           <span href="#" class="text-sm mr-2"><b>Salary:</b>
                                                             Not Found</span>
                                                           @else
                                                           <span href="#" class="text-sm mr-2"><b>Salary:</b>
-                                                            {{$job->salary}}</span> 
+                                                            ${{$job->min_salary}} To ${{$job->max_salary}}</span> 
                                                           @endif
                                                         
                                                         <span href="#" class="text-sm"><b>Salary Type:</b>

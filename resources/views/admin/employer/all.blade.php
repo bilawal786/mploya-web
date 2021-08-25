@@ -69,7 +69,7 @@
                                                 @else 
                                                  <td class="align-middle">{{$row->address}}</td>
                                                 @endif
-                                                  @if($row->phone == '0')
+                                                  @if($row->phone == null)
                                                 <td class="align-middle">Not Found</td>
                                                 @else 
                                                  <td class="align-middle">{{$row->phone}}</td>

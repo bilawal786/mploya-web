@@ -382,11 +382,21 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label for="exampleInputEmail1">Salary</label>
-                                                    <input type="number" min="1" name="salary" class="form-control"
+                                                    <label for="exampleInputEmail1">Minimum Salary</label>
+                                                    <input type="number" min="1" name="min_salary" class="form-control"
                                                         placeholder="Enter a Salary.." required>
                                                 </div>
                                             </div>
+                                             <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="exampleInputEmail1">Maximum Salary</label>
+                                                    <input type="number" min="1" name="max_salary" class="form-control"
+                                                        placeholder="Enter a Salary.." required>
+                                                </div>
+                                            </div>
+                                            
+                                        </div>
+                                        <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label for="exampleInputEmail1">Salary Type</label>
@@ -394,8 +404,6 @@
                                                         placeholder="Enter a Salary Type.." required>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label for="exampleInputEmail1">Vacancies</label>
@@ -403,15 +411,16 @@
                                                         placeholder="Enter Vacancies.." required>
                                                 </div>
                                             </div>
-                                            <div class="col-md-6">
+                                           
+                                        </div>
+                                        <div class="row">
+                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label for="exampleInputEmail1">Occupation</label>
                                                     <input type="text" name="occupation" class="form-control"
                                                         placeholder="Enter a Occupation.." required>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label for="exampleInputEmail1">Education</label>
@@ -419,10 +428,20 @@
                                                         placeholder="Enter a Education.." required>
                                                 </div>
                                             </div>
-                                            <div class="col-md-6">
+                                          
+                                        </div>
+                                        <div class="row">
+                                              <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label for="exampleInputEmail1">Experience</label>
-                                                    <input type="text" name="experience" class="form-control"
+                                                    <label for="exampleInputEmail1">Minimum Experience</label>
+                                                    <input type="text" name="min_experience" class="form-control"
+                                                        placeholder="Enter a Experience.." required>
+                                                </div>
+                                            </div>
+                                              <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="exampleInputEmail1">Maximum Experience</label>
+                                                    <input type="text" name="max_experience" class="form-control"
                                                         placeholder="Enter a Experience.." required>
                                                 </div>
                                             </div>

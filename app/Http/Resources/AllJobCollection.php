@@ -34,12 +34,13 @@ class AllJobCollection extends JsonResource
             'employer_phone' => $employer->phone,
             'employer_image' => $employer->image,
             'employer_address' => $employer->address,
-            'salary' => $this->salary,
+            'min_salary' => $this->min_salary,
+            'max_salary' => $this->max_salary,
             'description' => $this->description,
             'occupation' => $this->occupation,
             'education' => $this->education,
-            'experience' => $this->experience,
-            'isLike' => empty($islike) ? 0 : 1,
+            'min_experience' => $this->min_experience,
+            'max_experience' => $this->max_experience,
         ];
     }
 }

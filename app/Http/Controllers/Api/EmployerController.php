@@ -131,8 +131,12 @@ class EmployerController extends Controller
                     $success['error'] = "Category id is Required ";
                     $success['success'] = false;
                     return response()->json($success, 401);
-                } elseif (!$request->salary) {
-                    $success['error'] = "Salary is Required ";
+                } elseif (!$request->min_salary) {
+                    $success['error'] = "Min Salary is Required ";
+                    $success['success'] = false;
+                    return response()->json($success, 401);
+                } elseif (!$request->max_salary) {
+                    $success['error'] = "Max Salary is Required ";
                     $success['success'] = false;
                     return response()->json($success, 401);
                 } elseif (!$request->salary_type) {
@@ -147,8 +151,12 @@ class EmployerController extends Controller
                     $success['error'] = "Occupation is Required ";
                     $success['success'] = false;
                     return response()->json($success, 401);
-                } elseif (!$request->experience) {
-                    $success['error'] = "Experience is Required ";
+                } elseif (!$request->min_experience) {
+                    $success['error'] = "Min Experience is Required ";
+                    $success['success'] = false;
+                    return response()->json($success, 401);
+                } elseif (!$request->max_experience) {
+                    $success['error'] = "Max Experience is Required ";
                     $success['success'] = false;
                     return response()->json($success, 401);
                 }
@@ -164,11 +172,13 @@ class EmployerController extends Controller
                         $job->employer_id = $request->employer_id;
                         $job->description = $request->description;
                         $job->salary_type = $request->salary_type;
-                        $job->salary = $request->salary;
+                        $job->min_salary = $request->min_salary;
+                        $job->max_salary = $request->max_salary;
                         $job->occupation = $request->occupation;
                         $job->education = $request->education;
                         $job->category_id = $request->category_id;
-                        $job->experience = $request->experience;
+                        $job->min_experience = $request->min_experience;
+                        $job->max_experience = $request->max_experience;
                         // new feild
                         $job->subcategory_id = $request->subcategory_id;
                         $job->requirements = $request->requirements;
@@ -266,10 +276,12 @@ class EmployerController extends Controller
                 $job->job_title = $request->job_title;
                 $job->description = $request->description;
                 $job->salary_type = $request->salary_type;
-                $job->salary = $request->salary;
+                $job->min_salary = $request->min_salary;
+                $job->max_salary = $request->max_salary;
                 $job->occupation = $request->occupation;
                 $job->education =  $request->education;
-                $job->experience =  $request->experience;
+                $job->min_experience = $request->min_experience;
+                $job->max_experience = $request->max_experience;
                 $job->subcategory_id = $request->subcategory_id;
                 $job->requirements = $request->requirements;
                 $job->link = $request->link;

@@ -19,7 +19,7 @@ class AllJobCollection extends JsonResource
     {
         $islike = Bookmark::where('job_id', '=', $this->id)->where('jobseeker_id', '=', auth('api')->user()->id)->exists();
         $employer = User::find($this->employer_id);
-        $json = file_get_contents("http://www.geoplugin.net/json.gp?ip=156.146.59.20");
+        $json = file_get_contents("http://www.geoplugin.net/json.gp?ip=".request()->ip());
         $details = json_decode($json);
 //        dd($details);
         return [

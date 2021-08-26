@@ -358,12 +358,14 @@ class EmployerController extends Controller
 
         $employer_id = Auth::guard('api')->user()->id;
         $jobsid = Job::where('employer_id', '=', $employer_id)->pluck('id');
-        $appliedjobs = Applied::whereIn('job_id', $jobsid)->get();
-        if ($appliedjobs->isEmpty()) {
+        $user_ids = Applied::whereIn('job_id', $jobsid)->pluck('user_id');
+        $jobseekers = User::whereIn('id', $user_ids)->get();
+
+        if ($jobseekers->isEmpty()) {
             return response()->json(['error' => 'Applied Jobseeker not Found', 'success' => false], 404);
         } else {
-            $data = JobseekerCollection::collection($appliedjobs);
-            return response()->json(JobseekerCollection::collection($data));
+            $data = AppliedEmployerCollection::collection($jobseekers);
+            return response()->json(AppliedEmployerCollection::collection($data));
         }
     }
 

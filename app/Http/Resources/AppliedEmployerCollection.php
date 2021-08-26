@@ -14,9 +14,21 @@ class AppliedEmployerCollection extends JsonResource
      */
     public function toArray($request)
     {
+        if ($this->skill_name == "") {
+            $skills = "";
+        } else {
+            $skills = array_slice($this->skill_name, 0, 3);
+        }
 
         return [
-            'users' => $this->users,
+            // 'users' => $this->users,
+            'id' => $this->id,
+            'name' => $this->name,
+            'email' => $this->email,
+            'address' => $this->address,
+            'image' => $this->image,
+            'skill_name' => $skills,
+            'isLike' => $this->isLike,
         ];
     }
 }

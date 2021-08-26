@@ -19,7 +19,6 @@ class JobseekerCollection extends JsonResource
 
         if ($this->skill_name == "") {
             $skills = "";
-            dd('null');
         } else {
             $skills = array_slice($this->skill_name, 0, 3);
         }

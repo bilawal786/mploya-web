@@ -2,6 +2,8 @@
 
 namespace App\Http\Resources;
 
+use App\User;
+use App\Bookmark;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class AppliedEmployerCollection extends JsonResource
@@ -14,21 +16,40 @@ class AppliedEmployerCollection extends JsonResource
      */
     public function toArray($request)
     {
-        if ($this->skill_name == "") {
+        $islike = Bookmark::where('job_id', '=', $this->job_id)->where('jobseeker_id', $this->user_id)->exists();
+        $jobseekers = User::where('id', $this->user_id)->get();
+        $id = '';
+        $name = '';
+        $email = '';
+        $address = '';
+        $image = '';
+        $skills = '';
+        foreach ($jobseekers as $jobseeker) {
+            $id = $jobseeker->id;
+            $name = $jobseeker->name;
+            $email = $jobseeker->name;
+            $address = $jobseeker->address;
+            $image = $jobseeker->image;
+            $skills = $jobseeker->skill_name;
+        }
+
+
+
+        if ($skills == "") {
             $skills = "";
         } else {
-            $skills = array_slice($this->skill_name, 0, 3);
+            $skills = array_slice($skills, 0, 3);
         }
 
         return [
             // 'users' => $this->users,
-            'id' => $this->id,
-            'name' => $this->name,
-            'email' => $this->email,
-            'address' => $this->address,
-            'image' => $this->image,
+            'id' => $id,
+            'name' => $name,
+            'email' => $email,
+            'address' => $address,
+            'image' => $image,
             'skill_name' => $skills,
-            'isLike' => $this->isLike,
+            'isLike' => $islike,
         ];
     }
 }

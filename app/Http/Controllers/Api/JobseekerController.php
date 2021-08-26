@@ -208,9 +208,9 @@ class JobseekerController extends Controller
     {
 
         $user_type = Auth::guard('api')->user()->user_type;
-        if ($user_type == 'jobseeker') {
-            $jobseeker_id = Auth::guard('api')->user()->id;
-            $jobsid = Applied::where('user_id', '=', $jobseeker_id)->pluck('job_id');
+        if ($user_type == 'employer') {
+            $employer_id = Auth::guard('api')->user()->id;
+            $jobsid = Applied::where('user_id', '=', $employer_id)->pluck('job_id');
             $appliedjobs = Job::whereIn('id', $jobsid)->get();
             if ($appliedjobs->isEmpty()) {
                 return response()->json(['error' => 'Applied Jobs not Found', 'success' => false], 404);

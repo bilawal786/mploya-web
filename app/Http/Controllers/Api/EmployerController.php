@@ -362,8 +362,8 @@ class EmployerController extends Controller
         if ($appliedjobs->isEmpty()) {
             return response()->json(['error' => 'Applied Jobseeker not Found', 'success' => false], 404);
         } else {
-            $data = AppliedEmployerCollection::collection($appliedjobs);
-            return response()->json(AppliedEmployerCollection::collection($data));
+            $data = JobseekerCollection::collection($appliedjobs);
+            return response()->json(JobseekerCollection::collection($data));
         }
     }
 

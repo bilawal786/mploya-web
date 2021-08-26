@@ -19,7 +19,7 @@ class AppliedJobSeeder extends Seeder
                 'job_id' => '1'
             ],
             [
-                'user_id' => '5',
+                'user_id' => '3',
                 'status' => 'open',
                 'job_id' => '2'
             ],

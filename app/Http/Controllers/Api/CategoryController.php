@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Job;
 use App\Category;
 use App\Subcategory;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\CategoryCollection;
 use App\Http\Resources\SubcategoryCollection;
 use App\Http\Resources\CategoryRelatedJobsResource;
+use App\Http\Resources\CategoryRelatedJobsCollection;
 
 
 class CategoryController extends Controller
@@ -36,12 +38,14 @@ class CategoryController extends Controller
 
     public function CategoryRelatedJobs($id)
     {
-        $category = Category::find($id);
-        if ($category == null) {
+        $jobs = Job::where('category_id', '=', $id)->get();
+
+        if ($jobs == null) {
             return response()->json(['error' => 'Jobs  not Found', 'success' => false], 404);
         } else {
-            $data = new CategoryRelatedJobsResource($category);
-            return $data->toJson();
+
+            $data =  CategoryRelatedJobsCollection::collection($jobs);
+            return response()->json(CategoryRelatedJobsCollection::collection($data));
         }
     }
 }

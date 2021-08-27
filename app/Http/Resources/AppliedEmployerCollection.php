@@ -49,7 +49,7 @@ class AppliedEmployerCollection extends JsonResource
             'address' => $address,
             'image' => $image,
             'skill_name' => $skills,
-            'isLike' => $islike,
+            'isLike' => empty($islike) ? 0 : 1,
         ];
     }
 }

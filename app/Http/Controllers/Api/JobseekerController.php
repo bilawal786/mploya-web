@@ -181,7 +181,7 @@ class JobseekerController extends Controller
             $success['success'] = true;
             return response()->json($success, $this->successStatus);
         } else {
-            return response()->json(['message' => 'You already  Apply On This Job', 'success' => false], 401);
+            return response()->json(['message' => 'You already  Apply On This Job', 'success' => false], 200);
         }
     }
 

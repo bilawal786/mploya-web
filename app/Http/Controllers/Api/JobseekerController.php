@@ -165,30 +165,19 @@ class JobseekerController extends Controller
     {
 
         if ($request->user_type == 'jobseeker') {
-            if (!$request->job_id) {
-                $success['error'] = "Job id is Required ";
-                $success['success'] = false;
-                return response()->json($success, 401);
-            } elseif (!$request->jobseeker_id) {
-                $success['error'] = "Jobseeker id is Required ";
-                $success['success'] = false;
-                return response()->json($success, 401);
-            } elseif (!$request->user_type) {
-                $success['error'] = "User Type is Required ";
-                $success['success'] = false;
-                return response()->json($success, 401);
-            }
+
             $job = Job::where('id', '=', $request->job_id)->first();
             $jobseeker = User::where('id', '=', $request->jobseeker_id)->where('user_type', '=', 'jobseeker')->first();
+            $jobseeker_id = Auth::guard('api')->user()->id;
 
-            $alreadyapply = Applied::where('user_id', '=', $request->jobseeker_id)->where('job_id', '=', $request->job_id)->get();
+            $alreadyapply = Applied::where('user_id', '=', $jobseeker_id)->where('job_id', '=', $request->job_id)->get();
             if ($alreadyapply->isEmpty()) {
                 $appliedjob = new Applied();
-                $appliedjob->user_id = $request->jobseeker_id;
+                $appliedjob->user_id = $jobseeker_id;
                 $appliedjob->status = $job->status;
                 $appliedjob->job_id = $request->job_id;
                 $appliedjob->save();
-                $appliedjob->users()->attach($request->jobseeker_id);
+                $appliedjob->users()->attach($jobseeker_id);
                 $message = $jobseeker->name . ' ' . 'Applied For' . ' ' . $job->job_title;
                 $jobseeker->notify(new JobApplyNotification($message));
                 $success['message'] = 'Applied Successfully!';

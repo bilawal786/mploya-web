@@ -19,8 +19,10 @@ class CategoryRelatedJobsCollection extends JsonResource
         $islike = Bookmark::where('job_id', '=', $this->id)->where('jobseeker_id', '=', auth('api')->user()->id)->exists();
         $employer = User::find($this->employer_id);
         return [
+            'id' => $this->id,
             'company_name' => $employer->company_name,
             'employer_image' => $employer->image,
+            'address' => $employer->address,
             'job_title' => $this->job_title,
             'min_salary' => $this->min_salary,
             'max_salary' => $this->max_salary,

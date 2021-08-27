@@ -163,31 +163,25 @@ class JobseekerController extends Controller
 
     public function ApplyJob(Request $request)
     {
+        $jobseeker_id = Auth::guard('api')->user()->id;
+        $job = Job::where('id', '=', $request->job_id)->first();
+        $jobseeker = User::where('id', '=', $jobseeker_id)->where('user_type', '=', 'jobseeker')->first();
 
-        if ($request->user_type == 'jobseeker') {
-
-            $job = Job::where('id', '=', $request->job_id)->first();
-            $jobseeker = User::where('id', '=', $request->jobseeker_id)->where('user_type', '=', 'jobseeker')->first();
-            $jobseeker_id = Auth::guard('api')->user()->id;
-
-            $alreadyapply = Applied::where('user_id', '=', $jobseeker_id)->where('job_id', '=', $request->job_id)->get();
-            if ($alreadyapply->isEmpty()) {
-                $appliedjob = new Applied();
-                $appliedjob->user_id = $jobseeker_id;
-                $appliedjob->status = $job->status;
-                $appliedjob->job_id = $request->job_id;
-                $appliedjob->save();
-                $appliedjob->users()->attach($jobseeker_id);
-                $message = $jobseeker->name . ' ' . 'Applied For' . ' ' . $job->job_title;
-                $jobseeker->notify(new JobApplyNotification($message));
-                $success['message'] = 'Applied Successfully!';
-                $success['success'] = true;
-                return response()->json($success, $this->successStatus);
-            } else {
-                return response()->json(['message' => 'You already  Apply On This Job', 'success' => false], 401);
-            }
+        $alreadyapply = Applied::where('user_id', '=', $jobseeker_id)->where('job_id', '=', $request->job_id)->get();
+        if ($alreadyapply->isEmpty()) {
+            $appliedjob = new Applied();
+            $appliedjob->user_id = $jobseeker_id;
+            $appliedjob->status = $job->status;
+            $appliedjob->job_id = $request->job_id;
+            $appliedjob->save();
+            $appliedjob->users()->attach($jobseeker_id);
+            $message = $jobseeker->name . ' ' . 'Applied For' . ' ' . $job->job_title;
+            $jobseeker->notify(new JobApplyNotification($message));
+            $success['message'] = 'Applied Successfully!';
+            $success['success'] = true;
+            return response()->json($success, $this->successStatus);
         } else {
-            return response()->json(['error' => 'You Are not Able To Apply', 'success' => false], 401);
+            return response()->json(['message' => 'You already  Apply On This Job', 'success' => false], 401);
         }
     }
 

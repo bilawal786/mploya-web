@@ -3,6 +3,7 @@
 namespace App\Http\Resources;
 
 use App\Bookmark;
+use App\Employerbookmark;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 use function Ramsey\Uuid\v1;
@@ -17,7 +18,7 @@ class JobseekerCollection extends JsonResource
      */
     public function toArray($request)
     {
-        $islike = Bookmark::where('jobseeker_id', '=', $this->id)->where('employer_id', '=', auth('api')->user()->id)->exists();
+        $islike = Employerbookmark::where('jobseeker_id', '=', $this->id)->where('employer_id', '=', auth('api')->user()->id)->exists();
 
         if ($this->skill_name == "") {
             $skills = "";

@@ -15,24 +15,19 @@ class AuthController extends Controller
     public $successStatus = 200;
     public function forgot_password(Request $request)
     {
-        if (!$request->email) {
-            $success['error'] = "Email is Required ";
-            $success['success'] = false;
-            return response()->json($success, 401);
-        } else {
 
-            $otp = mt_rand(100000, 999999);
-            $user = User::where('email', '=', $request->email)->first();
-            if ($user != null) {
-                $user->otp = $otp;
-                $user->update();
-                $user->notify(new ForgotPasswordNotification($otp));
-                $success['message'] = 'Otp Send Successfully On Your Email';
-                $success['success'] = true;
-                return response()->json($success, $this->successStatus);
-            } else {
-                return response()->json(['error' => 'Email Not Found', 'success' => false], 401);
-            }
+
+        $otp = mt_rand(100000, 999999);
+        $user = User::where('email', '=', $request->email)->first();
+        if ($user != null) {
+            $user->otp = $otp;
+            $user->update();
+            $user->notify(new ForgotPasswordNotification($otp));
+            $success['message'] = 'Otp Send Successfully On Your Email';
+            $success['success'] = true;
+            return response()->json($success, $this->successStatus);
+        } else {
+            return response()->json(['error' => 'Email Not Found', 'success' => false], 401);
         }
     }
 

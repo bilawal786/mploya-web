@@ -75,7 +75,7 @@ class EmployerResource extends JsonResource
             'about' => $this->description,
             'company_name' => $this->company_name,
             'image' => $this->image,
-            'video,' => $this->video,
+            'video' => $this->video,
             'facebook_link' => $this->facebook_link,
             'instagram_link' => $this->instagram_link,
             'twitter_link' => $this->twitter_link,

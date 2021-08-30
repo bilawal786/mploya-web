@@ -377,13 +377,22 @@ class EmployerController extends Controller
             $employer_id = Auth::guard('api')->user()->id;
             $employer = User::find($request->jobseeker_id);
             if ($employer->profile_status == 'visible') {
-                $bookmark  = new Employerbookmark();
-                $bookmark->jobseeker_id = $request->jobseeker_id;
-                $bookmark->employer_id = $employer_id;
-                $bookmark->save();
-                $success['message'] = 'Jobseeker Bookmark Successfully!';
-                $success['success'] = true;
-                return response()->json($success, $this->successStatus);
+                $bookmarkjobseeker = Employerbookmark::where('jobseeker_id', '=', $request->jobseeker_id)->first();
+                if ($bookmarkjobseeker == null) {
+                    $bookmark  = new Employerbookmark();
+                    $bookmark->jobseeker_id = $request->jobseeker_id;
+                    $bookmark->employer_id = $employer_id;
+                    $bookmark->save();
+                    $success['message'] = 'Jobseeker Bookmark Successfully!';
+                    $success['success'] = true;
+                    return response()->json($success, $this->successStatus);
+                } else {
+                    $unbookmark = Employerbookmark::where('jobseeker_id', '=', $request->jobseeker_id)->first();
+                    $unbookmark->delete();
+                    $success['message'] = 'Jobseeker UnBookmark Successfully!';
+                    $success['success'] = true;
+                    return response()->json($success, $this->successStatus);
+                }
             } else {
                 return response()->json(['message' => 'Profile Not Visible', 'success' => false], 401);
             }

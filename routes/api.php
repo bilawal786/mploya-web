@@ -36,9 +36,9 @@ Route::post('otp/verify', 'Api\AuthController@opt_verify');
 
 // Password Reset Route
 
-Route::group(['middleware' => 'auth:api'], function () {
-    Route::post('/reset/password', 'Api\AuthController@reset_password');
-});
+// Route::group(['middleware' => 'auth:api'], function () {
+Route::post('/reset/password', 'Api\AuthController@reset_password');
+// });
 
 // Email Verify Rouute  register
 

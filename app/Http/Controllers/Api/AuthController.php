@@ -34,7 +34,6 @@ class AuthController extends Controller
     public function opt_verify(Request $request)
     {
         $user = User::where('email', $request->email)->first();
-        Auth::attempt($user);
         if ($user) {
             if ($user->otp == $request->otp) {
                 $user->varify_email = 1;

@@ -58,7 +58,7 @@ class JobseekerCollection extends JsonResource
             'certification_name' => $this->certification_name,
             'certification_year' => $this->certification_year,
             'certification_description' => $this->certification_description,
-            'islike' => empty($islike) ? 0 : 1
+            'isLike' => empty($islike) ? 0 : 1
         ];
     }
 }

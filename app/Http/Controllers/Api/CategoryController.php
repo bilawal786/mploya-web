@@ -6,6 +6,7 @@ use App\Job;
 use App\Category;
 use App\Subcategory;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\AllJobCollection;
 use App\Http\Resources\CategoryCollection;
 use App\Http\Resources\SubcategoryCollection;
 use App\Http\Resources\CategoryRelatedJobsResource;
@@ -44,8 +45,8 @@ class CategoryController extends Controller
             return response()->json(['error' => 'Jobs  not Found', 'success' => false], 404);
         } else {
 
-            $data =  CategoryRelatedJobsCollection::collection($jobs);
-            return response()->json(CategoryRelatedJobsCollection::collection($data));
+            $data =  AllJobCollection::collection($jobs);
+            return response()->json(AllJobCollection::collection($data));
         }
     }
 }

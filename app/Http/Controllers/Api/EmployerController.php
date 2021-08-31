@@ -169,8 +169,8 @@ class EmployerController extends Controller
     {
 
         $id = Auth::guard('api')->user()->id;
-        $role = Auth::guard('api')->user()->role;
-        $jobs = Job::where('employer_id', '=', $id)->where('role', '=', $role)->get();
+        $role = Auth::guard('api')->user()->user_type;
+        $jobs = Job::where('employer_id', '=', $id)->where('role', '=', $role)->where('status', '=', 'open')->get();
         if ($jobs->isEmpty()) {
             return response()->json(['error' => 'Jobs not Found', 'success' => false], 404);
         } else {

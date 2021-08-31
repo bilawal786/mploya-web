@@ -41,6 +41,7 @@ class AuthController extends Controller
                 $success['message'] = 'Your Otp Varify Successfull';
                 $success['token'] =  $user->createToken('MyApp')->accessToken;
                 $success['success'] = true;
+                $success['id'] =  $user->id;
                 return response()->json($success, $this->successStatus);
             } else {
 

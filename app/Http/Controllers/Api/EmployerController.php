@@ -237,7 +237,7 @@ class EmployerController extends Controller
                 $job->education =  $request->education;
                 $job->min_experience = $request->min_experience;
                 $job->max_experience = $request->max_experience;
-                $job->subcategory_id = $request->subcategory_id;
+                // $job->subcategory_id = $request->subcategory_id;
                 $job->requirements = $request->requirements;
                 $job->link = $request->link;
                 $job->vacancies = $request->vacancies;

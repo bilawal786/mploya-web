@@ -372,9 +372,14 @@
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label for="exampleInputEmail1">Job Type</label>
-                                                    <input type="text" name="job_type" class="form-control"
-                                                        placeholder="Enter a Job Type.." required>
+                                                   
+                                                        <label>Job Type</label>
+                                                    <select class="form-control" name="job_type" required>
+                                                      
+                                                        <option value="Full Time">Full Time</option>
+                                                        <option value="Part Time">Part Time</option>
+
+                                                    </select>
                                                 </div>
                                             </div>
                                         </div>
@@ -400,8 +405,12 @@
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label for="exampleInputEmail1">Salary Type</label>
-                                                    <input type="text" min="1" name="salary_type" class="form-control"
-                                                        placeholder="Enter a Salary Type.." required>
+                                                    <select class="form-control" name="salary_type" required>
+                                                      
+                                                        <option value="Per Month">Per Month</option>
+                                                        <option value="Per Week">Per Week</option>
+
+                                                    </select>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">

@@ -372,9 +372,19 @@
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label for="exampleInputEmail1">Job Type</label>
-                                                    <input type="text" name="job_type" class="form-control"
-                                                        value="{{$job->job_type}}" required>
+                                                
+                                                    <label>Job Type</label>
+                                                    <select class="form-control" name="job_type" required>
+                                                        
+                                                        @if($job->job_type == "Full Time")
+                                                        <option value="{{$job->job_type}}" selected>{{$job->job_type}}</option>
+                                                        <option value="Part Time">Part Time</option>
+                                                        @else
+                                                        <option value="{{$job->job_type}}" selected>{{$job->job_type}}</option>
+                                                        <option value="Full Time" selected>Full Time</option>
+                                                        @endif
+                                                        
+                                                    </select>
                                                 </div>
                                             </div>
                                         </div>
@@ -401,8 +411,18 @@
                                                 <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label for="exampleInputEmail1">Salary Type</label>
-                                                    <input type="text" name="salary_type" class="form-control"
-                                                        value="{{$job->salary_type}}" required>
+                                                   
+                                                    <select class="form-control" name="salary_type" required>
+                                                        @if($job->salary_type == "Per Month")
+                                                        <option value="{{$job->salary_type}}" selected>{{$job->salary_type}}</option>
+                                                        <option value="Per Week">Per Week</option>
+                                                        @else
+                                                        <option value="{{$job->salary_type}}" selected>{{$job->salary_type}}</option>
+                                                        <option value="Per Month" selected>Per Month</option>
+                                                        @endif
+                                                    
+
+                                                    </select>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">

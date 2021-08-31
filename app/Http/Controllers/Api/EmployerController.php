@@ -123,6 +123,7 @@ class EmployerController extends Controller
                         return response()->json(['error' => 'You Are Not Able To Post More Job, Please Upgrate Subscription', 'success' => false], 401);
                     } else {
                         $job = new Job();
+                        $job->role = 'employer';
                         $job->job_title = $request->job_title;
                         $job->employer_id = $user_id;
                         $job->description = $request->description;

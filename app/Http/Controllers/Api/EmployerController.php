@@ -460,7 +460,7 @@ class EmployerController extends Controller
             $success['success'] = true;
             return response()->json($success, $this->successStatus);
         } else {
-            return response()->json(['message' => 'You Are Not Able To Schedule', 'success' => false], 401);
+            return response()->json(['error' => 'You Are Not Able To Schedule', 'success' => false], 401);
         }
     }
 

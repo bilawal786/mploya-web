@@ -571,4 +571,20 @@ class EmployerController extends Controller
             return response()->json(['error' => 'user not Found', 'success' => false], 404);
         }
     }
+
+
+    // ????????????????????????????? InterviewRequestedJobseeker ????????????????????
+
+    public function InterviewRequestedJobseeker()
+    {
+        $employer_id = Auth::guard('api')->user()->id;
+        $jobseekers_ids = Interview::where('employer_id', '=', $employer_id)->pluck('jobseeker_id');
+        $jobseekers = User::whereIn('id', $jobseekers_ids)->get();
+        if ($jobseekers->isEmpty()) {
+            return response()->json(['error' => 'Jobseekers not Found', 'success' => false], 404);
+        } else {
+            $data = JobseekerCollection::collection($jobseekers);
+            return response()->json(JobseekerCollection::collection($data));
+        }
+    }
 }

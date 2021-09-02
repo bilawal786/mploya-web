@@ -7,6 +7,7 @@ use App\User;
 use App\Review;
 use App\Applied;
 use App\Bookmark;
+use App\Interview;
 use Illuminate\Http\Request;
 use App\Http\Resources\JobResource;
 use App\Http\Controllers\Controller;
@@ -324,6 +325,21 @@ class JobseekerController extends Controller
             return $data->toJson();
         } else {
             return response()->json(['message' => 'Popular Employer  Not Found', 'success' => false], 404);
+        }
+    }
+
+    // ??????????????????????????????????  InterviewRequeste ???????????????????? 
+
+    public function InterviewRequeste()
+    {
+        $jobseeker_id = Auth::guard('api')->user()->id;
+        $employer_ids = Interview::where('jobseeker_id', '=', $jobseeker_id)->pluck('employer_id');
+        $employers = User::whereIn('id', $employer_ids)->get();
+        if ($employers->isEmpty()) {
+            return response()->json(['error' => 'Employers not Found', 'success' => false], 404);
+        } else {
+            $data = EmployerCollection::collection($employers);
+            return response()->json(EmployerCollection::collection($data));
         }
     }
 }

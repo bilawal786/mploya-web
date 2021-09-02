@@ -446,21 +446,27 @@ class EmployerController extends Controller
     {
         $employer_id = Auth::guard('api')->user()->id;
         $user_type = Auth::guard('api')->user()->user_type;
-        if ($user_type == 'employer') {
-            $interview = new Interview();
-            $interview->employer_id = $employer_id;
-            $interview->jobseeker_id = $request->jobseeker_id;
-            $interview->date = $request->date;
-            $interview->time = $request->time;
-            $interview->save();
-            $jobseeker = User::find($request->jobseeker_id);
-            $message = "Your Date" . ' ' . $request->date . ' ' . " and Time" . ' ' . $request->time . ' ' . "for interview. Good Luck!";
-            $jobseeker->notify(new InterviewNotfication($message));
-            $success['message'] = 'Interview Schedule Successfully and check your Email';
-            $success['success'] = true;
-            return response()->json($success, $this->successStatus);
+        $alreadyrequested = Interview::where('employer_id', '=', $employer_id)->where('jobseeker_id', '=', $request->jobseeker_id)->first();
+
+        if ($alreadyrequested) {
+            return response()->json(['error' => 'Interview Schedule Already', 'success' => false], 401);
         } else {
-            return response()->json(['error' => 'You Are Not Able To Schedule', 'success' => false], 401);
+            if ($user_type == 'employer') {
+                $interview = new Interview();
+                $interview->employer_id = $employer_id;
+                $interview->jobseeker_id = $request->jobseeker_id;
+                $interview->date = $request->date;
+                $interview->time = $request->time;
+                $interview->save();
+                $jobseeker = User::find($request->jobseeker_id);
+                $message = "Your Date" . ' ' . $request->date . ' ' . " and Time" . ' ' . $request->time . ' ' . "for interview. Good Luck!";
+                $jobseeker->notify(new InterviewNotfication($message));
+                $success['message'] = 'Interview Schedule Successfully and check your Email';
+                $success['success'] = true;
+                return response()->json($success, $this->successStatus);
+            } else {
+                return response()->json(['error' => 'You Are Not Able To Schedule', 'success' => false], 401);
+            }
         }
     }
 

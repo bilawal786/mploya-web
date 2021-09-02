@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Employerbookmark;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 
@@ -15,6 +16,8 @@ class BookmarkEmployerCollection extends JsonResource
      */
     public function toArray($request)
     {
+        $islike = Employerbookmark::where('jobseeker_id', '=', $this->id)->where('employer_id', '=', auth('api')->user()->id)->exists();
+
         if ($this->skill_name == "") {
             $skills = "";
             dd('null');
@@ -53,6 +56,7 @@ class BookmarkEmployerCollection extends JsonResource
             'certification_name' => $this->certification_name,
             'certification_year' => $this->certification_year,
             'certification_description' => $this->certification_description,
+            'isLike' => empty($islike) ? 0 : 1
         ];
     }
 }

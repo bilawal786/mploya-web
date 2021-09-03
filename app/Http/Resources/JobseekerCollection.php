@@ -4,6 +4,7 @@ namespace App\Http\Resources;
 
 use App\Bookmark;
 use App\Employerbookmark;
+use App\Interview;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 use function Ramsey\Uuid\v1;
@@ -19,6 +20,10 @@ class JobseekerCollection extends JsonResource
     public function toArray($request)
     {
         $islike = Employerbookmark::where('jobseeker_id', '=', $this->id)->where('employer_id', '=', auth('api')->user()->id)->exists();
+
+        $date = Interview::where('jobseeker_id', '=', $this->id)->where('employer_id', '=', auth('api')->user()->id)->pluck('date')->first();
+        $time = Interview::where('jobseeker_id', '=', $this->id)->where('employer_id', '=', auth('api')->user()->id)->pluck('time')->first();
+
 
         if ($this->skill_name == "") {
             $skills = "";
@@ -58,7 +63,9 @@ class JobseekerCollection extends JsonResource
             'certification_name' => $this->certification_name,
             'certification_year' => $this->certification_year,
             'certification_description' => $this->certification_description,
-            'isLike' => empty($islike) ? 0 : 1
+            'isLike' => empty($islike) ? 0 : 1,
+            'date' => $date,
+            'time' => $time,
         ];
     }
 }

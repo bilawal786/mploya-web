@@ -23,7 +23,7 @@ class JobseekerCollection extends JsonResource
 
         $date = Interview::where('jobseeker_id', '=', $this->id)->where('employer_id', '=', auth('api')->user()->id)->pluck('date')->first();
         $time = Interview::where('jobseeker_id', '=', $this->id)->where('employer_id', '=', auth('api')->user()->id)->pluck('time')->first();
-
+        $sid = Interview::where('jobseeker_id', '=', $this->id)->where('employer_id', '=', auth('api')->user()->id)->pluck('id')->first();
 
         if ($this->skill_name == "") {
             $skills = "";
@@ -66,6 +66,7 @@ class JobseekerCollection extends JsonResource
             'isLike' => empty($islike) ? 0 : 1,
             'date' => $date,
             'time' => $time,
+            'sid' => $sid,
         ];
     }
 }

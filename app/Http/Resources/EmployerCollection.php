@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Interview;
 use App\User;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -16,6 +17,9 @@ class EmployerCollection extends JsonResource
      */
     public function toArray($request)
     {
+        $date = Interview::where('employer_id', '=', $this->id)->pluck('date')->first();
+        $time = Interview::where('employer_id', '=', $this->id)->pluck('time')->first();
+
         if ($this->user_type == 'employer') {
             $employer = User::find($this->id);
             $one = $employer->image == 'assets/dist/img/profilepic.png' ? 0 : 1;
@@ -83,6 +87,8 @@ class EmployerCollection extends JsonResource
             'twitter_link' => $this->twitter_link,
             'linkedin_link' => $this->linkedin_link,
             'language' => $this->language,
+            'date' => $date,
+            'time' => $time,
             'updated_at' => $this->updated_at->format('d-m-Y')
         ];
     }

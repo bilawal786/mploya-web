@@ -269,7 +269,7 @@ Route::group(
 
         Route::get('/interview/requested/jobseekers', 'Api\EmployerController@InterviewRequestedJobseeker');
 
-        Route::get('/requeste/interview', 'Api\JobseekerController@InterviewRequeste');
+        Route::get('/request/interview', 'Api\JobseekerController@InterviewRequeste');
 
         Route::post('/reschedule/interview', 'Api\EmployerController@RescheduleInterview');
     }

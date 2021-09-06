@@ -51,12 +51,11 @@ Route::post('/opt/verify/email', 'Api\LoginRegisterController@OptVerify');
 
 Route::post('/social/register', 'Api\LoginRegisterController@SocialRegister');
 
-
 // Get All Jobs Route
 
 Route::get(
-    '/all/jobs',
-    'Api\JobseekerController@AllJobs'
+    '/all/jobs/frontend',
+    'Api\JobseekerController@AllJobsFrontend'
 );
 
 Route::group(
@@ -194,7 +193,12 @@ Route::group(
         Route::post('/jobseeker/profile/update', 'Api\JobseekerController@ProfileUpdate');
 
 
+        // Get All Jobs Route
 
+        Route::get(
+            '/all/jobs',
+            'Api\JobseekerController@AllJobs'
+        );
 
         // Apply For Job Route
 

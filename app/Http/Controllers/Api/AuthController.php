@@ -56,8 +56,8 @@ class AuthController extends Controller
     public function reset_password(Request $request)
     {
         $input = $request->all();
-        $userid = $input['user_id'];
-        User::where('id', $userid)->update(['password' => Hash::make($input['new_password'])]);
+        $userEmail = $input['email'];
+        User::where('email', $userEmail)->update(['password' => Hash::make($input['new_password'])]);
         $success['message'] = 'Password updated successfully';
         $success['success'] = true;
         return response()->json($success, 200);

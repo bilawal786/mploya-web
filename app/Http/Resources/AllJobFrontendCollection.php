@@ -15,6 +15,8 @@ class AllJobFrontendCollection extends JsonResource
      */
     public function toArray($request)
     {
+        $json = file_get_contents("http://www.geoplugin.net/json.gp?ip=" . request()->ip());
+        $details = json_decode($json);
         return [
             'id' => $this->id,
             'employer_id' => $this->employer_id,
@@ -27,6 +29,8 @@ class AllJobFrontendCollection extends JsonResource
             'description' => $this->description,
             'occupation' => $this->occupation,
             'education' => $this->education,
+            'min_salary' => round($this->min_salary * $details->geoplugin_currencyConverter, 2),
+            'max_salary' => round($this->max_salary * $details->geoplugin_currencyConverter, 2),
             'min_experience' => $this->min_experience,
             'max_experience' => $this->max_experience,
         ];

@@ -51,6 +51,14 @@ Route::post('/opt/verify/email', 'Api\LoginRegisterController@OptVerify');
 
 Route::post('/social/register', 'Api\LoginRegisterController@SocialRegister');
 
+
+// Get All Jobs Route
+
+Route::get(
+    '/all/jobs',
+    'Api\JobseekerController@AllJobs'
+);
+
 Route::group(
     ['middleware' => ['auth:api', 'UserBlock']],
     function () {
@@ -186,12 +194,7 @@ Route::group(
         Route::post('/jobseeker/profile/update', 'Api\JobseekerController@ProfileUpdate');
 
 
-        // Get All Jobs Route
 
-        Route::get(
-            '/all/jobs',
-            'Api\JobseekerController@AllJobs'
-        );
 
         // Apply For Job Route
 

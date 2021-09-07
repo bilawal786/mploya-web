@@ -71,6 +71,7 @@ class EmployerResource extends JsonResource
             'email' => $this->email,
             'address' => $this->address,
             'profile_percentage' => $percentage,
+            'profile_status' => $this->profile_status,
             'phone' => $this->phone,
             'about' => $this->description,
             'company_name' => $this->company_name,

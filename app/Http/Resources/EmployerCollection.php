@@ -77,6 +77,7 @@ class EmployerCollection extends JsonResource
             'address' => $this->address,
             'phone' => $this->phone,
             'profile_percentage' => $percentage,
+            'profile_status' => $this->profile_status,
             'about' => $this->description,
             'company_name' => $this->company_name,
             'company_logo' => $this->company_logo,

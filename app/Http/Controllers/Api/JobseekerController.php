@@ -76,7 +76,7 @@ class JobseekerController extends Controller
             $request->CNIC ? $user->CNIC = $request->CNIC : '';
             $request->phone ? $user->phone = $request->phone : '';
             $request->city ? $user->city = $request->city : '';
-            $request->experience ? $user->experience = $request->experience : '';
+            // $request->experience ? $user->experience = $request->experience : '';
             $request->facebook_link ? $user->facebook_link = $request->facebook_link : '';
             $request->instagram_link ? $user->instagram_link = $request->instagram_link : '';
             $request->twitter_link ? $user->twitter_link = $request->twitter_link : '';
@@ -85,17 +85,42 @@ class JobseekerController extends Controller
             $request->father_name ? $user->father_name = $request->father_name : '';
             $request->description ? $user->description = $request->description : '';
             $request->occupation ? $user->occupation = $request->occupation : '';
-            $request->language ? $user->language = implode(',', $request->language) : '';
-            $request->education_name ? $user->education_name = implode(',', $request->education_name) : '';
-            $request->education_description ? $user->education_description = implode(',', $request->education_description) : '';
-            $request->education_complete_date ? $user->education_complete_date = implode(',', $request->education_complete_date) : '';
-            $request->education_is_continue ? $user->education_is_continue = implode(',', $request->education_is_continue) : '';
-            $request->project_title ? $user->project_title = implode(',', $request->project_title) : '';
-            $request->project_occupation ? $user->project_occupation = implode(',', $request->project_occupation) : '';
-            $request->project_year ? $user->project_year = implode(',', $request->project_year) : '';
-            $request->project_links ? $user->project_links = implode(',', $request->project_links) : '';
-            $request->project_description ? $user->project_description = implode(',', $request->project_description) : '';
             $request->skill_name ? $user->skill_name = implode(',', $request->skill_name) : '';
+            $request->language ? $user->language = implode(',', $request->language) : '';
+            foreach ($request->educations as $education) {
+                $education->title ? $user->education_name = $education->title : '';
+                $education->description ? $user->education_description = $education->description : '';
+                $education->endAt ? $user->education_complete_date = $education->endAt : '';
+                $education->startAt ? $user->education_start_date = $education->startAt : '';
+                $education->isContinue ? $user->education_is_continue = $education->isContinue : '';;
+            }
+
+            foreach ($request->experiences as $experience) {
+                $experience->title ? $user->experience_title = $experience->title : '';
+                $experience->description ? $user->experience_description = $experience->description : '';
+                $experience->endAt ? $user->experience_endAt = $experience->endAt : '';
+                $experience->startAt ? $user->experience_startAt = $experience->startAt : '';
+                $experience->isContinue ? $user->experience_isContinue = $experience->isContinue : '';
+                $experience->projectLink ? $user->experience_projectLink = $experience->projectLink : '';
+                $experience->role ? $user->experience_role = $experience->role : '';
+            }
+
+            foreach ($request->works as $work) {
+                $work->title ? $user->project_title = $work->title : '';
+                $work->companyAddress ? $user->project_companyAddress = $work->companyAddress : '';
+                $work->companyName ? $user->project_companyName = $work->companyName : '';
+                $work->description ? $user->project_description = $work->description : '';
+                $work->endAt ? $user->project_endAt = $work->endAt : '';
+                $work->isContinue ? $user->project_isContinue = $work->isContinue : '';
+                $work->startAt ? $user->project_startAt = $work->startAt : '';
+            }
+
+
+            // $request->project_title ? $user->project_title = implode(',', $request->project_title) : '';
+            // $request->project_occupation ? $user->project_occupation = implode(',', $request->project_occupation) : '';
+            // $request->project_year ? $user->project_year = implode(',', $request->project_year) : '';
+            // $request->project_links ? $user->project_links = implode(',', $request->project_links) : '';
+            // $request->project_description ? $user->project_description = implode(',', $request->project_description) : '';
             $request->certification_name ? $user->certification_name = implode(',', $request->certification_name) : '';
             $request->certification_year ? $user->certification_year = implode(',', $request->certification_year) : '';
             $request->certification_description ? $user->certification_description = implode(',', $request->certification_description) : '';

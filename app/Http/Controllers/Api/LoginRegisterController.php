@@ -17,7 +17,6 @@ class LoginRegisterController extends Controller
     public $successStatus = 200;
     public function Login()
     {
-        dd(request()->ip());
         if (Auth::attempt(['email' => request('email'), 'password' => request('password'), 'varify_email' => 1])) {
             $user = Auth::user();
             if ($user->user_type == request('user_type')) {

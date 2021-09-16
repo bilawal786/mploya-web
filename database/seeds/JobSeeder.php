@@ -35,7 +35,7 @@ class JobSeeder extends Seeder
             ],
             [
                 'role' => 'employer',
-                'employer_id' => '1',
+                'employer_id' => '2',
                 'status' => 'open',
                 'category_id' => '2',
                 'subcategory_id' => '5',
@@ -56,7 +56,7 @@ class JobSeeder extends Seeder
             ],
             [
                 'role' => 'admin',
-                'employer_id' => '1',
+                'employer_id' => '3',
                 'status' => 'open',
                 'category_id' => '3',
                 'subcategory_id' => '7',

@@ -35,39 +35,7 @@ class JobseekerController extends Controller
             $success['success'] = false;
             return response()->json($success, 401);
         }
-        // } elseif (!$request->name) {
-        //     $success['error'] = "Name id is Required ";
-        //     $success['success'] = false;
-        //     return response()->json($success, 401);
-        // } elseif (!$request->address) {
-        //     $success['error'] = "Address is Required ";
-        //     $success['success'] = false;
-        //     return response()->json($success, 401);
-        // } elseif (!$request->CNIC) {
-        //     $success['error'] = "CNIC is Required ";
-        //     $success['success'] = false;
-        //     return response()->json($success, 401);
-        // } elseif (!$request->image) {
-        //     $success['error'] = "Image is Required ";
-        //     $success['success'] = false;
-        //     return response()->json($success, 401);
-        // } elseif (!$request->video) {
-        //     $success['error'] = "Video Type is Required ";
-        //     $success['success'] = false;
-        //     return response()->json($success, 401);
-        // } elseif (!$request->city) {
-        //     $success['error'] = "City is Required ";
-        //     $success['success'] = false;
-        //     return response()->json($success, 401);
-        // } elseif (!$request->country) {
-        //     $success['error'] = "Country is Required ";
-        //     $success['success'] = false;
-        //     return response()->json($success, 401);
-        // } elseif (!$request->father_name) {
-        //     $success['error'] = "Father Name is Required ";
-        //     $success['success'] = false;
-        //     return response()->json($success, 401);
-        // }
+
         $id = $request->id;
         $user = User::where('id', '=', $id)->where('user_type', '=', 'jobseeker')->first();
         if ($user) {
@@ -377,6 +345,26 @@ class JobseekerController extends Controller
         } else {
             $data = EmployerCollection::collection($employers);
             return response()->json(EmployerCollection::collection($data));
+        }
+    }
+
+
+    public function searchJob(Request $request)
+    {
+
+        $jobs = Job::orWhere('job_title', 'LIKE', '%' . $request->job_title . '%')
+            ->orWhere('min_salary', 'LIKE', '%' . $request->min_salary . '%')
+            ->orWhere('max_salary', 'LIKE', '%' . $request->max_salary . '%')
+            ->orWhere('min_experience', 'LIKE', '%' . $request->min_experience . '%')
+            ->orWhere('max_experience', 'LIKE', '%' . $request->max_experience . '%')
+            ->orWhere('salary_type', 'LIKE', '%' . $request->salary_type . '%')
+            ->get();
+
+        if ($jobs->isEmpty()) {
+            return response()->json(['error' => 'Jobs not Found', 'success' => false], 404);
+        } else {
+            $data = AllJobCollection::collection($jobs);
+            return response()->json(AllJobCollection::collection($data));
         }
     }
 }

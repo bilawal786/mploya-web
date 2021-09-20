@@ -72,6 +72,8 @@ class EmployerCollection extends JsonResource
         }
         return [
             'id' => $this->id,
+            'latitude' => (float)$this->latitude,
+            'longitude' => (float)$this->longitude,
             'name' => $this->name,
             'email' => $this->email,
             'address' => $this->address,

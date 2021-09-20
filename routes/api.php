@@ -279,5 +279,9 @@ Route::group(
         Route::get('/request/interview', 'Api\JobseekerController@InterviewRequeste');
 
         Route::post('/reschedule/interview', 'Api\EmployerController@RescheduleInterview');
+
+        // Serch api
+
+        Route::post('/serach/job', 'Api\JobseekerController@searchJob');
     }
 );

@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\User;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 
@@ -17,9 +18,12 @@ class AllJobFrontendCollection extends JsonResource
     {
         $json = file_get_contents("http://www.geoplugin.net/json.gp?ip=" . request()->ip());
         $details = json_decode($json);
+        $employer = User::find($this->employer_id);
         return [
             'id' => $this->id,
             'employer_id' => $this->employer_id,
+            'latitude' => (float)$employer->latitude,
+            'longitude' => (float)$employer->longitude,
             'requirements' => $this->requirements,
             'skills' => $this->skills,
             'link' => $this->link,

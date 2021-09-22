@@ -14,6 +14,7 @@ use App\Http\Resources\JobResource;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Http;
 use App\Http\Resources\AllJobCollection;
 use App\Http\Resources\EmployerResource;
 use App\Http\Resources\ReviewCollection;
@@ -26,6 +27,7 @@ use App\Http\Resources\AppliedEmployerCollection;
 use App\Http\Resources\PopularEmployerCollection;
 use App\Http\Resources\BookmarkEmployerCollection;
 use App\Http\Resources\PopularJobseekerCollection;
+
 
 
 class EmployerController extends Controller
@@ -1063,5 +1065,21 @@ class EmployerController extends Controller
         }
 
         return response()->json($lang);
+    }
+
+    // getCoordinate
+
+    public function getCoordinate()
+    {
+        $response = Http::get('http://ipinfo.io/119.155.58.47/json');
+        $data = $response->object();
+        $loc = explode(',', $data->loc);
+        $latitude = $loc[0];
+        $longitude = $loc[1];
+        $lat = floatval($latitude);
+        $lng = floatval($longitude);
+        $success['latitude'] =  $lat;
+        $success['longitude'] =  $lng;
+        return response()->json($success);
     }
 }

@@ -62,6 +62,11 @@ Route::get(
 
 Route::get('/get/language/code', 'Api\EmployerController@getLanguageCode');
 
+
+// get coordinate 
+
+Route::get('/get/coordinates', 'Api\EmployerController@getCoordinate');
+
 Route::group(
     ['middleware' => ['auth:api', 'UserBlock']],
     function () {

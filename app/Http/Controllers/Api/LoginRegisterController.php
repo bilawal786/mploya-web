@@ -23,6 +23,8 @@ class LoginRegisterController extends Controller
                 $success['token'] =  $user->createToken('MyApp')->accessToken;
                 $success['user_type'] =  $user->user_type;
                 $success['name'] =  $user->name;
+                $success['latitude'] =  $user->latitude;
+                $success['longitude'] =  $user->longitude;
                 $success['id'] =  $user->id;
                 $success['image'] =  $user->image;
                 $success['success'] = true;

@@ -625,8 +625,7 @@ class EmployerController extends Controller
     function getLanguageCode()
     {
         $json = file_get_contents("http://www.geoplugin.net/json.gp?ip=" . request()->ip());
-        $details = json_decode($json);
-        $country_code = $details . geoplugin_countryName;
-        return response()->json($country_code);
+        $details = $json;
+        return response()->json($details);
     }
 }

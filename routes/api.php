@@ -58,6 +58,10 @@ Route::get(
     'Api\JobseekerController@AllJobsFrontend'
 );
 
+// common api
+
+Route::get('/get/language/code', 'Api\EmployerController@getLanguageCode');
+
 Route::group(
     ['middleware' => ['auth:api', 'UserBlock']],
     function () {

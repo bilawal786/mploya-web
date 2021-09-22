@@ -619,4 +619,13 @@ class EmployerController extends Controller
             return response()->json(['error' => 'You Are Not Able To Schedule', 'success' => false], 401);
         }
     }
+
+    // common function 
+
+    function getLanguageCode()
+    {
+        $json = file_get_contents("http://www.geoplugin.net/json.gp?ip=" . request()->ip());
+        $details = json_decode($json);
+        return response()->json($details);
+    }
 }

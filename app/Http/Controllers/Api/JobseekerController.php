@@ -358,6 +358,7 @@ class JobseekerController extends Controller
             ->orWhere('min_experience', 'LIKE', '%' . $request->min_experience . '%')
             ->orWhere('max_experience', 'LIKE', '%' . $request->max_experience . '%')
             ->orWhere('salary_type', 'LIKE', '%' . $request->salary_type . '%')
+            ->orWhere('job_type', 'LIKE', '%' . $request->job_type . '%')
             ->get();
 
         if ($jobs->isEmpty()) {

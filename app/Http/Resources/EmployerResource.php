@@ -35,35 +35,28 @@ class EmployerResource extends JsonResource
             $two = $jobseeker->CNIC == '0' ? 0 : 1;
             $three = $jobseeker->phone == '0' ? 0 : 1;
             $four = $jobseeker->image == 'assets/dist/img/profilepic.png' ? 0 : 1;
-
             $five = $jobseeker->city == '0' ? 0 : 1;
             $six = $jobseeker->country == '0' ? 0 : 1;
             $seven = $jobseeker->father_name == '0' ? 0 : 1;
             $eight = $jobseeker->description == null ? 0 : 1;
-
-
-            $nine = ($jobseeker->education_name == null) ? 0 : 1;
-            $ten = ($jobseeker->education_description == null) ? 0 : 1;
-            $eleven = ($jobseeker->education_complete_date == null) ? 0 : 1;
-            $twelve = ($jobseeker->education_is_continue == null) ? 0 : 1;
-
-            $thirteen = ($jobseeker->project_title == null) ? 0 : 1;
-            $fourteen = ($jobseeker->project_occupation == null) ? 0 : 1;
-            $fifteen = ($jobseeker->project_year == null) ? 0 : 1;
-            $sixteen = ($jobseeker->project_links == null) ? 0 : 1;
-
-            $seventeen = ($jobseeker->project_description == null) ? 0 : 1;
-            $eighteen = ($jobseeker->skill_name == null) ? 0 : 1;
-            $nineteen = ($jobseeker->certification_name == null) ? 0 : 1;
-            $twenty = ($jobseeker->certification_year == null) ? 0 : 1;
-            $twentyone = ($jobseeker->certification_description == null) ? 0 : 1;
-
-            $twentytwo = ($jobseeker->language == null) ? 0 : 1;
-
-
+            // new
+            $nine = $jobseeker->video == '0' ? 0 : 1;
+            $ten = $jobseeker->educations == null ? 0 : 1;
+            $eleven = $jobseeker->experiences == null ? 0 : 1;
+            $twelve = $jobseeker->works == null ? 0 : 1;
+            $thirteen = ($jobseeker->facebook_link == null) ? 0 : 1;
+            $fourteen = ($jobseeker->instagram_link == null) ? 0 : 1;
+            $fifteen = ($jobseeker->twitter_link == null) ? 0 : 1;
+            $sixteen = ($jobseeker->linkedin_link == null) ? 0 : 1;
+            // end new
+            $seventeen = ($jobseeker->skill_name == null) ? 0 : 1;
+            $eighteen = ($jobseeker->certification_name == null) ? 0 : 1;
+            $nineteen = ($jobseeker->certification_year == null) ? 0 : 1;
+            $twenty = ($jobseeker->certification_description == null) ? 0 : 1;
+            $twentyone = ($jobseeker->language == null) ? 0 : 1;
             $sum = $one + $two + $three + $four + $five + $six + $seven + $eight + $nine + $ten + $eleven + $twelve + $thirteen
-                + $fourteen + $fifteen + $sixteen + $seventeen + $eighteen + $nineteen + $twenty + $twentyone + $twentytwo + 2;
-            $percentage = (int)round(($sum / 24) * 100);
+                + $fourteen + $fifteen + $sixteen + $seventeen + $eighteen + $nineteen + $twenty + $twentyone  + 2;
+            $percentage = (int)round(($sum / 23) * 100);
         }
         return [
             'id' => $this->id,

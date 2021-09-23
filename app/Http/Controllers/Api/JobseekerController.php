@@ -53,7 +53,7 @@ class JobseekerController extends Controller
             $request->country ? $user->country = $request->country : '';
             $request->father_name ? $user->father_name = $request->father_name : '';
             $request->description ? $user->description = $request->description : '';
-            $request->occupation ? $user->occupation = $request->occupation : '';
+            // $request->occupation ? $user->occupation = $request->occupation : '';
             $request->skill_name ? $user->skill_name = implode(',', $request->skill_name) : '';
             $request->language ? $user->language = implode(',', $request->language) : '';
             $user->educations = $request->educations;

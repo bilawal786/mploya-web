@@ -38,6 +38,7 @@ class JobseekerController extends Controller
 
         $id = $request->id;
         $user = User::where('id', '=', $id)->where('user_type', '=', 'jobseeker')->first();
+
         if ($user) {
             $request->name ? $user->name = $request->name : '';
             $request->address ? $user->address = $request->address : '';
@@ -55,33 +56,36 @@ class JobseekerController extends Controller
             $request->occupation ? $user->occupation = $request->occupation : '';
             $request->skill_name ? $user->skill_name = implode(',', $request->skill_name) : '';
             $request->language ? $user->language = implode(',', $request->language) : '';
-            foreach ($request->educations as $education) {
-                $education->title ? $user->education_name = $education->title : '';
-                $education->description ? $user->education_description = $education->description : '';
-                $education->endAt ? $user->education_complete_date = $education->endAt : '';
-                $education->startAt ? $user->education_start_date = $education->startAt : '';
-                $education->isContinue ? $user->education_is_continue = $education->isContinue : '';;
-            }
+            $user->educations = $request->educations;
+            $user->experiences = $request->experiences;
+            $user->works = $request->works;
+            // foreach ($request->educations as $education) {
+            //     $education->title ? $user->education_name = $education->title : '';
+            //     $education->description ? $user->education_description = $education->description : '';
+            //     $education->endAt ? $user->education_complete_date = $education->endAt : '';
+            //     $education->startAt ? $user->education_start_date = $education->startAt : '';
+            //     $education->isContinue ? $user->education_is_continue = $education->isContinue : '';;
+            // }
 
-            foreach ($request->experiences as $experience) {
-                $experience->title ? $user->experience_title = $experience->title : '';
-                $experience->description ? $user->experience_description = $experience->description : '';
-                $experience->endAt ? $user->experience_endAt = $experience->endAt : '';
-                $experience->startAt ? $user->experience_startAt = $experience->startAt : '';
-                $experience->isContinue ? $user->experience_isContinue = $experience->isContinue : '';
-                $experience->projectLink ? $user->experience_projectLink = $experience->projectLink : '';
-                $experience->role ? $user->experience_role = $experience->role : '';
-            }
+            // foreach ($request->experiences as $experience) {
+            //     $experience->title ? $user->experience_title = $experience->title : '';
+            //     $experience->description ? $user->experience_description = $experience->description : '';
+            //     $experience->endAt ? $user->experience_endAt = $experience->endAt : '';
+            //     $experience->startAt ? $user->experience_startAt = $experience->startAt : '';
+            //     $experience->isContinue ? $user->experience_isContinue = $experience->isContinue : '';
+            //     $experience->projectLink ? $user->experience_projectLink = $experience->projectLink : '';
+            //     $experience->role ? $user->experience_role = $experience->role : '';
+            // }
 
-            foreach ($request->works as $work) {
-                $work->title ? $user->project_title = $work->title : '';
-                $work->companyAddress ? $user->project_companyAddress = $work->companyAddress : '';
-                $work->companyName ? $user->project_companyName = $work->companyName : '';
-                $work->description ? $user->project_description = $work->description : '';
-                $work->endAt ? $user->project_endAt = $work->endAt : '';
-                $work->isContinue ? $user->project_isContinue = $work->isContinue : '';
-                $work->startAt ? $user->project_startAt = $work->startAt : '';
-            }
+            // foreach ($request->works as $work) {
+            //     $work->title ? $user->project_title = $work->title : '';
+            //     $work->companyAddress ? $user->project_companyAddress = $work->companyAddress : '';
+            //     $work->companyName ? $user->project_companyName = $work->companyName : '';
+            //     $work->description ? $user->project_description = $work->description : '';
+            //     $work->endAt ? $user->project_endAt = $work->endAt : '';
+            //     $work->isContinue ? $user->project_isContinue = $work->isContinue : '';
+            //     $work->startAt ? $user->project_startAt = $work->startAt : '';
+            // }
 
 
             // $request->project_title ? $user->project_title = implode(',', $request->project_title) : '';

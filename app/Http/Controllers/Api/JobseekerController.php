@@ -353,12 +353,12 @@ class JobseekerController extends Controller
     {
 
         $jobs = Job::Where('job_title', 'LIKE', '%' . $request->job_title . '%')
-            ->orWhere('min_salary', 'LIKE', '%' . $request->min_salary . '%')
-            ->orWhere('max_salary', 'LIKE', '%' . $request->max_salary . '%')
-            ->orWhere('min_experience', 'LIKE', '%' . $request->min_experience . '%')
-            ->orWhere('max_experience', 'LIKE', '%' . $request->max_experience . '%')
-            ->orWhere('salary_type', 'LIKE', '%' . $request->salary_type . '%')
-            ->orWhere('job_type', 'LIKE', '%' . $request->job_type . '%')
+            ->Where('min_salary', 'LIKE', '%' . $request->min_salary . '%')
+            ->Where('max_salary', 'LIKE', '%' . $request->max_salary . '%')
+            ->Where('min_experience', 'LIKE', '%' . $request->min_experience . '%')
+            ->Where('max_experience', 'LIKE', '%' . $request->max_experience . '%')
+            ->Where('salary_type', 'LIKE', '%' . $request->salary_type . '%')
+            ->Where('job_type', 'LIKE', '%' . $request->job_type . '%')
             ->get();
 
         if ($jobs->isEmpty()) {

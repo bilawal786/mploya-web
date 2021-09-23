@@ -30,13 +30,13 @@ class CreateJobsTable extends Migration
             $table->string('status')->default('open');
             $table->string('job_title')->default('0');
             $table->longText('description')->nullable();
-            $table->string('min_salary')->default('0');
-            $table->string('max_salary')->default('0');
+            $table->bigInteger('min_salary')->default('0');
+            $table->bigInteger('max_salary')->default('0');
             $table->string('salary_type')->default('0');
             $table->string('occupation')->default('0');
             $table->string('education')->default('0');
-            $table->string('min_experience')->default('0');
-            $table->string('max_experience')->default('0');
+            $table->integer('min_experience')->default('0');
+            $table->integer('max_experience')->default('0');
             $table->timestamps();
         });
     }

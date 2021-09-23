@@ -364,7 +364,7 @@ class EmployerController extends Controller
         $appliedjobs = Applied::whereIn('job_id', $jobsid)->get();
 
         if ($appliedjobs->isEmpty()) {
-            return response()->json(['error' => 'Applied Jobseeker not Found', 'success' => false], 404);
+            return response()->json(['message' => 'Applied Jobseeker not Found', 'success' => false], 404);
         } else {
             $data = AppliedEmployerCollection::collection($appliedjobs);
             return response()->json(AppliedEmployerCollection::collection($data));

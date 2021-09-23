@@ -352,7 +352,7 @@ class JobseekerController extends Controller
     public function searchJob(Request $request)
     {
 
-        $jobs = Job::orWhere('job_title', 'LIKE', '%' . $request->job_title . '%')
+        $jobs = Job::Where('job_title', 'LIKE', '%' . $request->job_title . '%')
             ->orWhere('min_salary', 'LIKE', '%' . $request->min_salary . '%')
             ->orWhere('max_salary', 'LIKE', '%' . $request->max_salary . '%')
             ->orWhere('min_experience', 'LIKE', '%' . $request->min_experience . '%')

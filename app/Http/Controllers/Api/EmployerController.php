@@ -1066,7 +1066,7 @@ class EmployerController extends Controller
         }
         $success['language'] = $lang;
         $success['currencySymbol'] = $currencySymbol;
-        return response()->json($lang);
+        return response()->json($success);
     }
 
     // getCoordinate

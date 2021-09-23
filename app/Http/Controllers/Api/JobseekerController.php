@@ -353,8 +353,8 @@ class JobseekerController extends Controller
     {
 
         $jobs = Job::Where('job_title', 'LIKE', '%' . $request->job_title . '%')
-            ->Where('min_salary', 'LIKE', '%' . $request->min_salary . '%')
-            ->Where('max_salary', 'LIKE', '%' . $request->max_salary . '%')
+            ->Where('min_salary', '>=', $request->min_salary)
+            ->Where('max_salary', '<=', $request->max_salary)
             ->Where('min_experience', 'LIKE', '%' . $request->min_experience . '%')
             ->Where('max_experience', 'LIKE', '%' . $request->max_experience . '%')
             ->Where('salary_type', 'LIKE', '%' . $request->salary_type . '%')

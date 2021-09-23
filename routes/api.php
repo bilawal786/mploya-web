@@ -291,6 +291,6 @@ Route::group(
 
         // Serch api
 
-        Route::post('/serach/job', 'Api\JobseekerController@searchJob');
+        Route::post('/search/job', 'Api\JobseekerController@searchJob');
     }
 );

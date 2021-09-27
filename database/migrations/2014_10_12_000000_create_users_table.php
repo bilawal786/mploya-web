@@ -23,9 +23,9 @@ class CreateUsersTable extends Migration
             $table->string('language')->nullable();;
             $table->string('father_name')->default('0');
             $table->string('email');
-            $table->longText('educations')->nullable();
-            $table->longText('experiences')->nullable();
-            $table->longText('works')->nullable();
+            $table->longText('educations')->default([]);
+            $table->longText('experiences')->default([]);
+            $table->longText('works')->default([]);
             // $table->string('experience_title')->nullable();
             // $table->string('experience_description')->nullable();
             // $table->string('experience_startAt')->nullable();

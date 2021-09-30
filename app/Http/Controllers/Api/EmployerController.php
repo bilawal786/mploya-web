@@ -81,7 +81,7 @@ class EmployerController extends Controller
                     unlink($logo_path);
                 }
                 $company_logo = $request->file('company_logo');
-                $name = time() . 'company_logo' . '.' . $company_logo->getClientOriginalExtension();
+                $name = $id . 'company_logo' . '.' . $company_logo->getClientOriginalExtension();
                 $destinationPath = 'company_logo/';
                 $company_logo->move($destinationPath, $name);
                 $profile->company_logo = 'company_logo/' . $name;
@@ -93,7 +93,7 @@ class EmployerController extends Controller
                     unlink($video_path);
                 }
                 $video = $request->file('video');
-                $name = time() . 'profile_video' . '.' . $video->getClientOriginalExtension();
+                $name = $id . 'profile_video' . '.' . $video->getClientOriginalExtension();
                 $destinationPath = 'profile_videos/';
                 $video->move($destinationPath, $name);
                 $profile->video = 'profile_videos/' . $name;

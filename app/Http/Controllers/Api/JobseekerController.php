@@ -102,7 +102,7 @@ class JobseekerController extends Controller
                     unlink($image_path);
                 }
                 $image = $request->file('image');
-                $name = time() . 'profile' . '.' . $image->getClientOriginalExtension();
+                $name = $id . 'profile' . '.' . $image->getClientOriginalExtension();
                 $destinationPath = 'profile_images/';
                 $image->move($destinationPath, $name);
                 $user->image = 'profile_images/' . $name;
@@ -114,7 +114,7 @@ class JobseekerController extends Controller
                     unlink($video_path);
                 }
                 $video = $request->file('video');
-                $name = time() . 'profile_video' . '.' . $video->getClientOriginalExtension();
+                $name = $id . 'profile_video' . '.' . $video->getClientOriginalExtension();
                 $destinationPath = 'profile_videos/';
                 $video->move($destinationPath, $name);
                 $user->video = 'profile_videos/' . $name;

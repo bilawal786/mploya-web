@@ -97,7 +97,7 @@ class JobseekerController extends Controller
             $request->certification_year ? $user->certification_year = implode(',', $request->certification_year) : '';
             $request->certification_description ? $user->certification_description = implode(',', $request->certification_description) : '';
             if ($request->hasfile('image')) {
-                if (!empty($user->image) && ($user->image != "assets/dist/img/profilepic.png")) {
+                if (!empty($user->image) && ($user->image != "assets/dist/img/avatar5.png")) {
                     $image_path = $user->image;
                     unlink($image_path);
                 }

@@ -17,6 +17,7 @@ class CreateUsersTable extends Migration
             $table->increments('id');
             $table->string('is_block')->default('1');
             $table->string('is_popular')->default('0');
+            $table->longText('deviceToken')->nullable();
             $table->string('latitude')->default('0');
             $table->string('longitude')->default('0');
             $table->string('name');

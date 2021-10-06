@@ -20,6 +20,7 @@ class LoginRegisterController extends Controller
         if (Auth::attempt(['email' => request('email'), 'password' => request('password'), 'varify_email' => 1])) {
             $user = Auth::user();
             if ($user->user_type == request('user_type')) {
+                $user->deviceToken = request('deviceToken');
                 $success['token'] =  $user->createToken('MyApp')->accessToken;
                 $success['user_type'] =  $user->user_type;
                 $success['name'] =  $user->name;
@@ -27,6 +28,7 @@ class LoginRegisterController extends Controller
                 $success['longitude'] =  $user->longitude;
                 $success['id'] =  $user->id;
                 $success['image'] =  $user->image;
+                $success['deviceToken'] = $user->deviceToken;
                 $success['success'] = true;
                 return response()->json($success);
             } else {
@@ -72,6 +74,7 @@ class LoginRegisterController extends Controller
         }
         $otp = mt_rand(100000, 999999);
         $user =  User::create([
+            'deviceToken' => $request->deviceToken,
             'latitude' => $lat,
             'longitude' => $lng,
             'otp' => $otp,
@@ -81,6 +84,7 @@ class LoginRegisterController extends Controller
             'password' => Hash::make($request->password),
         ]);
         $success['id'] =  $user->id;
+        $success['deviceToken'] =  $user->deviceToken;
         $success['name'] =  $user->name;
         $success['image'] =  $user->image;
         $success['success'] = true;
@@ -122,6 +126,7 @@ class LoginRegisterController extends Controller
                 if (!$user) {
                     $user = new User();
                     $user->name = $request->name;
+                    $user->deviceToken = $request->deviceToken;
                     $user->email = $request->email;
                     $user->user_type =  $request->user_type;
                     $user->provider_id = $request->provider_id;
@@ -147,6 +152,7 @@ class LoginRegisterController extends Controller
                 if (!$user) {
                     $user = new User();
                     $user->name = $request->name;
+                    $user->deviceToken = $request->deviceToken;
                     $user->email = $request->email;
                     $user->user_type =  $request->user_type;
                     $user->provider_id = $request->provider_id;

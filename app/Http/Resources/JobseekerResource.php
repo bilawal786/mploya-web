@@ -55,11 +55,12 @@ class JobseekerResource extends JsonResource
             $twenty = ($jobseeker->certification_description == null) ? 0 : 1;
             $twentyone = ($jobseeker->language == null) ? 0 : 1;
             $sum = $one + $two + $three + $four + $five + $six + $seven + $eight + $nine + $ten + $eleven + $twelve + $thirteen
-                + $fourteen + $fifteen + $sixteen + $seventeen + $eighteen + $nineteen + $twenty + $twentyone  + 2;
+                + $fourteen + $fifteen + $sixteen + $seventeen + $eighteen + $nineteen + $twenty + $twentyone  + 3;
             $percentage = (int)round(($sum / 23) * 100);
         }
         return [
             'id' => $this->id,
+            'deviceToken' => $this->deviceToken,
             'name' => $this->name,
             'email' => $this->email,
             'address' => $this->address,

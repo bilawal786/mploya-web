@@ -56,7 +56,7 @@ class AdminController extends Controller
         $eight = ($employer->linkedin_link == null) ? 0 : 1;
         $nin = $employer->phone == '0' ? 0 : 1;
         $ten = $employer->description == null ? 0 : 1;
-        $sum = $one + $two + $three + $four + $five + $six + $seven + $eight + $nin + $ten + 2;
+        $sum = $one + $two + $three + $four + $five + $six + $seven + $eight + $nin + $ten + 3;
         $percentage = (int)round(($sum / 12) * 100);
         $purchasedsub = PruchasedSubscription::where('employer_id', '=', $id)->get();
         $jobs = Job::where('employer_id', '=', $id)->get();
@@ -98,7 +98,7 @@ class AdminController extends Controller
         $twentyone = ($jobseeker->language == null) ? 0 : 1;
 
         $sum = $one + $two + $three + $four + $five + $six + $seven + $eight + $nine + $ten + $eleven + $twelve + $thirteen
-            + $fourteen + $fifteen + $sixteen + $seventeen + $eighteen + $nineteen + $twenty + $twentyone  + 2;
+            + $fourteen + $fifteen + $sixteen + $seventeen + $eighteen + $nineteen + $twenty + $twentyone  + 3;
         $percentage = (int)round(($sum / 23) * 100);
         $jobsid = Applied::where('user_id', '=', $id)->pluck('job_id');
         $appliedjobs = Job::whereIn('id', $jobsid)->get();

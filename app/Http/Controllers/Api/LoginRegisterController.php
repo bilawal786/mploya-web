@@ -125,8 +125,9 @@ class LoginRegisterController extends Controller
         $error = Validator::make($request->all(), $rules);
         if ($error->fails()) {
             $invalid = $error->errors()->all()[0];
-            $message['error'] = $invalid;
-            return response()->json($message, 401);
+            $success['error'] = $invalid;
+            $success['success'] = false;
+            return response()->json($success, 200);
         }
         if ($request->provider_id) {
             if ($request->provider_name == 'google') {

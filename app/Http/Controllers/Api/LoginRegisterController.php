@@ -121,6 +121,13 @@ class LoginRegisterController extends Controller
     {
 
         $user = User::where('email', '=', $request->email)->where('provider_id', '=', $request->provider_id)->first();
+        $rules = array('email' => 'required|email|unique:users');
+        $error = Validator::make($request->all(), $rules);
+        if ($error->fails()) {
+            $invalid = $error->errors()->all()[0];
+            $message['error'] = $invalid;
+            return response()->json($message, 401);
+        }
         if ($request->provider_id) {
             if ($request->provider_name == 'google') {
                 if (!$user) {

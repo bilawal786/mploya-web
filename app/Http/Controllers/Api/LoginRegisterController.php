@@ -132,12 +132,13 @@ class LoginRegisterController extends Controller
                     $user->provider_id = $request->provider_id;
                     $user->provider_name = $request->provider_name;
                     $user->varify_email = 1;
+                    $user->save();
                     $success['id'] =  $user->id;
                     $success['name'] =  $user->name;
                     $success['image'] =  $user->image;
                     $success['token'] =  $user->createToken('MyApp')->accessToken;
                     $success['success'] = true;
-                    $user->save();
+
                     return response()->json($success, $this->successStatus);
                 } else {
                     $success['id'] =  $user->id;
@@ -158,12 +159,13 @@ class LoginRegisterController extends Controller
                     $user->provider_id = $request->provider_id;
                     $user->provider_name = $request->provider_name;
                     $user->varify_email = 1;
+                    $user->save();
                     $success['id'] =  $user->id;
                     $success['name'] =  $user->name;
                     $success['image'] =  $user->image;
                     $success['token'] =  $user->createToken('MyApp')->accessToken;
                     $success['success'] = true;
-                    $user->save();
+
                     return response()->json($success, $this->successStatus);
                 } else {
                     $success['id'] =  $user->id;

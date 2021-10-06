@@ -127,6 +127,7 @@ class LoginRegisterController extends Controller
             $invalid = $error->errors()->all()[0];
             $success['error'] = $invalid;
             $success['success'] = false;
+
             return response()->json($success, 200);
         }
         if ($request->provider_id) {

@@ -292,5 +292,9 @@ Route::group(
         // Serch api
 
         Route::post('/search/job', 'Api\JobseekerController@searchJob');
+
+        // get FCM  Notification jobseeker
+
+        Route::get('/get/notification/', 'Api\NotificationController@getNotification');
     }
 );

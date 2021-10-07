@@ -178,21 +178,30 @@ class LoginRegisterController extends Controller
                     $user->provider_name = $request->provider_name;
                     $user->varify_email = 1;
                     $user->save();
-                    $success['id'] =  $user->id;
-                    $success['name'] =  $user->name;
-                    $success['image'] =  $user->image;
-                    $success['token'] =  $user->createToken('MyApp')->accessToken;
-                    $success['success'] = true;
-
-                    return response()->json($success, $this->successStatus);
+                    if ($request->user_type == $user->user_type) {
+                        $success['id'] =  $user->id;
+                        $success['name'] =  $user->name;
+                        $success['image'] =  $user->image;
+                        $success['token'] =  $user->createToken('MyApp')->accessToken;
+                        $success['success'] = true;
+                        return response()->json($success, $this->successStatus);
+                    } else {
+                        $success['success'] = false;
+                        return response()->json($success, 200);
+                    }
                 } else {
-                    $success['id'] =  $user->id;
-                    $success['name'] =  $user->name;
-                    $success['image'] =  $user->image;
-                    $success['token'] =  $user->createToken('MyApp')->accessToken;
-                    $success['success'] = true;
-                    $success['name'] =  $user->name;
-                    return response()->json($success, $this->successStatus);
+                    if ($request->user_type == $user->user_type) {
+                        $success['id'] =  $user->id;
+                        $success['name'] =  $user->name;
+                        $success['image'] =  $user->image;
+                        $success['token'] =  $user->createToken('MyApp')->accessToken;
+                        $success['success'] = true;
+                        $success['name'] =  $user->name;
+                        return response()->json($success, $this->successStatus);
+                    } else {
+                        $success['success'] = false;
+                        return response()->json($success, 200);
+                    }
                 }
             }
         } else {

@@ -445,6 +445,9 @@ class EmployerController extends Controller
 
     public function Interview(Request $request)
     {
+
+        $jobseeker = User::find($request->jobseeker_id);
+        $token = $jobseeker->deviceToken;
         $employer_id = Auth::guard('api')->user()->id;
         $employerName = Auth::guard('api')->user()->name;
         $user_type = Auth::guard('api')->user()->user_type;
@@ -466,7 +469,7 @@ class EmployerController extends Controller
                 $success['message'] = 'Interview Schedule Successfully and check your Email';
                 $success['success'] = true;
                 // fcm notification
-                $token = "fgxOcp0BSfeLAYiaipFF7F:APA91bEMXM_zhttv9s0r9qO0z3KB8zbKTmNu4cuWHN7JkGkHYFh0DZQxmZ1LwhITB0d8hHoyNaBQ4-kkc0bP4o9jkqKynREDQXvsfgiEj-cCrNXj_jZDqP6WNTYhQ4RmgF7dG4RB6onT";
+                // $token = "fgxOcp0BSfeLAYiaipFF7F:APA91bEMXM_zhttv9s0r9qO0z3KB8zbKTmNu4cuWHN7JkGkHYFh0DZQxmZ1LwhITB0d8hHoyNaBQ4-kkc0bP4o9jkqKynREDQXvsfgiEj-cCrNXj_jZDqP6WNTYhQ4RmgF7dG4RB6onT";
                 $key = "AAAADlLsBN0:APA91bGeeIWLQN0TBh2EhUh1_nKc3csfNRUohq2xwHSYhqk1GM4lJm36yJQsjkPhmBbZWQ03sIUe25PrnEMwmsctqHzAuGl5SdLv8ESMWPl8GvR88y88frLlB9_GJIYtj5-OTzaje8Ay";
                 $msg = array(
                     'title' => "Interview Schedule",
@@ -637,6 +640,8 @@ class EmployerController extends Controller
 
     public function RescheduleInterview(Request $request)
     {
+        $jobseeker = User::find($request->jobseeker_id);
+        $token = $jobseeker->deviceToken;
         $employer_id = Auth::guard('api')->user()->id;
         $employerName = Auth::guard('api')->user()->name;
         $user_type = Auth::guard('api')->user()->user_type;
@@ -654,7 +659,7 @@ class EmployerController extends Controller
             $success['message'] = 'Interview Reschedule Successfully and check your Email';
             $success['success'] = true;
             // fcm notification
-            $token = "fgxOcp0BSfeLAYiaipFF7F:APA91bEMXM_zhttv9s0r9qO0z3KB8zbKTmNu4cuWHN7JkGkHYFh0DZQxmZ1LwhITB0d8hHoyNaBQ4-kkc0bP4o9jkqKynREDQXvsfgiEj-cCrNXj_jZDqP6WNTYhQ4RmgF7dG4RB6onT";
+            // $token = "fgxOcp0BSfeLAYiaipFF7F:APA91bEMXM_zhttv9s0r9qO0z3KB8zbKTmNu4cuWHN7JkGkHYFh0DZQxmZ1LwhITB0d8hHoyNaBQ4-kkc0bP4o9jkqKynREDQXvsfgiEj-cCrNXj_jZDqP6WNTYhQ4RmgF7dG4RB6onT";
             $key = "AAAADlLsBN0:APA91bGeeIWLQN0TBh2EhUh1_nKc3csfNRUohq2xwHSYhqk1GM4lJm36yJQsjkPhmBbZWQ03sIUe25PrnEMwmsctqHzAuGl5SdLv8ESMWPl8GvR88y88frLlB9_GJIYtj5-OTzaje8Ay";
             $msg = array(
                 'title' => "Interview Reschedule",

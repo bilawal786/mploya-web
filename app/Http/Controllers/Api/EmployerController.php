@@ -7,6 +7,7 @@ use App\User;
 use App\Review;
 use App\Applied;
 use App\Interview;
+use App\Notification;
 use App\Employerbookmark;
 use Illuminate\Http\Request;
 use App\PruchasedSubscription;
@@ -19,6 +20,7 @@ use App\Http\Resources\AllJobCollection;
 use App\Http\Resources\EmployerResource;
 use App\Http\Resources\ReviewCollection;
 use App\Http\Resources\JobseekerResource;
+use Illuminate\Support\Facades\Validator;
 use App\Http\Resources\JobseekerCollection;
 use App\Http\Resources\UserProfileResource;
 use App\Notifications\InterviewNotfication;
@@ -27,7 +29,6 @@ use App\Http\Resources\AppliedEmployerCollection;
 use App\Http\Resources\PopularEmployerCollection;
 use App\Http\Resources\BookmarkEmployerCollection;
 use App\Http\Resources\PopularJobseekerCollection;
-use App\Notification;
 
 class EmployerController extends Controller
 {
@@ -44,6 +45,12 @@ class EmployerController extends Controller
             $success['error'] = "Id is Required ";
             $success['success'] = false;
             return response()->json($success, 401);
+        }
+        $validator = Validator::make($request->all(), [
+            'video'  =>  'max:20480',
+        ]);
+        if ($validator->fails()) {
+            return response()->json($validator->errors(), 422);
         }
         $id = $request->id;
         $profile = User::where('id', '=', $id)->where('user_type', '=', 'employer')->first();

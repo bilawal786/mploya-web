@@ -62,7 +62,7 @@ class EmployerController extends Controller
             $request->company_name ? $profile->company_name = $request->company_name : '';
             $request->language ? $profile->language = implode(',', $request->language) : '';
             if ($request->hasfile('image')) {
-                if (!empty($profile->image) && ($profile->image != "assets/dist/img/avatar5.png")) {
+                if (!empty($profile->image) && ($profile->image != "assets/dist/img/userpic.png")) {
                     $image_path = $profile->image;
                     unlink($image_path);
                 }

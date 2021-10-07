@@ -21,6 +21,7 @@ class LoginRegisterController extends Controller
             $user = Auth::user();
             if ($user->user_type == request('user_type')) {
                 $user->deviceToken = request('deviceToken');
+                $user->update();
                 $success['token'] =  $user->createToken('MyApp')->accessToken;
                 $success['user_type'] =  $user->user_type;
                 $success['name'] =  $user->name;

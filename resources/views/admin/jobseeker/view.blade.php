@@ -411,83 +411,31 @@
                                 </div>
                                 <!-- /.card-header -->
                                 <div class="card-body">
-                                    <strong><i class="fas fa-graduation-cap mr-1"></i> Education</strong>
-
-                                    <p class="text-muted"><b>Education Name:</b>
-                                        @if($jobseeker->education_name ==null)
-                                        <span class="tag tag-danger"> Not Found</span>
-                                        @else
-                                        @foreach($jobseeker->education_name as $key => $data1)
-                                        <span class="tag tag-danger">{{$jobseeker->education_name[$key]}},</span>
+                                  
+                         {{-- [{"description": "Description", "endAt": "7/10/2023", "isContinue": false, "startAt": "7/11/2021", "title": "Education title"}, {"description": "Description 2", "endAt": "6/10/2023", "isContinue": false, "startAt": "6/12/2021", "title": "Hamza title"}]                --}}
+                                   <strong><i class="fas fa-graduation-cap mr-1"></i> Educations</strong><br>
+                                    @foreach(json_decode($jobseeker->educations, true) as  $row)
+                                        @foreach ($row as $key=>$value)
+                                            <span class="tag tag-danger"> <b> {{ucfirst($key)}}</b>: {{$value}} <br></span>
                                         @endforeach
-                                        @endif
-                                        <br><b>Education Description:</b>
-                                        @if($jobseeker->education_description ==null)
-                                        <span class="tag tag-danger"> Not Found</span>
-                                        @else
-                                        @foreach($jobseeker->education_description as $key => $data1)
-                                        <span class="tag tag-danger">{{$jobseeker->education_description[$key]}},</span>
-                                        @endforeach
-                                        @endif
-
-                                        <br><b>Education Continue or Complete:</b>
-                                        @if($jobseeker->education_is_continue ==null)
-                                        <span class="tag tag-danger"> Not Found</span>
-                                        @else
-                                        @foreach($jobseeker->education_is_continue as $key => $data1)
-                                        <span class="tag tag-danger">{{$jobseeker->education_is_continue[$key]}},</span>
-                                        @endforeach
-                                        @endif
-
-                                        <br><b>Education Date:</b>
-                                        @if($jobseeker->education_complete_date ==null)
-                                        <span class="tag tag-danger"> Not Found</span>
-                                        @else
-                                        @foreach($jobseeker->education_complete_date as $key => $data1)
-                                        <span
-                                            class="tag tag-danger">{{$jobseeker->education_complete_date[$key]}},</span>
-                                        @endforeach
-                                        @endif
-                                    </p>
+                                    @endforeach
+                               
 
                                     <hr>
-                                    <strong><i class="fa fa-tasks mr-1"></i>Projects</strong>
+                                    <strong><i class="fa fa-tasks mr-1"></i>Projects</strong><br>
 
-                                    <p class="text-muted"><b>Project Title:</b>
-                                        @if($jobseeker->project_title ==null)
-                                        <span class="tag tag-danger"> Not Found</span>
-                                        @else
-                                        @foreach($jobseeker->project_title as $key => $data1)
-                                        <span class="tag tag-danger">{{$jobseeker->project_title[$key]}},</span>
+                                  @foreach(json_decode($jobseeker->works, true) as  $row)
+                                        @foreach ($row as $key=>$value)
+                                            <span class="tag tag-danger"> <b> {{ucfirst($key)}}</b>: {{$value}} <br></span>
                                         @endforeach
-                                        @endif
-                                        <br><b>Project Occupation:</b>
-                                        @if($jobseeker->project_occupation ==null)
-                                        <span class="tag tag-danger"> Not Found</span>
-                                        @else
-                                        @foreach($jobseeker->project_occupation as $key => $data1)
-                                        <span class="tag tag-danger">{{$jobseeker->project_occupation[$key]}},</span>
+                                    @endforeach
+                                            <hr>
+                                       <strong><i class="fa fa-tasks mr-1"></i>Experiences</strong><br>
+                                  @foreach(json_decode($jobseeker->experiences, true) as  $row)
+                                        @foreach ($row as $key=>$value)
+                                            <span class="tag tag-danger"> <b> {{ucfirst($key)}}</b>: {{$value}} <br></span>
                                         @endforeach
-                                        @endif
-
-                                        <br><b>Project Year:</b>
-                                        @if($jobseeker->project_year ==null)
-                                        <span class="tag tag-danger"> Not Found</span>
-                                        @else
-                                        @foreach($jobseeker->project_year as $key => $data1)
-                                        <span class="tag tag-danger">{{$jobseeker->project_year[$key]}},</span>
-                                        @endforeach
-                                        @endif
-
-                                        <br><b>Project Links:</b>
-                                        @if($jobseeker->project_links ==null)
-                                        <span class="tag tag-danger"> Not Found</span>
-                                        @else
-                                        @foreach($jobseeker->project_links as $key => $data1)
-                                        <span class="tag tag-danger">{{$jobseeker->project_links[$key]}},</span>
-                                        @endforeach
-                                        @endif
-                                    </p>
+                                    @endforeach
 
 
                                     @if($jobseeker->skill_name ==null)
@@ -562,19 +510,19 @@
 
                                     </p>
 
-                                    @if($jobseeker->leanguage ==null)
+                                    @if($jobseeker->language ==null)
                                     <hr>
-                                    <strong><i class="fa fa-language mr-1" aria-hidden="true"></i>Leanguage</strong>
+                                    <strong><i class="fa fa-language mr-1" aria-hidden="true"></i>Language</strong>
                                     <p class="text-muted">
                                         Not Found
                                     </p>
                                     @else
                                     <hr>
-                                    <strong><i class="fa fa-language mr-1" aria-hidden="true"></i>Leanguage</strong>
+                                    <strong><i class="fa fa-language mr-1" aria-hidden="true"></i>Language</strong>
                                     <p class="text-muted">
-                                        @foreach($jobseeker->leanguage as $key => $data1)
+                                        @foreach($jobseeker->language as $key => $data1)
 
-                                        <span class="tag tag-danger">{{$jobseeker->leanguage[$key]}},</span>
+                                        <span class="tag tag-danger">{{$jobseeker->language[$key]}},</span>
                                         @endforeach
                                     </p>
                                     @endif
@@ -688,55 +636,6 @@
                                             </div>
                                         </div>
                                         <!-- /.tab-pane -->
-
-                                        {{-- <div class="tab-pane" id="settings">
-                    <form class="form-horizontal">
-                      <div class="form-group row">
-                        <label for="inputName" class="col-sm-2 col-form-label">Name</label>
-                        <div class="col-sm-10">
-                          <input type="email" class="form-control" id="inputName" placeholder="Name">
-                        </div>
-                      </div>
-                      <div class="form-group row">
-                        <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
-                        <div class="col-sm-10">
-                          <input type="email" class="form-control" id="inputEmail" placeholder="Email">
-                        </div>
-                      </div>
-                      <div class="form-group row">
-                        <label for="inputName2" class="col-sm-2 col-form-label">Name</label>
-                        <div class="col-sm-10">
-                          <input type="text" class="form-control" id="inputName2" placeholder="Name">
-                        </div>
-                      </div>
-                      <div class="form-group row">
-                        <label for="inputExperience" class="col-sm-2 col-form-label">Experience</label>
-                        <div class="col-sm-10">
-                          <textarea class="form-control" id="inputExperience" placeholder="Experience"></textarea>
-                        </div>
-                      </div>
-                      <div class="form-group row">
-                        <label for="inputSkills" class="col-sm-2 col-form-label">Skills</label>
-                        <div class="col-sm-10">
-                          <input type="text" class="form-control" id="inputSkills" placeholder="Skills">
-                        </div>
-                      </div>
-                      <div class="form-group row">
-                        <div class="offset-sm-2 col-sm-10">
-                          <div class="checkbox">
-                            <label>
-                              <input type="checkbox"> I agree to the <a href="#">terms and conditions</a>
-                            </label>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="form-group row">
-                        <div class="offset-sm-2 col-sm-10">
-                          <button type="submit" class="btn btn-danger">Submit</button>
-                        </div>
-                      </div>
-                    </form>
-                  </div> --}}
                                         <!-- /.tab-pane -->
                                     </div>
                                     <!-- /.tab-content -->

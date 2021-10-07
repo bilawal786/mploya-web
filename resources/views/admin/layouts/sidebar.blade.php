@@ -140,14 +140,10 @@
           </li>
 
            <li class="nav-item">
-            <a href="{{route('logout')}}" onclick="event.preventDefault();
-              document.getElementById('logout-form').submit();" class="nav-link">
+            <a href="{{route('admin.logout')}}" class="nav-link">
               <i class="nav-icon fas fa-sign-out-alt"></i>
               <p>Log Out</p>
             </a>
-            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-              @csrf
-            </form>
           </li>
         </ul>
       </nav>

@@ -24,6 +24,7 @@ class DatabaseSeeder extends Seeder
             AppliedJobSeeder::class,
             AppliedUserJobSeeder::class,
             BookmarkJobseekerSeeder::class,
+            NotificationSeeder::class,
         ]);
     }
 }

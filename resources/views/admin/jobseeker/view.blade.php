@@ -411,31 +411,42 @@
                                 </div>
                                 <!-- /.card-header -->
                                 <div class="card-body">
-                                  
-                         {{-- [{"description": "Description", "endAt": "7/10/2023", "isContinue": false, "startAt": "7/11/2021", "title": "Education title"}, {"description": "Description 2", "endAt": "6/10/2023", "isContinue": false, "startAt": "6/12/2021", "title": "Hamza title"}]                --}}
-                                   <strong><i class="fas fa-graduation-cap mr-1"></i> Educations</strong><br>
-                                    @foreach(json_decode($jobseeker->educations, true) as  $row)
-                                        @foreach ($row as $key=>$value)
-                                            <span class="tag tag-danger"> <b> {{ucfirst($key)}}</b>: {{$value}} <br></span>
-                                        @endforeach
+                                    <strong><i class="fas fa-graduation-cap mr-1"></i> Educations</strong><br>
+                                    @if ($jobseeker->educations == null)
+                                    <span class="tag tag-danger text-muted"> Not Found </span>
+                                    @else
+                                    @foreach(json_decode($jobseeker->educations, true) as $row)
+                                    @foreach ($row as $key=>$value)
+                                    <span class="tag tag-danger text-muted"> <b> {{ucfirst($key)}}</b>: {{$value}} <br></span>
                                     @endforeach
-                               
+                                    @endforeach
+                                    @endif
+
+
 
                                     <hr>
                                     <strong><i class="fa fa-tasks mr-1"></i>Projects</strong><br>
+                                    @if ($jobseeker->works == null)
+                                    <span class="tag tag-danger text-muted"> Not Found </span>
+                                    @else
+                                    @foreach(json_decode($jobseeker->works, true) as $row)
+                                    @foreach ($row as $key=>$value)
+                                    <span class="tag tag-danger text-muted"> <b> {{ucfirst($key)}}</b>: {{$value}} <br></span>
+                                    @endforeach
+                                    @endforeach
+                                    @endif
 
-                                  @foreach(json_decode($jobseeker->works, true) as  $row)
-                                        @foreach ($row as $key=>$value)
-                                            <span class="tag tag-danger"> <b> {{ucfirst($key)}}</b>: {{$value}} <br></span>
-                                        @endforeach
+                                    <hr>
+                                    <strong><i class="fa fa-tasks mr-1"></i>Experiences</strong><br>
+                                    @if ($jobseeker->experiences== null)
+                                    <span class="tag tag-danger text-muted"> Not Found </span>
+                                    @else
+                                    @foreach(json_decode($jobseeker->experiences, true) as $row)
+                                    @foreach ($row as $key=>$value)
+                                    <span class="tag tag-danger text-muted"> <b> {{ucfirst($key)}}</b>: {{$value}} <br></span>
                                     @endforeach
-                                            <hr>
-                                       <strong><i class="fa fa-tasks mr-1"></i>Experiences</strong><br>
-                                  @foreach(json_decode($jobseeker->experiences, true) as  $row)
-                                        @foreach ($row as $key=>$value)
-                                            <span class="tag tag-danger"> <b> {{ucfirst($key)}}</b>: {{$value}} <br></span>
-                                        @endforeach
                                     @endforeach
+                                    @endif
 
 
                                     @if($jobseeker->skill_name ==null)

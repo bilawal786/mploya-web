@@ -27,6 +27,7 @@ class AllJobCollection extends JsonResource
             'employer_id' => $this->employer_id,
             'latitude' => (float)$employer->latitude,
             'longitude' => (float)$employer->longitude,
+            'salary_type' => $this->salary_type,
             'requirements' => $this->requirements,
             'skills' => $this->skills,
             'address' => $employer->address,

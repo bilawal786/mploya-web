@@ -9,8 +9,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\AllJobCollection;
 use App\Http\Resources\CategoryCollection;
 use App\Http\Resources\SubcategoryCollection;
-use App\Http\Resources\CategoryRelatedJobsResource;
-use App\Http\Resources\CategoryRelatedJobsCollection;
+
 
 
 class CategoryController extends Controller

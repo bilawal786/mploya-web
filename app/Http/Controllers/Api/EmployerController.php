@@ -109,7 +109,7 @@ class EmployerController extends Controller
             $success['success'] = true;
             return response()->json($success, $this->successStatus);
         } else {
-            return response()->json(['message' => 'User Not Found', 'success' => false], 401);
+            return response()->json(['message' => 'User Not Found', 'success' => false], 200);
         }
     }
 
@@ -199,7 +199,7 @@ class EmployerController extends Controller
             $data = new JobResource($job);
             return $data->toJson();
         } else {
-            return response()->json(['message' => 'Job Not Found', 'success' => false], 404);
+            return response()->json(['message' => 'Job Not Found', 'success' => false], 200);
         }
     }
 
@@ -212,7 +212,7 @@ class EmployerController extends Controller
             $data = new EmployerResource($employer);
             return $data->toJson();
         } else {
-            return response()->json(['message' => 'Employer Not Found', 'success' => false], 404);
+            return response()->json(['message' => 'Employer Not Found', 'success' => false], 200);
         }
     }
 
@@ -226,7 +226,7 @@ class EmployerController extends Controller
             $data = new JobseekerResource($jobseeker);
             return $data->toJson();
         } else {
-            return response()->json(['message' => 'Jobseeker Not Found', 'success' => false], 404);
+            return response()->json(['message' => 'Jobseeker Not Found', 'success' => false], 200);
         }
     }
 
@@ -258,7 +258,7 @@ class EmployerController extends Controller
                 $success['success'] = true;
                 return response()->json($success, $this->successStatus);
             } else {
-                return response()->json(['message' => 'Job Not Found', 'success' => false], 404);
+                return response()->json(['message' => 'Job Not Found', 'success' => false], 200);
             }
         } else {
             return response()->json(['error' => 'User not authorized', 'success' => false], 401);
@@ -276,7 +276,7 @@ class EmployerController extends Controller
             $success['success'] = true;
             return response()->json($success, $this->successStatus);
         } else {
-            return response()->json(['message' => 'Job Not Found', 'success' => false], 404);
+            return response()->json(['message' => 'Job Not Found', 'success' => false], 200);
         }
     }
 
@@ -301,7 +301,7 @@ class EmployerController extends Controller
                 return response()->json($success, $this->successStatus);
             }
         } else {
-            return response()->json(['message' => 'Job Not Found', 'success' => false], 404);
+            return response()->json(['message' => 'Job Not Found', 'success' => false], 200);
         }
     }
 
@@ -325,7 +325,7 @@ class EmployerController extends Controller
                 return response()->json($success, $this->successStatus);
             }
         } else {
-            return response()->json(['message' => 'User Not Found', 'success' => false], 404);
+            return response()->json(['message' => 'User Not Found', 'success' => false], 200);
         }
     }
 
@@ -370,7 +370,7 @@ class EmployerController extends Controller
         $appliedjobs = Applied::whereIn('job_id', $jobsid)->get();
 
         if ($appliedjobs->isEmpty()) {
-            return response()->json(['message' => 'Applied Jobseeker not Found', 'success' => false], 404);
+            return response()->json(['message' => 'Applied Jobseeker not Found', 'success' => false], 200);
         } else {
             $data = AppliedEmployerCollection::collection($appliedjobs);
             return response()->json(AppliedEmployerCollection::collection($data));
@@ -403,10 +403,10 @@ class EmployerController extends Controller
                     return response()->json($success, $this->successStatus);
                 }
             } else {
-                return response()->json(['message' => 'Profile Not Visible', 'success' => false], 401);
+                return response()->json(['message' => 'Profile Not Visible', 'success' => false], 200);
             }
         } else {
-            return response()->json(['message' => 'You Are Not Able To Bookmark Employer', 'success' => false], 401);
+            return response()->json(['message' => 'You Are Not Able To Bookmark Employer', 'success' => false], 200);
         }
     }
 
@@ -428,7 +428,7 @@ class EmployerController extends Controller
                 return response()->json(BookmarkEmployerCollection::collection($data));
             }
         } else {
-            return response()->json(['message' => 'You Are Not Able To Get Bookmark Jobseeker', 'success' => false], 401);
+            return response()->json(['message' => 'You Are Not Able To Get Bookmark Jobseeker', 'success' => false], 200);
         }
     }
 
@@ -443,7 +443,7 @@ class EmployerController extends Controller
             $data = new JobseekerResource($bookmarked_jobseekers);
             return $data->toJson();
         } else {
-            return response()->json(['message' => 'Bookmarked Jobseeker Not Found', 'success' => false], 404);
+            return response()->json(['message' => 'Bookmarked Jobseeker Not Found', 'success' => false], 200);
         }
     }
 
@@ -571,7 +571,7 @@ class EmployerController extends Controller
             $data = new PopularJobseekerResource($popularjobseeker);
             return $data->toJson();
         } else {
-            return response()->json(['message' => 'Popular Jobseeker  Not Found', 'success' => false], 404);
+            return response()->json(['message' => 'Popular Jobseeker  Not Found', 'success' => false], 200);
         }
     }
 
@@ -606,7 +606,7 @@ class EmployerController extends Controller
                 return response()->json(ReviewCollection::collection($data));
             }
         } else {
-            return response()->json(['message' => 'You Are Not Able To Get Reviews', 'success' => false], 401);
+            return response()->json(['message' => 'You Are Not Able To Get Reviews', 'success' => false], 200);
         }
     }
 

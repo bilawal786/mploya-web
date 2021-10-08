@@ -31,6 +31,7 @@ class JobResource extends JsonResource
             'link' => $this->link,
             'vacancies' => $this->vacancies,
             'job_type' => $this->job_type,
+            'salary_type' => $this->salary_type,
 
             // end new
             'job_title' => $this->job_title,

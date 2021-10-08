@@ -26,7 +26,7 @@ class SubscriptionController extends Controller
             $data = SubscrioptionCollection::collection($scriptions);
             return response()->json(SubscrioptionCollection::collection($data));
         } else {
-            return response()->json(['message' => 'You Are Not Able To Get All Subscriptions', 'success' => false], 200);
+            return response()->json(['error' => 'You Are Not Able To Get All Subscriptions', 'success' => false], 404);
         }
     }
 
@@ -39,7 +39,7 @@ class SubscriptionController extends Controller
             $data = new SubscriptionResource($subscription);
             return $data->toJson();
         } else {
-            return response()->json(['message' => 'Subscription Not Found', 'success' => false], 200);
+            return response()->json(['error' => 'Subscription Not Found', 'success' => false], 404);
         }
     }
 
@@ -70,7 +70,7 @@ class SubscriptionController extends Controller
                 return redirect()->route('payment');
             }
         } else {
-            return response()->json(['message' => 'You Are Not Able To Purchase the Subscriptions', 'success' => false], 200);
+            return response()->json(['error' => 'You Are Not Able To Purchase the Subscriptions', 'success' => false], 404);
         }
     }
 
@@ -91,7 +91,7 @@ class SubscriptionController extends Controller
                 return response()->json(PurchasedSubscriptionCollection::collection($data));
             }
         } else {
-            return response()->json(['message' => 'You Are Not Able To Get All Pruchased Subscription', 'success' => false], 200);
+            return response()->json(['error' => 'You Are Not Able To Get All Pruchased Subscription', 'success' => false], 404);
         }
     }
 }

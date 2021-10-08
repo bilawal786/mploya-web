@@ -162,7 +162,7 @@ class JobseekerController extends Controller
             $success['success'] = true;
             return response()->json($success, $this->successStatus);
         } else {
-            return response()->json(['message' => 'You already  Apply On This Job', 'success' => false], 200);
+            return response()->json(['error' => 'You already  Apply On This Job', 'success' => false], 404);
         }
     }
 
@@ -183,7 +183,7 @@ class JobseekerController extends Controller
                 return response()->json(AllJobCollection::collection($data));
             }
         } else {
-            return response()->json(['message' => 'You Are Not Able To Get Applied Jobs', 'success' => false], 200);
+            return response()->json(['error' => 'You Are Not Able To Get Applied Jobs', 'success' => false], 404);
         }
     }
 
@@ -216,7 +216,7 @@ class JobseekerController extends Controller
                 return response()->json(['message' => 'Job Are Closed', 'success' => false], 200);
             }
         } else {
-            return response()->json(['message' => 'You Are Not Able To Bookmark Jobs', 'success' => false], 200);
+            return response()->json(['error' => 'You Are Not Able To Bookmark Jobs', 'success' => false], 404);
         }
     }
 
@@ -238,7 +238,7 @@ class JobseekerController extends Controller
                 return response()->json(AllJobCollection::collection($data));
             }
         } else {
-            return response()->json(['message' => 'You Are Not Able To Get Bookmark Jobs', 'success' => false], 200);
+            return response()->json(['error' => 'You Are Not Able To Get Bookmark Jobs', 'success' => false], 404);
         }
     }
 
@@ -252,7 +252,7 @@ class JobseekerController extends Controller
             $data = new JobResource($bookmarked_job);
             return $data->toJson();
         } else {
-            return response()->json(['message' => 'Bookmarked Job Not Found', 'success' => false], 200);
+            return response()->json(['error' => 'Bookmarked Job Not Found', 'success' => false], 404);
         }
     }
 
@@ -291,7 +291,7 @@ class JobseekerController extends Controller
                 return response()->json(ReviewCollection::collection($data));
             }
         } else {
-            return response()->json(['message' => 'You Are Not Able To Get Reviews', 'success' => false], 200);
+            return response()->json(['error' => 'You Are Not Able To Get Reviews', 'success' => false], 404);
         }
     }
 
@@ -304,7 +304,7 @@ class JobseekerController extends Controller
             $data = new PopularEmployerResource($popularemployer);
             return $data->toJson();
         } else {
-            return response()->json(['message' => 'Popular Employer  Not Found', 'success' => false], 200);
+            return response()->json(['error' => 'Popular Employer  Not Found', 'success' => false], 404);
         }
     }
 

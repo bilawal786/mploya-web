@@ -60,19 +60,22 @@ class EmployerResource extends JsonResource
             $percentage = (int)round(($sum / 23) * 100);
         }
 
-        if ($this->address == '0') {
-            $address = '';
-        } else {
-            $address = $this->address;
-        }
-        if ($this->company_name == '0') {
-            $company_name = '';
-        } else {
-            $company_name = $this->company_name;
-        }
+
+        $this->address == '0' ?  $address = '' : $address = $this->address;
+        $this->company_name == '0' ?  $company_name = '' : $company_name = $this->company_name;
+        $this->phone == '0' ?  $phone = '' : $phone = $this->phone;
+        $this->video == '0' ?  $video = '' : $video = $this->video;
+        $this->description == null ?  $description = '' : $description = $this->description;
+        $this->language == null ?  $language = '' : $language = $this->language;
+
+        $this->facebook_link == null ?  $facebook_link = '' : $facebook_link = $this->facebook_link;
+        $this->instagram_link == null ?  $instagram_link = '' : $instagram_link = $this->instagram_link;
+        $this->twitter_link == null ?  $twitter_link = '' : $twitter_link = $this->twitter_link;
+        $this->linkedin_link == null ?  $linkedin_link = '' : $linkedin_link = $this->linkedin_link;
+
+
 
         $jobs = Job::where('employer_id', '=', $this->id)->get();
-        // dd($jobs);
         return [
             'id' => $this->id,
             'deviceToken' => $this->deviceToken,
@@ -81,16 +84,16 @@ class EmployerResource extends JsonResource
             'address' => $address,
             'profile_percentage' => $percentage,
             'profile_status' => $this->profile_status,
-            'phone' => $this->phone,
-            'about' => $this->description,
+            'phone' => $phone,
+            'about' => $description,
             'company_name' => $company_name,
             'image' => $this->image,
-            'video' => $this->video,
-            'facebook_link' => $this->facebook_link,
-            'instagram_link' => $this->instagram_link,
-            'twitter_link' => $this->twitter_link,
-            'linkedin_link' => $this->linkedin_link,
-            'language' => $this->language,
+            'video' => $video,
+            'facebook_link' => $facebook_link,
+            'instagram_link' => $instagram_link,
+            'twitter_link' => $twitter_link,
+            'linkedin_link' => $linkedin_link,
+            'language' => $language,
             'updated_at' => $this->updated_at->format('d-m-Y'),
             'jobs' => $jobs,
         ];

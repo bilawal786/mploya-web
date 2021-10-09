@@ -40,7 +40,7 @@ class CreateUsersTable extends Migration
             $table->string('company_name')->default('0');
             $table->string('company_logo')->default('0');
             $table->string('user_type')->nullable();
-            $table->string('profile_status')->nullable('visible');
+            $table->string('profile_status')->default('visible');
             $table->string('provider_id')->nullable();
             $table->string('provider_name')->nullable();
             $table->string('image')->default('assets/dist/img/userpic.png');

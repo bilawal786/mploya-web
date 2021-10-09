@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Job;
 use App\User;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -69,6 +70,9 @@ class EmployerResource extends JsonResource
         } else {
             $company_name = $this->company_name;
         }
+
+        $jobs = Job::where('employer_id', '=', $this->id)->get();
+        // dd($jobs);
         return [
             'id' => $this->id,
             'deviceToken' => $this->deviceToken,
@@ -87,7 +91,8 @@ class EmployerResource extends JsonResource
             'twitter_link' => $this->twitter_link,
             'linkedin_link' => $this->linkedin_link,
             'language' => $this->language,
-            'updated_at' => $this->updated_at->format('d-m-Y')
+            'updated_at' => $this->updated_at->format('d-m-Y'),
+            'jobs' => $jobs,
         ];
     }
 }

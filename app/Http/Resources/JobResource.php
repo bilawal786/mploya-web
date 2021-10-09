@@ -3,6 +3,7 @@
 namespace App\Http\Resources;
 
 use App\User;
+use App\Bookmark;
 use App\Category;
 use App\Subcategory;
 use Illuminate\Http\Resources\Json\JsonResource;
@@ -20,8 +21,10 @@ class JobResource extends JsonResource
         $employer = User::find($this->employer_id);
         $cat = Category::find($this->category_id);
         $subcat = Subcategory::find($this->subcategory_id);
+        $islike = Bookmark::where('job_id', '=', $this->id)->where('jobseeker_id', '=', auth('api')->user()->id)->exists();
         return [
             'id' => $this->id,
+            'isLike' => empty($islike) ? 0 : 1,
             'employer_id' => $this->employer_id,
             'category_name' => $cat->title,
             // new

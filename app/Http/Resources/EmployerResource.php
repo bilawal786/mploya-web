@@ -58,17 +58,28 @@ class EmployerResource extends JsonResource
                 + $fourteen + $fifteen + $sixteen + $seventeen + $eighteen + $nineteen + $twenty + $twentyone  + 3;
             $percentage = (int)round(($sum / 23) * 100);
         }
+
+        if ($this->address == '0') {
+            $address = '';
+        } else {
+            $address = $this->address;
+        }
+        if ($this->company_name == '0') {
+            $company_name = '';
+        } else {
+            $company_name = $this->company_name;
+        }
         return [
             'id' => $this->id,
             'deviceToken' => $this->deviceToken,
             'name' => $this->name,
             'email' => $this->email,
-            'address' => $this->address,
+            'address' => $address,
             'profile_percentage' => $percentage,
             'profile_status' => $this->profile_status,
             'phone' => $this->phone,
             'about' => $this->description,
-            'company_name' => $this->company_name,
+            'company_name' => $company_name,
             'image' => $this->image,
             'video' => $this->video,
             'facebook_link' => $this->facebook_link,

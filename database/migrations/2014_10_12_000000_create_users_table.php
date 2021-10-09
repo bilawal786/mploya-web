@@ -27,37 +27,12 @@ class CreateUsersTable extends Migration
             $table->longText('educations')->nullable();
             $table->longText('experiences')->nullable();
             $table->longText('works')->nullable();
-            // $table->string('experience_title')->nullable();
-            // $table->string('experience_description')->nullable();
-            // $table->string('experience_startAt')->nullable();
-            // $table->string('experience_endAt')->nullable();
-            // $table->string('experience_isContinue')->nullable();
-            // $table->string('experience_projectLink')->nullable();
-            // $table->string('experience_role')->nullable();
             $table->string('address')->default('0');
             $table->string('CNIC')->default('0');
             $table->string('phone')->default('0');
             $table->string('city')->default('0');
             $table->string('country')->default('0');
             $table->text('description')->nullable();
-            // $table->string('occupation')->nullable();
-
-            // $table->string('education_name')->nullable();
-            // $table->string('education_description')->nullable();
-            // $table->string('education_is_continue')->nullable();
-            // $table->string('education_complete_date')->nullable();
-            // $table->string('education_start_date')->nullable();
-
-            // $table->string('project_title')->nullable();
-            // $table->string('project_companyAddress')->nullable();
-            // $table->string('project_companyName')->nullable();
-            // $table->string('project_description')->nullable();
-            // $table->string('project_endAt')->nullable();
-            // $table->string('project_isContinue')->nullable();
-            // $table->string('project_startAt')->nullable();
-            // $table->string('project_occupation')->nullable();
-            // $table->string('project_year')->nullable();
-            // $table->string('project_links')->nullable();
             $table->string('skill_name')->nullable();
             $table->string('certification_name')->nullable();
             $table->string('certification_year')->nullable();

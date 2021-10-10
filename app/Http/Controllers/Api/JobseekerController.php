@@ -94,6 +94,8 @@ class JobseekerController extends Controller
             $success['message'] = 'Profile Updated Successfully!';
             $success['success'] = true;
             return response()->json($success, $this->successStatus);
+        } else {
+            return response()->json(['error' => 'User Not Found', 'success' => false], 401);
         }
     }
 

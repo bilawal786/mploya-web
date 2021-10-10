@@ -10,16 +10,16 @@ use Illuminate\Notifications\Notification;
 class JobApplyNotification extends Notification
 {
     use Queueable;
-    public $message;
+    public $jobseeker;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct($message)
+    public function __construct($jobseeker)
     {
-        $this->message = $message;
+        $this->jobseeker = $jobseeker;
     }
 
     /**
@@ -41,9 +41,10 @@ class JobApplyNotification extends Notification
      */
     public function toMail($notifiable)
     {
-        return (new MailMessage)
-            ->line('The introduction to the notification. : ' . $this->message)
-            ->line('Thank you for using our application!');
+        return (new MailMessage)->view(
+            'admin.mail',
+            ['jobseeker' => $this->jobseeker]
+        );
     }
 
     /**

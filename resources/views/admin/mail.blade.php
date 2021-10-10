@@ -32,7 +32,7 @@
 
     </style>  
         <div class="container mt-5">  
-              <div class="row justify-content-center">
+              <div class="row justify-content-center mb-5">
                     <div class="col-md-8 bg-light shadow-lg p-5 ">
                           <h1 class="text-center">
                                 Applied For Job
@@ -59,51 +59,6 @@
                           
                     </div>
               </div>
-                <!--| ABOUT |--------------------------------------------------->
-                <section id="about" class="container"  style="text-align: center">
-                     
-                      <img style="width:250px; height:160px;margin-top:50px" src="assets/dist/img/mploya.jpeg">
-                  
-                  
-                  <h1 class="display-4">Applied For Job</h1>
-                  
-                 <p>
-                       <img style="width:80px; border-radius:50%" src="{{asset($jobseeker->image)}}"><br>
-                                        
-
-                       
-                       <span class="badge badge-info">{{$jobseeker->name}}</span>
-                  </p>
-                   <p>
-                      <strong>Address:</strong>
-                      <span class="badge badge-info">{{$jobseeker->address}}</span>
-                    
-                 </p>
-                 <p>
-                      <strong>Email:</strong>
-                      <span class="badge badge-info">{{$jobseeker->email}}</span>
-                    
-                 </p>
-                  <p>
-                    <strong>Phone:</strong>
-                    <span class="badge badge-info">{{$jobseeker->phone}}</span>
-                  </p> <br> 
-                  <p>
-                    
-                    <span class="badge badge-info">Thank's for using our application</span>
-                  </p>
-                   <p>
-                        <strong>Regards,</strong><br>
-                    <span class="badge badge-info">mploya</span>
-                  </p>
-                 
-                    
-                 
-                </section>
-
-                
-        
-            
         </div>
     
 

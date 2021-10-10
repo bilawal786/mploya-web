@@ -158,8 +158,7 @@ class JobseekerController extends Controller
             $appliedjob->job_id = $request->job_id;
             $appliedjob->save();
             $appliedjob->users()->attach($jobseeker_id);
-            $message = $jobseeker->name . ' ' . 'Applied For' . ' ' . $job->job_title;
-            $jobseeker->notify(new JobApplyNotification($message));
+            $jobseeker->notify(new JobApplyNotification($jobseeker));
             $success['message'] = 'Applied Successfully!';
             $success['success'] = true;
             return response()->json($success, $this->successStatus);

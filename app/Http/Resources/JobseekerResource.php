@@ -58,31 +58,56 @@ class JobseekerResource extends JsonResource
                 + $fourteen + $fifteen + $sixteen + $seventeen + $eighteen + $nineteen + $twenty + $twentyone  + 3;
             $percentage = (int)round(($sum / 23) * 100);
         }
+
+        $address = $jobseeker->address == '0' ? [] : $jobseeker->address;
+        $CNIC = $jobseeker->CNIC == '0' ? [] : $jobseeker->CNIC;
+        $phone = $jobseeker->phone == '0' ? [] : $jobseeker->phone;
+        $city = $jobseeker->city == '0' ? [] : $jobseeker->city;
+        $country = $jobseeker->country == '0' ? [] :  $jobseeker->country;
+        $father_name = $jobseeker->father_name == '0' ? [] : $jobseeker->father_name;
+        $description = $jobseeker->description == null ? [] : $jobseeker->description;
+        // new
+        $video = $jobseeker->video == '0' ? [] : $jobseeker->video;
+        $educations = $jobseeker->educations == null ? [] : $jobseeker->educations;
+        $experiences = $jobseeker->experiences == null ? [] : $jobseeker->experiences;
+        $works = $jobseeker->works == null ? [] : $jobseeker->works;
+        $facebook_link = ($jobseeker->facebook_link == null) ? [] : $jobseeker->facebook_link;
+        $instagram_link = ($jobseeker->instagram_link == null) ? [] : $jobseeker->instagram_link;
+        $twitter_link = ($jobseeker->twitter_link == null) ? [] : $jobseeker->twitter_link;
+        $linkedin_link = ($jobseeker->linkedin_link == null) ? [] : $jobseeker->linkedin_link;
+        // end new
+        $skill_name = ($jobseeker->skill_name == null) ? [] : $jobseeker->skill_name;
+        $certification_name = ($jobseeker->certification_name == null) ? [] : $jobseeker->certification_name;
+        $certification_year = ($jobseeker->certification_year == null) ? [] : $jobseeker->certification_year;
+        $certification_description = ($jobseeker->certification_description == null) ? [] : $jobseeker->certification_description;
+        $language = ($jobseeker->language == null) ? [] : $jobseeker->language;
+
+
         return [
             'id' => $this->id,
             'deviceToken' => $this->deviceToken,
             'name' => $this->name,
             'email' => $this->email,
-            'address' => $this->address,
-            'video' => $this->video,
+            'address' => $address,
+            'video' => $video,
             'image' => $this->image,
-            'educations' => $this->educations,
-            'experiences' => $this->experiences,
-            'works' => $this->works,
-            'language' =>  empty($this->language) ? [] : $this->language,
-            'occupation' => $this->occupation,
-            'experience' => $this->experience,
+            'educations' => $educations,
+            'experiences' => $experiences,
+            'works' => $works,
+            'language' =>  $language,
+            // 'occupation' => $this->occupation,
+            // 'experience' => $this->experience,
             'profile_percentage' => $percentage,
-            'CNIC' => $this->CNIC,
-            'phone' => $this->phone,
-            'city' => $this->city,
-            'country' => $this->country,
-            'father_name' => $this->father_name,
-            'description' => $this->description,
-            'facebook_link' => $this->facebook_link,
-            'instagram_link' => $this->instagram_link,
-            'twitter_link' => $this->twitter_link,
-            'linkedin_link' => $this->linkedin_link,
+            'CNIC' => $CNIC,
+            'phone' => $phone,
+            'city' => $city,
+            'country' => $country,
+            'father_name' => $father_name,
+            'description' => $description,
+            'facebook_link' => $facebook_link,
+            'instagram_link' => $instagram_link,
+            'twitter_link' => $twitter_link,
+            'linkedin_link' => $linkedin_link,
             'education_name' => $this->education_name,
             'education_description' => $this->education_description,
             'education_is_continue' => $this->education_is_continue,
@@ -92,10 +117,10 @@ class JobseekerResource extends JsonResource
             'project_year' => $this->project_year,
             'project_links' => $this->project_links,
             'project_description' => $this->project_description,
-            'skill_name' =>  empty($this->skill_name) ? [] : $this->skill_name,
-            'certification_name' => $this->certification_name,
-            'certification_year' => $this->certification_year,
-            'certification_description' => $this->certification_description,
+            'skill_name' =>  $skill_name,
+            'certification_name' => $certification_name,
+            'certification_year' => $certification_year,
+            'certification_description' => $certification_description,
             'updated_at' => $this->updated_at->format('d-m-Y')
         ];
     }

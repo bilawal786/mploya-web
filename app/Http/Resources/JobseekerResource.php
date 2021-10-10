@@ -59,27 +59,27 @@ class JobseekerResource extends JsonResource
             $percentage = (int)round(($sum / 23) * 100);
         }
 
-        $address = $jobseeker->address == '0' ? [] : $jobseeker->address;
-        $CNIC = $jobseeker->CNIC == '0' ? [] : $jobseeker->CNIC;
-        $phone = $jobseeker->phone == '0' ? [] : $jobseeker->phone;
-        $city = $jobseeker->city == '0' ? [] : $jobseeker->city;
-        $country = $jobseeker->country == '0' ? [] :  $jobseeker->country;
-        $father_name = $jobseeker->father_name == '0' ? [] : $jobseeker->father_name;
-        $description = $jobseeker->description == null ? [] : $jobseeker->description;
+        $address = $jobseeker->address == '0' ? '' : $jobseeker->address;
+        $CNIC = $jobseeker->CNIC == '0' ? '' : $jobseeker->CNIC;
+        $phone = $jobseeker->phone == '0' ? '' : $jobseeker->phone;
+        $city = $jobseeker->city == '0' ? '' : $jobseeker->city;
+        $country = $jobseeker->country == '0' ? '' :  $jobseeker->country;
+        $father_name = $jobseeker->father_name == '0' ? '' : $jobseeker->father_name;
+        $description = $jobseeker->description == null ? '' : $jobseeker->description;
         // new
-        $video = $jobseeker->video == '0' ? [] : $jobseeker->video;
+        $video = $jobseeker->video == '0' ? '' : $jobseeker->video;
         $educations = $jobseeker->educations == null ? [] : $jobseeker->educations;
         $experiences = $jobseeker->experiences == null ? [] : $jobseeker->experiences;
         $works = $jobseeker->works == null ? [] : $jobseeker->works;
-        $facebook_link = ($jobseeker->facebook_link == null) ? [] : $jobseeker->facebook_link;
-        $instagram_link = ($jobseeker->instagram_link == null) ? [] : $jobseeker->instagram_link;
-        $twitter_link = ($jobseeker->twitter_link == null) ? [] : $jobseeker->twitter_link;
-        $linkedin_link = ($jobseeker->linkedin_link == null) ? [] : $jobseeker->linkedin_link;
+        $facebook_link = ($jobseeker->facebook_link == null) ? '' : $jobseeker->facebook_link;
+        $instagram_link = ($jobseeker->instagram_link == null) ? '' : $jobseeker->instagram_link;
+        $twitter_link = ($jobseeker->twitter_link == null) ? '' : $jobseeker->twitter_link;
+        $linkedin_link = ($jobseeker->linkedin_link == null) ? '' : $jobseeker->linkedin_link;
         // end new
         $skill_name = ($jobseeker->skill_name == null) ? [] : $jobseeker->skill_name;
-        $certification_name = ($jobseeker->certification_name == null) ? [] : $jobseeker->certification_name;
-        $certification_year = ($jobseeker->certification_year == null) ? [] : $jobseeker->certification_year;
-        $certification_description = ($jobseeker->certification_description == null) ? [] : $jobseeker->certification_description;
+        $certification_name = ($jobseeker->certification_name == null) ? '' : $jobseeker->certification_name;
+        $certification_year = ($jobseeker->certification_year == null) ? '' : $jobseeker->certification_year;
+        $certification_description = ($jobseeker->certification_description == null) ? '' : $jobseeker->certification_description;
         $language = ($jobseeker->language == null) ? [] : $jobseeker->language;
 
 

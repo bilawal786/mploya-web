@@ -61,17 +61,17 @@ class EmployerResource extends JsonResource
         }
 
 
-        $this->address == '0' ?   $address = [] : $address = $this->address;
-        $this->company_name == '0' ?   $company_name = [] : $company_name = $this->company_name;
-        $this->phone == '0' ?   $phone = [] : $phone = $this->phone;
-        $this->video == '0' ?   $video = [] : $video = $this->video;
-        $this->description == null ?   $description = [] : $description = $this->description;
+        $this->address == '0' ?   $address = '' : $address = $this->address;
+        $this->company_name == '0' ?   $company_name = '' : $company_name = $this->company_name;
+        $this->phone == '0' ?   $phone = '' : $phone = $this->phone;
+        $this->video == '0' ?   $video = '' : $video = $this->video;
+        $this->description == null ?   $description = '' : $description = $this->description;
         $this->language == null ?   $language = [] : $language = $this->language;
 
-        $this->facebook_link == null ?   $facebook_link = [] : $facebook_link = $this->facebook_link;
-        $this->instagram_link == null ?   $instagram_link = [] : $instagram_link = $this->instagram_link;
-        $this->twitter_link == null ?   $twitter_link = [] : $twitter_link = $this->twitter_link;
-        $this->linkedin_link == null ?   $linkedin_link = [] : $linkedin_link = $this->linkedin_link;
+        $this->facebook_link == null ?   $facebook_link = '' : $facebook_link = $this->facebook_link;
+        $this->instagram_link == null ?   $instagram_link = '' : $instagram_link = $this->instagram_link;
+        $this->twitter_link == null ?   $twitter_link = '' : $twitter_link = $this->twitter_link;
+        $this->linkedin_link == null ?   $linkedin_link = '' : $linkedin_link = $this->linkedin_link;
 
 
 

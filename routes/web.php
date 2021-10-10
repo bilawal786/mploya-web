@@ -1,5 +1,6 @@
 <?php
 
+use App\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -17,6 +18,11 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
+Route::get('/mail', function () {
+
+    $jobseeker = User::find(5);
+    return view('admin.mail', ['jobseeker' => $jobseeker]);
+});
 
 Auth::routes(['register' => false]);
 

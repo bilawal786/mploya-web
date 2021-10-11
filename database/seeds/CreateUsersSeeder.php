@@ -232,7 +232,7 @@ class CreateUsersSeeder extends Seeder
                 // 'project_year' => '2016,2013',
                 // 'project_links' => 'https://www.test.com,https://www.test2.com',
                 // 'project_description' => 'Description 1, Description 2',
-                'skill_name' => 'Skill 1, Skill 2',
+                'skill_name' => ['Skill 1', 'Skill 2'],
                 'certification_name' => 'Web Development, Graphic Designing',
                 'certification_year' => '2016,218',
                 'certification_description' => 'Description 1, Description 2',

@@ -17,13 +17,13 @@ class PaymentController extends Controller
         return view('payment.payment', ['id' => $id, 'userid' => $userid]);
     }
 
-    public function StripePayment(Request $request, $userid)
+    public function StripePayment(Request $request)
     {
 
-        $purchasedsubscription = PruchasedSubscription::where('employer_id', '=', $userid)->first();
+        $purchasedsubscription = PruchasedSubscription::where('employer_id', '=', $request->userid)->first();
         if ($purchasedsubscription == null) {
             $subscription = new PruchasedSubscription();
-            $subscription->employer_id = $userid;
+            $subscription->employer_id = $request->userid;
             $subscription->title = $request->title;
             $subscription->price = $request->price;
             $subscription->valid_job = $request->valid_job;
@@ -32,7 +32,7 @@ class PaymentController extends Controller
             $subscription->description = $request->description;
             $subscription->save();
         } else {
-            $purchasedsubscription = PruchasedSubscription::where('employer_id', '=', $userid)->first();
+            $purchasedsubscription = PruchasedSubscription::where('employer_id', '=', $request->userid)->first();
             $purchasedsubscription->valid_job += $request->valid_job;
             $purchasedsubscription->update();
         }

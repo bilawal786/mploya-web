@@ -165,7 +165,7 @@ class EmployerController extends Controller
                 }
             } else {
 
-                return response()->json(['error' => 'You Are Not Able To Post Job', 'success' => false], 401);
+                return response()->json(['error' => 'You Are Not Able To Post Job', 'success' => false], 200);
             }
         } else {
             return response()->json(['error' => 'User not authorized', 'success' => false], 401);

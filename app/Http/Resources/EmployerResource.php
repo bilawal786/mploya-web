@@ -4,6 +4,7 @@ namespace App\Http\Resources;
 
 use App\Job;
 use App\User;
+use App\Review;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class EmployerResource extends JsonResource
@@ -74,7 +75,7 @@ class EmployerResource extends JsonResource
         $this->linkedin_link == null ?   $linkedin_link = '' : $linkedin_link = $this->linkedin_link;
 
 
-
+        $reviews = Review::where('receiver', '=', $this->id)->get();
         $jobs = Job::where('employer_id', '=', $this->id)->get();
         return [
             'id' => $this->id,
@@ -95,6 +96,7 @@ class EmployerResource extends JsonResource
             'linkedin_link' => $linkedin_link,
             'language' => $language,
             'updated_at' => $this->updated_at->format('d-m-Y'),
+            'reviews' => $reviews,
             'jobs' => $jobs,
         ];
     }

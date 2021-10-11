@@ -77,6 +77,7 @@ class AdminController extends Controller
         $two = $jobseeker->CNIC == '0' ? 0 : 1;
         $three = $jobseeker->phone == '0' ? 0 : 1;
         $four = $jobseeker->image == 'assets/dist/img/profilepic.png' ? 0 : 1;
+
         $five = $jobseeker->city == '0' ? 0 : 1;
         $six = $jobseeker->country == '0' ? 0 : 1;
         $seven = $jobseeker->father_name == '0' ? 0 : 1;
@@ -96,30 +97,14 @@ class AdminController extends Controller
         $nineteen = ($jobseeker->certification_year == null) ? 0 : 1;
         $twenty = ($jobseeker->certification_description == null) ? 0 : 1;
         $twentyone = ($jobseeker->language == null) ? 0 : 1;
-
+        $twentytwo = $jobseeker->video == '0' ? 0 : 1;
         $sum = $one + $two + $three + $four + $five + $six + $seven + $eight + $nine + $ten + $eleven + $twelve + $thirteen
-            + $fourteen + $fifteen + $sixteen + $seventeen + $eighteen + $nineteen + $twenty + $twentyone  + 3;
-        $percentage = (int)round(($sum / 23) * 100);
+            + $fourteen + $fifteen + $sixteen + $seventeen + $eighteen + $nineteen + $twenty + $twentyone + $twentytwo  + 3;
+        $percentage = (int)round(($sum / 25) * 100);
         $jobsid = Applied::where('user_id', '=', $id)->pluck('job_id');
         $appliedjobs = Job::whereIn('id', $jobsid)->get();
         $totalappliedjobs = count($appliedjobs);
         return view('admin.jobseeker.view', compact('jobseeker', 'appliedjobs', 'totalappliedjobs', 'percentage'));
-
-
-        // $nine = ($jobseeker->education_name == null) ? 0 : 1;  // del krna ha
-        // $ten = ($jobseeker->education_description == null) ? 0 : 1; // del krna ha
-        // $eleven = ($jobseeker->education_complete_date == null) ? 0 : 1; // del krna ha
-        // $twelve = ($jobseeker->education_is_continue == null) ? 0 : 1; // del krna ha
-
-        // $thirteen = ($jobseeker->project_title == null) ? 0 : 1;  // del krna ha
-
-        // $fourteen = ($jobseeker->project_occupation == null) ? 0 : 1; // del krna ha
-        // $fifteen = ($jobseeker->project_year == null) ? 0 : 1;  // del krna ha
-        // $sixteen = ($jobseeker->project_links == null) ? 0 : 1; // del krna ha
-
-        // $seventeen = ($jobseeker->project_description == null) ? 0 : 1; // del krna ha
-
-
     }
 
     public function CreateCategory()

@@ -35,6 +35,7 @@ class JobseekerResource extends JsonResource
             $two = $jobseeker->CNIC == '0' ? 0 : 1;
             $three = $jobseeker->phone == '0' ? 0 : 1;
             $four = $jobseeker->image == 'assets/dist/img/profilepic.png' ? 0 : 1;
+
             $five = $jobseeker->city == '0' ? 0 : 1;
             $six = $jobseeker->country == '0' ? 0 : 1;
             $seven = $jobseeker->father_name == '0' ? 0 : 1;
@@ -54,9 +55,10 @@ class JobseekerResource extends JsonResource
             $nineteen = ($jobseeker->certification_year == null) ? 0 : 1;
             $twenty = ($jobseeker->certification_description == null) ? 0 : 1;
             $twentyone = ($jobseeker->language == null) ? 0 : 1;
+            $twentytwo = $jobseeker->video == '0' ? 0 : 1;
             $sum = $one + $two + $three + $four + $five + $six + $seven + $eight + $nine + $ten + $eleven + $twelve + $thirteen
-                + $fourteen + $fifteen + $sixteen + $seventeen + $eighteen + $nineteen + $twenty + $twentyone  + 3;
-            $percentage = (int)round(($sum / 23) * 100);
+                + $fourteen + $fifteen + $sixteen + $seventeen + $eighteen + $nineteen + $twenty + $twentyone + $twentytwo  + 3;
+            $percentage = (int)round(($sum / 25) * 100);
         }
 
         $address = $jobseeker->address == '0' ? '' : $jobseeker->address;
@@ -108,15 +110,6 @@ class JobseekerResource extends JsonResource
             'instagram_link' => $instagram_link,
             'twitter_link' => $twitter_link,
             'linkedin_link' => $linkedin_link,
-            'education_name' => $this->education_name,
-            'education_description' => $this->education_description,
-            'education_is_continue' => $this->education_is_continue,
-            'education_complete_date' => $this->education_complete_date,
-            'project_title' => $this->project_title,
-            'project_occupation' => $this->project_occupation,
-            'project_year' => $this->project_year,
-            'project_links' => $this->project_links,
-            'project_description' => $this->project_description,
             'skill_name' =>  $skill_name,
             'certification_name' => $certification_name,
             'certification_year' => $certification_year,

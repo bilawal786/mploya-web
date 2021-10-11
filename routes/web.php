@@ -154,7 +154,7 @@ Route::prefix('admin')->group(function () {
 });
 
 
-Route::get('/payment/card/{id}', 'PaymentController@Payment')->name('payment');
+Route::get('/payment/card/{id}/{userid}', 'PaymentController@Payment')->name('payment');
 Route::post('/stripe/payment', 'PaymentController@StripePayment')->name('stripe.payment');
 // payment success route 
 

@@ -292,7 +292,7 @@ class EmployerController extends Controller
                 $job->update();
                 $success['message'] = 'Job Status Change Successfully, and Now Current Status is Close';
                 $success['success'] = true;
-                return response()->json(['response' => $success], $this->successStatus);
+                return response()->json($success, $this->successStatus);
             } else {
                 $job->status = 'open';
                 $job->update();

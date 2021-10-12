@@ -268,6 +268,7 @@ class JobseekerController extends Controller
             $review->user_id = $jobseeker_id;
             $review->receiver = $request->employer_id;
             $review->star = $request->star;
+            $review->description = $request->description;
             $review->save();
             $success['message'] = 'Review Add Successfully';
             $success['success'] = true;

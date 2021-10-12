@@ -584,6 +584,7 @@ class EmployerController extends Controller
             $review->user_id = $employer_id;
             $review->receiver = $request->jobseeker_id;
             $review->star = $request->star;
+            $review->description = $request->description;
             $review->save();
             $success['message'] = 'Review Add Successfully';
             $success['success'] = true;

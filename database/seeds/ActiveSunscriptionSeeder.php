@@ -14,11 +14,11 @@ class ActiveSunscriptionSeeder extends Seeder
     {
         DB::table('pruchased_subscriptions')->insert([
             [
-                'employer_id' => '1',
+                'employer_id' => '2',
                 'status' => '1',
                 'title' => 'Demo Title',
                 'price' => '1000',
-                'valid_job' => '5',
+                'valid_job' => '8',
                 'color' => '#000000',
                 'description' => 'In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document.'
             ]

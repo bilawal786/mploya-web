@@ -68,7 +68,7 @@ class EmployerResource extends JsonResource
         $posterdJob = Job::where('employer_id', '=', $this->id)->count();
 
         $activeSubscription = PruchasedSubscription::where('employer_id', '=', $this->id)->first();
-        $remainingPosterdJob = (int)$activeSubscription->valid_job - $posterdJob;
+        $remainingPosterdJob = $activeSubscription == null ? 0 : (int)$activeSubscription->valid_job - $posterdJob;
         return [
             'id' => $this->id,
             'deviceToken' => $this->deviceToken,

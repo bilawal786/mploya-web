@@ -26,8 +26,11 @@ class JobseekerResource extends JsonResource
             $twoStarReview = Review::where('star', '=', 2)->where('receiver', '=', $this->id)->count();
             $oneStarReview = Review::where('star', '=', 1)->where('receiver', '=', $this->id)->count();
             $totalScore = (5 * $fiveStarReview) + (4 * $fourStarReview) + (3 * $threeStarReview) + (2 * $twoStarReview) + (1 * $oneStarReview);
-            $fiveStarrlScore = $totalScore / $totalReview;
+            $fiveStarScore = round($totalScore / $totalReview, 1);
+        } else {
+            $fiveStarScore = 0;
         }
+
         $jobseeker = User::find($this->id);
         $one = $jobseeker->address == '0' ? 0 : 1;
         $two = $jobseeker->CNIC == '0' ? 0 : 1;
@@ -88,7 +91,7 @@ class JobseekerResource extends JsonResource
             'id' => $this->id,
             'deviceToken' => $this->deviceToken,
             'totalReview' => $totalReview,
-            'fiveStareScore' => $totalReview == 0 ? 0 : round($fiveStarrlScore, 1),
+            'fiveStarScore' => $fiveStarScore,
             'profile_status' => $this->profile_status,
             'name' => $this->name,
             'email' => $this->email,

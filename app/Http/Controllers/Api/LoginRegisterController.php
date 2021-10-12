@@ -129,6 +129,7 @@ class LoginRegisterController extends Controller
                     $user->name = $request->name;
                     $user->deviceToken = $request->deviceToken;
                     $user->email = $request->email;
+                    $user->image = $request->image;
                     $user->user_type =  $request->user_type;
                     $user->provider_id = $request->provider_id;
                     $user->provider_name = $request->provider_name;
@@ -165,6 +166,7 @@ class LoginRegisterController extends Controller
                     $user->name = $request->name;
                     $user->deviceToken = $request->deviceToken;
                     $user->email = $request->email;
+                    $user->image = $request->image;
                     $user->user_type =  $request->user_type;
                     $user->provider_id = $request->provider_id;
                     $user->provider_name = $request->provider_name;

@@ -17,7 +17,7 @@ class DatabaseSeeder extends Seeder
             // CreateAdminSeeder::class,
             // JobSeeder::class,
             CategorySeeder::class,
-            // SubscriptionSeeder::class,
+            SubscriptionSeeder::class,
             // ActiveSunscriptionSeeder::class,
             SubcategorySeeder::class,
             // BookmarkJobSeeder::class,

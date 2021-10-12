@@ -76,7 +76,7 @@ class EmployerResource extends JsonResource
             'id' => $this->id,
             'deviceToken' => $this->deviceToken,
             'totalReview' => $totalReview,
-            'fiveStareScore' => $fiveStarScore,
+            'fiveStarScore' => $fiveStarScore,
             'activeSubscription' => $activeSubscription,
             'posterdJob' => $posterdJob,
             'remainingPosterdJob' => $remainingPosterdJob,

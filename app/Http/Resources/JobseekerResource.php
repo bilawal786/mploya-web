@@ -57,9 +57,10 @@ class JobseekerResource extends JsonResource
         $twenty = ($jobseeker->certification_description == null) ? 0 : 1;
         $twentyone = ($jobseeker->language == null) ? 0 : 1;
         $twentytwo = $jobseeker->video == '0' ? 0 : 1;
+        $twentythree = $jobseeker->occupation == '0' ? 0 : 1;
         $sum = $one + $two + $three + $four + $five + $six + $seven + $eight + $nine + $ten + $eleven + $twelve + $thirteen
-            + $fourteen + $fifteen + $sixteen + $seventeen + $eighteen + $nineteen + $twenty + $twentyone + $twentytwo  + 3;
-        $percentage = (int)round(($sum / 25) * 100);
+            + $fourteen + $fifteen + $sixteen + $seventeen + $eighteen + $nineteen + $twenty + $twentyone + $twentytwo  + $twentythree + 3;
+        $percentage = (int)round(($sum / 26) * 100);
 
 
         $address = $jobseeker->address == '0' ? '' : $jobseeker->address;
@@ -68,6 +69,7 @@ class JobseekerResource extends JsonResource
         $city = $jobseeker->city == '0' ? '' : $jobseeker->city;
         $country = $jobseeker->country == '0' ? '' :  $jobseeker->country;
         $father_name = $jobseeker->father_name == '0' ? '' : $jobseeker->father_name;
+        $occupation = $jobseeker->occupation == '0' ? '' : $jobseeker->occupation;
         $description = $jobseeker->description == null ? '' : $jobseeker->description;
         // new
         $video = $jobseeker->video == '0' ? '' : $jobseeker->video;
@@ -95,6 +97,7 @@ class JobseekerResource extends JsonResource
             'profile_status' => $this->profile_status,
             'name' => $this->name,
             'email' => $this->email,
+            'occupation' => $occupation,
             'address' => $address,
             'video' => $video,
             'image' => $this->image,

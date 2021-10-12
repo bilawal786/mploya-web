@@ -21,7 +21,8 @@ class CreateUsersTable extends Migration
             $table->string('latitude')->default('0');
             $table->string('longitude')->default('0');
             $table->string('name');
-            $table->string('language')->nullable();;
+            $table->string('occupation')->default('0');
+            $table->string('language')->nullable();
             $table->string('father_name')->default('0');
             $table->string('email');
             $table->longText('educations')->nullable();

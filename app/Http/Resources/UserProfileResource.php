@@ -56,9 +56,10 @@ class UserProfileResource extends JsonResource
             $twenty = ($jobseeker->certification_description == null) ? 0 : 1;
             $twentyone = ($jobseeker->language == null) ? 0 : 1;
             $twentytwo = $jobseeker->video == '0' ? 0 : 1;
+            $twentythree = $jobseeker->occupation == '0' ? 0 : 1;
             $sum = $one + $two + $three + $four + $five + $six + $seven + $eight + $nine + $ten + $eleven + $twelve + $thirteen
-                + $fourteen + $fifteen + $sixteen + $seventeen + $eighteen + $nineteen + $twenty + $twentyone + $twentytwo  + 3;
-            $percentage = (int)round(($sum / 25) * 100);
+                + $fourteen + $fifteen + $sixteen + $seventeen + $eighteen + $nineteen + $twenty + $twentyone + $twentytwo  + $twentythree + 3;
+            $percentage = (int)round(($sum / 26) * 100);
         }
 
         return [

@@ -49,6 +49,7 @@ class JobseekerController extends Controller
         if ($user) {
             $request->name ? $user->name = $request->name : '';
             $request->address ? $user->address = $request->address : '';
+            $request->occupation ? $user->occupation = $request->occupation : '';
             $request->CNIC ? $user->CNIC = $request->CNIC : '';
             $request->phone ? $user->phone = $request->phone : '';
             $request->city ? $user->city = $request->city : '';

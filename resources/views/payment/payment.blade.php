@@ -62,10 +62,12 @@
             background-color: #caeee5;
         }
     </style>
-<body>
+<body> 
     <?php
-        $subscription  = App\Subscription::find($id);
+        $subscription  = App\Subscription::find($subscriptioniId);
     ?>
+
+   
 
 <div class="container" id="c">
     <div class="row">
@@ -92,7 +94,7 @@
                                                     data-stripe-publishable-key="{{ env('STRIPE_KEY') }}"
                                                     id="payment-form">
                         @csrf
-                        <input type="hidden" value={{$id}} name="subscription_id">
+                        <input type="hidden" value={{$subscriptioniId}} name="subscription_id">
                         <div class='form-row row'>
                             <div class='col-xs-12 form-group required'>
                                 <label class='control-label'>Name on Card</label> <input

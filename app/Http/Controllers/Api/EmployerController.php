@@ -134,6 +134,7 @@ class EmployerController extends Controller
                         $job->role = 'employer';
                         $job->job_title = $request->job_title;
                         $job->employer_id = $user_id;
+                        $job->status = 'open';
                         $job->description = $request->description;
                         $job->salary_type = $request->salary_type;
                         $job->min_salary = $request->min_salary;

@@ -125,7 +125,7 @@ class EmployerController extends Controller
             if ($user_type == 'employer') {
                 if (empty($purchased_subscription)) {
 
-                    return response()->json(['error' => 'You Are Not Able To Post Job, Please Pruchased Subscription', 'success' => false], 401);
+                    return response()->json(['error' => 'You Are Not Able To Post Job, Please Pruchased Subscription', 'success' => false], 200);
                 } else {
                     if ($purchased_subscription->valid_job == '0') {
                         return response()->json(['error' => 'You Are Not Able To Post More Job, Please Upgrate Subscription', 'success' => false], 401);

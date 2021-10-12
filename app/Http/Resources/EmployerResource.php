@@ -60,7 +60,7 @@ class EmployerResource extends JsonResource
         $this->twitter_link == null ?   $twitter_link = '' : $twitter_link = $this->twitter_link;
         $this->linkedin_link == null ?   $linkedin_link = '' : $linkedin_link = $this->linkedin_link;
 
-        // $reviews = Review::where('receiver', '=', $this->id)->get();
+        $reviews = Review::where('receiver', '=', $this->id)->get();
         $jobs = Job::where('employer_id', '=', $this->id)->get();
 
         // subscription
@@ -93,7 +93,7 @@ class EmployerResource extends JsonResource
             'linkedin_link' => $linkedin_link,
             'language' => $language,
             'updated_at' => $this->updated_at->format('d-m-Y'),
-            // 'reviews' => $reviews,
+            'reviews' => $reviews,
             'jobs' => $jobs,
         ];
     }

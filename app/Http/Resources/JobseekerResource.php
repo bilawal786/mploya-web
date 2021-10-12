@@ -82,6 +82,7 @@ class JobseekerResource extends JsonResource
         $certification_description = ($jobseeker->certification_description == null) ? '' : $jobseeker->certification_description;
         $language = ($jobseeker->language == null) ? [] : $jobseeker->language;
 
+        $reviews = Review::where('receiver', '=', $this->id)->get();
 
         return [
             'id' => $this->id,
@@ -115,6 +116,7 @@ class JobseekerResource extends JsonResource
             'certification_name' => $certification_name,
             'certification_year' => $certification_year,
             'certification_description' => $certification_description,
+            'reviews' => $reviews,
             'updated_at' => $this->updated_at->format('d-m-Y')
         ];
     }

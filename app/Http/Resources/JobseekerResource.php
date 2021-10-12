@@ -97,7 +97,7 @@ class JobseekerResource extends JsonResource
             'profile_status' => $this->profile_status,
             'name' => $this->name,
             'email' => $this->email,
-            'occupation ' => $occupation,
+            'occupation' => $occupation,
             'address' => $address,
             'video' => $video,
             'image' => $this->image,

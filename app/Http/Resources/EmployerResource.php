@@ -28,7 +28,9 @@ class EmployerResource extends JsonResource
             $twoStarReview = Review::where('star', '=', 2)->where('receiver', '=', $this->id)->count();
             $oneStarReview = Review::where('star', '=', 1)->where('receiver', '=', $this->id)->count();
             $totalScore = (5 * $fiveStarReview) + (4 * $fourStarReview) + (3 * $threeStarReview) + (2 * $twoStarReview) + (1 * $oneStarReview);
-            $fiveStarrlScore = $totalScore / $totalReview;
+            $fiveStarScore = round($totalScore / $totalReview, 1);
+        } else {
+            $fiveStarScore = 0;
         }
 
 
@@ -69,11 +71,12 @@ class EmployerResource extends JsonResource
 
         $activeSubscription = PruchasedSubscription::where('employer_id', '=', $this->id)->first();
         $remainingPosterdJob = $activeSubscription == null ? 0 : (int)$activeSubscription->valid_job - $posterdJob;
+
         return [
             'id' => $this->id,
             'deviceToken' => $this->deviceToken,
             'totalReview' => $totalReview,
-            'fiveStareScore' => $totalReview == 0 ? 0 : round($fiveStarrlScore, 1),
+            'fiveStareScore' => $fiveStarScore,
             'activeSubscription' => $activeSubscription,
             'posterdJob' => $posterdJob,
             'remainingPosterdJob' => $remainingPosterdJob,

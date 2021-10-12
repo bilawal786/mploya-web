@@ -19,7 +19,7 @@ class DatabaseSeeder extends Seeder
             CategorySeeder::class,
             // SubscriptionSeeder::class,
             // ActiveSunscriptionSeeder::class,
-            // SubcategorySeeder::class,
+            SubcategorySeeder::class,
             // BookmarkJobSeeder::class,
             // AppliedJobSeeder::class,
             // AppliedUserJobSeeder::class,

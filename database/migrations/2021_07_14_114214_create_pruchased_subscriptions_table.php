@@ -16,6 +16,7 @@ class CreatePruchasedSubscriptionsTable extends Migration
         Schema::create('pruchased_subscriptions', function (Blueprint $table) {
             $table->increments('id');
             $table->string('employer_id');
+            $table->string('subscription_id');
             $table->string('title');
             $table->string('price');
             $table->string('valid_job');

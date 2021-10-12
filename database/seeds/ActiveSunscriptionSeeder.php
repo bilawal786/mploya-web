@@ -14,6 +14,7 @@ class ActiveSunscriptionSeeder extends Seeder
     {
         DB::table('pruchased_subscriptions')->insert([
             [
+                'subscription_id' => '1',
                 'employer_id' => '2',
                 'status' => '1',
                 'title' => 'Demo Title',

@@ -67,10 +67,10 @@ class EmployerResource extends JsonResource
 
         // subscription
 
-        $posterdJob = Job::where('employer_id', '=', $this->id)->count();
+        $postedJob = Job::where('employer_id', '=', $this->id)->count();
 
         $activeSubscription = PruchasedSubscription::where('employer_id', '=', $this->id)->first();
-        $remainingPosterdJob = $activeSubscription == null ? 0 : (int)$activeSubscription->valid_job - $posterdJob;
+        $remainingPosterdJob = $activeSubscription == null ? 0 : (int)$activeSubscription->valid_job - $postedJob;
 
         return [
             'id' => $this->id,
@@ -78,7 +78,7 @@ class EmployerResource extends JsonResource
             'totalReview' => $totalReview,
             'fiveStarScore ' => $fiveStarScore,
             'activeSubscription' => $activeSubscription,
-            'posterdJob' => $posterdJob,
+            'postedJob' => $postedJob,
             'remainingPosterdJob' => $remainingPosterdJob,
             'name' => $this->name,
             'email' => $this->email,

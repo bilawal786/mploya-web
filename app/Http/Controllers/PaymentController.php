@@ -24,6 +24,7 @@ class PaymentController extends Controller
         if ($purchasedsubscription == null) {
             $subscription = new PruchasedSubscription();
             $subscription->employer_id = $request->userid;
+            $subscription->subscription_id = $sub->id;
             $subscription->title = $sub->title;
             $subscription->price = $sub->price;
             $subscription->valid_job = $sub->valid_job;

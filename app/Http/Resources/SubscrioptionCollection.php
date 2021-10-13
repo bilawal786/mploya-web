@@ -23,12 +23,12 @@ class SubscrioptionCollection extends JsonResource
         $postedJob = Job::where('employer_id', '=', auth('api')->user()->id)->count();
 
         $activeSubscription = PruchasedSubscription::where('employer_id', '=', auth('api')->user()->id)->first();
-        $remainingPostedJob = $activeSubscription == null ? 0 : (int)$activeSubscription->valid_job - $postedJob;
+        $remainingPostedJob  = $activeSubscription == null ? 0 : (int)$activeSubscription->valid_job - $postedJob;
 
         return [
             'id' => $this->id,
             'postedJob' => $postedJob,
-            'remainingPostedJob' => $remainingPostedJob,
+            'remainingPostedJob'  =>  $remainingPostedJob,
             'title' => $this->title,
             'price' => $this->price,
             'valid_job' => $this->valid_job,

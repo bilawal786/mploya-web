@@ -174,7 +174,7 @@ Route::group(
 
         // Get All Bookmarked Jobseeker Route
 
-        Route::get('/all/bookmark/jobseekers', 'Api\EmployerController@AllBookmarkEmployer');
+        Route::get('/all/bookmark/jobseeker', 'Api\EmployerController@AllBookmarkEmployer');
 
         // Get Single Bookmarked jobseeker
 
@@ -223,6 +223,10 @@ Route::group(
         //  Jobs  Bookmark  Route
 
         Route::post('/job/bookmark', 'Api\JobseekerController@JobBookmark');
+
+        // new employer ki liye 
+
+        Route::get('/jobpost/validation', 'Api\EmployerController@ProfileValidation');
 
 
         // Get All Bookmarked Jobs Route

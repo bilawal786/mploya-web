@@ -1171,4 +1171,40 @@ class EmployerController extends Controller
         $success['longitude'] =  $lng;
         return response()->json($success);
     }
+
+    // new   
+
+    public function ProfileValidation()
+    {
+        $employer_id = Auth::guard('api')->user()->id;
+        $employer = User::find($employer_id);
+        $one = $employer->image == 'assets/dist/img/userpic.png' ? 0 : 1;
+        $two = $employer->company_name == '0' ? 0 : 1;
+        $three = ($employer->language == null) ? 0 : 1;
+        $four = $employer->address == '0' ? 0 : 1;
+        $five = ($employer->facebook_link == null) ? 0 : 1;
+        $six = ($employer->instagram_link == null) ? 0 : 1;
+        $seven = ($employer->twitter_link == null) ? 0 : 1;
+        $eight = ($employer->linkedin_link == null) ? 0 : 1;
+        $nin = $employer->phone == '0' ? 0 : 1;
+        $ten = $employer->description == null ? 0 : 1;
+        $sum = $one + $two + $three + $four + $five + $six + $seven + $eight + $nin + $ten + 2;
+        $percentage = (int)round(($sum / 12) * 100);
+
+        $active = PruchasedSubscription::where('employer_id', '=', $employer_id)->exists();
+
+        $activeSubscription = PruchasedSubscription::where('employer_id', '=', $employer_id)->first();
+        if ($activeSubscription != null) {
+
+            $valid_job = (int)$activeSubscription->valid_job;
+        } else {
+            $valid_job = 0;
+        }
+
+        if (($percentage >= 70) && ($active == true) && ($valid_job > 0)) {
+            return response()->json(['isJobPost' => true]);
+        } else {
+            return response()->json(['isJobPost' => false]);
+        }
+    }
 }

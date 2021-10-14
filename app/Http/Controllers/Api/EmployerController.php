@@ -67,7 +67,7 @@ class EmployerController extends Controller
             $request->phone ? $profile->phone = $request->phone : '';
             $request->description ? $profile->description = $request->description : '';
             $request->company_name ? $profile->company_name = $request->company_name : '';
-            $request->language ? $profile->language = implode(',', $request->language) : '';
+            $request->language ? $profile->language =  $request->language : '';
             if ($request->hasfile('image')) {
                 if (!empty($profile->image) && ($profile->image != "assets/dist/img/userpic.png")) {
                     $image_path = $profile->image;
@@ -150,7 +150,7 @@ class EmployerController extends Controller
                         $job->link = $request->link;
                         $job->vacancies = $request->vacancies;
                         $job->job_type = $request->job_type;
-                        $job->skills = implode(',', $request->skills);
+                        $job->skills =  $request->skills;
 
                         if ($job->save()) {
                             $job->users()->attach($user_id);

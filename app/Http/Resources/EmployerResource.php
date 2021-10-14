@@ -8,6 +8,8 @@ use App\Review;
 use App\PruchasedSubscription;
 use Illuminate\Http\Resources\Json\JsonResource;
 
+use function GuzzleHttp\json_decode;
+
 class EmployerResource extends JsonResource
 {
     /**

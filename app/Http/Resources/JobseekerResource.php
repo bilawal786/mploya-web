@@ -88,6 +88,7 @@ class JobseekerResource extends JsonResource
         $language = ($jobseeker->language == null) ? [] : $jobseeker->language;
 
         $reviews = Review::where('receiver', '=', $this->id)->get();
+        // dd($skill_name);
 
         return [
             'id' => $this->id,
@@ -104,8 +105,7 @@ class JobseekerResource extends JsonResource
             'educations' => $educations,
             'experiences' => $experiences,
             'works' => $works,
-            'language' =>  $language,
-            // 'occupation' => $this->occupation,
+            'language' => $language,
             // 'experience' => $this->experience,
             'profile_percentage' => $percentage,
             'CNIC' => $CNIC,
@@ -118,7 +118,7 @@ class JobseekerResource extends JsonResource
             'instagram_link' => $instagram_link,
             'twitter_link' => $twitter_link,
             'linkedin_link' => $linkedin_link,
-            'skill_name' =>  $skill_name,
+            'skill_name' => $skill_name,
             'certification_name' => $certification_name,
             'certification_year' => $certification_year,
             'certification_description' => $certification_description,

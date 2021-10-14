@@ -1201,10 +1201,7 @@ class EmployerController extends Controller
             $valid_job = 0;
         }
 
-        if (($percentage >= 70) && ($active == true) && ($valid_job > 0)) {
-            return response()->json(['isJobPost' => true]);
-        } else {
-            return response()->json(['isJobPost' => false]);
-        }
+
+        return response()->json(['percentage' => $percentage, 'active' => $active, 'valid_job' => $valid_job]);
     }
 }

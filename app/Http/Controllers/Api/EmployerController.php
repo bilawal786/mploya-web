@@ -74,7 +74,7 @@ class EmployerController extends Controller
                     unlink($image_path);
                 }
                 $image = $request->file('image');
-                $name = $id . 'profile' . $image->getClientOriginalExtension();
+                $name = time() . 'profile' . $image->getClientOriginalExtension();
                 $destinationPath = 'profile_images/';
                 $image->move($destinationPath, $name);
                 $profile->image = 'profile_images/' . $name;

@@ -26,9 +26,9 @@ class SubscrioptionCollection extends JsonResource
         $remainingPostedJob = $activeSubscription == null ? 0 : (int)$activeSubscription->valid_job - $postedJob;
         if ($activeSubscription != null) {
 
-            $valid_job = (int)$activeSubscription->valid_job;
+            $v_job = (int)$activeSubscription->valid_job;
         } else {
-            $valid_job = 0;
+            $v_job = 0;
         }
 
 
@@ -36,9 +36,10 @@ class SubscrioptionCollection extends JsonResource
             'id' => $this->id,
             'postedJob' => $postedJob,
             'remainingPostedJob' => $remainingPostedJob,
+            'v_job' => $v_job,
             'title' => $this->title,
             'price' => $this->price,
-            'valid_job' => $valid_job,
+            'valid_job' => $this->valid_job,
             'status' => $this->status,
             'color' => $this->color,
             'description' => $this->description,

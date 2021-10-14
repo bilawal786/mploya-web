@@ -21,19 +21,19 @@ class Job extends Model
         return $this->belongsTo(Category::class);
     }
 
-    // public function getsocialLinksAttribute($value)
-    // {
-    //     if ($value == null) {
-    //         return '';
-    //     }
-    //     return explode(',', $value);
-    // }
+    public function getsocialLinksAttribute($value)
+    {
+        if ($value == null) {
+            return '';
+        }
+        return explode(',', $value);
+    }
 
-    // public function getskillsAttribute($value)
-    // {
-    //     if ($value == null) {
-    //         return '';
-    //     }
-    //     return explode(',', $value);
-    // }
+    public function getskillsAttribute($value)
+    {
+        if ($value == null) {
+            return '';
+        }
+        return explode(',', $value);
+    }
 }

@@ -34,118 +34,118 @@ class User extends Authenticatable
         return $this->hasMany(Review::class);
     }
 
-    // public function getlanguageAttribute($value)
-    // {
-    //     if ($value == null) {
-    //         return '';
-    //     }
-    //     return explode(',', $value);
-    // }
+    public function getlanguageAttribute($value)
+    {
+        if ($value == null) {
+            return '';
+        }
+        return explode(',', $value);
+    }
 
-    // public function geteducationNameAttribute($value)
-    // {
-    //     if ($value == null) {
-    //         return '';
-    //     }
-    //     return explode(',', $value);
-    // }
-    // public function geteducationDescriptionAttribute($value)
-    // {
-    //     if ($value == null) {
-    //         return '';
-    //     }
-    //     return explode(',', $value);
-    // }
-    // public function geteducationCompleteDateAttribute($value)
-    // {
-    //     if ($value == null) {
-    //         return '';
-    //     }
-    //     return explode(',', $value);
-    // }
-    // public function geteducationIsContinueAttribute($value)
-    // {
-    //     if ($value == null) {
-    //         return '';
-    //     }
-    //     return explode(',', $value);
-    // }
+    public function geteducationNameAttribute($value)
+    {
+        if ($value == null) {
+            return '';
+        }
+        return explode(',', $value);
+    }
+    public function geteducationDescriptionAttribute($value)
+    {
+        if ($value == null) {
+            return '';
+        }
+        return explode(',', $value);
+    }
+    public function geteducationCompleteDateAttribute($value)
+    {
+        if ($value == null) {
+            return '';
+        }
+        return explode(',', $value);
+    }
+    public function geteducationIsContinueAttribute($value)
+    {
+        if ($value == null) {
+            return '';
+        }
+        return explode(',', $value);
+    }
 
 
 
-    // public function getprojectTitleAttribute($value)
-    // {
-    //     if ($value == null) {
-    //         return '';
-    //     }
-    //     return explode(',', $value);
-    // }
-    // public function getprojectOccupationAttribute($value)
-    // {
-    //     if ($value == null) {
-    //         return '';
-    //     }
-    //     return explode(',', $value);
-    // }
-    // public function getprojectYearAttribute($value)
-    // {
-    //     if ($value == null) {
-    //         return '';
-    //     }
-    //     return explode(',', $value);
-    // }
-    // public function getprojectLinksAttribute($value)
-    // {
-    //     if ($value == null) {
-    //         return '';
-    //     }
-    //     return explode(',', $value);
-    // }
-    // public function getprojectDescriptionAttribute($value)
-    // {
-    //     if ($value == null) {
-    //         return '';
-    //     }
-    //     return explode(',', $value);
-    // }
+    public function getprojectTitleAttribute($value)
+    {
+        if ($value == null) {
+            return '';
+        }
+        return explode(',', $value);
+    }
+    public function getprojectOccupationAttribute($value)
+    {
+        if ($value == null) {
+            return '';
+        }
+        return explode(',', $value);
+    }
+    public function getprojectYearAttribute($value)
+    {
+        if ($value == null) {
+            return '';
+        }
+        return explode(',', $value);
+    }
+    public function getprojectLinksAttribute($value)
+    {
+        if ($value == null) {
+            return '';
+        }
+        return explode(',', $value);
+    }
+    public function getprojectDescriptionAttribute($value)
+    {
+        if ($value == null) {
+            return '';
+        }
+        return explode(',', $value);
+    }
 
-    // public function getskillNameAttribute($value)
-    // {
-    //     if ($value == null) {
-    //         return '';
-    //     }
-    //     return explode(',', $value);
-    // }
+    public function getskillNameAttribute($value)
+    {
+        if ($value == null) {
+            return '';
+        }
+        return explode(',', $value);
+    }
 
-    // public function getcertificationNameAttribute($value)
-    // {
-    //     if ($value == null) {
-    //         return '';
-    //     }
-    //     return explode(',', $value);
-    // }
-    // public function getcertificationYearAttribute($value)
-    // {
-    //     if ($value == null) {
-    //         return '';
-    //     }
-    //     return explode(',', $value);
-    // }
-    // public function getcertificationDescriptionAttribute($value)
-    // {
-    //     if ($value == null) {
-    //         return '';
-    //     }
-    //     return explode(',', $value);
-    // }
+    public function getcertificationNameAttribute($value)
+    {
+        if ($value == null) {
+            return '';
+        }
+        return explode(',', $value);
+    }
+    public function getcertificationYearAttribute($value)
+    {
+        if ($value == null) {
+            return '';
+        }
+        return explode(',', $value);
+    }
+    public function getcertificationDescriptionAttribute($value)
+    {
+        if ($value == null) {
+            return '';
+        }
+        return explode(',', $value);
+    }
 
-    // public function getsocialLinksAttribute($value)
-    // {
-    //     if ($value == null) {
-    //         return '';
-    //     }
-    //     return explode(',', $value);
-    // }
+    public function getsocialLinksAttribute($value)
+    {
+        if ($value == null) {
+            return '';
+        }
+        return explode(',', $value);
+    }
 
 
     /**

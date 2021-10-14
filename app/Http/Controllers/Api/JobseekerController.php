@@ -60,14 +60,14 @@ class JobseekerController extends Controller
             $request->country ? $user->country = $request->country : '';
             $request->father_name ? $user->father_name = $request->father_name : '';
             $request->description ? $user->description = $request->description : '';
-            $request->skill_name ? $user->skill_name = $request->skill_name : '';
-            $request->language ? $user->language = $request->language : '';
+            $request->skill_name ? $user->skill_name = implode(',', $request->skill_name) : '';
+            $request->language ? $user->language = implode(',', $request->language) : '';
             $user->educations = $request->educations;
             $user->experiences = $request->experiences;
             $user->works = $request->works;
-            $request->certification_name ? $user->certification_name = $request->certification_name : '';
-            $request->certification_year ? $user->certification_year = $request->certification_year : '';
-            $request->certification_description ? $user->certification_description = $request->certification_description : '';
+            $request->certification_name ? $user->certification_name = implode(',', $request->certification_name) : '';
+            $request->certification_year ? $user->certification_year = implode(',', $request->certification_year) : '';
+            $request->certification_description ? $user->certification_description = implode(',', $request->certification_description) : '';
             if ($request->hasfile('image')) {
                 if (!empty($user->image) && ($user->image != "assets/dist/img/userpic.png")) {
                     $image_path = $user->image;

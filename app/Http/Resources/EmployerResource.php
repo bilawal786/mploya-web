@@ -96,7 +96,7 @@ class EmployerResource extends JsonResource
             'instagram_link' => $instagram_link,
             'twitter_link' => $twitter_link,
             'linkedin_link' => $linkedin_link,
-            'language' => json_decode($language),
+            'language' => $language,
             'updated_at' => $this->updated_at->format('d-m-Y'),
             'reviews' => $reviews,
             'jobs' => $jobs,

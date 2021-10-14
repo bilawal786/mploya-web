@@ -6,6 +6,8 @@ use App\User;
 use App\Review;
 use Illuminate\Http\Resources\Json\JsonResource;
 
+use function GuzzleHttp\json_decode;
+
 class JobseekerResource extends JsonResource
 {
     /**
@@ -118,7 +120,7 @@ class JobseekerResource extends JsonResource
             'instagram_link' => $instagram_link,
             'twitter_link' => $twitter_link,
             'linkedin_link' => $linkedin_link,
-            'skill_name' => $skill_name,
+            'skill_name' => json_decode($skill_name),
             'certification_name' => $certification_name,
             'certification_year' => $certification_year,
             'certification_description' => $certification_description,

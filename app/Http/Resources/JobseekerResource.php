@@ -107,7 +107,7 @@ class JobseekerResource extends JsonResource
             'educations' => $educations,
             'experiences' => $experiences,
             'works' => $works,
-            'language' => $language,
+            'language' => json_decode($language),
             // 'experience' => $this->experience,
             'profile_percentage' => $percentage,
             'CNIC' => $CNIC,

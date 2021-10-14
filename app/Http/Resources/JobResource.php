@@ -30,7 +30,7 @@ class JobResource extends JsonResource
             // new
             'subcategory_name' => $subcat->title,
             'requirements' => $this->requirements,
-            'skills' => $this->skills,
+            'skills' => json_decode($this->skills),
             'link' => $this->link,
             'vacancies' => $this->vacancies,
             'job_type' => $this->job_type,

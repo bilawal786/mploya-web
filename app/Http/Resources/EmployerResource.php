@@ -40,7 +40,7 @@ class EmployerResource extends JsonResource
         // percentage
 
         $employer = User::find($this->id);
-        $one = $employer->image == 'assets/dist/img/profilepic.png' ? 0 : 1;
+        $one = $employer->image == 'assets/dist/img/userpic.png' ? 0 : 1;
         $two = $employer->company_name == '0' ? 0 : 1;
         $three = ($employer->language == null) ? 0 : 1;
         $four = $employer->address == '0' ? 0 : 1;

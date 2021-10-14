@@ -35,7 +35,7 @@ class JobseekerResource extends JsonResource
         $one = $jobseeker->address == '0' ? 0 : 1;
         $two = $jobseeker->CNIC == '0' ? 0 : 1;
         $three = $jobseeker->phone == '0' ? 0 : 1;
-        $four = $jobseeker->image == 'assets/dist/img/profilepic.png' ? 0 : 1;
+        $four = $jobseeker->image == 'assets/dist/img/userpic.png' ? 0 : 1;
 
         $five = $jobseeker->city == '0' ? 0 : 1;
         $six = $jobseeker->country == '0' ? 0 : 1;

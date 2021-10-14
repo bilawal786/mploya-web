@@ -17,7 +17,7 @@ class UserProfileResource extends JsonResource
     {
         if ($this->user_type == 'employer') {
             $employer = User::find($this->id);
-            $one = $employer->image == 'assets/dist/img/profilepic.png' ? 0 : 1;
+            $one = $employer->image == 'assets/dist/img/userpic.png' ? 0 : 1;
             $two = $employer->company_name == '0' ? 0 : 1;
             $three = ($employer->language == null) ? 0 : 1;
             $four = $employer->address == '0' ? 0 : 1;
@@ -34,7 +34,7 @@ class UserProfileResource extends JsonResource
             $one = $jobseeker->address == '0' ? 0 : 1;
             $two = $jobseeker->CNIC == '0' ? 0 : 1;
             $three = $jobseeker->phone == '0' ? 0 : 1;
-            $four = $jobseeker->image == 'assets/dist/img/profilepic.png' ? 0 : 1;
+            $four = $jobseeker->image == 'assets/dist/img/userpic.png' ? 0 : 1;
 
             $five = $jobseeker->city == '0' ? 0 : 1;
             $six = $jobseeker->country == '0' ? 0 : 1;
@@ -61,11 +61,11 @@ class UserProfileResource extends JsonResource
                 + $fourteen + $fifteen + $sixteen + $seventeen + $eighteen + $nineteen + $twenty + $twentyone + $twentytwo  + $twentythree + 3;
             $percentage = (int)round(($sum / 26) * 100);
         }
-
+        $this->address == '0' ?   $address = '' : $address = $this->address;
         return [
             'id' => $this->id,
             'name' => $this->name,
-            'address' => $this->address,
+            'address' => $address,
             'image' => $this->image,
             'profile_percentage' => $percentage,
             'latitude' => $this->latitude,

@@ -151,6 +151,10 @@ Route::group(
         Route::get('/employer/review', 'Api\EmployerController@EmployerReview');
 
 
+        // hire jobseeker
+
+        Route::post('/hire/jobseeker', 'Api\EmployerController@HireJobseeker');
+
         /////////////////////////////////// END NEW API /////////////////////////////////
 
 

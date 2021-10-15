@@ -9,6 +9,7 @@ use App\Applied;
 use App\Interview;
 use App\Notification;
 use App\Employerbookmark;
+use App\HireForJob;
 use Illuminate\Http\Request;
 use App\PruchasedSubscription;
 use App\Http\Resources\JobResource;
@@ -580,18 +581,27 @@ class EmployerController extends Controller
     {
         $user_type = Auth::guard('api')->user()->user_type;
         $employer_id = Auth::guard('api')->user()->id;
-        if ($user_type == 'employer') {
-            $review = new Review();
-            $review->user_id = $employer_id;
-            $review->receiver = $request->jobseeker_id;
-            $review->star = $request->star;
-            $review->description = $request->description;
-            $review->save();
-            $success['message'] = 'Review Add Successfully';
-            $success['success'] = true;
-            return response()->json($success, $this->successStatus);
+        $isAddReview = HireForJob::where('employer_id', '=', $employer_id)->where('jobseeker_id', '=', $request->jobseeker_id)->first();
+        $isAlreadyAddReview = Review::where('user_id', '=', $employer_id)->where('receiver', '=', $request->jobseeker_id)->first();
+        if ($isAddReview != null) {
+            if ($user_type == 'employer') {
+                if ($isAlreadyAddReview == null) {
+                    $review = new Review();
+                    $review->user_id = $employer_id;
+                    $review->receiver = $request->jobseeker_id;
+                    $review->star = $request->star;
+                    $review->description = $request->description;
+                    $review->save();
+                    $success['message'] = 'Review Add Successfully';
+                    $success['success'] = true;
+                    return response()->json($success, $this->successStatus);
+                } else {
+                    return response()->json(['message' => 'You Can Add Only One Review', 'success' => false], 200);
+                }
+            }
+            return response()->json(['error' => 'You Are Not Able To Add Review', 'success' => false], 404);
         }
-        return response()->json(['error' => 'You Are Not Able To Add Review', 'success' => false], 404);
+        return response()->json(['message' => 'You Are Not Able To Add Review,First Hire This Person For Add Review', 'success' => false], 200);
     }
 
 
@@ -1203,5 +1213,22 @@ class EmployerController extends Controller
 
 
         return response()->json(['percentage' => $percentage, 'active' => $active, 'valid_job' => $valid_job]);
+    }
+
+    /// HireJobseeker 
+
+    public function HireJobseeker(Request $request)
+    {
+        $alreadyHire = HireForJob::where('employer_id', '=', Auth::guard('api')->user()->id)->where('jobseeker_id', '=', $request->jobseeker_id)->first();
+        if ($alreadyHire == null) {
+            $hireJobseeker = new HireForJob();
+            $hireJobseeker->employer_id = Auth::guard('api')->user()->id;
+            $hireJobseeker->jobseeker_id = $request->jobseeker_id;
+            $hireJobseeker->save();
+            $success['message'] = 'You Hire This Person Successfully';
+            $success['success'] = true;
+            return response()->json($success, 200);
+        }
+        return response()->json(['message' => 'You Already Hire This Person', 'success' => false], 200);
     }
 }

@@ -8,6 +8,7 @@ use App\Review;
 use App\Applied;
 use App\Bookmark;
 use App\Interview;
+use App\HireForJob;
 use Illuminate\Http\Request;
 use App\Http\Resources\JobResource;
 use App\Http\Controllers\Controller;
@@ -264,18 +265,28 @@ class JobseekerController extends Controller
     {
         $user_type = Auth::guard('api')->user()->user_type;
         $jobseeker_id = Auth::guard('api')->user()->id;
-        if ($user_type == 'jobseeker') {
-            $review = new Review();
-            $review->user_id = $jobseeker_id;
-            $review->receiver = $request->employer_id;
-            $review->star = $request->star;
-            $review->description = $request->description;
-            $review->save();
-            $success['message'] = 'Review Add Successfully';
-            $success['success'] = true;
-            return response()->json($success, $this->successStatus);
+        $isAddReview = HireForJob::where('employer_id', '=', $request->employer_id)->where('jobseeker_id', '=', $jobseeker_id)->first();
+        $isAlreadyAddReview = Review::where('user_id', '=', $jobseeker_id)->where('receiver', '=', $request->employer_id)->first();
+
+        if ($isAddReview != null) {
+            if ($user_type == 'jobseeker') {
+                if ($isAlreadyAddReview == null) {
+                    $review = new Review();
+                    $review->user_id = $jobseeker_id;
+                    $review->receiver = $request->employer_id;
+                    $review->star = $request->star;
+                    $review->description = $request->description;
+                    $review->save();
+                    $success['message'] = 'Review Add Successfully';
+                    $success['success'] = true;
+                    return response()->json($success, $this->successStatus);
+                } else {
+                    return response()->json(['message' => 'You Can Add Only One Review', 'success' => false], 200);
+                }
+            }
+            return response()->json(['error' => 'You Are Not Able To Add Review', 'success' => false], 404);
         }
-        return response()->json(['error' => 'You Are Not Able To Add Review', 'success' => false], 404);
+        return response()->json(['message' => 'Only Company Employee Can Add Review', 'success' => false], 200);
     }
 
 

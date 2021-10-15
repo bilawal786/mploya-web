@@ -267,13 +267,23 @@ class JobseekerController extends Controller
         $jobseeker_id = Auth::guard('api')->user()->id;
         $isAddReview = HireForJob::where('employer_id', '=', $request->employer_id)->where('jobseeker_id', '=', $jobseeker_id)->first();
         $isAlreadyAddReview = Review::where('user_id', '=', $jobseeker_id)->where('receiver', '=', $request->employer_id)->first();
-
+        // sender
+        $reviewSender = User::find($request->employer_id);
+        if ($reviewSender != null) {
+            $reviewsenderImage = $reviewSender->image;
+            $reviewsenderName = $reviewSender->name;
+        } else {
+            $reviewsenderImage = '';
+            $reviewsenderName = '';
+        }
         if ($isAddReview != null) {
             if ($user_type == 'jobseeker') {
                 if ($isAlreadyAddReview == null) {
                     $review = new Review();
                     $review->user_id = $jobseeker_id;
                     $review->receiver = $request->employer_id;
+                    $review->reviewsenderImage = $reviewsenderImage;
+                    $review->reviewsenderName = $reviewsenderName;
                     $review->star = $request->star;
                     $review->description = $request->description;
                     $review->save();

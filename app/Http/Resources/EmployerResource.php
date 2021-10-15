@@ -6,9 +6,10 @@ use App\Job;
 use App\User;
 use App\Review;
 use App\PruchasedSubscription;
-use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Facades\DB;
 
 use function GuzzleHttp\json_decode;
+use Illuminate\Http\Resources\Json\JsonResource;
 
 class EmployerResource extends JsonResource
 {
@@ -64,7 +65,7 @@ class EmployerResource extends JsonResource
         $this->twitter_link == null ?   $twitter_link = '' : $twitter_link = $this->twitter_link;
         $this->linkedin_link == null ?   $linkedin_link = '' : $linkedin_link = $this->linkedin_link;
 
-        $reviews = Review::where('receiver', '=', $this->id)->get();
+        $reviews = Review::where('user_id', '=', $this->id)->get();
         $jobs = Job::where('employer_id', '=', $this->id)->get();
 
         // subscription
@@ -73,7 +74,6 @@ class EmployerResource extends JsonResource
 
         $activeSubscription = PruchasedSubscription::where('employer_id', '=', $this->id)->first();
         $remainingPosterdJob = $activeSubscription == null ? 0 : (int)$activeSubscription->valid_job - $postedJob;
-
         return [
             'id' => $this->id,
             'deviceToken' => $this->deviceToken,

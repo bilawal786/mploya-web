@@ -17,6 +17,8 @@ class CreateReviewsTable extends Migration
             $table->increments('id');
             $table->string('receiver');
             $table->integer('user_id')->unsigned();
+            $table->string('reviewsenderImage')->default(0);
+            $table->string('reviewsenderName')->default(0);
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->integer('star');
             $table->longText('description');

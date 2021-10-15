@@ -583,11 +583,22 @@ class EmployerController extends Controller
         $employer_id = Auth::guard('api')->user()->id;
         $isAddReview = HireForJob::where('employer_id', '=', $employer_id)->where('jobseeker_id', '=', $request->jobseeker_id)->first();
         $isAlreadyAddReview = Review::where('user_id', '=', $employer_id)->where('receiver', '=', $request->jobseeker_id)->first();
+        // sender
+        $reviewSender = User::find($request->jobseeker_id);
+        if ($reviewSender != null) {
+            $reviewsenderImage = $reviewSender->image;
+            $reviewsenderName = $reviewSender->name;
+        } else {
+            $reviewsenderImage = '';
+            $reviewsenderName = '';
+        }
         if ($isAddReview != null) {
             if ($user_type == 'employer') {
                 if ($isAlreadyAddReview == null) {
                     $review = new Review();
                     $review->user_id = $employer_id;
+                    $review->reviewsenderImage = $reviewsenderImage;
+                    $review->reviewsenderName = $reviewsenderName;
                     $review->receiver = $request->jobseeker_id;
                     $review->star = $request->star;
                     $review->description = $request->description;
@@ -1231,4 +1242,17 @@ class EmployerController extends Controller
         }
         return response()->json(['message' => 'You Already Hire This Person', 'success' => false], 200);
     }
+
+    // public function getSenderImage($id)
+    // {
+    //     $sender = User::find($id);
+    //     if ($sender != null) {
+    //         $senderImage = $sender->image;
+    //         $success['senderImage'] = $senderImage;
+    //         $success['success'] = true;
+    //         return response()->json($success, 200);
+    //     } else {
+    //         return response()->json(['message' => 'No Image', 'success' => false], 200);
+    //     }
+    // }
 }

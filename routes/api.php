@@ -62,6 +62,8 @@ Route::get(
 
 Route::get('/get/language/code', 'Api\EmployerController@getLanguageCode');
 
+Route::get('/review/sender/image/{id}', 'Api\EmployerController@getLanguageCode');
+
 
 // get coordinate 
 
@@ -71,6 +73,8 @@ Route::group(
     ['middleware' => ['auth:api', 'UserBlock']],
     function () {
         //************************ employer Route *****************************/
+
+        Route::get('/review/sender/image/{id}', 'Api\EmployerController@getSenderImage');
 
         // employer Profile Update Route
 

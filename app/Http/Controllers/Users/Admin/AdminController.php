@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Users\Admin;
 
 use App\Job;
+use App\Language;
 use App\User;
 use App\Applied;
 use App\Category;
@@ -599,5 +600,307 @@ class AdminController extends Controller
     {
         $subcategories = Subcategory::where('category_id', '=', $id)->get();
         return response()->json($subcategories);
+    }
+    public function languages(){
+        $langs = Language::all();
+        return view('admin.languages.index', compact('langs'));
+    }
+    public function languageCreate(){
+        $lan = Language::find(1);
+        return view('admin.languages.create', compact('lan'));
+    }
+    public function languageStore(Request $request){
+        $lang = new Language();
+        $lang->name = $request->name;
+        $lang->code = $request->code;
+
+        $lang->l1 = $request->l1;
+        $lang->l2 = $request->l2;
+        $lang->l3 = $request->l3;
+        $lang->l4 = $request->l4;
+        $lang->l5 = $request->l5;
+        $lang->l6 = $request->l6;
+        $lang->l7 = $request->l7;
+        $lang->l8 = $request->l8;
+        $lang->l9 = $request->l9;
+        $lang->l10 = $request->l10;
+
+        $lang->l11 = $request->l11;
+        $lang->l12 = $request->l12;
+        $lang->l13 = $request->l13;
+        $lang->l14 = $request->l14;
+        $lang->l15 = $request->l15;
+        $lang->l16 = $request->l16;
+        $lang->l17 = $request->l17;
+        $lang->l18 = $request->l18;
+        $lang->l19 = $request->l19;
+        $lang->l20 = $request->l20;
+
+
+        $lang->l21 = $request->l21;
+        $lang->l22 = $request->l22;
+        $lang->l23 = $request->l23;
+        $lang->l24 = $request->l24;
+        $lang->l25 = $request->l25;
+        $lang->l26 = $request->l26;
+        $lang->l27 = $request->l27;
+        $lang->l28 = $request->l28;
+        $lang->l29 = $request->l29;
+        $lang->l30 = $request->l30;
+
+        $lang->l31 = $request->l31;
+        $lang->l32 = $request->l32;
+        $lang->l33 = $request->l33;
+        $lang->l34 = $request->l34;
+        $lang->l35 = $request->l35;
+        $lang->l36 = $request->l36;
+        $lang->l37 = $request->l37;
+        $lang->l38 = $request->l38;
+        $lang->l39 = $request->l39;
+        $lang->l40 = $request->l40;
+
+        $lang->l41 = $request->l41;
+        $lang->l42 = $request->l42;
+        $lang->l43 = $request->l43;
+        $lang->l44 = $request->l44;
+        $lang->l45 = $request->l45;
+        $lang->l46 = $request->l46;
+        $lang->l47 = $request->l47;
+        $lang->l48 = $request->l48;
+        $lang->l49 = $request->l49;
+        $lang->l50 = $request->l50;
+
+        $lang->l51 = $request->l51;
+        $lang->l52 = $request->l52;
+        $lang->l53 = $request->l53;
+        $lang->l54 = $request->l54;
+        $lang->l55 = $request->l55;
+        $lang->l56 = $request->l56;
+        $lang->l57 = $request->l57;
+        $lang->l58 = $request->l58;
+        $lang->l59 = $request->l59;
+        $lang->l60 = $request->l60;
+
+        $lang->l61 = $request->l61;
+        $lang->l62 = $request->l62;
+        $lang->l63 = $request->l63;
+        $lang->l64 = $request->l64;
+        $lang->l65 = $request->l65;
+        $lang->l66 = $request->l66;
+        $lang->l67 = $request->l67;
+        $lang->l68 = $request->l68;
+        $lang->l69 = $request->l69;
+        $lang->l70 = $request->l70;
+
+        $lang->l71 = $request->l71;
+        $lang->l72 = $request->l72;
+        $lang->l73 = $request->l73;
+        $lang->l74 = $request->l74;
+        $lang->l75 = $request->l75;
+        $lang->l76 = $request->l76;
+        $lang->l77 = $request->l77;
+        $lang->l78 = $request->l78;
+        $lang->l79 = $request->l79;
+        $lang->l80 = $request->l80;
+
+        $lang->l81 = $request->l81;
+        $lang->l82 = $request->l82;
+        $lang->l83 = $request->l83;
+        $lang->l84 = $request->l84;
+        $lang->l85 = $request->l85;
+        $lang->l86 = $request->l86;
+        $lang->l87 = $request->l87;
+        $lang->l88 = $request->l88;
+        $lang->l89 = $request->l89;
+        $lang->l90 = $request->l90;
+
+        $lang->l91 = $request->l91;
+        $lang->l92 = $request->l92;
+        $lang->l93 = $request->l93;
+        $lang->l94 = $request->l94;
+        $lang->l95 = $request->l95;
+        $lang->l96 = $request->l96;
+        $lang->l97 = $request->l97;
+        $lang->l98 = $request->l98;
+        $lang->l99 = $request->l99;
+        $lang->l100 = $request->l100;
+
+        $lang->l101 = $request->l101;
+        $lang->l102 = $request->l102;
+        $lang->l103 = $request->l103;
+        $lang->l104 = $request->l104;
+        $lang->l105 = $request->l105;
+        $lang->l106 = $request->l106;
+        $lang->l107 = $request->l107;
+        $lang->l108 = $request->l108;
+        $lang->l109 = $request->l109;
+        $lang->l110 = $request->l110;
+
+        $lang->l111 = $request->l111;
+        $lang->l112 = $request->l112;
+        $lang->l113 = $request->l113;
+        $lang->l114 = $request->l114;
+        $lang->l115 = $request->l115;
+        $lang->l116 = $request->l116;
+        $lang->l117 = $request->l117;
+        $lang->l118 = $request->l118;
+        $lang->l119 = $request->l119;
+        $lang->l120 = $request->l120;
+
+        $lang->save();
+        $notification = array(
+            'messege' => 'Successfully Added New Language!',
+            'alert-type' => 'success'
+        );
+        return Redirect()->back()->with($notification);
+    }
+    public function languageUpdate(Request $request, $id){
+        $lang = Language::find($id);
+        $lang->name = $request->name;
+        $lang->code = $request->code;
+
+        $lang->l1 = $request->l1;
+        $lang->l2 = $request->l2;
+        $lang->l3 = $request->l3;
+        $lang->l4 = $request->l4;
+        $lang->l5 = $request->l5;
+        $lang->l6 = $request->l6;
+        $lang->l7 = $request->l7;
+        $lang->l8 = $request->l8;
+        $lang->l9 = $request->l9;
+        $lang->l10 = $request->l10;
+
+        $lang->l11 = $request->l11;
+        $lang->l12 = $request->l12;
+        $lang->l13 = $request->l13;
+        $lang->l14 = $request->l14;
+        $lang->l15 = $request->l15;
+        $lang->l16 = $request->l16;
+        $lang->l17 = $request->l17;
+        $lang->l18 = $request->l18;
+        $lang->l19 = $request->l19;
+        $lang->l20 = $request->l20;
+
+
+        $lang->l21 = $request->l21;
+        $lang->l22 = $request->l22;
+        $lang->l23 = $request->l23;
+        $lang->l24 = $request->l24;
+        $lang->l25 = $request->l25;
+        $lang->l26 = $request->l26;
+        $lang->l27 = $request->l27;
+        $lang->l28 = $request->l28;
+        $lang->l29 = $request->l29;
+        $lang->l30 = $request->l30;
+
+        $lang->l31 = $request->l31;
+        $lang->l32 = $request->l32;
+        $lang->l33 = $request->l33;
+        $lang->l34 = $request->l34;
+        $lang->l35 = $request->l35;
+        $lang->l36 = $request->l36;
+        $lang->l37 = $request->l37;
+        $lang->l38 = $request->l38;
+        $lang->l39 = $request->l39;
+        $lang->l40 = $request->l40;
+
+        $lang->l41 = $request->l41;
+        $lang->l42 = $request->l42;
+        $lang->l43 = $request->l43;
+        $lang->l44 = $request->l44;
+        $lang->l45 = $request->l45;
+        $lang->l46 = $request->l46;
+        $lang->l47 = $request->l47;
+        $lang->l48 = $request->l48;
+        $lang->l49 = $request->l49;
+        $lang->l50 = $request->l50;
+
+        $lang->l51 = $request->l51;
+        $lang->l52 = $request->l52;
+        $lang->l53 = $request->l53;
+        $lang->l54 = $request->l54;
+        $lang->l55 = $request->l55;
+        $lang->l56 = $request->l56;
+        $lang->l57 = $request->l57;
+        $lang->l58 = $request->l58;
+        $lang->l59 = $request->l59;
+        $lang->l60 = $request->l60;
+
+        $lang->l61 = $request->l61;
+        $lang->l62 = $request->l62;
+        $lang->l63 = $request->l63;
+        $lang->l64 = $request->l64;
+        $lang->l65 = $request->l65;
+        $lang->l66 = $request->l66;
+        $lang->l67 = $request->l67;
+        $lang->l68 = $request->l68;
+        $lang->l69 = $request->l69;
+        $lang->l70 = $request->l70;
+
+        $lang->l71 = $request->l71;
+        $lang->l72 = $request->l72;
+        $lang->l73 = $request->l73;
+        $lang->l74 = $request->l74;
+        $lang->l75 = $request->l75;
+        $lang->l76 = $request->l76;
+        $lang->l77 = $request->l77;
+        $lang->l78 = $request->l78;
+        $lang->l79 = $request->l79;
+        $lang->l80 = $request->l80;
+
+        $lang->l81 = $request->l81;
+        $lang->l82 = $request->l82;
+        $lang->l83 = $request->l83;
+        $lang->l84 = $request->l84;
+        $lang->l85 = $request->l85;
+        $lang->l86 = $request->l86;
+        $lang->l87 = $request->l87;
+        $lang->l88 = $request->l88;
+        $lang->l89 = $request->l89;
+        $lang->l90 = $request->l90;
+
+        $lang->l91 = $request->l91;
+        $lang->l92 = $request->l92;
+        $lang->l93 = $request->l93;
+        $lang->l94 = $request->l94;
+        $lang->l95 = $request->l95;
+        $lang->l96 = $request->l96;
+        $lang->l97 = $request->l97;
+        $lang->l98 = $request->l98;
+        $lang->l99 = $request->l99;
+        $lang->l100 = $request->l100;
+
+        $lang->l101 = $request->l101;
+        $lang->l102 = $request->l102;
+        $lang->l103 = $request->l103;
+        $lang->l104 = $request->l104;
+        $lang->l105 = $request->l105;
+        $lang->l106 = $request->l106;
+        $lang->l107 = $request->l107;
+        $lang->l108 = $request->l108;
+        $lang->l109 = $request->l109;
+        $lang->l110 = $request->l110;
+
+        $lang->l111 = $request->l111;
+        $lang->l112 = $request->l112;
+        $lang->l113 = $request->l113;
+        $lang->l114 = $request->l114;
+        $lang->l115 = $request->l115;
+        $lang->l116 = $request->l116;
+        $lang->l117 = $request->l117;
+        $lang->l118 = $request->l118;
+        $lang->l119 = $request->l119;
+        $lang->l120 = $request->l120;
+
+        $lang->save();
+        $notification = array(
+            'messege' => 'Successfully Added New Language!',
+            'alert-type' => 'success'
+        );
+        return Redirect()->back()->with($notification);
+    }
+    public function languageEdit($id){
+        $lan = Language::find($id);
+        return view('admin.languages.edit', compact('lan'));
     }
 }

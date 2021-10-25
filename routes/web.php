@@ -44,7 +44,7 @@ Route::prefix('admin')->group(function () {
 
     Route::post('/register', 'Auth\AdminRegisterController@register')->name('admin.register.submit');
 
-    // Employer Route 
+    // Employer Route
 
     Route::get('/all/employers', 'Users\Admin\AdminController@AllEmployer')->name('admin.all.employers');
 
@@ -55,9 +55,9 @@ Route::prefix('admin')->group(function () {
     // block employer
     Route::get('/employer/block/{id}', 'Users\Admin\AdminController@EmployerBlock')->name('admin.employer.block');
 
-    // End Employer Route 
+    // End Employer Route
 
-    // Jobseeker  Route 
+    // Jobseeker  Route
 
     Route::get('/all/job-seeker', 'Users\Admin\AdminController@JobSeekers')->name('admin.all.jobseeker');
 
@@ -67,12 +67,12 @@ Route::prefix('admin')->group(function () {
     Route::get('/jobseeker/popular/{id}', 'Users\Admin\AdminController@JobseekerMakePopular')->name('admin.jobseeker.popular');
     // block jobseeker or unblock
     Route::get('/jobseeker/block/{id}', 'Users\Admin\AdminController@JobseekerBlock')->name('admin.jobseeker.block');
-    // contact 
+    // contact
     Route::post('/jobseeker/message/send', 'Users\Admin\AdminController@Contact')->name('admin.contact');
 
-    // End Jobseeker  Route 
+    // End Jobseeker  Route
 
-    // Category  Route  
+    // Category  Route
 
     Route::get('/create/category', 'Users\Admin\AdminController@CreateCategory')->name('admin.create.category');
 
@@ -86,13 +86,13 @@ Route::prefix('admin')->group(function () {
 
     Route::get('/edit/category/{id}', 'Users\Admin\AdminController@UpdateCategory')->name('admin.category.edit');
 
-    // End Category  Route  
+    // End Category  Route
 
-    // sub category create 
+    // sub category create
 
     Route::get('/create/subcategory', 'Users\Admin\AdminController@CreateSubCategory')->name('admin.create.subcategory');
 
-    // all subcategory 
+    // all subcategory
 
     Route::get('/all/subcategory', 'Users\Admin\AdminController@AllSubCategory')->name('admin.subcategory.all');
 
@@ -111,12 +111,20 @@ Route::prefix('admin')->group(function () {
 
     Route::get('/edit/subcategory/{id}', 'Users\Admin\AdminController@UpdateSubCategory')->name('admin.subcategory.edit');
 
-    // sub category update 
+//    language
+
+    Route::get('/languages', 'Users\Admin\AdminController@languages')->name('admin.languages');
+    Route::get('/languages/create', 'Users\Admin\AdminController@languageCreate')->name('admin.language.create');
+    Route::post('/languages/store', 'Users\Admin\AdminController@languageStore')->name('admin.language.store');
+    Route::get('/languages/edit/{id}', 'Users\Admin\AdminController@languageEdit')->name('admin.language.edit');
+    Route::post('/languages/update/{id}', 'Users\Admin\AdminController@languageUpdate')->name('admin.language.update');
+
+    // sub category update
 
     Route::post('/update/subcategory', 'Users\Admin\AdminController@SubCategoryUpdate')->name('admin.subcategory.update');
 
 
-    // Subscription  Route 
+    // Subscription  Route
 
     Route::get('/create/subscription', 'Users\Admin\AdminController@CreateSubscription')->name('admin.create.subscription');
 
@@ -132,9 +140,9 @@ Route::prefix('admin')->group(function () {
 
     Route::post('/update/subscription', 'Users\Admin\AdminController@SubscriptionUpdate')->name('admin.subscription.update');
 
-    // End Subscription  Route 
+    // End Subscription  Route
 
-    // Jobb Route 
+    // Jobb Route
 
     Route::get('/create/job', 'Users\Admin\AdminController@CreateJob')->name('admin.create.job');
 
@@ -156,6 +164,6 @@ Route::prefix('admin')->group(function () {
 
 Route::get('/payment/card/{id}/{userid}', 'PaymentController@Payment')->name('payment');
 Route::post('/stripe/payment', 'PaymentController@StripePayment')->name('stripe.payment');
-// payment success route 
+// payment success route
 
 Route::get('/payment/success/', 'PaymentController@PaymentSuccess')->name('payment.success');

@@ -61,11 +61,12 @@ Route::get(
 // common api
 
 Route::get('/get/language/code', 'Api\EmployerController@getLanguageCode');
+Route::get('/language', 'Api\EmployerController@language');
 
 Route::get('/review/sender/image/{id}', 'Api\EmployerController@getLanguageCode');
 
 
-// get coordinate 
+// get coordinate
 
 Route::get('/get/coordinates', 'Api\EmployerController@getCoordinate');
 
@@ -232,7 +233,7 @@ Route::group(
 
         Route::post('/job/bookmark', 'Api\JobseekerController@JobBookmark');
 
-        // new employer ki liye 
+        // new employer ki liye
 
         Route::get('/jobpost/validation', 'Api\EmployerController@ProfileValidation');
 

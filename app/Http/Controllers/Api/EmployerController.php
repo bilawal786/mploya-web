@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Job;
+use App\Language;
 use App\User;
 use App\Review;
 use App\Applied;
@@ -34,11 +35,11 @@ use App\Http\Resources\PopularJobseekerCollection;
 class EmployerController extends Controller
 {
 
-    ////////////////////////////////////////////////////////  Employer  //////////////////// 
+    ////////////////////////////////////////////////////////  Employer  ////////////////////
 
     public $successStatus = 200;
 
-    //  Profile Update Function 
+    //  Profile Update Function
 
     public function ProfileUpdate(Request $request)
     {
@@ -267,7 +268,7 @@ class EmployerController extends Controller
         }
     }
 
-    // Delete Job Function 
+    // Delete Job Function
 
     public function DeleteJob($id)
     {
@@ -331,7 +332,7 @@ class EmployerController extends Controller
         }
     }
 
-    // Change Password Function 
+    // Change Password Function
 
     public function PasswordChange(Request $request)
     {
@@ -348,7 +349,7 @@ class EmployerController extends Controller
     }
 
 
-    // Get All Jobseeker Function 
+    // Get All Jobseeker Function
 
     public function AllEmployer()
     {
@@ -362,7 +363,7 @@ class EmployerController extends Controller
     }
 
 
-    // Applied Jobseeker Function 
+    // Applied Jobseeker Function
 
     public function AppliedEmployer()
     {
@@ -379,7 +380,7 @@ class EmployerController extends Controller
         }
     }
 
-    // Jobseeker Bookmark Function 
+    // Jobseeker Bookmark Function
     public  function EmployerBookmark(Request $request)
     {
 
@@ -413,7 +414,7 @@ class EmployerController extends Controller
     }
 
 
-    // AllBookmarkJobseeker Function 
+    // AllBookmarkJobseeker Function
 
     public function AllBookmarkEmployer()
     {
@@ -450,7 +451,7 @@ class EmployerController extends Controller
     }
 
 
-    // Interview Function 
+    // Interview Function
 
     public function Interview(Request $request)
     {
@@ -495,7 +496,7 @@ class EmployerController extends Controller
                     'Authorization: key=' . $key,
                     'Content-Type: application/json'
                 );
-                //#Send Reponse To FireBase Server 
+                //#Send Reponse To FireBase Server
                 $ch = curl_init();
                 curl_setopt($ch, CURLOPT_URL, 'https://fcm.googleapis.com/fcm/send');
                 curl_setopt($ch, CURLOPT_POST, true);
@@ -520,7 +521,7 @@ class EmployerController extends Controller
         }
     }
 
-    // ne api function 
+    // ne api function
 
     // Get  All Papular Employer
 
@@ -706,7 +707,7 @@ class EmployerController extends Controller
                 'Authorization: key=' . $key,
                 'Content-Type: application/json'
             );
-            //#Send Reponse To FireBase Server 
+            //#Send Reponse To FireBase Server
             $ch = curl_init();
             curl_setopt($ch, CURLOPT_URL, 'https://fcm.googleapis.com/fcm/send');
             curl_setopt($ch, CURLOPT_POST, true);
@@ -730,7 +731,7 @@ class EmployerController extends Controller
         }
     }
 
-    // common function 
+    // common function
 
     function getLanguageCode()
     {
@@ -1177,6 +1178,449 @@ class EmployerController extends Controller
         return response()->json($success);
     }
 
+    function language()
+    {
+        $json = file_get_contents("http://www.geoplugin.net/json.gp?ip=" . request()->ip());
+        $details = json_decode($json);
+        $country_code = $details->geoplugin_countryCode;
+
+        switch ($country_code) {
+            case "DJ":
+            case "ER":
+            case "ET":
+
+                $lang = "aa";
+                break;
+
+            case "AE":
+            case "BH":
+            case "DZ":
+            case "EG":
+            case "IQ":
+            case "JO":
+            case "KW":
+            case "LB":
+            case "LY":
+            case "MA":
+            case "OM":
+            case "QA":
+            case "SA":
+            case "SD":
+            case "SY":
+            case "TN":
+            case "YE":
+
+                $lang = "ar";
+                break;
+
+            case "AZ":
+
+                $lang = "az";
+                break;
+
+            case "BY":
+
+                $lang = "be";
+                break;
+
+            case "BG":
+
+                $lang = "bg";
+                break;
+
+            case "BD":
+
+                $lang = "bn";
+                break;
+
+            case "BA":
+
+                $lang = "bs";
+                break;
+
+            case "CZ":
+
+                $lang = "cs";
+                break;
+
+            case "DK":
+
+                $lang = "da";
+                break;
+
+            case "AT":
+            case "CH":
+            case "DE":
+            case "LU":
+
+                $lang = "de";
+                break;
+
+            case "MV":
+
+                $lang = "dv";
+                break;
+
+            case "BT":
+
+                $lang = "dz";
+                break;
+
+            case "GR":
+
+                $lang = "el";
+                break;
+
+            case "AG":
+            case "AI":
+            case "AQ":
+            case "AS":
+            case "AU":
+            case "BB":
+            case "BW":
+            case "CA":
+            case "GB":
+            case "IE":
+            case "KE":
+            case "NG":
+            case "NZ":
+            case "PH":
+            case "SG":
+            case "US":
+            case "ZA":
+            case "ZM":
+            case "ZW":
+
+                $lang = "en";
+                break;
+
+            case "AD":
+            case "AR":
+            case "BO":
+            case "CL":
+            case "CO":
+            case "CR":
+            case "CU":
+            case "DO":
+            case "EC":
+            case "ES":
+            case "GT":
+            case "HN":
+            case "MX":
+            case "NI":
+            case "PA":
+            case "PE":
+            case "PR":
+            case "PY":
+            case "SV":
+            case "UY":
+            case "VE":
+
+                $lang = "es";
+                break;
+
+            case "EE":
+
+                $lang = "et";
+                break;
+
+            case "IR":
+
+                $lang = "fa";
+                break;
+
+            case "FI":
+
+                $lang = "fi";
+                break;
+
+            case "FO":
+
+                $lang = "fo";
+                break;
+
+            case "BE":
+            case "FR":
+            case "SN":
+
+                $lang = "fr";
+                break;
+
+            case "IL":
+
+                $lang = "he";
+                break;
+
+            case "IN":
+
+                $lang = "hi";
+                break;
+
+            case "HR":
+
+                $lang = "hr";
+                break;
+
+            case "HT":
+
+                $lang = "ht";
+                break;
+
+            case "HU":
+
+                $lang = "hu";
+                break;
+
+            case "AM":
+
+                $lang = "hy";
+                break;
+
+            case "ID":
+
+                $lang = "id";
+                break;
+
+            case "IS":
+
+                $lang = "is";
+                break;
+
+            case "IT":
+
+                $lang = "it";
+                break;
+
+            case "JP":
+
+                $lang = "ja";
+                break;
+
+            case "GE":
+
+                $lang = "ka";
+                break;
+
+            case "KZ":
+
+                $lang = "kk";
+                break;
+
+            case "GL":
+
+                $lang = "kl";
+                break;
+
+            case "KH":
+
+                $lang = "km";
+                break;
+
+            case "KR":
+
+                $lang = "ko";
+                break;
+
+            case "KG":
+
+                $lang = "ky";
+                break;
+
+            case "UG":
+
+                $lang = "lg";
+                break;
+
+            case "LA":
+
+                $lang = "lo";
+                break;
+
+            case "LT":
+
+                $lang = "lt";
+                break;
+
+            case "LV":
+
+                $lang = "lv";
+                break;
+
+            case "MG":
+
+                $lang = "mg";
+                break;
+
+            case "MK":
+
+                $lang = "mk";
+                break;
+
+            case "MN":
+
+                $lang = "mn";
+                break;
+
+            case "MY":
+
+                $lang = "ms";
+                break;
+
+            case "MT":
+
+                $lang = "mt";
+                break;
+
+            case "MM":
+
+                $lang = "my";
+                break;
+
+            case "NP":
+
+                $lang = "ne";
+                break;
+
+            case "AW":
+            case "NL":
+
+                $lang = "nl";
+                break;
+
+            case "NO":
+
+                $lang = "no";
+                break;
+
+            case "PL":
+
+                $lang = "pl";
+                break;
+
+            case "AF":
+
+                $lang = "ps";
+                break;
+
+            case "AO":
+            case "BR":
+            case "PT":
+
+                $lang = "pt";
+                break;
+
+            case "RO":
+
+                $lang = "ro";
+                break;
+
+            case "RU":
+            case "UA":
+
+                $lang = "ru";
+                break;
+
+            case "RW":
+
+                $lang = "rw";
+                break;
+
+            case "AX":
+
+                $lang = "se";
+                break;
+
+            case "SK":
+
+                $lang = "sk";
+                break;
+
+            case "SI":
+
+                $lang = "sl";
+                break;
+
+            case "SO":
+
+                $lang = "so";
+                break;
+
+            case "AL":
+
+                $lang = "sq";
+                break;
+
+            case "ME":
+            case "RS":
+
+                $lang = "sr";
+                break;
+
+            case "SE":
+
+                $lang = "sv";
+                break;
+
+            case "TZ":
+
+                $lang = "sw";
+                break;
+
+            case "LK":
+
+                $lang = "ta";
+                break;
+
+            case "TJ":
+
+                $lang = "tg";
+                break;
+
+            case "TH":
+
+                $lang = "th";
+                break;
+
+            case "TM":
+
+                $lang = "tk";
+                break;
+
+            case "CY":
+            case "TR":
+
+                $lang = "tr";
+                break;
+
+            case "PK":
+
+                $lang = "ur";
+                break;
+
+            case "UZ":
+
+                $lang = "uz";
+                break;
+
+            case "VN":
+
+                $lang = "vi";
+                break;
+
+            case "CN":
+            case "HK":
+            case "TW":
+
+                $lang = "zh";
+                break;
+
+            default:
+                break;
+        }
+        $language = Language::where('code', '=',  $lang)->first();
+        return response()->json($language);
+    }
+
     // getCoordinate
 
     public function getCoordinate()
@@ -1193,7 +1637,7 @@ class EmployerController extends Controller
         return response()->json($success);
     }
 
-    // new   
+    // new
 
     public function ProfileValidation()
     {
@@ -1226,7 +1670,7 @@ class EmployerController extends Controller
         return response()->json(['percentage' => $percentage, 'active' => $active, 'valid_job' => $valid_job]);
     }
 
-    /// HireJobseeker 
+    /// HireJobseeker
 
     public function HireJobseeker(Request $request)
     {

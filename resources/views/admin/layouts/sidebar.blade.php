@@ -90,7 +90,7 @@
               </p>
             </a>
               </li>
-              
+
             </ul>
              <ul class="nav nav-treeview">
               <li class="nav-item">
@@ -119,7 +119,7 @@
                   <p>All Subscriptions</p>
                 </a>
               </li>
-              
+
             </ul>
              <ul class="nav nav-treeview">
               <li class="nav-item">
@@ -136,6 +136,25 @@
                   <p>Add Subscriptions</p>
                 </a>
               </li>
+            </ul>
+          </li>
+
+          <li class="nav-item">
+            <a href="#" class="nav-link {{ $link == route('admin.subscription.all') || $link == route('admin.purchased.subscription') || $link == route('admin.create.subscription')  ? 'active':'' }}">
+                <i class="nav-icon fa fa-comment-dollar"></i>
+              <p>
+                Language
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{route('admin.languages')}}" class="nav-link {{ $link == route('admin.languages') ? 'active':'' }}">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>All Languages</p>
+                </a>
+              </li>
+
             </ul>
           </li>
 

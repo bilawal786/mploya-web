@@ -1618,7 +1618,13 @@ class EmployerController extends Controller
                 break;
         }
         $language = Language::where('code', '=',  $lang)->first();
-        return response()->json($language);
+        if ($language){
+            return response()->json($language);
+        }else{
+            $languaged = Language::where('code', '=',  'en')->first();
+            return response()->json($languaged);
+        }
+
     }
 
     // getCoordinate

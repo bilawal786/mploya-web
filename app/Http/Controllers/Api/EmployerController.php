@@ -1183,7 +1183,7 @@ class EmployerController extends Controller
         $json = file_get_contents("http://www.geoplugin.net/json.gp?ip=" . request()->ip());
         $details = json_decode($json);
         $country_code = $details->geoplugin_countryCode;
-
+        $currencySymbol = $details->geoplugin_currencySymbol;
         switch ($country_code) {
             case "DJ":
             case "ER":

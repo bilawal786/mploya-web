@@ -747,6 +747,21 @@ class AdminController extends Controller
         $lang->l119 = $request->l119;
         $lang->l120 = $request->l120;
 
+        $lang->l121 = $request->l121;
+        $lang->l122 = $request->l122;
+        $lang->l123 = $request->l123;
+        $lang->l124 = $request->l124;
+        $lang->l125 = $request->l125;
+        $lang->l126 = $request->l126;
+        $lang->l127 = $request->l127;
+        $lang->l128 = $request->l128;
+        $lang->l129 = $request->l129;
+        $lang->l130 = $request->l130;
+
+        $lang->l131 = $request->l131;
+        $lang->l132 = $request->l132;
+        $lang->l133 = $request->l133;
+
         $lang->save();
         $notification = array(
             'messege' => 'Successfully Added New Language!',
@@ -891,6 +906,21 @@ class AdminController extends Controller
         $lang->l118 = $request->l118;
         $lang->l119 = $request->l119;
         $lang->l120 = $request->l120;
+
+        $lang->l121 = $request->l121;
+        $lang->l122 = $request->l122;
+        $lang->l123 = $request->l123;
+        $lang->l124 = $request->l124;
+        $lang->l125 = $request->l125;
+        $lang->l126 = $request->l126;
+        $lang->l127 = $request->l127;
+        $lang->l128 = $request->l128;
+        $lang->l129 = $request->l129;
+        $lang->l130 = $request->l130;
+
+        $lang->l131 = $request->l131;
+        $lang->l132 = $request->l132;
+        $lang->l133 = $request->l133;
 
         $lang->save();
         $notification = array(

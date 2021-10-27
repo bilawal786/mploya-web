@@ -40,7 +40,7 @@
                                     <tr>
                                         <th>#</th>
                                         <th>Name</th>
-                                        <th>Country Code</th>
+                                        <th>Language Code</th>
                                         <th>Action</th>
 
                                     </tr>

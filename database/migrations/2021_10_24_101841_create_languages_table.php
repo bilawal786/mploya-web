@@ -140,6 +140,18 @@ class CreateLanguagesTable extends Migration
             $table->text('l119')->nullable();
             $table->text('l120')->nullable();
             $table->text('l121')->nullable();
+            $table->text('l122')->nullable();
+            $table->text('l123')->nullable();
+            $table->text('l124')->nullable();
+            $table->text('l125')->nullable();
+            $table->text('l126')->nullable();
+            $table->text('l127')->nullable();
+            $table->text('l128')->nullable();
+            $table->text('l129')->nullable();
+            $table->text('l130')->nullable();
+            $table->text('l131')->nullable();
+            $table->text('l132')->nullable();
+            $table->text('l133')->nullable();
             $table->timestamps();
         });
     }

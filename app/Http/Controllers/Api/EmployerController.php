@@ -1180,10 +1180,15 @@ class EmployerController extends Controller
 
     function language()
     {
-        $json = file_get_contents("http://www.geoplugin.net/json.gp?ip=" . request()->ip());
+        $json = file_get_contents("http://www.geoplugin.net/json.gp?ip=".request()->ip());
+//        $json = file_get_contents("http://www.geoplugin.net/json.gp?ip=193.176.84.228");
         $details = json_decode($json);
         $country_code = $details->geoplugin_countryCode;
         $currencySymbol = $details->geoplugin_currencySymbol;
+        $geoplugin_latitude = $details->geoplugin_latitude;
+        $geoplugin_longitude = $details->geoplugin_longitude;
+
+
         switch ($country_code) {
             case "DJ":
             case "ER":
@@ -1617,12 +1622,21 @@ class EmployerController extends Controller
             default:
                 break;
         }
+
         $language = Language::where('code', '=',  $lang)->first();
+
+        $success['currencySymbol'] = $currencySymbol;
+        $success['lat'] = $geoplugin_latitude;
+        $success['long'] = $geoplugin_longitude;
+
+
         if ($language){
-            return response()->json($language);
+            $success['language'] = $language;
+            return response()->json($success);
         }else{
             $languaged = Language::where('code', '=',  'en')->first();
-            return response()->json($languaged);
+            $success['language'] = $languaged;
+            return response()->json($success);
         }
 
     }

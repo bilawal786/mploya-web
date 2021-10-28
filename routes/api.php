@@ -65,6 +65,9 @@ Route::get('/language', 'Api\EmployerController@language');
 
 Route::get('/review/sender/image/{id}', 'Api\EmployerController@getLanguageCode');
 
+Route::get('/chat/history', 'Api\AuthController@chatHistoryGet');
+Route::post('/chat/history', 'Api\AuthController@chatHistory');
+
 
 // get coordinate
 

@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\ChatHistory;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Notifications\ForgotPasswordNotification;
 
@@ -59,5 +61,19 @@ class AuthController extends Controller
         $success['message'] = 'Password updated successfully';
         $success['success'] = true;
         return response()->json($success, 200);
+    }
+    public function chatHistory(Request $request){
+        $chatHistory = new ChatHistory();
+        $chatHistory->s_id = $request->s_id;
+        $chatHistory->r_id = $request->r_id;
+        $chatHistory->save();
+        return response()->json(['success' => true], 200);
+    }
+    public function chatHistoryGet(){
+        $chatHistory = ChatHistory::where('s_id', Auth::guard('api')->user()->id)->pluck('r_id')->toArray();
+        $chatHistory1 = ChatHistory::where('r_id', Auth::guard('api')->user()->id)->pluck('s_id')->toArray();
+        $usersIds = array_merge($chatHistory, $chatHistory1);
+        $users = User::whereIn('id', $usersIds)->select('name', 'image')->get()->toArray();
+        return response()->json($users);
     }
 }

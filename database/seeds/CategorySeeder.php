@@ -55,7 +55,7 @@ class CategorySeeder extends Seeder
             'l13' => 'Forgot Password',
             'l14' => 'Login',
             'l15' => 'With',
-            'l16' => 'Dont have an account',
+            'l16' => 'Don\'t have an account',
             'l17' => 'Sign Up',
             'l18' => 'Welcome To',
             'l19' => 'Full Name',

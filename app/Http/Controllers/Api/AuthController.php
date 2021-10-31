@@ -73,7 +73,7 @@ class AuthController extends Controller
         $chatHistory = ChatHistory::where('s_id', Auth::guard('api')->user()->id)->pluck('r_id')->toArray();
         $chatHistory1 = ChatHistory::where('r_id', Auth::guard('api')->user()->id)->pluck('s_id')->toArray();
         $usersIds = array_merge($chatHistory, $chatHistory1);
-        $users = User::whereIn('id', $usersIds)->select('name', 'image')->get()->toArray();
+        $users = User::whereIn('id', $usersIds)->select('id', 'name', 'image', 'created_at')->get()->toArray();
         return response()->json($users);
     }
 }

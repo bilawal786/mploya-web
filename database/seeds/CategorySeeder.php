@@ -240,12 +240,12 @@ class CategorySeeder extends Seeder
             'l198' => 'Please enter userName',
             'l199' => 'OK',
             'l200' => 'OTP',
-            'l201' => 'Jop Post Successfully',
+           /* 'l201' => 'Jop Post Successfully',
             'l202' => 'You can\'t select passed date\'s',
             'l203' => 'Select Interview Time',
             'l204' => 'Please Select Valid Date',
             'l205' => 'Sorry! This Employer has not uploaded introduction video yet.',
-            'l206' => 'Sorry! This Seeker has not uploaded introduction video yet.',
+            'l206' => 'Sorry! This Seeker has not uploaded introduction video yet.',*/
         ]);
     }
 }

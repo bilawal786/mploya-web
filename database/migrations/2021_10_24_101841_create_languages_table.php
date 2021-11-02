@@ -219,12 +219,13 @@ class CreateLanguagesTable extends Migration
             $table->text('l198')->nullable();
             $table->text('l199')->nullable();
             $table->text('l200')->nullable();
-            $table->text('l201')->nullable();
+
+           /* $table->text('l201')->nullable();
             $table->text('l202')->nullable();
             $table->text('l203')->nullable();
             $table->text('l204')->nullable();
             $table->text('l205')->nullable();
-            $table->text('l206')->nullable();
+            $table->text('l206')->nullable();*/
             $table->timestamps();
         });
     }

@@ -228,6 +228,7 @@ class CategorySeeder extends Seeder
             'l186' => 'Full Time',
             'l187' => 'Occupation Not Registered',
             'l188' => 'All Categories',
+            'l189' => 'All Categories',
             'l190' => 'Number',
             'l191' => 'Vacancies',
             'l192' => 'Developer',

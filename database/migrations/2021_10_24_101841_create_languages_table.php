@@ -208,6 +208,7 @@ class CreateLanguagesTable extends Migration
             $table->text('l187')->nullable();
             $table->text('l188')->nullable();
             $table->text('l189')->nullable();
+            $table->text('l190')->nullable();
             $table->text('l191')->nullable();
             $table->text('l192')->nullable();
             $table->text('l193')->nullable();

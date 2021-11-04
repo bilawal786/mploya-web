@@ -246,6 +246,13 @@ class CategorySeeder extends Seeder
             'l204' => 'Please Select Valid Date',
             'l205' => 'Sorry! This Employer has not uploaded introduction video yet.',
             'l206' => 'Sorry! This Seeker has not uploaded introduction video yet.',
+            'l207' => 'Update successfully',
+            'l208' => 'Job Update successfully',
+            'l209' => 'Jop Posted Successfully',
+            'l210' => 'Click + to',
+            'l211' => 'Already have an account?',
+            'l212' => 'Video File should not be greater then 2mb',
+            'l213' => 'Create Password',
         ]);
     }
 }

@@ -16,7 +16,7 @@ class JobseekerResource extends JsonResource
      */
     public function toArray($request)
     {
-        // review 
+        // review
 
         $totalReview = Review::where('receiver', '=', $this->id)->count();
         if ($totalReview != 0) {
@@ -95,7 +95,7 @@ class JobseekerResource extends JsonResource
             'deviceToken' => $this->deviceToken,
             'totalReview' => $totalReview,
             'fiveStarScore' => $fiveStarScore,
-            'profile_status' => $this->profile_status,
+            'profile_status' => $this->profile_status == 'visible' ? true : false,
             'name' => $this->name,
             'email' => $this->email,
             'occupation' => $occupation,

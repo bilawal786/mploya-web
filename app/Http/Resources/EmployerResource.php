@@ -21,7 +21,7 @@ class EmployerResource extends JsonResource
      */
     public function toArray($request)
     {
-        // review 
+        // review
 
         $totalReview = Review::where('receiver', '=', $this->id)->count();
         if ($totalReview != 0) {
@@ -86,7 +86,7 @@ class EmployerResource extends JsonResource
             'email' => $this->email,
             'address' => $address,
             'profile_percentage' => $percentage,
-            'profile_status' => $this->profile_status,
+            'profile_status' => $this->profile_status == 'visible' ? true : false,
             'phone' => $phone,
             'description' => $description,
             'company_name' => $company_name,

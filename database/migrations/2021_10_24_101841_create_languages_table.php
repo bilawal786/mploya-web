@@ -234,6 +234,8 @@ class CreateLanguagesTable extends Migration
             $table->text('l211')->nullable();
             $table->text('l212')->nullable();
             $table->text('l213')->nullable();
+            $table->text('l214')->nullable();
+            $table->text('l215')->nullable();
             $table->timestamps();
         });
     }

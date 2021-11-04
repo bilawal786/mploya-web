@@ -35,6 +35,7 @@ class JobResource extends JsonResource
             'vacancies' => $this->vacancies,
             'job_type' => $this->job_type,
             'salary_type' => $this->salary_type,
+            'device_token' => $employer->deviceToken,
 
             // end new
             'job_title' => $this->job_title,

@@ -253,6 +253,8 @@ class CategorySeeder extends Seeder
             'l211' => 'Already have an account?',
             'l212' => 'Video File should not be greater then 2mb',
             'l213' => 'Create Password',
+            'l214' => 'Thank You. for Subscription',
+            'l215' => 'Applied Successfully',
         ]);
     }
 }

@@ -26,7 +26,7 @@ class CreateUsersSeeder extends Seeder
                 'varify_email' => '1',
                 'profile_status' => 'visible',
                 'address' => 'lahore,pakistan',
-                '' => Hash::make('password'),
+                'password' => Hash::make('password'),
                 'is_popular' => '1',
                 'CNIC' => '',
                 'phone' => '333-444-555',

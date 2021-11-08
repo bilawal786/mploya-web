@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\ChatHistory;
+use App\Http\Resources\ChatHistoryCollection;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -70,10 +71,11 @@ class AuthController extends Controller
         return response()->json(['success' => true], 200);
     }
     public function chatHistoryGet(){
-        $chatHistory = ChatHistory::where('s_id', Auth::guard('api')->user()->id)->pluck('r_id')->toArray();
-        $chatHistory1 = ChatHistory::where('r_id', Auth::guard('api')->user()->id)->pluck('s_id')->toArray();
+        $chatHistory = ChatHistory::where('s_id', 1)->pluck('r_id')->toArray();
+        $chatHistory1 = ChatHistory::where('r_id', 1)->pluck('s_id')->toArray();
         $usersIds = array_merge($chatHistory, $chatHistory1);
-        $users = User::whereIn('id', $usersIds)->select('id', 'name', 'image', 'created_at')->get()->toArray();
-        return response()->json($users);
+        $users = User::whereIn('id', $usersIds)->get();
+        $data = ChatHistoryCollection::collection($users);
+        return response()->json($data);
     }
 }

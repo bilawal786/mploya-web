@@ -255,6 +255,7 @@ class CategorySeeder extends Seeder
             'l213' => 'Create Password',
             'l214' => 'Thank You. for Subscription',
             'l215' => 'Applied Successfully',
+            'l216' => 'Session Expire. Please Login Again ',
         ]);
     }
 }

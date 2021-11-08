@@ -1130,6 +1130,11 @@
                                                 <input type="text" name="l215" class="form-control" value="{{$lan->l215}}" required>
                                             </div>
                                         </div>
+                                        <div class="col-sm-12">
+                                            <div class="form-group">
+                                                <input type="text" name="l216" class="form-control" value="{{$lan->l216}}" required>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="card-footer">

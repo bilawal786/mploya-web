@@ -1623,8 +1623,8 @@ class EmployerController extends Controller
                 break;
         }
 
-        $language = Language::where('code', '=',  $lang)->first();
-
+//        $language = Language::where('code', '=',  $lang)->first();
+        $language = Language::where('code', '=',  'es')->first();
         $success['currencySymbol'] = $currencySymbol;
         $success['lat'] = $geoplugin_latitude;
         $success['long'] = $geoplugin_longitude;

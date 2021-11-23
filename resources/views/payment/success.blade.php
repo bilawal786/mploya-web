@@ -36,11 +36,10 @@
           <div style="border-radius:200px; height:150px; width:150px; background: #F8FAF5; margin:0 auto;">
         <i class="checkmark">✓</i>
       </div>
-        <br><br> <h2 style="color:#0fad00">Success</h2>
+        <br><br> <h2 style="color:#0fad00">{{$languaged->l228}}</h2>
         {{-- <img src="{{asset('image/t.png')}}" width="40" height="50"> --}}
         {{-- <h3>Dear, Faisal khan</h3> --}}
-        <p style="font-size:20px;color:#5C5C5C;">We received your purchase request<br>
-        we'll be in touch shortly!</p>
+        <p style="font-size:20px;color:#5C5C5C;">{{$languaged->l229}}</p>
        
     <br><br>
         </div>

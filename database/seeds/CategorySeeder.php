@@ -256,6 +256,21 @@ class CategorySeeder extends Seeder
             'l214' => 'Thank You. for Subscription',
             'l215' => 'Applied Successfully',
             'l216' => 'Session Expire. Please Login Again ',
+            // new 
+            'l217' => 'Name on Card',
+            'l218' => 'Card Name',
+            'l219' => 'Card Number',
+            'l220' => 'Valid Card Number',
+            'l221' => 'CVC',
+            'l222' => 'e.g 415',
+            'l223' => 'Expiration Month',
+            'l224' => 'MM',
+            'l225' => 'Expiration Year',
+            'l226' => 'YYYY',
+            'l227' => 'Pay Now',
+            'l228' => 'Success',
+            'l229' => "We received your purchase request we'll be in touch shortly!",
+
         ]);
     }
 }

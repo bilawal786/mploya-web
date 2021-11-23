@@ -111,7 +111,7 @@ Route::prefix('admin')->group(function () {
 
     Route::get('/edit/subcategory/{id}', 'Users\Admin\AdminController@UpdateSubCategory')->name('admin.subcategory.edit');
 
-//    language
+    //    language
 
     Route::get('/languages', 'Users\Admin\AdminController@languages')->name('admin.languages');
     Route::get('/languages/create', 'Users\Admin\AdminController@languageCreate')->name('admin.language.create');

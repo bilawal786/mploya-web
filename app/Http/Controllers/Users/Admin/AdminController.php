@@ -601,15 +601,18 @@ class AdminController extends Controller
         $subcategories = Subcategory::where('category_id', '=', $id)->get();
         return response()->json($subcategories);
     }
-    public function languages(){
+    public function languages()
+    {
         $langs = Language::all();
         return view('admin.languages.index', compact('langs'));
     }
-    public function languageCreate(){
+    public function languageCreate()
+    {
         $lan = Language::find(1);
         return view('admin.languages.create', compact('lan'));
     }
-    public function languageStore(Request $request){
+    public function languageStore(Request $request)
+    {
         $lang = new Language();
         $lang->name = $request->name;
         $lang->code = $request->code;
@@ -853,6 +856,21 @@ class AdminController extends Controller
         $lang->l215 = $request->l215;
         $lang->l216 = $request->l216;
 
+        // new
+        $lang->l217 = $request->l217;
+        $lang->l218 = $request->l218;
+        $lang->l219 = $request->l219;
+        $lang->l220 = $request->l220;
+        $lang->l221 = $request->l221;
+        $lang->l222 = $request->l222;
+        $lang->l223 = $request->l223;
+        $lang->l224 = $request->l224;
+        $lang->l225 = $request->l225;
+        $lang->l226 = $request->l226;
+        $lang->l227 = $request->l227;
+        $lang->l228 = $request->l228;
+        $lang->l229 = $request->l229;
+
         $lang->save();
         $notification = array(
             'messege' => 'Successfully Added New Language!',
@@ -860,7 +878,8 @@ class AdminController extends Controller
         );
         return Redirect()->back()->with($notification);
     }
-    public function languageUpdate(Request $request, $id){
+    public function languageUpdate(Request $request, $id)
+    {
         $lang = Language::find($id);
         $lang->name = $request->name;
         $lang->code = $request->code;
@@ -1104,14 +1123,30 @@ class AdminController extends Controller
         $lang->l215 = $request->l215;
         $lang->l216 = $request->l216;
 
+        // new
+        $lang->l217 = $request->l217;
+        $lang->l218 = $request->l218;
+        $lang->l219 = $request->l219;
+        $lang->l220 = $request->l220;
+        $lang->l221 = $request->l221;
+        $lang->l222 = $request->l222;
+        $lang->l223 = $request->l223;
+        $lang->l224 = $request->l224;
+        $lang->l225 = $request->l225;
+        $lang->l226 = $request->l226;
+        $lang->l227 = $request->l227;
+        $lang->l228 = $request->l228;
+        $lang->l229 = $request->l229;
+
         $lang->save();
         $notification = array(
-            'messege' => 'Successfully Added New Language!',
+            'messege' => 'Successfully Update Language!',
             'alert-type' => 'success'
         );
         return Redirect()->back()->with($notification);
     }
-    public function languageEdit($id){
+    public function languageEdit($id)
+    {
         $lan = Language::find($id);
         return view('admin.languages.edit', compact('lan'));
     }

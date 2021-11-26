@@ -57,7 +57,7 @@ class AdminController extends Controller
         $eight = ($employer->linkedin_link == null) ? 0 : 1;
         $nin = $employer->phone == '0' ? 0 : 1;
         $ten = $employer->description == null ? 0 : 1;
-        $sum = $one + $two + $three + $four + $five + $six + $seven + $eight + $nin + $ten + 3;
+        $sum = $one + $two + $three + $four + $five + $six + $seven + $eight + $nin + $ten + 2;
         $percentage = (int)round(($sum / 12) * 100);
         $purchasedsub = PruchasedSubscription::where('employer_id', '=', $id)->get();
         $jobs = Job::where('employer_id', '=', $id)->get();

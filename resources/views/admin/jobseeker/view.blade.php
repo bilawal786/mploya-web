@@ -384,6 +384,16 @@
                                                 @endif
                                             </a>
                                         </li>
+                                        <li class="list-group-item">
+
+                                            <b>Occupation</b> <a class="float-right">
+                                                @if($jobseeker->occupation == '0')
+                                                Not Found
+                                                @else
+                                                {{$jobseeker->occupation}}
+                                                @endif
+                                            </a>
+                                        </li>
                                     </ul>
                                     <input type="hidden" value="{{$jobseeker->id}}" id="jobseeker_id">
                                     <button class="btn btn-primary btn-block" data-toggle="modal"

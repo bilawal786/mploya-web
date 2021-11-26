@@ -275,7 +275,7 @@ class CategorySeeder extends Seeder
             'l230' => 'Hello!',
             'l231' => 'Interview Schedule Notification',
             'l232' => 'Your Date',
-            'l233' => 'and Time.',
+            'l233' => 'and Time',
             'l234' => 'for interview',
             'l235' => 'Good Luck!',
             'l236' => 'Thank you for using our application!',

@@ -11,14 +11,16 @@ class InterviewNotfication extends Notification
 {
     use Queueable;
     public $message;
+    public $language;
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct($message)
+    public function __construct($message, $language)
     {
         $this->message = $message;
+        $this->language = $language;
     }
 
     /**
@@ -40,9 +42,10 @@ class InterviewNotfication extends Notification
      */
     public function toMail($notifiable)
     {
-        return (new MailMessage)
-            ->line('The introduction to the notification. ' . $this->message)
-            ->line('Thank you for using our application!');
+        return (new MailMessage)->view('interviewEmail', ['message' => $this->message, 'language' => $this->language]);
+        // ->line('The introduction to the notification.' . $this->message)
+        // ->action('Notification Action', url('/'))
+        // ->line('Thank you for using our application!');
     }
 
     /**

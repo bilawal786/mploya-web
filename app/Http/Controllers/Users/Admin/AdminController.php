@@ -871,6 +871,17 @@ class AdminController extends Controller
         $lang->l228 = $request->l228;
         $lang->l229 = $request->l229;
 
+        // new for email
+
+        $lang->l230 = $request->l230;
+        $lang->l231 = $request->l231;
+        $lang->l232 = $request->l232;
+        $lang->l233 = $request->l233;
+        $lang->l234 = $request->l234;
+        $lang->l235 = $request->l235;
+        $lang->l236 = $request->l236;
+        $lang->l237 = $request->l237;
+
         $lang->save();
         $notification = array(
             'messege' => 'Successfully Added New Language!',
@@ -1137,6 +1148,17 @@ class AdminController extends Controller
         $lang->l227 = $request->l227;
         $lang->l228 = $request->l228;
         $lang->l229 = $request->l229;
+
+        // new for email
+
+        $lang->l230 = $request->l230;
+        $lang->l231 = $request->l231;
+        $lang->l232 = $request->l232;
+        $lang->l233 = $request->l233;
+        $lang->l234 = $request->l234;
+        $lang->l235 = $request->l235;
+        $lang->l236 = $request->l236;
+        $lang->l237 = $request->l237;
 
         $lang->save();
         $notification = array(

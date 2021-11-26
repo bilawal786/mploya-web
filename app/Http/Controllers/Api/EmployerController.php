@@ -462,6 +462,445 @@ class EmployerController extends Controller
         $employerName = Auth::guard('api')->user()->name;
         $user_type = Auth::guard('api')->user()->user_type;
         $alreadyrequested = Interview::where('employer_id', '=', $employer_id)->where('jobseeker_id', '=', $request->jobseeker_id)->first();
+        $json = file_get_contents("http://www.geoplugin.net/json.gp?ip=" . request()->ip());
+
+        $details = json_decode($json);
+        $country_code = $details->geoplugin_countryCode;
+
+        switch ($country_code) {
+            case "DJ":
+            case "ER":
+            case "ET":
+
+                $lang = "aa";
+                break;
+
+            case "AE":
+            case "BH":
+            case "DZ":
+            case "EG":
+            case "IQ":
+            case "JO":
+            case "KW":
+            case "LB":
+            case "LY":
+            case "MA":
+            case "OM":
+            case "QA":
+            case "SA":
+            case "SD":
+            case "SY":
+            case "TN":
+            case "YE":
+
+                $lang = "ar";
+                break;
+
+            case "AZ":
+
+                $lang = "az";
+                break;
+
+            case "BY":
+
+                $lang = "be";
+                break;
+
+            case "BG":
+
+                $lang = "bg";
+                break;
+
+            case "BD":
+
+                $lang = "bn";
+                break;
+
+            case "BA":
+
+                $lang = "bs";
+                break;
+
+            case "CZ":
+
+                $lang = "cs";
+                break;
+
+            case "DK":
+
+                $lang = "da";
+                break;
+
+            case "AT":
+            case "CH":
+            case "DE":
+            case "LU":
+
+                $lang = "de";
+                break;
+
+            case "MV":
+
+                $lang = "dv";
+                break;
+
+            case "BT":
+
+                $lang = "dz";
+                break;
+
+            case "GR":
+
+                $lang = "el";
+                break;
+
+            case "AG":
+            case "AI":
+            case "AQ":
+            case "AS":
+            case "AU":
+            case "BB":
+            case "BW":
+            case "CA":
+            case "GB":
+            case "IE":
+            case "KE":
+            case "NG":
+            case "NZ":
+            case "PH":
+            case "SG":
+            case "US":
+            case "ZA":
+            case "ZM":
+            case "ZW":
+
+                $lang = "en";
+                break;
+
+            case "AD":
+            case "AR":
+            case "BO":
+            case "CL":
+            case "CO":
+            case "CR":
+            case "CU":
+            case "DO":
+            case "EC":
+            case "ES":
+            case "GT":
+            case "HN":
+            case "MX":
+            case "NI":
+            case "PA":
+            case "PE":
+            case "PR":
+            case "PY":
+            case "SV":
+            case "UY":
+            case "VE":
+
+                $lang = "es";
+                break;
+
+            case "EE":
+
+                $lang = "et";
+                break;
+
+            case "IR":
+
+                $lang = "fa";
+                break;
+
+            case "FI":
+
+                $lang = "fi";
+                break;
+
+            case "FO":
+
+                $lang = "fo";
+                break;
+
+            case "BE":
+            case "FR":
+            case "SN":
+
+                $lang = "fr";
+                break;
+
+            case "IL":
+
+                $lang = "he";
+                break;
+
+            case "IN":
+
+                $lang = "hi";
+                break;
+
+            case "HR":
+
+                $lang = "hr";
+                break;
+
+            case "HT":
+
+                $lang = "ht";
+                break;
+
+            case "HU":
+
+                $lang = "hu";
+                break;
+
+            case "AM":
+
+                $lang = "hy";
+                break;
+
+            case "ID":
+
+                $lang = "id";
+                break;
+
+            case "IS":
+
+                $lang = "is";
+                break;
+
+            case "IT":
+
+                $lang = "it";
+                break;
+
+            case "JP":
+
+                $lang = "ja";
+                break;
+
+            case "GE":
+
+                $lang = "ka";
+                break;
+
+            case "KZ":
+
+                $lang = "kk";
+                break;
+
+            case "GL":
+
+                $lang = "kl";
+                break;
+
+            case "KH":
+
+                $lang = "km";
+                break;
+
+            case "KR":
+
+                $lang = "ko";
+                break;
+
+            case "KG":
+
+                $lang = "ky";
+                break;
+
+            case "UG":
+
+                $lang = "lg";
+                break;
+
+            case "LA":
+
+                $lang = "lo";
+                break;
+
+            case "LT":
+
+                $lang = "lt";
+                break;
+
+            case "LV":
+
+                $lang = "lv";
+                break;
+
+            case "MG":
+
+                $lang = "mg";
+                break;
+
+            case "MK":
+
+                $lang = "mk";
+                break;
+
+            case "MN":
+
+                $lang = "mn";
+                break;
+
+            case "MY":
+
+                $lang = "ms";
+                break;
+
+            case "MT":
+
+                $lang = "mt";
+                break;
+
+            case "MM":
+
+                $lang = "my";
+                break;
+
+            case "NP":
+
+                $lang = "ne";
+                break;
+
+            case "AW":
+            case "NL":
+
+                $lang = "nl";
+                break;
+
+            case "NO":
+
+                $lang = "no";
+                break;
+
+            case "PL":
+
+                $lang = "pl";
+                break;
+
+            case "AF":
+
+                $lang = "ps";
+                break;
+
+            case "AO":
+            case "BR":
+            case "PT":
+
+                $lang = "pt";
+                break;
+
+            case "RO":
+
+                $lang = "ro";
+                break;
+
+            case "RU":
+            case "UA":
+
+                $lang = "ru";
+                break;
+
+            case "RW":
+
+                $lang = "rw";
+                break;
+
+            case "AX":
+
+                $lang = "se";
+                break;
+
+            case "SK":
+
+                $lang = "sk";
+                break;
+
+            case "SI":
+
+                $lang = "sl";
+                break;
+
+            case "SO":
+
+                $lang = "so";
+                break;
+
+            case "AL":
+
+                $lang = "sq";
+                break;
+
+            case "ME":
+            case "RS":
+
+                $lang = "sr";
+                break;
+
+            case "SE":
+
+                $lang = "sv";
+                break;
+
+            case "TZ":
+
+                $lang = "sw";
+                break;
+
+            case "LK":
+
+                $lang = "ta";
+                break;
+
+            case "TJ":
+
+                $lang = "tg";
+                break;
+
+            case "TH":
+
+                $lang = "th";
+                break;
+
+            case "TM":
+
+                $lang = "tk";
+                break;
+
+            case "CY":
+            case "TR":
+
+                $lang = "tr";
+                break;
+
+            case "PK":
+
+                $lang = "ur";
+                break;
+
+            case "UZ":
+
+                $lang = "uz";
+                break;
+
+            case "VN":
+
+                $lang = "vi";
+                break;
+
+            case "CN":
+            case "HK":
+            case "TW":
+
+                $lang = "zh";
+                break;
+
+            default:
+                break;
+        }
+
 
         if ($alreadyrequested) {
             return response()->json(['error' => 'Interview Schedule Already', 'success' => false], 401);
@@ -474,12 +913,20 @@ class EmployerController extends Controller
                 $interview->time = $request->time;
                 $interview->save();
                 $jobseeker = User::find($request->jobseeker_id);
-                $message = "Your Date" . ' ' . $request->date . ' ' . " and Time" . ' ' . $request->time . ' ' . "for interview. Good Luck!";
-                $jobseeker->notify(new InterviewNotfication($message));
+                //$language = Language::where('code', '=',  $lang)->first();
+                $language = Language::where('code', '=',  'es')->first();
+
+                if ($language) {
+                    $message = $language->l232 . ' ' . $request->date . ' ' . $language->l233 . ' ' . $request->time . ' ' . $language->l234 . '' . $language->l235;
+                } else {
+                    $language = Language::where('code', '=',  'en')->first();
+                    $message = $language->l232 . ' ' . $request->date . ' ' . $language->l233 . ' ' . $request->time . ' ' . $language->l234 . '' . $language->l235;
+                }
+
+                $jobseeker->notify(new InterviewNotfication($message, $language));
                 $success['message'] = 'Interview Schedule Successfully and check your Email';
                 $success['success'] = true;
                 // fcm notification
-                // $token = "fgxOcp0BSfeLAYiaipFF7F:APA91bEMXM_zhttv9s0r9qO0z3KB8zbKTmNu4cuWHN7JkGkHYFh0DZQxmZ1LwhITB0d8hHoyNaBQ4-kkc0bP4o9jkqKynREDQXvsfgiEj-cCrNXj_jZDqP6WNTYhQ4RmgF7dG4RB6onT";
                 $key = "AAAADlLsBN0:APA91bGeeIWLQN0TBh2EhUh1_nKc3csfNRUohq2xwHSYhqk1GM4lJm36yJQsjkPhmBbZWQ03sIUe25PrnEMwmsctqHzAuGl5SdLv8ESMWPl8GvR88y88frLlB9_GJIYtj5-OTzaje8Ay";
                 $msg = array(
                     'title' => "Interview Schedule",
@@ -677,6 +1124,444 @@ class EmployerController extends Controller
         $employerName = Auth::guard('api')->user()->name;
         $user_type = Auth::guard('api')->user()->user_type;
         $id = $request->id;
+        $json = file_get_contents("http://www.geoplugin.net/json.gp?ip=" . request()->ip());
+
+        $details = json_decode($json);
+        $country_code = $details->geoplugin_countryCode;
+
+        switch ($country_code) {
+            case "DJ":
+            case "ER":
+            case "ET":
+
+                $lang = "aa";
+                break;
+
+            case "AE":
+            case "BH":
+            case "DZ":
+            case "EG":
+            case "IQ":
+            case "JO":
+            case "KW":
+            case "LB":
+            case "LY":
+            case "MA":
+            case "OM":
+            case "QA":
+            case "SA":
+            case "SD":
+            case "SY":
+            case "TN":
+            case "YE":
+
+                $lang = "ar";
+                break;
+
+            case "AZ":
+
+                $lang = "az";
+                break;
+
+            case "BY":
+
+                $lang = "be";
+                break;
+
+            case "BG":
+
+                $lang = "bg";
+                break;
+
+            case "BD":
+
+                $lang = "bn";
+                break;
+
+            case "BA":
+
+                $lang = "bs";
+                break;
+
+            case "CZ":
+
+                $lang = "cs";
+                break;
+
+            case "DK":
+
+                $lang = "da";
+                break;
+
+            case "AT":
+            case "CH":
+            case "DE":
+            case "LU":
+
+                $lang = "de";
+                break;
+
+            case "MV":
+
+                $lang = "dv";
+                break;
+
+            case "BT":
+
+                $lang = "dz";
+                break;
+
+            case "GR":
+
+                $lang = "el";
+                break;
+
+            case "AG":
+            case "AI":
+            case "AQ":
+            case "AS":
+            case "AU":
+            case "BB":
+            case "BW":
+            case "CA":
+            case "GB":
+            case "IE":
+            case "KE":
+            case "NG":
+            case "NZ":
+            case "PH":
+            case "SG":
+            case "US":
+            case "ZA":
+            case "ZM":
+            case "ZW":
+
+                $lang = "en";
+                break;
+
+            case "AD":
+            case "AR":
+            case "BO":
+            case "CL":
+            case "CO":
+            case "CR":
+            case "CU":
+            case "DO":
+            case "EC":
+            case "ES":
+            case "GT":
+            case "HN":
+            case "MX":
+            case "NI":
+            case "PA":
+            case "PE":
+            case "PR":
+            case "PY":
+            case "SV":
+            case "UY":
+            case "VE":
+
+                $lang = "es";
+                break;
+
+            case "EE":
+
+                $lang = "et";
+                break;
+
+            case "IR":
+
+                $lang = "fa";
+                break;
+
+            case "FI":
+
+                $lang = "fi";
+                break;
+
+            case "FO":
+
+                $lang = "fo";
+                break;
+
+            case "BE":
+            case "FR":
+            case "SN":
+
+                $lang = "fr";
+                break;
+
+            case "IL":
+
+                $lang = "he";
+                break;
+
+            case "IN":
+
+                $lang = "hi";
+                break;
+
+            case "HR":
+
+                $lang = "hr";
+                break;
+
+            case "HT":
+
+                $lang = "ht";
+                break;
+
+            case "HU":
+
+                $lang = "hu";
+                break;
+
+            case "AM":
+
+                $lang = "hy";
+                break;
+
+            case "ID":
+
+                $lang = "id";
+                break;
+
+            case "IS":
+
+                $lang = "is";
+                break;
+
+            case "IT":
+
+                $lang = "it";
+                break;
+
+            case "JP":
+
+                $lang = "ja";
+                break;
+
+            case "GE":
+
+                $lang = "ka";
+                break;
+
+            case "KZ":
+
+                $lang = "kk";
+                break;
+
+            case "GL":
+
+                $lang = "kl";
+                break;
+
+            case "KH":
+
+                $lang = "km";
+                break;
+
+            case "KR":
+
+                $lang = "ko";
+                break;
+
+            case "KG":
+
+                $lang = "ky";
+                break;
+
+            case "UG":
+
+                $lang = "lg";
+                break;
+
+            case "LA":
+
+                $lang = "lo";
+                break;
+
+            case "LT":
+
+                $lang = "lt";
+                break;
+
+            case "LV":
+
+                $lang = "lv";
+                break;
+
+            case "MG":
+
+                $lang = "mg";
+                break;
+
+            case "MK":
+
+                $lang = "mk";
+                break;
+
+            case "MN":
+
+                $lang = "mn";
+                break;
+
+            case "MY":
+
+                $lang = "ms";
+                break;
+
+            case "MT":
+
+                $lang = "mt";
+                break;
+
+            case "MM":
+
+                $lang = "my";
+                break;
+
+            case "NP":
+
+                $lang = "ne";
+                break;
+
+            case "AW":
+            case "NL":
+
+                $lang = "nl";
+                break;
+
+            case "NO":
+
+                $lang = "no";
+                break;
+
+            case "PL":
+
+                $lang = "pl";
+                break;
+
+            case "AF":
+
+                $lang = "ps";
+                break;
+
+            case "AO":
+            case "BR":
+            case "PT":
+
+                $lang = "pt";
+                break;
+
+            case "RO":
+
+                $lang = "ro";
+                break;
+
+            case "RU":
+            case "UA":
+
+                $lang = "ru";
+                break;
+
+            case "RW":
+
+                $lang = "rw";
+                break;
+
+            case "AX":
+
+                $lang = "se";
+                break;
+
+            case "SK":
+
+                $lang = "sk";
+                break;
+
+            case "SI":
+
+                $lang = "sl";
+                break;
+
+            case "SO":
+
+                $lang = "so";
+                break;
+
+            case "AL":
+
+                $lang = "sq";
+                break;
+
+            case "ME":
+            case "RS":
+
+                $lang = "sr";
+                break;
+
+            case "SE":
+
+                $lang = "sv";
+                break;
+
+            case "TZ":
+
+                $lang = "sw";
+                break;
+
+            case "LK":
+
+                $lang = "ta";
+                break;
+
+            case "TJ":
+
+                $lang = "tg";
+                break;
+
+            case "TH":
+
+                $lang = "th";
+                break;
+
+            case "TM":
+
+                $lang = "tk";
+                break;
+
+            case "CY":
+            case "TR":
+
+                $lang = "tr";
+                break;
+
+            case "PK":
+
+                $lang = "ur";
+                break;
+
+            case "UZ":
+
+                $lang = "uz";
+                break;
+
+            case "VN":
+
+                $lang = "vi";
+                break;
+
+            case "CN":
+            case "HK":
+            case "TW":
+
+                $lang = "zh";
+                break;
+
+            default:
+                break;
+        }
         if ($user_type == 'employer') {
             $interview =  Interview::find($id);
             $interview->employer_id = $employer_id;
@@ -685,12 +1570,19 @@ class EmployerController extends Controller
             $interview->time = $request->time;
             $interview->update();
             $jobseeker = User::find($request->jobseeker_id);
-            $message = "Your Date" . ' ' . $request->date . ' ' . " and Time" . ' ' . $request->time . ' ' . "for interview. Good Luck!";
-            $jobseeker->notify(new InterviewNotfication($message));
+            //$language = Language::where('code', '=',  $lang)->first();
+            $language = Language::where('code', '=',  'es')->first();
+
+            if ($language) {
+                $message = $language->l232 . ' ' . $request->date . ' ' . $language->l233 . ' ' . $request->time . ' ' . $language->l234 . '' . $language->l235;
+            } else {
+                $language = Language::where('code', '=',  'en')->first();
+                $message = $language->l232 . ' ' . $request->date . ' ' . $language->l233 . ' ' . $request->time . ' ' . $language->l234 . '' . $language->l235;
+            }
+            $jobseeker->notify(new InterviewNotfication($message, $language));
             $success['message'] = 'Interview Reschedule Successfully and check your Email';
             $success['success'] = true;
             // fcm notification
-            // $token = "fgxOcp0BSfeLAYiaipFF7F:APA91bEMXM_zhttv9s0r9qO0z3KB8zbKTmNu4cuWHN7JkGkHYFh0DZQxmZ1LwhITB0d8hHoyNaBQ4-kkc0bP4o9jkqKynREDQXvsfgiEj-cCrNXj_jZDqP6WNTYhQ4RmgF7dG4RB6onT";
             $key = "AAAADlLsBN0:APA91bGeeIWLQN0TBh2EhUh1_nKc3csfNRUohq2xwHSYhqk1GM4lJm36yJQsjkPhmBbZWQ03sIUe25PrnEMwmsctqHzAuGl5SdLv8ESMWPl8GvR88y88frLlB9_GJIYtj5-OTzaje8Ay";
             $msg = array(
                 'title' => "Interview Reschedule",
@@ -1180,8 +2072,8 @@ class EmployerController extends Controller
 
     function language()
     {
-        $json = file_get_contents("http://www.geoplugin.net/json.gp?ip=".request()->ip());
-//        $json = file_get_contents("http://www.geoplugin.net/json.gp?ip=193.176.84.228");
+        $json = file_get_contents("http://www.geoplugin.net/json.gp?ip=" . request()->ip());
+        //        $json = file_get_contents("http://www.geoplugin.net/json.gp?ip=193.176.84.228");
         $details = json_decode($json);
         $country_code = $details->geoplugin_countryCode;
         $currencySymbol = $details->geoplugin_currencySymbol;
@@ -1623,22 +2515,21 @@ class EmployerController extends Controller
                 break;
         }
 
-//        $language = Language::where('code', '=',  $lang)->first();
+        //        $language = Language::where('code', '=',  $lang)->first();
         $language = Language::where('code', '=',  'es')->first();
         $success['currencySymbol'] = $currencySymbol;
         $success['lat'] = $geoplugin_latitude;
         $success['long'] = $geoplugin_longitude;
 
 
-        if ($language){
+        if ($language) {
             $success['language'] = $language;
             return response()->json($success);
-        }else{
+        } else {
             $languaged = Language::where('code', '=',  'en')->first();
             $success['language'] = $languaged;
             return response()->json($success);
         }
-
     }
 
     // getCoordinate

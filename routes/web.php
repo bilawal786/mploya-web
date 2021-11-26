@@ -166,4 +166,5 @@ Route::get('/payment/card/{id}/{userid}', 'PaymentController@Payment')->name('pa
 Route::post('/stripe/payment', 'PaymentController@StripePayment')->name('stripe.payment');
 // payment success route
 
+
 Route::get('/payment/success/', 'PaymentController@PaymentSuccess')->name('payment.success');

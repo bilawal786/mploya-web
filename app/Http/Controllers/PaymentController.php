@@ -466,6 +466,8 @@ class PaymentController extends Controller
         }
     }
 
+
+
     public function StripePayment(Request $request)
     {
         $sub = Subscription::find($request->subscriptioniId);

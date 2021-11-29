@@ -11,10 +11,10 @@
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          @if(!empty(Auth::user()->image))
-          <img src="{{asset(Auth::user()->image)}}" class="img-circle elevation-2" alt="User Image">
+          @if(!empty(Auth::guard('admin')->user()->image))
+          <img src="{{asset(Auth::guard('admin')->user()->image)}}" class="img-circle elevation-2" alt="User Image" style="height: 35px;width:35px">
           @else
-          <img src="{{asset('assets/dist/img/user2-160x160.jpg')}}" class="img-circle elevation-2" alt="User Image">
+          <img src="{{asset('assets/dist/img/user2-160x160.jpg')}}" class="img-circle elevation-2" alt="User Image" style="height: 35px;width:35px">
           @endif
         </div>
          <div class="info">
@@ -55,6 +55,17 @@
                   </p>
                 </a>
               </li>
+               {{-- Profile --}}
+                         <li class="nav-item">
+                            <a href="{{route('admin.profile')}}" class="nav-link {{ $link == route('admin.profile') ? 'active':'' }}">
+
+                                <i class="nav-icon  fas fa-user"></i>
+                                <p>
+                                    Profile
+                                </p>
+                            </a>
+                        </li>      
+                {{-- end Ptofile  --}}
               <li class="nav-item">
                     <a href="{{route('admin.all.employers')}}" class="nav-link {{ $link == route('admin.all.employers') ? 'active':'' }}">
                         <i class="nav-icon fas fa-chalkboard-teacher"></i>

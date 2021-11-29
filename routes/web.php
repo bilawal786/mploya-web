@@ -44,6 +44,11 @@ Route::prefix('admin')->group(function () {
 
     Route::post('/register', 'Auth\AdminRegisterController@register')->name('admin.register.submit');
 
+
+    Route::get('/profile', 'Users\Admin\AdminController@profile')->name('admin.profile');
+
+    Route::post('/profile/update', 'Users\Admin\AdminController@update')->name('admin.profile.update');
+
     // Employer Route
 
     Route::get('/all/employers', 'Users\Admin\AdminController@AllEmployer')->name('admin.all.employers');

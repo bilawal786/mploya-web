@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\Users\Admin;
 
+use App\Admin;
 use App\Job;
-use App\Language;
 use App\User;
 use App\Applied;
 use App\Category;
+use App\Language;
 use App\Subcategory;
 use App\Subscription;
 use Illuminate\Http\Request;
@@ -25,6 +26,37 @@ class AdminController extends Controller
 
 
         $this->middleware('auth:admin');
+    }
+
+    public function profile()
+    {
+        return  view('admin.profile');
+    }
+
+    public function update(Request $request)
+    {
+        if ($request->ajax()) {
+            $id = $request->id;
+            $profile = Admin::find($id);
+            $profile->email = $request->email;
+            $profile->name = $request->name;
+            if ($request->hasfile('image')) {
+                if (!empty($profile->image)) {
+                    $image_path = $profile->image;
+                    unlink($image_path);
+                }
+                $image = $request->file('image');
+                $name = time() . 'profile' . '.' . $image->getClientOriginalExtension();
+                $destinationPath = 'profile_images/';
+                $image->move($destinationPath, $name);
+                $profile->image = 'profile_images/' . $name;
+            }
+
+            $profile->save();
+            return response()->json([
+                'success' => 'Profile Updated Successfully!',
+            ]);
+        }
     }
 
     public function index()

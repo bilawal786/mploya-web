@@ -419,6 +419,7 @@
                                 <div class="card-header">
                                     <h3 class="card-title">About Me</h3>
                                 </div>
+                                
                                 <!-- /.card-header -->
                                 <div class="card-body">
                                     <strong><i class="fas fa-graduation-cap mr-1"></i> Educations</strong><br>

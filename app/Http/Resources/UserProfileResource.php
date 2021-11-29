@@ -55,11 +55,10 @@ class UserProfileResource extends JsonResource
             $nineteen = ($jobseeker->certification_year == null) ? 0 : 1;
             $twenty = ($jobseeker->certification_description == null) ? 0 : 1;
             $twentyone = ($jobseeker->language == null) ? 0 : 1;
-            $twentytwo = $jobseeker->video == '0' ? 0 : 1;
-            $twentythree = $jobseeker->occupation == '0' ? 0 : 1;
+            $twentytwo = $jobseeker->occupation == '0' ? 0 : 1;
             $sum = $one + $two + $three + $four + $five + $six + $seven + $eight + $nine + $ten + $eleven + $twelve + $thirteen
-                + $fourteen + $fifteen + $sixteen + $seventeen + $eighteen + $nineteen + $twenty + $twentyone + $twentytwo  + $twentythree + 3;
-            $percentage = (int)round(($sum / 26) * 100);
+                + $fourteen + $fifteen + $sixteen + $seventeen + $eighteen + $nineteen + $twenty + $twentyone + $twentytwo + 3;
+            $percentage = (int)round(($sum / 25) * 100);
         }
         $this->address == '0' ?   $address = '' : $address = $this->address;
         return [

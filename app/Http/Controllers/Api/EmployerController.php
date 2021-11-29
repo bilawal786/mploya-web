@@ -123,49 +123,49 @@ class EmployerController extends Controller
         if (Auth::guard('api')->check()) {
             $user_type = Auth::guard('api')->user()->user_type;
             $user_id = Auth::guard('api')->user()->id;
-            $purchased_subscription = PruchasedSubscription::where('employer_id', '=', $user_id)->first();
+            // $purchased_subscription = PruchasedSubscription::where('employer_id', '=', $user_id)->first();
             if ($user_type == 'employer') {
-                if (empty($purchased_subscription)) {
+                // if (empty($purchased_subscription)) {
 
-                    return response()->json(['error' => 'You Are Not Able To Post Job, Please Pruchased Subscription', 'success' => false], 200);
+                //     return response()->json(['error' => 'You Are Not Able To Post Job, Please Pruchased Subscription', 'success' => false], 200);
+                // } else {
+                //     if ($purchased_subscription->valid_job == '0') {
+                //         return response()->json(['error' => 'You Are Not Able To Post More Job, Please Upgrate Subscription', 'success' => false], 401);
+                //     } else {
+                $job = new Job();
+                $job->role = 'employer';
+                $job->job_title = $request->job_title;
+                $job->employer_id = $user_id;
+                $job->status = 'open';
+                $job->description = $request->description;
+                $job->salary_type = $request->salary_type;
+                $job->min_salary = $request->min_salary;
+                $job->max_salary = $request->max_salary;
+                $job->occupation = $request->occupation;
+                $job->education = $request->education;
+                $job->category_id = $request->category_id;
+                $job->min_experience = $request->min_experience;
+                $job->max_experience = $request->max_experience;
+                // new feild
+                $job->subcategory_id = $request->subcategory_id;
+                $job->requirements = $request->requirements;
+                $job->link = $request->link;
+                $job->vacancies = $request->vacancies;
+                $job->job_type = $request->job_type;
+                $job->skills = implode(',', $request->skills);
+
+                if ($job->save()) {
+                    $job->users()->attach($user_id);
+                    // $purchased_subscription->valid_job -= 1;
+                    // $purchased_subscription->update();
+                    $success['message'] = 'Job Add Successfully!';
+                    $success['success'] = true;
+                    return response()->json($success, $this->successStatus);
                 } else {
-                    if ($purchased_subscription->valid_job == '0') {
-                        return response()->json(['error' => 'You Are Not Able To Post More Job, Please Upgrate Subscription', 'success' => false], 401);
-                    } else {
-                        $job = new Job();
-                        $job->role = 'employer';
-                        $job->job_title = $request->job_title;
-                        $job->employer_id = $user_id;
-                        $job->status = 'open';
-                        $job->description = $request->description;
-                        $job->salary_type = $request->salary_type;
-                        $job->min_salary = $request->min_salary;
-                        $job->max_salary = $request->max_salary;
-                        $job->occupation = $request->occupation;
-                        $job->education = $request->education;
-                        $job->category_id = $request->category_id;
-                        $job->min_experience = $request->min_experience;
-                        $job->max_experience = $request->max_experience;
-                        // new feild
-                        $job->subcategory_id = $request->subcategory_id;
-                        $job->requirements = $request->requirements;
-                        $job->link = $request->link;
-                        $job->vacancies = $request->vacancies;
-                        $job->job_type = $request->job_type;
-                        $job->skills = implode(',', $request->skills);
-
-                        if ($job->save()) {
-                            $job->users()->attach($user_id);
-                            $purchased_subscription->valid_job -= 1;
-                            $purchased_subscription->update();
-                            $success['message'] = 'Job Add Successfully!';
-                            $success['success'] = true;
-                            return response()->json($success, $this->successStatus);
-                        } else {
-                            return response()->json(['error' => 'Something Wrong, Try Again', 'success' => false], 401);
-                        }
-                    }
+                    return response()->json(['error' => 'Something Wrong, Try Again', 'success' => false], 401);
                 }
+                //     }
+                // }
             } else {
 
                 return response()->json(['error' => 'You Are Not Able To Post Job', 'success' => false], 200);

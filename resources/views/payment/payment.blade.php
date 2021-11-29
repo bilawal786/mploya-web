@@ -58,11 +58,11 @@
         .form-control {
             border: 1px solid #449d44;
         }
-        html,  .container{
+        /* html,  .container{
             background-color: #caeee5;
-        }
+        } */
     </style>
-<body> 
+<body style="background-color: #caeee5"> 
     <?php
         $subscription  = App\Subscription::find($subscriptioniId);
     ?>

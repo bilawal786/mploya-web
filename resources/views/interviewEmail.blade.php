@@ -41,7 +41,8 @@
 <body style="background-color: #edf2f7;">
     <div>
         <h2 class="name">{{$language->l230}}</h2>
-            <p class="description">{{$language->l231}} {{$message}} </p>
+            <p class="description">{{$language->l231}}.</p>
+            <p class="description">{{$msg}}</p>
             <p style="margin-left: 60px;">{{$language->l236}}</p>
             <p style="margin-left: 60px;line-height: 25px;">{{$language->l237}},<br> mploya</p>
     </div>

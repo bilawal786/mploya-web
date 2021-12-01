@@ -919,13 +919,12 @@ class EmployerController extends Controller
                 $language = Language::where('code', '=',  'es')->first();
 
                 if ($language) {
-                    $message = $language->l232 . ' ' . $request->date . ' ' . $language->l233 . ' ' . $request->time . ' ' . $language->l234 . '' . $language->l235;
+                    $msg = $language->l232 . ' ' . $request->date . ' ' . $language->l233 . ' ' . $request->time . ' ' . $language->l234 . ' ' . $language->l235;
                 } else {
                     $language = Language::where('code', '=',  'en')->first();
-                    $message = $language->l232 . ' ' . $request->date . ' ' . $language->l233 . ' ' . $request->time . ' ' . $language->l234 . '' . $language->l235;
+                    $msg = $language->l232 . ' ' . $request->date . ' ' . $language->l233 . ' ' . $request->time . ' ' . $language->l234 . ' ' . $language->l235;
                 }
-
-                $jobseeker->notify(new InterviewNotfication($message, $language));
+                $jobseeker->notify(new InterviewNotfication($msg, $language));
                 $success['message'] = 'Interview Schedule Successfully and check your Email';
                 $success['success'] = true;
                 // fcm notification

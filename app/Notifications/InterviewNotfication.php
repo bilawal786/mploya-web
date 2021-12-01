@@ -10,16 +10,16 @@ use Illuminate\Notifications\Notification;
 class InterviewNotfication extends Notification
 {
     use Queueable;
-    public $message;
+    public $msg;
     public $language;
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct($message, $language)
+    public function __construct($msg, $language)
     {
-        $this->message = $message;
+        $this->msg = $msg;
         $this->language = $language;
     }
 
@@ -38,11 +38,13 @@ class InterviewNotfication extends Notification
      * Get the mail representation of the notification.
      *
      * @param  mixed  $notifiable
-     * @return \Illuminate\Notifications\Messages\MailMessage
+     * @return \Illuminate\Notifications\msgs\Mailmsg
      */
     public function toMail($notifiable)
     {
-        return (new MailMessage)->view('interviewEmail', ['message' => $this->message, 'language' => $this->language]);
+        $msg = $this->msg;
+        $language = $this->language;
+        return (new MailMessage)->view('interviewEmail', compact('msg', 'language'));
         // ->line('The introduction to the notification.' . $this->message)
         // ->action('Notification Action', url('/'))
         // ->line('Thank you for using our application!');

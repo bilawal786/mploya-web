@@ -11,14 +11,16 @@ class EmailVerifyNotification extends Notification
 {
     use Queueable;
     public $otp;
+    public $lng;
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct($otp)
+    public function __construct($lng, $otp)
     {
         $this->otp  = $otp;
+        $this->lng  = $lng;
     }
 
     /**
@@ -41,9 +43,8 @@ class EmailVerifyNotification extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-            ->line('The introduction to the notification.Your Otp Code is : ' .  $this->otp)
-            ->action('Notification Action', url('/'))
-            ->line('Thank you for using our application!');
+            ->line($this->lng->l239 . '.' . $this->lng->l238 . ': ' .  $this->otp)
+            ->line($this->lng->l236);
     }
 
     /**

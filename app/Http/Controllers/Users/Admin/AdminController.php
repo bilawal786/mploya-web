@@ -914,6 +914,8 @@ class AdminController extends Controller
         $lang->l235 = $request->l235;
         $lang->l236 = $request->l236;
         $lang->l237 = $request->l237;
+        $lang->l238 = $request->l238;
+        $lang->l239 = $request->l239;
 
         $lang->save();
         $notification = array(
@@ -1192,8 +1194,10 @@ class AdminController extends Controller
         $lang->l235 = $request->l235;
         $lang->l236 = $request->l236;
         $lang->l237 = $request->l237;
+        $lang->l238 = $request->l238;
+        $lang->l239 = $request->l239;
 
-        $lang->save();
+        $lang->update();
         $notification = array(
             'messege' => 'Successfully Update Language!',
             'alert-type' => 'success'

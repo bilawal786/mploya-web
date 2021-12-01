@@ -45,9 +45,6 @@ class InterviewNotfication extends Notification
         $msg = $this->msg;
         $language = $this->language;
         return (new MailMessage)->view('interviewEmail', compact('msg', 'language'));
-        // ->line('The introduction to the notification.' . $this->message)
-        // ->action('Notification Action', url('/'))
-        // ->line('Thank you for using our application!');
     }
 
     /**

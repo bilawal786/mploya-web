@@ -280,6 +280,8 @@ class CategorySeeder extends Seeder
             'l235' => 'Good Luck!',
             'l236' => 'Thank you for using our application!',
             'l237' => 'Regards',
+            'l238' => 'Your Otp Code is',
+            'l239' => 'The introduction to the notification',
 
         ]);
     }

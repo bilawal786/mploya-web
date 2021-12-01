@@ -124,7 +124,7 @@ class JobseekerController extends Controller
     public function AllJobs()
     {
 
-        $jobs = Job::where('status', '=', 'open')->where('countryCode', '=', Auth::guard('api')->user()->countryCode)->get();
+        $jobs = Job::where('status', '=', 'open')->where('countryCode', '=', Auth::guard('api')->user()->countryCode)->orderBy('id', 'ASC')->get();
         if ($jobs->isEmpty()) {
             return response()->json(['error' => 'Jobs not Found', 'success' => false], 404);
         } else {
@@ -233,7 +233,7 @@ class JobseekerController extends Controller
         $user_type = Auth::guard('api')->user()->user_type;
         if ($user_type == 'jobseeker') {
             $jobs_id = Bookmark::where('jobseeker_id', '=', $jobseeker_id)->pluck('job_id');
-            $jobs = Job::whereIn('id', $jobs_id)->get();
+            $jobs = Job::whereIn('id', $jobs_id)->orderBy('id', 'ASC')->get();
             if ($jobs->isEmpty()) {
                 return response()->json(['error' => 'Bookmarked Jobs not Found', 'success' => false], 404);
             } else {

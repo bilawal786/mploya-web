@@ -355,7 +355,7 @@ class EmployerController extends Controller
 
     public function AllEmployer()
     {
-        $jobseekers = User::where('user_type', '=', 'jobseeker')->where('profile_status', '=', 'visible')->get();
+        $jobseekers = User::where('user_type', '=', 'jobseeker')->where('profile_status', '=', 'visible')->orderBy('id', 'ASC')->get();
         if ($jobseekers->isEmpty()) {
             return response()->json(['error' => 'Jobseeker not Found', 'success' => false], 404);
         } else {
@@ -372,7 +372,7 @@ class EmployerController extends Controller
 
         $employer_id = Auth::guard('api')->user()->id;
         $jobsid = Job::where('employer_id', '=', $employer_id)->pluck('id');
-        $appliedjobs = Applied::whereIn('job_id', $jobsid)->get();
+        $appliedjobs = Applied::whereIn('job_id', $jobsid)->orderBy('id', 'ASC')->get();
 
         if ($appliedjobs->isEmpty()) {
             return response()->json(['error' => 'Applied Jobseeker not Found', 'success' => false], 401);
@@ -425,7 +425,7 @@ class EmployerController extends Controller
         $user_type = Auth::guard('api')->user()->user_type;
         if ($user_type == 'employer') {
             $jobseeker_id = Employerbookmark::where('employer_id', '=', $employer_id)->pluck('jobseeker_id');
-            $jobseekers = User::whereIn('id', $jobseeker_id)->get();
+            $jobseekers = User::whereIn('id', $jobseeker_id)->orderBy('id', 'ASC')->get();
             if ($jobseekers->isEmpty()) {
                 return response()->json(['error' => 'Jobseeker not Found', 'success' => false], 404);
             } else {
@@ -999,7 +999,7 @@ class EmployerController extends Controller
                 'is_popular',
                 '=',
                 '1'
-            )->where('user_type', '=', 'jobseeker')->get();
+            )->where('user_type', '=', 'jobseeker')->orderBy('id', 'ASC')->get();
             if ($popularjobseeker->isEmpty()) {
                 return response()->json(
                     ['error' => 'Popular Jobseekers not Found', 'success' => false],

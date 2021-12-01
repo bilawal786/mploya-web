@@ -16,6 +16,7 @@ class JobSeeder extends Seeder
             [
                 'role' => 'employer',
                 'employer_id' => '1',
+                'countryCode' => 'PK',
                 'status' => 'open',
                 'category_id' => '1',
                 'subcategory_id' => '1',
@@ -36,6 +37,7 @@ class JobSeeder extends Seeder
             [
                 'role' => 'employer',
                 'employer_id' => '2',
+                'countryCode' => 'PK',
                 'status' => 'open',
                 'category_id' => '2',
                 'subcategory_id' => '5',
@@ -57,6 +59,7 @@ class JobSeeder extends Seeder
             [
                 'role' => 'admin',
                 'employer_id' => '3',
+                'countryCode' => 'PK',
                 'status' => 'open',
                 'category_id' => '3',
                 'subcategory_id' => '7',

@@ -134,6 +134,7 @@ class EmployerController extends Controller
                 //     } else {
                 $job = new Job();
                 $job->role = 'employer';
+                $job->countryCode = Auth::guard('api')->user()->countryCode;
                 $job->job_title = $request->job_title;
                 $job->employer_id = $user_id;
                 $job->status = 'open';
@@ -241,6 +242,7 @@ class EmployerController extends Controller
             if (Job::where('id', $request->id)->exists()) {
                 $job = Job::find($request->id);
                 $job->job_title = $request->job_title;
+                $job->countryCode = Auth::guard('api')->user()->countryCode;
                 $job->description = $request->description;
                 $job->salary_type = $request->salary_type;
                 $job->min_salary = $request->min_salary;

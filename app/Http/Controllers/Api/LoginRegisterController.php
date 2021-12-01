@@ -49,6 +49,7 @@ class LoginRegisterController extends Controller
     {
         $response = Http::get('http://ipinfo.io/119.155.58.47/json');
         $data = $response->object();
+        $countryCode = $data->country;
         $loc = explode(',', $data->loc);
         $latitude = $loc[0];
         $longitude = $loc[1];
@@ -80,6 +81,7 @@ class LoginRegisterController extends Controller
             'longitude' => $lng,
             'otp' => $otp,
             'name' => $request->name,
+            'countryCode' => $countryCode,
             'email' => $request->email,
             'user_type' => $request->user_type,
             'password' => Hash::make($request->password),
@@ -87,6 +89,7 @@ class LoginRegisterController extends Controller
         $success['id'] =  $user->id;
         $success['deviceToken'] =  $user->deviceToken;
         $success['name'] =  $user->name;
+        $success['countryCode'] =  $user->countryCode;
         $success['image'] =  $user->image;
         $success['success'] = true;
         $success['message'] = 'Otp Send Successfully On Your Email';

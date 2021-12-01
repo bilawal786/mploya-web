@@ -124,7 +124,7 @@ class JobseekerController extends Controller
     public function AllJobs()
     {
 
-        $jobs = Job::where('status', '=', 'open')->get();
+        $jobs = Job::where('status', '=', 'open')->where('countryCode', '=', Auth::guard('api')->user()->countryCode)->get();
         if ($jobs->isEmpty()) {
             return response()->json(['error' => 'Jobs not Found', 'success' => false], 404);
         } else {

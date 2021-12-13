@@ -21,18 +21,23 @@ class AdminLoginController extends Controller
     public function login(Request $request)
     {
         // Validate form data
-        $this->validate($request, [
-            'email' => 'required|email',
-            'password' => 'required|min:8'
+        $request->validate([
+            'email' => 'required|email|exists:admins,email',
+            'password' => 'required|min:5|max:30'
+        ], [
+            'email.exists' => 'This email is not exists in admins table'
         ]);
 
         // Attempt to log the user in
-        if (Auth::guard('admin')->attempt(['email' => $request->email, 'password' => $request->password], $request->remember)) {
-            return redirect()->intended(route('admin.dashboard'));
+        $creds = $request->only(
+            'email',
+            'password'
+        );
+        if (Auth::guard('admin')->attempt($creds)) {
+            return redirect()->route('admin.dashboard');
+        } else {
+            return redirect()->route('admin.login')->with('fail', 'Incorrect credentials');
         }
-
-        // if unsuccessful
-        return redirect()->back()->withInput($request->only('email', 'remember'));
     }
 
     public function logout()

@@ -13,7 +13,7 @@ class NotificationController extends Controller
     {
         $notifications = Notification::where('reciever_id', '=', Auth::guard('api')->user()->id)->get();
         if ($notifications->isEmpty()) {
-            return response()->json(['error' => 'Notification not Found', 'success' => false], 401);
+            return response()->json(['error' => 'Notification Not Found', 'success' => false], 401);
         } else {
             $data = NotificationCollection::collection($notifications);
             return response()->json(NotificationCollection::collection($data));

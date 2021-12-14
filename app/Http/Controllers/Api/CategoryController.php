@@ -41,7 +41,7 @@ class CategoryController extends Controller
         $jobs = Job::where('category_id', '=', $id)->get();
 
         if ($jobs == null) {
-            return response()->json(['error' => 'Jobs  not Found', 'success' => false], 404);
+            return response()->json(['error' => 'Jobs Not Found', 'success' => false], 404);
         } else {
 
             $data =  AllJobCollection::collection($jobs);

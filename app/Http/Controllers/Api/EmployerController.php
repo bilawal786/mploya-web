@@ -49,7 +49,7 @@ class EmployerController extends Controller
             return response()->json($success, 401);
         }
         $validator = Validator::make($request->all(), [
-            'video'  =>  'max:20480',
+            'video'  =>  'max:2000',
         ]);
         if ($validator->fails()) {
             return response()->json($validator->errors(), 422);
@@ -120,59 +120,55 @@ class EmployerController extends Controller
 
     public function JobPost(Request $request)
     {
-        if (Auth::guard('api')->check()) {
-            $user_type = Auth::guard('api')->user()->user_type;
-            $user_id = Auth::guard('api')->user()->id;
-            // $purchased_subscription = PruchasedSubscription::where('employer_id', '=', $user_id)->first();
-            if ($user_type == 'employer') {
-                // if (empty($purchased_subscription)) {
+        $user_type = Auth::guard('api')->user()->user_type;
+        $user_id = Auth::guard('api')->user()->id;
+        // $purchased_subscription = PruchasedSubscription::where('employer_id', '=', $user_id)->first();
+        if ($user_type == 'employer') {
+            // if (empty($purchased_subscription)) {
 
-                //     return response()->json(['error' => 'You Are Not Able To Post Job, Please Pruchased Subscription', 'success' => false], 200);
-                // } else {
-                //     if ($purchased_subscription->valid_job == '0') {
-                //         return response()->json(['error' => 'You Are Not Able To Post More Job, Please Upgrate Subscription', 'success' => false], 401);
-                //     } else {
-                $job = new Job();
-                $job->role = 'employer';
-                $job->countryCode = Auth::guard('api')->user()->countryCode;
-                $job->job_title = $request->job_title;
-                $job->employer_id = $user_id;
-                $job->status = 'open';
-                $job->description = $request->description;
-                $job->salary_type = $request->salary_type;
-                $job->min_salary = $request->min_salary;
-                $job->max_salary = $request->max_salary;
-                $job->occupation = $request->occupation;
-                $job->education = $request->education;
-                $job->category_id = $request->category_id;
-                $job->min_experience = $request->min_experience;
-                $job->max_experience = $request->max_experience;
-                // new feild
-                $job->subcategory_id = $request->subcategory_id;
-                $job->requirements = $request->requirements;
-                $job->link = $request->link;
-                $job->vacancies = $request->vacancies;
-                $job->job_type = $request->job_type;
-                $job->skills = implode(',', $request->skills);
+            //     return response()->json(['error' => 'You Are Not Able To Post Job, Please Pruchased Subscription', 'success' => false], 200);
+            // } else {
+            //     if ($purchased_subscription->valid_job == '0') {
+            //         return response()->json(['error' => 'You Are Not Able To Post More Job, Please Upgrate Subscription', 'success' => false], 401);
+            //     } else {
+            $job = new Job();
+            $job->role = 'employer';
+            $job->countryCode = Auth::guard('api')->user()->countryCode;
+            $job->job_title = $request->job_title;
+            $job->employer_id = $user_id;
+            $job->status = 'open';
+            $job->description = $request->description;
+            $job->salary_type = $request->salary_type;
+            $job->min_salary = $request->min_salary;
+            $job->max_salary = $request->max_salary;
+            $job->occupation = $request->occupation;
+            $job->education = $request->education;
+            $job->category_id = $request->category_id;
+            $job->min_experience = $request->min_experience;
+            $job->max_experience = $request->max_experience;
+            // new feild
+            $job->subcategory_id = $request->subcategory_id;
+            $job->requirements = $request->requirements;
+            $job->link = $request->link;
+            $job->vacancies = $request->vacancies;
+            $job->job_type = $request->job_type;
+            $job->skills = implode(',', $request->skills);
 
-                if ($job->save()) {
-                    $job->users()->attach($user_id);
-                    // $purchased_subscription->valid_job -= 1;
-                    // $purchased_subscription->update();
-                    $success['message'] = 'Job Add Successfully!';
-                    $success['success'] = true;
-                    return response()->json($success, $this->successStatus);
-                } else {
-                    return response()->json(['error' => 'Something Wrong, Try Again', 'success' => false], 401);
-                }
-                //     }
-                // }
+            if ($job->save()) {
+                $job->users()->attach($user_id);
+                // $purchased_subscription->valid_job -= 1;
+                // $purchased_subscription->update();
+                $success['message'] = 'Job Add Successfully!';
+                $success['success'] = true;
+                return response()->json($success, $this->successStatus);
             } else {
-
-                return response()->json(['error' => 'You Are Not Able To Post Job', 'success' => false], 200);
+                return response()->json(['error' => 'Something went wrong try again', 'success' => false], 401);
             }
+            //     }
+            // }
         } else {
-            return response()->json(['error' => 'User not authorized', 'success' => false], 401);
+
+            return response()->json(['error' => 'You Are Not Able To Post Job', 'success' => false], 200);
         }
     }
 
@@ -185,7 +181,7 @@ class EmployerController extends Controller
         $role = Auth::guard('api')->user()->user_type;
         $jobs = Job::where('employer_id', '=', $id)->where('role', '=', $role)->where('status', '=', 'open')->get();
         if ($jobs->isEmpty()) {
-            return response()->json(['error' => 'Jobs not Found', 'success' => false], 404);
+            return response()->json(['error' => 'Jobs Not Found', 'success' => false], 404);
         } else {
             $data = AllJobCollection::collection($jobs);
             return response()->json(AllJobCollection::collection($data));
@@ -199,12 +195,8 @@ class EmployerController extends Controller
 
 
         $job = Job::find($id);
-        if ($job) {
-            $data = new JobResource($job);
-            return $data->toJson();
-        } else {
-            return response()->json(['error' => 'Job Not Found', 'success' => false], 401);
-        }
+        $data = new JobResource($job);
+        return $data->toJson();
     }
 
     public function SingleEmployer($id)
@@ -212,12 +204,8 @@ class EmployerController extends Controller
 
 
         $employer = User::find($id);
-        if ($employer) {
-            $data = new EmployerResource($employer);
-            return $data->toJson();
-        } else {
-            return response()->json(['error' => 'Employer Not Found', 'success' => false], 401);
-        }
+        $data = new EmployerResource($employer);
+        return $data->toJson();
     }
 
 
@@ -226,48 +214,38 @@ class EmployerController extends Controller
     public function SingleJobseeker($id)
     {
         $jobseeker = User::find($id);
-        if ($jobseeker) {
-            $data = new JobseekerResource($jobseeker);
-            return $data->toJson();
-        } else {
-            return response()->json(['error' => 'Jobseeker Not Found', 'success' => false], 401);
-        }
+
+        $data = new JobseekerResource($jobseeker);
+        return $data->toJson();
     }
 
     // Edit Job Function
 
     public function UpdateJob(Request $request)
     {
-        if (Auth::guard('api')->check()) {
-            if (Job::where('id', $request->id)->exists()) {
-                $job = Job::find($request->id);
-                $job->job_title = $request->job_title;
-                $job->countryCode = Auth::guard('api')->user()->countryCode;
-                $job->description = $request->description;
-                $job->salary_type = $request->salary_type;
-                $job->min_salary = $request->min_salary;
-                $job->max_salary = $request->max_salary;
-                $job->occupation = $request->occupation;
-                $job->education =  $request->education;
-                $job->min_experience = $request->min_experience;
-                $job->max_experience = $request->max_experience;
-                // $job->subcategory_id = $request->subcategory_id;
-                $job->requirements = $request->requirements;
-                $job->link = $request->link;
-                $job->vacancies = $request->vacancies;
-                $job->job_type = $request->job_type;
-                $job->skills = implode(',', $request->skills);
-                $job->update();
 
-                $success['message'] = 'Job Update Successfully!';
-                $success['success'] = true;
-                return response()->json($success, $this->successStatus);
-            } else {
-                return response()->json(['error' => 'Job Not Found', 'success' => false], 401);
-            }
-        } else {
-            return response()->json(['error' => 'User not authorized', 'success' => false], 401);
-        }
+        $job = Job::find($request->id);
+        $job->job_title = $request->job_title;
+        $job->countryCode = Auth::guard('api')->user()->countryCode;
+        $job->description = $request->description;
+        $job->salary_type = $request->salary_type;
+        $job->min_salary = $request->min_salary;
+        $job->max_salary = $request->max_salary;
+        $job->occupation = $request->occupation;
+        $job->education =  $request->education;
+        $job->min_experience = $request->min_experience;
+        $job->max_experience = $request->max_experience;
+        // $job->subcategory_id = $request->subcategory_id;
+        $job->requirements = $request->requirements;
+        $job->link = $request->link;
+        $job->vacancies = $request->vacancies;
+        $job->job_type = $request->job_type;
+        $job->skills = implode(',', $request->skills);
+        $job->update();
+
+        $success['message'] = 'Job Update Successfully!';
+        $success['success'] = true;
+        return response()->json($success, $this->successStatus);
     }
 
     // Delete Job Function
@@ -275,14 +253,10 @@ class EmployerController extends Controller
     public function DeleteJob($id)
     {
         $job = Job::find($id);
-        if ($job) {
-            $job->delete();
-            $success['message'] = 'Job Delete Successfully!';
-            $success['success'] = true;
-            return response()->json($success, $this->successStatus);
-        } else {
-            return response()->json(['error' => 'Job Not Found', 'success' => false], 401);
-        }
+        $job->delete();
+        $success['message'] = 'Job Delete Successfully!';
+        $success['success'] = true;
+        return response()->json($success, $this->successStatus);
     }
 
 
@@ -291,22 +265,18 @@ class EmployerController extends Controller
     public function ChangeJobStatus($id)
     {
         $job = Job::find($id);
-        if ($job) {
-            if ($job->status == 'open') {
-                $job->status = 'close';
-                $job->update();
-                $success['message'] = 'Job Status Change Successfully, and Now Current Status is Close';
-                $success['success'] = true;
-                return response()->json($success, $this->successStatus);
-            } else {
-                $job->status = 'open';
-                $job->update();
-                $success['message'] = 'Job Status Change Successfully, and Now Current Status is Open';
-                $success['success'] = true;
-                return response()->json($success, $this->successStatus);
-            }
+        if ($job->status == 'open') {
+            $job->status = 'close';
+            $job->update();
+            $success['message'] = 'Job Status Change Successfully, and Now Current Status is Close';
+            $success['success'] = true;
+            return response()->json($success, $this->successStatus);
         } else {
-            return response()->json(['error' => 'Job Not Found', 'success' => false], 401);
+            $job->status = 'open';
+            $job->update();
+            $success['message'] = 'Job Status Change Successfully, and Now Current Status is Open';
+            $success['success'] = true;
+            return response()->json($success, $this->successStatus);
         }
     }
 
@@ -315,22 +285,18 @@ class EmployerController extends Controller
     public function ChangeProfileStatus($id)
     {
         $user = User::find($id);
-        if ($user) {
-            if ($user->profile_status == 'visible') {
-                $user->profile_status = 'Not Visible';
-                $user->update();
-                $success['message'] = 'Profile Status Change Successfully and Now Current Status is Not Visible';
-                $success['success'] = true;
-                return response()->json($success, $this->successStatus);
-            } else {
-                $user->profile_status = 'visible';
-                $user->update();
-                $success['message'] = 'Profile Status Change Successfully and Now Current Status is Visible';
-                $success['success'] = true;
-                return response()->json($success, $this->successStatus);
-            }
+        if ($user->profile_status == 'visible') {
+            $user->profile_status = 'Not Visible';
+            $user->update();
+            $success['message'] = 'Profile Status Change Successfully and Now Current Status is Not Visible';
+            $success['success'] = true;
+            return response()->json($success, $this->successStatus);
         } else {
-            return response()->json(['error' => 'User Not Found', 'success' => false], 401);
+            $user->profile_status = 'visible';
+            $user->update();
+            $success['message'] = 'Profile Status Change Successfully and Now Current Status is Visible';
+            $success['success'] = true;
+            return response()->json($success, $this->successStatus);
         }
     }
 
@@ -338,16 +304,12 @@ class EmployerController extends Controller
 
     public function PasswordChange(Request $request)
     {
-        if (User::where('id', $request->id)->exists()) {
-            $user = User::find($request->id);
-            $user->password = Hash::make($request->password);
-            $user->update();
-            $success['message'] = 'Password Update Successfully!';
-            $success['success'] = true;
-            return response()->json($success, $this->successStatus);
-        } else {
-            return response()->json(['error' => 'User Not Found', 'success' => false], 401);
-        }
+        $user = User::find($request->id);
+        $user->password = Hash::make($request->password);
+        $user->update();
+        $success['message'] = 'Password Update Successfully!';
+        $success['success'] = true;
+        return response()->json($success, $this->successStatus);
     }
 
 
@@ -357,7 +319,7 @@ class EmployerController extends Controller
     {
         $jobseekers = User::where('user_type', '=', 'jobseeker')->where('profile_status', '=', 'visible')->orderBy('id', 'ASC')->get();
         if ($jobseekers->isEmpty()) {
-            return response()->json(['error' => 'Jobseeker not Found', 'success' => false], 404);
+            return response()->json(['error' => 'Jobseeker Not Found', 'success' => false], 404);
         } else {
             $data = JobseekerCollection::collection($jobseekers);
             return response()->json(JobseekerCollection::collection($data));

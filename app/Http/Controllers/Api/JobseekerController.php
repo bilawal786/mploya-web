@@ -126,7 +126,7 @@ class JobseekerController extends Controller
 
         $jobs = Job::where('status', '=', 'open')->where('countryCode', '=', Auth::guard('api')->user()->countryCode)->orderBy('id', 'ASC')->get();
         if ($jobs->isEmpty()) {
-            return response()->json(['error' => 'Jobs not Found', 'success' => false], 404);
+            return response()->json(['error' => 'Jobs Not Found', 'success' => false], 404);
         } else {
             $data = AllJobCollection::collection($jobs);
             return response()->json(AllJobCollection::collection($data));
@@ -309,7 +309,7 @@ class JobseekerController extends Controller
         if ($user_type == 'jobseeker') {
             $reviews = Review::where('receiver', '=', $jobseeker_id)->get();
             if ($reviews->isEmpty()) {
-                return response()->json(['error' => 'Reviews not Found', 'success' => false], 404);
+                return response()->json(['error' => 'Reviews Not Found', 'success' => false], 404);
             } else {
                 $data = ReviewCollection::collection($reviews);
                 return response()->json(ReviewCollection::collection($data));
@@ -340,7 +340,7 @@ class JobseekerController extends Controller
         $employer_ids = Interview::where('jobseeker_id', '=', $jobseeker_id)->pluck('employer_id');
         $employers = User::whereIn('id', $employer_ids)->get();
         if ($employers->isEmpty()) {
-            return response()->json(['error' => 'Employers not Found', 'success' => false], 404);
+            return response()->json(['error' => 'Employers Not Found', 'success' => false], 404);
         } else {
             $data = EmployerCollection::collection($employers);
             return response()->json(EmployerCollection::collection($data));
@@ -361,7 +361,7 @@ class JobseekerController extends Controller
             ->get();
 
         if ($jobs->isEmpty()) {
-            return response()->json(['error' => 'Jobs not Found', 'success' => false], 404);
+            return response()->json(['error' => 'Jobs Not Found', 'success' => false], 404);
         } else {
             $data = AllJobCollection::collection($jobs);
             return response()->json(AllJobCollection::collection($data));

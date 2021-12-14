@@ -85,7 +85,7 @@ class SubscriptionController extends Controller
         if ($user_type == 'employer') {
             $PruchasedSubscription = PruchasedSubscription::where('employer_id', '=', $employer_id)->get();
             if ($PruchasedSubscription->isEmpty()) {
-                return response()->json(['error' => 'Pruchased Subscription not Found', 'success' => false], 404);
+                return response()->json(['error' => 'Pruchased Subscription Not Found', 'success' => false], 404);
             } else {
                 $data = PurchasedSubscriptionCollection::collection($PruchasedSubscription);
                 return response()->json(PurchasedSubscriptionCollection::collection($data));

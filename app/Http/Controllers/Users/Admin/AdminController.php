@@ -917,6 +917,81 @@ class AdminController extends Controller
         $lang->l238 = $request->l238;
         $lang->l239 = $request->l239;
 
+        // new
+        $lang->l240 = $request->l240;
+        $lang->l241 = $request->l241;
+        $lang->l242 = $request->l242;
+        $lang->l243 = $request->l243;
+        $lang->l244 = $request->l244;
+        $lang->l245 = $request->l245;
+        $lang->l246 = $request->l246;
+        $lang->l247 = $request->l247;
+        $lang->l248 = $request->l248;
+        $lang->l249 = $request->l249;
+
+        $lang->l250 = $request->l250;
+        $lang->l251 = $request->l251;
+        $lang->l252 = $request->l252;
+        $lang->l253 = $request->l253;
+        $lang->l254 = $request->l254;
+        $lang->l255 = $request->l255;
+        $lang->l256 = $request->l256;
+        $lang->l257 = $request->l257;
+        $lang->l258 = $request->l258;
+        $lang->l259 = $request->l259;
+
+        $lang->l260 = $request->l260;
+        $lang->l261 = $request->l261;
+        $lang->l262 = $request->l262;
+        $lang->l263 = $request->l263;
+        $lang->l264 = $request->l264;
+        $lang->l265 = $request->l265;
+        $lang->l266 = $request->l266;
+        $lang->l267 = $request->l267;
+        $lang->l268 = $request->l268;
+        $lang->l269 = $request->l269;
+
+        $lang->l270 = $request->l270;
+        $lang->l271 = $request->l271;
+        $lang->l272 = $request->l272;
+        $lang->l273 = $request->l273;
+        $lang->l274 = $request->l274;
+        $lang->l275 = $request->l275;
+        $lang->l276 = $request->l276;
+        $lang->l277 = $request->l277;
+        $lang->l278 = $request->l278;
+        $lang->l279 = $request->l279;
+
+        $lang->l280 = $request->l280;
+        $lang->l281 = $request->l281;
+        $lang->l282 = $request->l282;
+        $lang->l283 = $request->l283;
+        $lang->l284 = $request->l284;
+        $lang->l285 = $request->l285;
+        $lang->l286 = $request->l286;
+        $lang->l287 = $request->l287;
+        $lang->l288 = $request->l288;
+        $lang->l289 = $request->l289;
+
+        $lang->l290 = $request->l290;
+        $lang->l291 = $request->l291;
+        $lang->l292 = $request->l292;
+        $lang->l293 = $request->l293;
+        $lang->l294 = $request->l294;
+        $lang->l295 = $request->l295;
+        $lang->l296 = $request->l296;
+        $lang->l297 = $request->l297;
+        $lang->l298 = $request->l298;
+        $lang->l299 = $request->l299;
+
+        $lang->l300 = $request->l300;
+        $lang->l301 = $request->l301;
+        $lang->l302 = $request->l302;
+        $lang->l303 = $request->l303;
+        $lang->l304 = $request->l304;
+        $lang->l305 = $request->l305;
+
+
         $lang->save();
         $notification = array(
             'messege' => 'Successfully Added New Language!',
@@ -1196,6 +1271,79 @@ class AdminController extends Controller
         $lang->l237 = $request->l237;
         $lang->l238 = $request->l238;
         $lang->l239 = $request->l239;
+        // new
+        $lang->l240 = $request->l240;
+        $lang->l241 = $request->l241;
+        $lang->l242 = $request->l242;
+        $lang->l243 = $request->l243;
+        $lang->l244 = $request->l244;
+        $lang->l245 = $request->l245;
+        $lang->l246 = $request->l246;
+        $lang->l247 = $request->l247;
+        $lang->l248 = $request->l248;
+        $lang->l249 = $request->l249;
+
+        $lang->l250 = $request->l250;
+        $lang->l251 = $request->l251;
+        $lang->l252 = $request->l252;
+        $lang->l253 = $request->l253;
+        $lang->l254 = $request->l254;
+        $lang->l255 = $request->l255;
+        $lang->l256 = $request->l256;
+        $lang->l257 = $request->l257;
+        $lang->l258 = $request->l258;
+        $lang->l259 = $request->l259;
+
+        $lang->l260 = $request->l260;
+        $lang->l261 = $request->l261;
+        $lang->l262 = $request->l262;
+        $lang->l263 = $request->l263;
+        $lang->l264 = $request->l264;
+        $lang->l265 = $request->l265;
+        $lang->l266 = $request->l266;
+        $lang->l267 = $request->l267;
+        $lang->l268 = $request->l268;
+        $lang->l269 = $request->l269;
+
+        $lang->l270 = $request->l270;
+        $lang->l271 = $request->l271;
+        $lang->l272 = $request->l272;
+        $lang->l273 = $request->l273;
+        $lang->l274 = $request->l274;
+        $lang->l275 = $request->l275;
+        $lang->l276 = $request->l276;
+        $lang->l277 = $request->l277;
+        $lang->l278 = $request->l278;
+        $lang->l279 = $request->l279;
+
+        $lang->l280 = $request->l280;
+        $lang->l281 = $request->l281;
+        $lang->l282 = $request->l282;
+        $lang->l283 = $request->l283;
+        $lang->l284 = $request->l284;
+        $lang->l285 = $request->l285;
+        $lang->l286 = $request->l286;
+        $lang->l287 = $request->l287;
+        $lang->l288 = $request->l288;
+        $lang->l289 = $request->l289;
+
+        $lang->l290 = $request->l290;
+        $lang->l291 = $request->l291;
+        $lang->l292 = $request->l292;
+        $lang->l293 = $request->l293;
+        $lang->l294 = $request->l294;
+        $lang->l295 = $request->l295;
+        $lang->l296 = $request->l296;
+        $lang->l297 = $request->l297;
+        $lang->l298 = $request->l298;
+        $lang->l299 = $request->l299;
+
+        $lang->l300 = $request->l300;
+        $lang->l301 = $request->l301;
+        $lang->l302 = $request->l302;
+        $lang->l303 = $request->l303;
+        $lang->l304 = $request->l304;
+        $lang->l305 = $request->l305;
 
         $lang->update();
         $notification = array(

@@ -59,18 +59,20 @@ class AuthController extends Controller
         $input = $request->all();
         $userEmail = $input['email'];
         User::where('email', $userEmail)->update(['password' => Hash::make($input['new_password'])]);
-        $success['message'] = 'Password updated successfully';
+        $success['message'] = 'Password Updated Successfully';
         $success['success'] = true;
         return response()->json($success, 200);
     }
-    public function chatHistory(Request $request){
+    public function chatHistory(Request $request)
+    {
         $chatHistory = new ChatHistory();
         $chatHistory->s_id = $request->s_id;
         $chatHistory->r_id = $request->r_id;
         $chatHistory->save();
         return response()->json(['success' => true], 200);
     }
-    public function chatHistoryGet(){
+    public function chatHistoryGet()
+    {
         $chatHistory = ChatHistory::where('s_id', Auth::guard('api')->user()->id)->pluck('r_id')->toArray();
         $chatHistory1 = ChatHistory::where('r_id', Auth::guard('api')->user()->id)->pluck('s_id')->toArray();
         $usersIds = array_merge($chatHistory, $chatHistory1);

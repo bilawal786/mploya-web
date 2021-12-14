@@ -503,16 +503,16 @@ class LoginRegisterController extends Controller
 
 
         if (!$request->name) {
-            $success['error'] = "Name is Required ";
+            $success['error'] = "Name is Required";
             $success['success'] = false;
             return response()->json($success, 401);
         } elseif (!$request->user_type) {
-            $success['error'] = "User Type is Required ";
+            $success['error'] = "User Type is Required";
             $success['success'] = false;
             return response()->json($success, 401);
         }
         $otp = mt_rand(100000, 999999);
-        $user =  User::create([
+        $user =  User::[create]([
             'deviceToken' => $request->deviceToken,
             'latitude' => $lat,
             'longitude' => $lng,
@@ -648,7 +648,7 @@ class LoginRegisterController extends Controller
         } else {
             $simple_register_user = User::where('email', '=', $request->email)->first();
             if ($simple_register_user) {
-                return response()->json(['error' => 'Your Account is Register But Not Social ', 'success' => false], 401);
+                return response()->json(['error' => 'Your Account is Register But Not Social', 'success' => false], 401);
             }
         }
     }

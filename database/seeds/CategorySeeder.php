@@ -356,6 +356,9 @@ class CategorySeeder extends Seeder
             'l304' => 'You Are Not Able To Add Review',
             'l305' => "Only Company Employee Can Add Review",
             //
+            'l306' => 'Right Review',
+            'l307' => 'no video found',
+            'l308' => "Video File should not be greater then 2mb",
 
 
 

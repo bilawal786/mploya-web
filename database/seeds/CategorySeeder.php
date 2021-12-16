@@ -364,7 +364,7 @@ class CategorySeeder extends Seeder
             'l310' => 'Schedule',
             'l311' => "Post Now",
 
-            'l312' => "Your ReviewSome thing happened wrong",
+            'l312' => "Some thing happened wrong",
             'l313' => "Your Review",
             'l314' => "Select Rating",
 

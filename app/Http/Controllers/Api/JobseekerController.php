@@ -37,11 +37,13 @@ class JobseekerController extends Controller
             $success['success'] = false;
             return response()->json($success, 401);
         }
-        $validator = Validator::make($request->all(), [
+        $error = Validator::make($request->all(), [
             'video'  =>  'max:20480',
         ]);
-        if ($validator->fails()) {
-            return response()->json($validator->errors(), 422);
+        if ($error->fails()) {
+            $invalid = $error->errors()->all()[0];
+            $message['error'] = $invalid;
+            return response()->json($message, 401);
         }
 
         $id = $request->id;

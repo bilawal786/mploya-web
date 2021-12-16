@@ -359,6 +359,11 @@ class CategorySeeder extends Seeder
             'l306' => 'Right Review',
             'l307' => 'no video found',
             'l308' => "Video File should not be greater then 2mb",
+            // 
+            'l309' => 'Location',
+            'l310' => 'Schedule',
+            'l311' => "Post Now",
+
 
 
 

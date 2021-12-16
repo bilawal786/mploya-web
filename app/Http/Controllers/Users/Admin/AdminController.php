@@ -995,6 +995,10 @@ class AdminController extends Controller
         $lang->l307 = $request->l307;
         $lang->l308 = $request->l308;
 
+        $lang->l309 = $request->l309;
+        $lang->l310 = $request->l310;
+        $lang->l311 = $request->l311;
+
         $lang->save();
         $notification = array(
             'messege' => 'Successfully Added New Language!',
@@ -1351,6 +1355,10 @@ class AdminController extends Controller
         $lang->l306 = $request->l306;
         $lang->l307 = $request->l307;
         $lang->l308 = $request->l308;
+
+        $lang->l309 = $request->l309;
+        $lang->l310 = $request->l310;
+        $lang->l311 = $request->l311;
 
         $lang->update();
         $notification = array(

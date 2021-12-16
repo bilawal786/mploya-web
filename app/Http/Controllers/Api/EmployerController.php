@@ -877,8 +877,8 @@ class EmployerController extends Controller
                 $interview->time = $request->time;
                 $interview->save();
                 $jobseeker = User::find($request->jobseeker_id);
-                //$language = Language::where('code', '=',  $lang)->first();
-                $language = Language::where('code', '=',  'es')->first();
+                $language = Language::where('code', '=',  $lang)->first();
+                // $language = Language::where('code', '=',  'es')->first();
 
                 if ($language) {
                     $msg = $language->l232 . ' ' . $request->date . ' ' . $language->l233 . ' ' . $request->time . ' ' . $language->l234 . ' ' . $language->l235;
@@ -1533,8 +1533,8 @@ class EmployerController extends Controller
             $interview->time = $request->time;
             $interview->update();
             $jobseeker = User::find($request->jobseeker_id);
-            //$language = Language::where('code', '=',  $lang)->first();
-            $language = Language::where('code', '=',  'es')->first();
+            $language = Language::where('code', '=',  $lang)->first();
+            // $language = Language::where('code', '=',  'es')->first();
 
             if ($language) {
                 $message = $language->l232 . ' ' . $request->date . ' ' . $language->l233 . ' ' . $request->time . ' ' . $language->l234 . '' . $language->l235;
@@ -2478,8 +2478,8 @@ class EmployerController extends Controller
                 break;
         }
 
-        //        $language = Language::where('code', '=',  $lang)->first();
-        $language = Language::where('code', '=',  'es')->first();
+        $language = Language::where('code', '=',  $lang)->first();
+        // $language = Language::where('code', '=',  'es')->first();
         $success['currencySymbol'] = $currencySymbol;
         $success['lat'] = $geoplugin_latitude;
         $success['long'] = $geoplugin_longitude;

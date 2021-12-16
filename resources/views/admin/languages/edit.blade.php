@@ -1919,6 +1919,25 @@
                                                 required>
                                         </div>
                                     </div>
+                                    {{-- // --}}
+                                     <div class="col-sm-12">
+                                        <div class="form-group">
+                                            <input type="text" name="l309" class="form-control" value="{{$lan->l309}}"
+                                                required>
+                                        </div>
+                                    </div>
+                                     <div class="col-sm-12">
+                                        <div class="form-group">
+                                            <input type="text" name="l310" class="form-control" value="{{$lan->l310}}"
+                                                required>
+                                        </div>
+                                    </div>
+                                     <div class="col-sm-12">
+                                        <div class="form-group">
+                                            <input type="text" name="l311" class="form-control" value="{{$lan->l311}}"
+                                                required>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                     </div>

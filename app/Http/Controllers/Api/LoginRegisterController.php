@@ -512,7 +512,7 @@ class LoginRegisterController extends Controller
             return response()->json($success, 401);
         }
         $otp = mt_rand(100000, 999999);
-        $user =  User::[create]([
+        $user =  User::create([
             'deviceToken' => $request->deviceToken,
             'latitude' => $lat,
             'longitude' => $lng,

@@ -363,15 +363,10 @@ class CategorySeeder extends Seeder
             'l309' => 'Location',
             'l310' => 'Schedule',
             'l311' => "Post Now",
-
             'l312' => "Some thing happened wrong",
             'l313' => "Your Review",
             'l314' => "Select Rating",
-
-
-
-
-
+            'l315' => "No Chat Found",
         ]);
     }
 }

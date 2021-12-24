@@ -1003,6 +1003,7 @@ class AdminController extends Controller
         $lang->l312 = $request->l312;
         $lang->l313 = $request->l313;
         $lang->l314 = $request->l314;
+        $lang->l315 = $request->l315;
 
         $lang->save();
         $notification = array(
@@ -1368,6 +1369,7 @@ class AdminController extends Controller
         $lang->l312 = $request->l312;
         $lang->l313 = $request->l313;
         $lang->l314 = $request->l314;
+        $lang->l315 = $request->l315;
 
         $lang->update();
         $notification = array(

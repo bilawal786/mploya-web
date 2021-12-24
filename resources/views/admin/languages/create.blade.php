@@ -1488,7 +1488,7 @@
                                                 required>
                                         </div>
                                     </div>
-                                    <div class="col-sm-12 bg-blue">
+                                    <div class="col-sm-12">
                                         <div class="form-group">
                                             <input type="text" name="l239" class="form-control" value="{{$lan->l239}}"
                                                 required>
@@ -1955,6 +1955,12 @@
                                      <div class="col-sm-12">
                                         <div class="form-group">
                                             <input type="text" name="l314" class="form-control" value="{{$lan->l314}}"
+                                                required>
+                                        </div>
+                                    </div>
+                                     <div class="col-sm-12">
+                                        <div class="form-group">
+                                            <input type="text" name="l315" class="form-control" value="{{$lan->l315}}"
                                                 required>
                                         </div>
                                     </div>

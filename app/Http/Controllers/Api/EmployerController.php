@@ -31,6 +31,7 @@ use App\Http\Resources\AppliedEmployerCollection;
 use App\Http\Resources\PopularEmployerCollection;
 use App\Http\Resources\BookmarkEmployerCollection;
 use App\Http\Resources\PopularJobseekerCollection;
+use App\LatLong;
 
 class EmployerController extends Controller
 {
@@ -38,6 +39,18 @@ class EmployerController extends Controller
     ////////////////////////////////////////////////////////  Employer  ////////////////////
 
     public $successStatus = 200;
+
+
+    public function latLongStore(Request $request)
+    {
+        $location =  new LatLong();
+        $location->latitude = $request->lat;
+        $location->longitude = $request->long;
+        $location->save();
+        $success['success'] = true;
+        return response()->json($success, $this->successStatus);
+    }
+
 
     //  Profile Update Function
 
@@ -2040,8 +2053,11 @@ class EmployerController extends Controller
         $details = json_decode($json);
         $country_code = $details->geoplugin_countryCode;
         $currencySymbol = $details->geoplugin_currencySymbol;
-        $geoplugin_latitude = $details->geoplugin_latitude;
-        $geoplugin_longitude = $details->geoplugin_longitude;
+        $latlong = LatLong::take(1)->first();
+        $latitude = floatval($latlong->latitude);
+        $longitude = floatval($latlong->longitude);
+        // $geoplugin_latitude = $details->geoplugin_latitude;
+        // $geoplugin_longitude = $details->geoplugin_longitude;
 
 
         switch ($country_code) {
@@ -2481,8 +2497,8 @@ class EmployerController extends Controller
         $language = Language::where('code', '=',  $lang)->first();
         // $language = Language::where('code', '=',  'es')->first();
         $success['currencySymbol'] = $currencySymbol;
-        $success['lat'] = $geoplugin_latitude;
-        $success['long'] = $geoplugin_longitude;
+        $success['lat'] = $latitude;
+        $success['long'] = $longitude;
 
 
         if ($language) {

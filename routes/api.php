@@ -68,7 +68,7 @@ Route::get('/review/sender/image/{id}', 'Api\EmployerController@getLanguageCode'
 Route::get('/chat/history', 'Api\AuthController@chatHistoryGet');
 Route::post('/chat/history', 'Api\AuthController@chatHistory');
 
-Route::post('/lat-long/store', 'Api\EmployerController@latLongStore');
+
 
 // get coordinate
 
@@ -77,6 +77,9 @@ Route::get('/get/coordinates', 'Api\EmployerController@getCoordinate');
 Route::group(
     ['middleware' => ['auth:api', 'UserBlock']],
     function () {
+
+        // lat long save api 
+        Route::post('/lat-long/store', 'Api\EmployerController@latLongStore');
         //************************ employer Route *****************************/
 
         Route::get('/review/sender/image/{id}', 'Api\EmployerController@getSenderImage');

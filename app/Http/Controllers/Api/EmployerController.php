@@ -150,6 +150,8 @@ class EmployerController extends Controller
             $job->job_title = $request->job_title;
             $job->employer_id = $user_id;
             $job->status = 'open';
+            $job->latitude = Auth::guard('api')->user()->latitude;
+            $job->longitude = Auth::guard('api')->user()->longitude;
             $job->description = $request->description;
             $job->salary_type = $request->salary_type;
             $job->min_salary = $request->min_salary;
@@ -249,6 +251,8 @@ class EmployerController extends Controller
         $job->min_experience = $request->min_experience;
         $job->max_experience = $request->max_experience;
         // $job->subcategory_id = $request->subcategory_id;
+        $job->latitude = Auth::guard('api')->user()->latitude;
+        $job->longitude = Auth::guard('api')->user()->longitude;
         $job->requirements = $request->requirements;
         $job->link = $request->link;
         $job->vacancies = $request->vacancies;
@@ -2053,9 +2057,9 @@ class EmployerController extends Controller
         $details = json_decode($json);
         $country_code = $details->geoplugin_countryCode;
         $currencySymbol = $details->geoplugin_currencySymbol;
-        $latlong = LatLong::take(1)->first();
-        $latitude = floatval($latlong->latitude);
-        $longitude = floatval($latlong->longitude);
+        // $latlong = LatLong::take(1)->first();
+        // $latitude = floatval($latlong->latitude);
+        // $longitude = floatval($latlong->longitude);
         // $geoplugin_latitude = $details->geoplugin_latitude;
         // $geoplugin_longitude = $details->geoplugin_longitude;
 
@@ -2497,8 +2501,8 @@ class EmployerController extends Controller
         $language = Language::where('code', '=',  $lang)->first();
         // $language = Language::where('code', '=',  'es')->first();
         $success['currencySymbol'] = $currencySymbol;
-        $success['lat'] = $latitude;
-        $success['long'] = $longitude;
+        // $success['lat'] = $latitude;
+        // $success['long'] = $longitude;
 
 
         if ($language) {

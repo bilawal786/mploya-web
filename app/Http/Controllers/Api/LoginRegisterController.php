@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\User;
+use App\LatLong;
 use App\Language;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -51,11 +52,11 @@ class LoginRegisterController extends Controller
         $response = Http::get('http://ipinfo.io/119.155.58.47/json');
         $data = $response->object();
         $countryCode = $data->country;
-        $loc = explode(',', $data->loc);
-        $latitude = $loc[0];
-        $longitude = $loc[1];
-        $lat = floatval($latitude);
-        $lng = floatval($longitude);
+        // $loc = explode(',', $data->loc);
+        // $latitude = $loc[0];
+        // $longitude = $loc[1];
+        // $lat = floatval($latitude);
+        // $lng = floatval($longitude);
         $json = file_get_contents("http://www.geoplugin.net/json.gp?ip=" . request()->ip());
         $details = json_decode($json);
         $country_code = $details->geoplugin_countryCode;
@@ -514,8 +515,8 @@ class LoginRegisterController extends Controller
         $otp = mt_rand(100000, 999999);
         $user =  User::create([
             'deviceToken' => $request->deviceToken,
-            'latitude' => $lat,
-            'longitude' => $lng,
+            'latitude' => $request->lat,
+            'longitude' => $request->long,
             'otp' => $otp,
             'name' => $request->name,
             'countryCode' => $countryCode,
@@ -523,6 +524,11 @@ class LoginRegisterController extends Controller
             'user_type' => $request->user_type,
             'password' => Hash::make($request->password),
         ]);
+        // $location =  new LatLong();
+        // $location->user_id =  $user->id;
+        // $location->latitude = $request->lat;
+        // $location->longitude = $request->long;
+        // $location->save();
         $success['id'] =  $user->id;
         $success['deviceToken'] =  $user->deviceToken;
         $success['name'] =  $user->name;
@@ -530,8 +536,8 @@ class LoginRegisterController extends Controller
         $success['image'] =  $user->image;
         $success['success'] = true;
         $success['message'] = 'Otp Send Successfully On Your Email';
-        //$language = Language::where('code', '=',  $lang)->first();
-        $language = Language::where('code', '=',  'es')->first();
+        $language = Language::where('code', '=',  $lang)->first();
+        // $language = Language::where('code', '=',  'es')->first();
 
         if ($language) {
             $lng = $language;
@@ -578,6 +584,8 @@ class LoginRegisterController extends Controller
                     $user->name = $request->name;
                     $user->deviceToken = $request->deviceToken;
                     $user->email = $request->email;
+                    $user->latitude = $request->lat;
+                    $user->longitude = $request->long;
                     $user->user_type =  $request->user_type;
                     $user->provider_id = $request->provider_id;
                     $user->provider_name = $request->provider_name;
@@ -614,6 +622,8 @@ class LoginRegisterController extends Controller
                     $user->name = $request->name;
                     $user->deviceToken = $request->deviceToken;
                     $user->email = $request->email;
+                    $user->latitude = $request->lat;
+                    $user->longitude = $request->long;
                     $user->user_type =  $request->user_type;
                     $user->provider_id = $request->provider_id;
                     $user->provider_name = $request->provider_name;

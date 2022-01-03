@@ -577,6 +577,9 @@ class LoginRegisterController extends Controller
     {
 
         $user = User::where('email', '=', $request->email)->where('provider_id', '=', $request->provider_id)->first();
+        $response = Http::get('http://ipinfo.io/119.155.58.47/json');
+        $data = $response->object();
+        $countryCode = $data->country;
         if ($request->provider_id) {
             if ($request->provider_name == 'google') {
                 if (!$user) {
@@ -589,6 +592,7 @@ class LoginRegisterController extends Controller
                     $user->user_type =  $request->user_type;
                     $user->provider_id = $request->provider_id;
                     $user->provider_name = $request->provider_name;
+                    $user->countryCode = $countryCode;
                     $user->varify_email = 1;
                     $user->save();
                     if ($request->user_type == $user->user_type) {
@@ -627,6 +631,7 @@ class LoginRegisterController extends Controller
                     $user->user_type =  $request->user_type;
                     $user->provider_id = $request->provider_id;
                     $user->provider_name = $request->provider_name;
+                    $user->countryCode = $countryCode;
                     $user->varify_email = 1;
                     $user->save();
                     if ($request->user_type == $user->user_type) {
